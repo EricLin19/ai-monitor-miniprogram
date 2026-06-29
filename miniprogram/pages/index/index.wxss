@@ -96,6 +96,17 @@
   font-size: 23rpx;
 }
 
+.debug {
+  margin-top: 16rpx;
+  padding: 18rpx 20rpx;
+  color: #b42318;
+  background: #fff1f0;
+  border: 1rpx solid #ffd3cf;
+  border-radius: 14rpx;
+  font-size: 24rpx;
+  line-height: 1.45;
+}
+
 .tabs {
   display: flex;
   gap: 12rpx;
@@ -232,4 +243,3 @@
   font-size: 24rpx;
   font-weight: 700;
 }
-

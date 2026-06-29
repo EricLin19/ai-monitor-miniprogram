@@ -8,6 +8,7 @@ Page({
     keyword: "",
     updatedAt: "--",
     source: "mock",
+    errorMessage: "",
     loading: false,
     healthLabel: "待接入",
     healthClass: "neutral"
@@ -25,6 +26,7 @@ Page({
       metrics,
       updatedAt: data.updatedAt || "--",
       source: data.source || "mock",
+      errorMessage: buildErrorMessage(data),
       loading: false,
       healthLabel: calcHealth(metrics),
       healthClass: calcHealthClass(metrics)
@@ -87,3 +89,9 @@ function calcHealthClass(metrics) {
   return "neutral";
 }
 
+function buildErrorMessage(data) {
+  if (data.errorMessage) return data.errorMessage;
+  if (Array.isArray(data.errors) && data.errors.length) return data.errors.join("；");
+  if (data.source === "mock") return "当前显示 mock 数据，说明云函数未返回实时指标。";
+  return "";
+}

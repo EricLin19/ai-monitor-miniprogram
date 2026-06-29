@@ -2,7 +2,12 @@ const { metrics: mockMetrics } = require("../data/mockMetrics");
 
 async function fetchMetrics() {
   if (!wx.cloud) {
-    return { metrics: mockMetrics, updatedAt: formatTime(new Date()), source: "mock" };
+    return {
+      metrics: mockMetrics,
+      updatedAt: formatTime(new Date()),
+      source: "mock",
+      errorMessage: "wx.cloud 不可用，请确认 app.json 已开启 cloud 且 app.js 已配置云环境 ID。"
+    };
   }
 
   try {
@@ -14,11 +19,21 @@ async function fetchMetrics() {
     if (result && result.result && Array.isArray(result.result.metrics)) {
       return result.result;
     }
+    return {
+      metrics: mockMetrics,
+      updatedAt: formatTime(new Date()),
+      source: "mock",
+      errorMessage: "云函数返回格式不符合预期，请检查 fetchMetrics 云函数日志。"
+    };
   } catch (error) {
     console.warn("fetchMetrics fallback to mock:", error);
+    return {
+      metrics: mockMetrics,
+      updatedAt: formatTime(new Date()),
+      source: "mock",
+      errorMessage: error && error.errMsg ? error.errMsg : String(error)
+    };
   }
-
-  return { metrics: mockMetrics, updatedAt: formatTime(new Date()), source: "mock" };
 }
 
 function formatTime(date) {
@@ -27,4 +42,3 @@ function formatTime(date) {
 }
 
 module.exports = { fetchMetrics };
-

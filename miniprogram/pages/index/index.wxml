@@ -20,6 +20,10 @@
     <text>数据模式：{{source}}</text>
   </view>
 
+  <view wx:if="{{errorMessage}}" class="debug">
+    {{errorMessage}}
+  </view>
+
   <view class="tabs">
     <view class="tab {{activeGroup === 'all' ? 'active' : ''}}" data-group="all" bindtap="changeGroup">全部</view>
     <view class="tab {{activeGroup === 'AI Demand' ? 'active' : ''}}" data-group="AI Demand" bindtap="changeGroup">需求</view>
