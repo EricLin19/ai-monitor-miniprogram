@@ -1,6 +1,16 @@
 const { metrics: mockMetrics } = require("../data/mockMetrics");
 
+const USE_CLOUD_FUNCTION = false;
+
 async function fetchMetrics() {
+  if (!USE_CLOUD_FUNCTION) {
+    return {
+      metrics: mockMetrics,
+      updatedAt: "2026-06-29 21:18",
+      source: "local-cache"
+    };
+  }
+
   if (!wx.cloud) {
     return {
       metrics: mockMetrics,
