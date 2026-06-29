@@ -2,7 +2,7 @@
   <view class="hero">
     <view>
       <view class="eyebrow">AI 景气度雷达</view>
-      <view class="title">12 个核心指标</view>
+      <view class="title">16 个核心指标</view>
       <view class="desc">需求、商业化、算力投入、效率和供应链收入一起看。</view>
     </view>
     <view class="health {{healthClass}}">

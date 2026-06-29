@@ -4,7 +4,16 @@ const { metrics: mockMetrics } = require("./mockMetrics");
 
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
 
-exports.main = async () => {
+exports.main = async (event = {}) => {
+  if (!event.live) {
+    return {
+      metrics: mockMetrics,
+      updatedAt: "2026-06-29 21:18",
+      source: "cached",
+      errors: []
+    };
+  }
+
   const results = await Promise.allSettled([
     fetchOpenRouterMetrics(),
     fetchArtificialAnalysisMetrics(),
