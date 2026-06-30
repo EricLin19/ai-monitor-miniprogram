@@ -1,4 +1,5 @@
 const { metrics: mockMetrics } = require("../data/mockMetrics");
+const { cacheMeta } = require("../data/cacheMeta");
 
 const USE_CLOUD_FUNCTION = false;
 
@@ -6,7 +7,7 @@ async function fetchMetrics() {
   if (!USE_CLOUD_FUNCTION) {
     return {
       metrics: mockMetrics,
-      updatedAt: "2026-06-29 21:18",
+      updatedAt: cacheMeta.updatedAt,
       source: "local-cache"
     };
   }

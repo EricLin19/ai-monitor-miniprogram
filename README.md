@@ -35,6 +35,27 @@
 
 如果云函数还没部署，前端会自动使用 mock 数据，方便先看 UI。
 
+## 更新缓存数据
+
+当前小程序默认读取本地缓存，避免每次打开都等待外部 API。更新缓存时，在项目根目录运行：
+
+```bash
+node scripts/update-cache.js
+```
+
+如果要更新 OpenRouter 指标，先在本机设置环境变量，或新建不会提交到 Git 的 `.env` 文件：
+
+```env
+OPENROUTER_API_KEY=你的 OpenRouter API key
+SEC_USER_AGENT=AI Monitor Mini Program your-email@example.com
+```
+
+脚本会更新：
+
+- `miniprogram/data/mockMetrics.js`
+- `cloudfunctions/fetchMetrics/mockMetrics.js`
+- `miniprogram/data/cacheMeta.js`
+
 ## 12 个指标接入状态
 
 | 指标 | 接入方式 | 是否尽量免费 |
@@ -60,4 +81,3 @@
 - `ARTIFICIAL_ANALYSIS_API_KEY`
 - `CLOUDFLARE_API_TOKEN`，如果 Radar API 需要认证
 - `SEC_USER_AGENT`，例如 `yourname your@email.com`
-
