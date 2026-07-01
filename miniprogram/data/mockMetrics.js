@@ -222,6 +222,34 @@ const metrics = [
     "source": "Mag 7 / SOXX / 等权标普",
     "sourceUrl": "https://www.spglobal.com/spdji/en/indices/equity/sp-500-equal-weight-index/",
     "note": "判断 AI 统一 beta 是否转向分化 alpha，市场是轮动还是坍塌。"
+  },
+  {
+    "id": "ai_hardware_heat",
+    "group": "AI Valuation Heatmap",
+    "title": "AI 硬件上游拥挤温度",
+    "value": "GPU/HBM",
+    "unit": "最热",
+    "change": "兑现交易",
+    "trend": "flat",
+    "access": "框架",
+    "cadence": "周/月",
+    "source": "AI产业链估值温度图",
+    "sourceUrl": "https://openrouter.ai/data",
+    "note": "拥挤度排序：GPU > HBM > CoWoS/光模块 > ASIC > 云 > 模型 > Agent/应用。硬件上游已从景气交易进入兑现交易。"
+  },
+  {
+    "id": "ai_downstream_odds",
+    "group": "AI Valuation Heatmap",
+    "title": "AI 下游三年赔率",
+    "value": "Agent/应用",
+    "unit": "最高",
+    "change": "叙事交易",
+    "trend": "up",
+    "access": "框架",
+    "cadence": "周/月",
+    "source": "AI产业链估值温度图",
+    "sourceUrl": "https://openrouter.ai/data",
+    "note": "三年赔率排序：Agent/应用 ≈ 基础模型 > ASIC/光互连 > 云厂商 > HBM > GPU。下一阶段机会来自 CapEx 继续上修或 Agent 收入爆发。"
   }
 ];
 
