@@ -56,6 +56,30 @@ SEC_USER_AGENT=AI Monitor Mini Program your-email@example.com
 - `cloudfunctions/fetchMetrics/mockMetrics.js`
 - `miniprogram/data/cacheMeta.js`
 
+### 手动指标
+
+没有稳定 API 的指标先填在：
+
+```text
+data/manual-overrides.json
+```
+
+适合手动维护：
+
+- GPU 租赁价格
+- 主流模型 API 价格指数
+- Agent Token 占比
+- 单位 GPU 每日收入
+- OpenAI / Anthropic ARR 事件更新
+
+改完 `manual-overrides.json` 后运行：
+
+```bash
+node scripts/update-cache.js
+```
+
+小程序会读到最新手动值。
+
 ## 12 个指标接入状态
 
 | 指标 | 接入方式 | 是否尽量免费 |

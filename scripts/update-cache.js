@@ -6,6 +6,7 @@ const rootDir = path.resolve(__dirname, "..");
 const miniMetricsPath = path.join(rootDir, "miniprogram", "data", "mockMetrics.js");
 const cloudMetricsPath = path.join(rootDir, "cloudfunctions", "fetchMetrics", "mockMetrics.js");
 const miniMetaPath = path.join(rootDir, "miniprogram", "data", "cacheMeta.js");
+const manualOverridesPath = path.join(rootDir, "data", "manual-overrides.json");
 
 loadDotEnv(path.join(rootDir, ".env"));
 
@@ -25,6 +26,7 @@ async function main() {
   }
 
   Object.assign(updates, await fetchSecCapex());
+  Object.assign(updates, readManualOverrides());
 
   const next = current.map((item) => ({
     ...item,
@@ -45,6 +47,12 @@ async function main() {
       path.relative(rootDir, miniMetaPath)
     ]
   }, null, 2));
+}
+
+function readManualOverrides() {
+  if (!fs.existsSync(manualOverridesPath)) return {};
+  const raw = fs.readFileSync(manualOverridesPath, "utf8");
+  return JSON.parse(raw);
 }
 
 async function fetchOpenRouter(key) {

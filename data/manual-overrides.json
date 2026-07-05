@@ -1,0 +1,44 @@
+{
+  "gpu_rental_price": {
+    "value": "待填",
+    "unit": "H100/B200/GB200",
+    "change": "日频",
+    "access": "手动",
+    "note": "手动跟踪 Lambda、CoreWeave、Fluidstack、Crusoe 等平台的 GPU 租赁价格。价格上涨通常代表供给偏紧或需求强。"
+  },
+  "api_price_index": {
+    "value": "待填",
+    "unit": "$/1M tokens",
+    "change": "日/月",
+    "access": "手动",
+    "note": "手动跟踪 OpenAI、Anthropic、Google、DeepSeek 的输入/输出每百万 Token 价格。"
+  },
+  "agent_token_share": {
+    "value": "待填",
+    "unit": "%",
+    "change": "周频",
+    "access": "手动",
+    "note": "手动记录 OpenRouter、Fireworks 或平台披露中的 Agent Token 占比。"
+  },
+  "revenue_per_gpu": {
+    "value": "待建模",
+    "unit": "$/GPU/day",
+    "change": "月/季",
+    "access": "建模",
+    "note": "用 GPU 租赁价格、云平台收入、GPU 数量估算单位 GPU 每日收入。"
+  },
+  "anthropic_arr": {
+    "value": "手动",
+    "unit": "",
+    "change": "事件",
+    "access": "手动",
+    "note": "融资、媒体报道、CEO 采访时更新。"
+  },
+  "openai_arr": {
+    "value": "手动",
+    "unit": "",
+    "change": "事件",
+    "access": "手动",
+    "note": "融资、媒体报道、CEO 采访时更新。"
+  }
+}

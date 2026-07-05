@@ -67,7 +67,7 @@ const metrics = [
     "cadence": "事件/月",
     "source": "Sacra / The Information",
     "sourceUrl": "https://sacra.com/c/anthropic/",
-    "note": "媒体估算口径，不等同审计收入，需要人工确认来源。"
+    "note": "融资、媒体报道、CEO 采访时更新。"
   },
   {
     "id": "openai_arr",
@@ -81,7 +81,7 @@ const metrics = [
     "cadence": "事件/月",
     "source": "The Information / Sacra",
     "sourceUrl": "https://www.theinformation.com/",
-    "note": "重点看消费者订阅、API、企业版和云分成。"
+    "note": "融资、媒体报道、CEO 采访时更新。"
   },
   {
     "id": "ramp_ai_adoption",
@@ -255,43 +255,43 @@ const metrics = [
     "id": "gpu_rental_price",
     "group": "AI Daily Core",
     "title": "GPU 租赁价格",
-    "value": "待接入",
+    "value": "待填",
     "unit": "H100/B200/GB200",
     "change": "日频",
     "trend": "flat",
-    "access": "半自动",
+    "access": "手动",
     "cadence": "日/周",
     "source": "Lambda / CoreWeave / Fluidstack / Crusoe",
     "sourceUrl": "https://lambdalabs.com/service/gpu-cloud",
-    "note": "领先观察 GPU 供需：租赁价格上涨通常代表推理/训练需求强，价格下跌可能代表供给宽松。"
+    "note": "手动跟踪 Lambda、CoreWeave、Fluidstack、Crusoe 等平台的 GPU 租赁价格。价格上涨通常代表供给偏紧或需求强。"
   },
   {
     "id": "api_price_index",
     "group": "AI Daily Core",
     "title": "主流模型 API 价格指数",
-    "value": "待接入",
+    "value": "待填",
     "unit": "$/1M tokens",
     "change": "日/月",
     "trend": "down",
-    "access": "半自动",
+    "access": "手动",
     "cadence": "日/周",
     "source": "OpenAI / Anthropic / Google / DeepSeek",
     "sourceUrl": "https://artificialanalysis.ai/models",
-    "note": "跟踪每百万 Token 输入/输出价格，衡量推理成本下降速度和应用扩张弹性。"
+    "note": "手动跟踪 OpenAI、Anthropic、Google、DeepSeek 的输入/输出每百万 Token 价格。"
   },
   {
     "id": "agent_token_share",
     "group": "AI Daily Core",
     "title": "Agent Token 占比",
-    "value": "待接入",
+    "value": "待填",
     "unit": "%",
     "change": "周频",
     "trend": "up",
-    "access": "半自动",
+    "access": "手动",
     "cadence": "周",
     "source": "OpenRouter / Fireworks / 平台披露",
     "sourceUrl": "https://openrouter.ai/data",
-    "note": "判断 Token 消费是否从人工聊天迁移到 Agent 工作流；Agent 消耗 Token 更多，直接影响推理需求。"
+    "note": "手动记录 OpenRouter、Fireworks 或平台披露中的 Agent Token 占比。"
   },
   {
     "id": "revenue_per_gpu",
@@ -305,7 +305,7 @@ const metrics = [
     "cadence": "月/季",
     "source": "云平台价格 / 财报 / 行业估算",
     "sourceUrl": "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
-    "note": "比单看 Token 更接近产业盈利能力：如果每卡收入下降，GPU 需求扩张的可持续性会被质疑。"
+    "note": "用 GPU 租赁价格、云平台收入、GPU 数量估算单位 GPU 每日收入。"
   }
 ];
 
