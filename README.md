@@ -80,6 +80,41 @@ node scripts/update-cache.js
 
 小程序会读到最新手动值。
 
+### 自动更新
+
+项目已加入 GitHub Actions：
+
+```text
+.github/workflows/update-cache.yml
+```
+
+它会每天自动运行一次 `node scripts/update-cache.js`，更新缓存并提交到仓库。你也可以在 GitHub 页面手动触发：
+
+```text
+Actions → Update AI monitor cache → Run workflow
+```
+
+需要在 GitHub 仓库配置 Secrets：
+
+```text
+OPENROUTER_API_KEY = 你的 OpenRouter API key
+SEC_USER_AGENT = AI Monitor Mini Program your-email@example.com
+```
+
+配置位置：
+
+```text
+GitHub 仓库 → Settings → Secrets and variables → Actions → New repository secret
+```
+
+不能自动抓的数据仍然放在：
+
+```text
+data/manual-overrides.json
+```
+
+你把新的 ARR、GPU 租赁价格、Agent Token 占比等发给我，我来帮你改这个文件并提交。
+
 ## 12 个指标接入状态
 
 | 指标 | 接入方式 | 是否尽量免费 |
