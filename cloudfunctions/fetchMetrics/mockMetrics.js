@@ -250,6 +250,62 @@ const metrics = [
     "source": "AI产业链估值温度图",
     "sourceUrl": "https://openrouter.ai/data",
     "note": "三年赔率排序：Agent/应用 ≈ 基础模型 > ASIC/光互连 > 云厂商 > HBM > GPU。下一阶段机会来自 CapEx 继续上修或 Agent 收入爆发。"
+  },
+  {
+    "id": "gpu_rental_price",
+    "group": "AI Daily Core",
+    "title": "GPU 租赁价格",
+    "value": "待接入",
+    "unit": "H100/B200/GB200",
+    "change": "日频",
+    "trend": "flat",
+    "access": "半自动",
+    "cadence": "日/周",
+    "source": "Lambda / CoreWeave / Fluidstack / Crusoe",
+    "sourceUrl": "https://lambdalabs.com/service/gpu-cloud",
+    "note": "领先观察 GPU 供需：租赁价格上涨通常代表推理/训练需求强，价格下跌可能代表供给宽松。"
+  },
+  {
+    "id": "api_price_index",
+    "group": "AI Daily Core",
+    "title": "主流模型 API 价格指数",
+    "value": "待接入",
+    "unit": "$/1M tokens",
+    "change": "日/月",
+    "trend": "down",
+    "access": "半自动",
+    "cadence": "日/周",
+    "source": "OpenAI / Anthropic / Google / DeepSeek",
+    "sourceUrl": "https://artificialanalysis.ai/models",
+    "note": "跟踪每百万 Token 输入/输出价格，衡量推理成本下降速度和应用扩张弹性。"
+  },
+  {
+    "id": "agent_token_share",
+    "group": "AI Daily Core",
+    "title": "Agent Token 占比",
+    "value": "待接入",
+    "unit": "%",
+    "change": "周频",
+    "trend": "up",
+    "access": "半自动",
+    "cadence": "周",
+    "source": "OpenRouter / Fireworks / 平台披露",
+    "sourceUrl": "https://openrouter.ai/data",
+    "note": "判断 Token 消费是否从人工聊天迁移到 Agent 工作流；Agent 消耗 Token 更多，直接影响推理需求。"
+  },
+  {
+    "id": "revenue_per_gpu",
+    "group": "AI Daily Core",
+    "title": "单位 GPU 每日收入",
+    "value": "待建模",
+    "unit": "$/GPU/day",
+    "change": "月/季",
+    "trend": "flat",
+    "access": "建模",
+    "cadence": "月/季",
+    "source": "云平台价格 / 财报 / 行业估算",
+    "sourceUrl": "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
+    "note": "比单看 Token 更接近产业盈利能力：如果每卡收入下降，GPU 需求扩张的可持续性会被质疑。"
   }
 ];
 
