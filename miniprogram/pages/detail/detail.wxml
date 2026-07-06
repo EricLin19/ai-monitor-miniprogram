@@ -1,0 +1,29 @@
+<view class="page" wx:if="{{metric}}">
+  <view class="header">
+    <view class="kicker">{{metric.group}} · {{metric.cadence}}</view>
+    <view class="title">{{metric.title}}</view>
+    <view class="meta">
+      <text>更新：{{updatedAt}}</text>
+      <text>{{metric.access}}</text>
+    </view>
+  </view>
+
+  <view class="valueBox">
+    <view>
+      <text class="value">{{metric.value}}</text>
+      <text class="unit">{{metric.unit}}</text>
+    </view>
+    <view class="change {{metric.trend}}">{{metric.change}}</view>
+  </view>
+
+  <view class="section">
+    <view class="sectionTitle">它讲的故事</view>
+    <view class="body">{{metric.note}}</view>
+  </view>
+
+  <view class="section">
+    <view class="sectionTitle">数据来源</view>
+    <view class="source">{{metric.source}}</view>
+    <button class="copy" bindtap="copySource">复制来源链接</button>
+  </view>
+</view>

@@ -35,7 +35,7 @@
   </view>
 
   <view class="cards">
-    <view wx:for="{{visibleMetrics}}" wx:key="id" class="card" bindtap="openSource" data-url="{{item.sourceUrl}}">
+    <view wx:for="{{visibleMetrics}}" wx:key="id" class="card" bindtap="openDetail" data-id="{{item.id}}">
       <view class="cardTop">
         <view>
           <view class="group">{{item.group}} · {{item.cadence}}</view>
@@ -56,7 +56,7 @@
 
       <view class="sourceLine">
         <text>{{item.source}}</text>
-        <text>查看</text>
+        <text>详情</text>
       </view>
     </view>
   </view>

@@ -56,14 +56,11 @@ Page({
     this.setData({ visibleMetrics });
   },
 
-  openSource(event) {
-    const url = event.currentTarget.dataset.url;
-    if (!url) return;
-    wx.setClipboardData({
-      data: url,
-      success() {
-        wx.showToast({ title: "来源链接已复制", icon: "none" });
-      }
+  openDetail(event) {
+    const id = event.currentTarget.dataset.id;
+    if (!id) return;
+    wx.navigateTo({
+      url: `/pages/detail/detail?id=${encodeURIComponent(id)}`
     });
   }
 });
