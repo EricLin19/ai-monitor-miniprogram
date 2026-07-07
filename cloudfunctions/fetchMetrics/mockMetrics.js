@@ -3,9 +3,9 @@ const metrics = [
     "id": "openrouter_tokens",
     "group": "AI Demand",
     "title": "OpenRouter 平台 token 用量趋势",
-    "value": "46.7T",
+    "value": "46.8T",
     "unit": "7d",
-    "change": "2026-06-22 to 2026-06-28",
+    "change": "2026-06-30 to 2026-07-06",
     "trend": "up",
     "access": "缓存",
     "cadence": "周",
@@ -19,13 +19,13 @@ const metrics = [
     "title": "OpenRouter 平台模型份额变化",
     "value": "66%",
     "unit": "Top10",
-    "change": "Anthropic 13.6%",
+    "change": "Anthropic 15.4%",
     "trend": "flat",
     "access": "缓存",
     "cadence": "周",
     "source": "OpenRouter Rankings",
     "sourceUrl": "https://openrouter.ai/rankings",
-    "note": "追踪 OpenRouter 平台内 OpenAI、Anthropic、Gemini、DeepSeek、Qwen 等份额迁移。"
+    "note": "Top10 模型集中度；第一模型：deepseek/deepseek-v4-flash-20260423。"
   },
   {
     "id": "aa_value",
