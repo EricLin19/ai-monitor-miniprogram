@@ -115,6 +115,12 @@ data/manual-overrides.json
 
 你把新的 ARR、GPU 租赁价格、Agent Token 占比等发给我，我来帮你改这个文件并提交。
 
+手动数据可以按这个模板发给 Codex：
+
+```text
+data/manual-update-template.md
+```
+
 ## 12 个指标接入状态
 
 | 指标 | 接入方式 | 是否尽量免费 |
