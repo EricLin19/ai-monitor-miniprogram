@@ -52,6 +52,14 @@
         <view class="change {{item.trend}}">{{item.change}}</view>
       </view>
 
+      <view class="chartBlock" catchtap="noop">
+        <view class="chartHead">
+          <text>{{item.windowLabel}}</text>
+          <text>{{item.historyLabel}}</text>
+        </view>
+        <canvas class="sparkCanvas" canvas-id="{{item.canvasId}}" id="{{item.canvasId}}"></canvas>
+      </view>
+
       <view class="note">{{item.note}}</view>
 
       <view class="sourceLine">

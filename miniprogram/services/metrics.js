@@ -1,5 +1,6 @@
 const { metrics: mockMetrics } = require("../data/mockMetrics");
 const { cacheMeta } = require("../data/cacheMeta");
+const { metricHistory } = require("../data/metricHistory");
 
 const USE_CLOUD_FUNCTION = false;
 
@@ -7,6 +8,7 @@ async function fetchMetrics() {
   if (!USE_CLOUD_FUNCTION) {
     return {
       metrics: mockMetrics,
+      history: metricHistory,
       updatedAt: cacheMeta.updatedAt,
       source: "local-cache"
     };
@@ -15,6 +17,7 @@ async function fetchMetrics() {
   if (!wx.cloud) {
     return {
       metrics: mockMetrics,
+      history: metricHistory,
       updatedAt: formatTime(new Date()),
       source: "mock",
       errorMessage: "wx.cloud 不可用，请确认 app.json 已开启 cloud 且 app.js 已配置云环境 ID。"
@@ -32,6 +35,7 @@ async function fetchMetrics() {
     }
     return {
       metrics: mockMetrics,
+      history: metricHistory,
       updatedAt: formatTime(new Date()),
       source: "mock",
       errorMessage: "云函数返回格式不符合预期，请检查 fetchMetrics 云函数日志。"
@@ -40,6 +44,7 @@ async function fetchMetrics() {
     console.warn("fetchMetrics fallback to mock:", error);
     return {
       metrics: mockMetrics,
+      history: metricHistory,
       updatedAt: formatTime(new Date()),
       source: "mock",
       errorMessage: error && error.errMsg ? error.errMsg : String(error)

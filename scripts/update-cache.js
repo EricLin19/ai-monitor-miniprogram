@@ -6,6 +6,7 @@ const rootDir = path.resolve(__dirname, "..");
 const miniMetricsPath = path.join(rootDir, "miniprogram", "data", "mockMetrics.js");
 const cloudMetricsPath = path.join(rootDir, "cloudfunctions", "fetchMetrics", "mockMetrics.js");
 const miniMetaPath = path.join(rootDir, "miniprogram", "data", "cacheMeta.js");
+const miniHistoryPath = path.join(rootDir, "miniprogram", "data", "metricHistory.js");
 const manualOverridesPath = path.join(rootDir, "data", "manual-overrides.json");
 
 loadDotEnv(path.join(rootDir, ".env"));
@@ -41,9 +42,11 @@ async function main() {
   }));
 
   const updatedAt = formatTime(new Date());
+  const history = updateHistory(readHistory(), next, updatedAt);
   writeMetrics(miniMetricsPath, next);
   writeMetrics(cloudMetricsPath, next);
   writeMeta(miniMetaPath, updatedAt);
+  writeHistory(miniHistoryPath, history);
 
   console.log(JSON.stringify({
     updatedAt,
@@ -51,7 +54,8 @@ async function main() {
     output: [
       path.relative(rootDir, miniMetricsPath),
       path.relative(rootDir, cloudMetricsPath),
-      path.relative(rootDir, miniMetaPath)
+      path.relative(rootDir, miniMetaPath),
+      path.relative(rootDir, miniHistoryPath)
     ]
   }, null, 2));
 }
@@ -345,6 +349,83 @@ function writeMetrics(filePath, metrics) {
 
 function writeMeta(filePath, updatedAt) {
   const body = `const cacheMeta = ${JSON.stringify({ updatedAt }, null, 2)};\n\nmodule.exports = { cacheMeta };\n`;
+  fs.writeFileSync(filePath, body, "utf8");
+}
+
+function readHistory() {
+  if (!fs.existsSync(miniHistoryPath)) return {};
+  delete require.cache[require.resolve(miniHistoryPath)];
+  return require(miniHistoryPath).metricHistory || {};
+}
+
+function updateHistory(history, metrics, updatedAt) {
+  const next = { ...history };
+  const date = updatedAt.slice(0, 10);
+
+  for (const metric of metrics) {
+    const value = parseMetricNumber(metric.value);
+    if (!Number.isFinite(value)) continue;
+
+    const records = Array.isArray(next[metric.id]) ? [...next[metric.id]] : [];
+    const entry = {
+      date,
+      value,
+      label: String(metric.value || ""),
+      unit: String(metric.unit || "")
+    };
+    const lastIndex = records.findIndex((item) => item.date === date);
+    if (lastIndex >= 0) {
+      records[lastIndex] = entry;
+    } else {
+      records.push(entry);
+    }
+    records.sort((a, b) => String(a.date).localeCompare(String(b.date)));
+    next[metric.id] = trimHistory(records, metric);
+  }
+
+  return next;
+}
+
+function trimHistory(records, metric) {
+  const days = getHistoryWindowDays(metric);
+  const cutoff = addDays(new Date(), -Math.max(days, 370));
+  return records.filter((item) => {
+    const date = new Date(`${item.date}T00:00:00`);
+    return !Number.isNaN(date.getTime()) && date >= cutoff;
+  });
+}
+
+function getHistoryWindowDays(metric) {
+  const quarterlyIds = new Set([
+    "msft_capex",
+    "googl_capex",
+    "amzn_capex",
+    "meta_capex",
+    "nvda_dc_revenue",
+    "ai_capex_roi"
+  ]);
+  if (quarterlyIds.has(metric.id)) return 370;
+  return 100;
+}
+
+function parseMetricNumber(value) {
+  const raw = String(value || "").replace(/,/g, "").trim();
+  const match = raw.match(/-?\d+(?:\.\d+)?/);
+  if (!match) return NaN;
+  const number = Number(match[0]);
+  if (!Number.isFinite(number)) return NaN;
+  const suffix = raw.slice(match.index + match[0].length).trim().charAt(0).toUpperCase();
+  const multipliers = {
+    K: 1e3,
+    M: 1e6,
+    B: 1e9,
+    T: 1e12
+  };
+  return number * (multipliers[suffix] || 1);
+}
+
+function writeHistory(filePath, history) {
+  const body = `const metricHistory = ${JSON.stringify(history, null, 2)};\n\nmodule.exports = { metricHistory };\n`;
   fs.writeFileSync(filePath, body, "utf8");
 }
 

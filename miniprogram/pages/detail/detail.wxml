@@ -17,6 +17,18 @@
   </view>
 
   <view class="section">
+    <view class="sectionHead">
+      <view class="sectionTitle">{{windowLabel}}</view>
+      <view class="pointCount">{{historyLabel}}</view>
+    </view>
+    <canvas class="detailCanvas" canvas-id="detailChart" id="detailChart"></canvas>
+    <view class="chartRange">
+      <text>{{rangeStart}}</text>
+      <text>{{rangeEnd}}</text>
+    </view>
+  </view>
+
+  <view class="section">
     <view class="sectionTitle">它讲的故事</view>
     <view class="body">{{metric.note}}</view>
   </view>
