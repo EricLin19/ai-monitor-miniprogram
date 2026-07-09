@@ -20,6 +20,12 @@ jobs:
         with:
           node-version: "24"
 
+      - name: Backfill history
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+        run: node scripts/backfill-history.js
+
       - name: Update cache
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}

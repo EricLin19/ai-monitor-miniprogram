@@ -363,6 +363,7 @@ function updateHistory(history, metrics, updatedAt) {
   const date = updatedAt.slice(0, 10);
 
   for (const metric of metrics) {
+    if (isQuarterlyHistoryMetric(metric.id)) continue;
     const value = parseMetricNumber(metric.value);
     if (!Number.isFinite(value)) continue;
 
@@ -396,6 +397,11 @@ function trimHistory(records, metric) {
 }
 
 function getHistoryWindowDays(metric) {
+  if (isQuarterlyHistoryMetric(metric.id)) return 370;
+  return 100;
+}
+
+function isQuarterlyHistoryMetric(id) {
   const quarterlyIds = new Set([
     "msft_capex",
     "googl_capex",
@@ -404,8 +410,7 @@ function getHistoryWindowDays(metric) {
     "nvda_dc_revenue",
     "ai_capex_roi"
   ]);
-  if (quarterlyIds.has(metric.id)) return 370;
-  return 100;
+  return quarterlyIds.has(id);
 }
 
 function parseMetricNumber(value) {

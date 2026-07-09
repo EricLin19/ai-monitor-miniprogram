@@ -12,3 +12,22 @@
 | Microsoft / Alphabet / Amazon / Meta CapEx | SEC companyconcept API | 免费；建议配置 `SEC_USER_AGENT` |
 
 `data/manual-overrides.json` 仍然保留，但只作为兜底。里面的 `待填`、`手动`、`待建模` 等占位值不会覆盖自动抓取结果。
+
+## 历史回填口径
+
+`scripts/backfill-history.js` 用来补历史数据，并已接入 GitHub Actions：
+
+| 指标 | 回填窗口 | 回填方式 |
+| --- | --- | --- |
+| OpenRouter token | 近 90 天 | OpenRouter `rankings-daily`，按每日滚动 7 天 token 合计计算 |
+| OpenRouter Top10 份额 | 近 90 天 | OpenRouter `rankings-daily`，按每日滚动 7 天 Top10 模型集中度计算 |
+| Microsoft / Alphabet / Amazon / Meta CapEx | 最近 6 个季度 | SEC companyconcept；若披露为年初至今累计值，则自动拆成单季度值 |
+
+暂时不能可靠回填历史的指标：
+
+| 指标 | 原因 |
+| --- | --- |
+| GPU 租赁价格 | Vast.ai 当前公开接口是现货报价，没有稳定历史价格接口 |
+| 主流模型 API 价格指数 | OpenRouter models API 返回当前价格，没有官方历史价格序列 |
+| OpenAI / Anthropic ARR | Sacra 页面是当前估算/事件口径，没有稳定可机读的完整历史序列 |
+| Revenue per GPU | 由当前 GPU 现货价格代理计算，历史依赖 GPU 租赁价格历史 |
