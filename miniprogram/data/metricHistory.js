@@ -1,12 +1,6 @@
 const metricHistory = {
   "openrouter_tokens": [
     {
-      "date": "2026-04-10",
-      "value": 23542616202451,
-      "label": "23.5T",
-      "unit": "7d"
-    },
-    {
       "date": "2026-04-11",
       "value": 22286610191471,
       "label": "22.3T",
@@ -542,24 +536,24 @@ const metricHistory = {
     },
     {
       "date": "2026-07-09",
-      "value": 49101139699687,
+      "value": 49101151836902,
       "label": "49.1T",
       "unit": "7d"
     },
     {
       "date": "2026-07-10",
-      "value": 49100000000000,
-      "label": "49.1T",
+      "value": 49923094108074,
+      "label": "49.9T",
+      "unit": "7d"
+    },
+    {
+      "date": "2026-07-11",
+      "value": 49900000000000,
+      "label": "49.9T",
       "unit": "7d"
     }
   ],
   "openrouter_share": [
-    {
-      "date": "2026-04-10",
-      "value": 62.7,
-      "label": "62.7%",
-      "unit": "Top10"
-    },
     {
       "date": "2026-04-11",
       "value": 59,
@@ -1102,8 +1096,14 @@ const metricHistory = {
     },
     {
       "date": "2026-07-10",
-      "value": 66,
-      "label": "66%",
+      "value": 66.7,
+      "label": "66.7%",
+      "unit": "Top10"
+    },
+    {
+      "date": "2026-07-11",
+      "value": 67,
+      "label": "67%",
       "unit": "Top10"
     }
   ],
@@ -1119,6 +1119,12 @@ const metricHistory = {
       "value": 47000000000,
       "label": "$47B",
       "unit": "annualized revenue"
+    },
+    {
+      "date": "2026-07-11",
+      "value": 47000000000,
+      "label": "$47B",
+      "unit": "annualized revenue"
     }
   ],
   "openai_arr": [
@@ -1130,6 +1136,12 @@ const metricHistory = {
     },
     {
       "date": "2026-07-10",
+      "value": 25000000000,
+      "label": "$25B",
+      "unit": "annualized revenue"
+    },
+    {
+      "date": "2026-07-11",
       "value": 25000000000,
       "label": "$25B",
       "unit": "annualized revenue"
@@ -1299,6 +1311,12 @@ const metricHistory = {
       "value": 1.74,
       "label": "$1.74/h",
       "unit": "H100 p25"
+    },
+    {
+      "date": "2026-07-11",
+      "value": 2.14,
+      "label": "$2.14/h",
+      "unit": "H100 p25"
     }
   ],
   "api_price_index": [
@@ -1310,6 +1328,12 @@ const metricHistory = {
     },
     {
       "date": "2026-07-10",
+      "value": 7.23,
+      "label": "$7.23",
+      "unit": "$/1M blended"
+    },
+    {
+      "date": "2026-07-11",
       "value": 7.23,
       "label": "$7.23",
       "unit": "$/1M blended"
@@ -1326,6 +1350,12 @@ const metricHistory = {
       "date": "2026-07-10",
       "value": 41.7,
       "label": "$41.7/day",
+      "unit": "H100 spot proxy"
+    },
+    {
+      "date": "2026-07-11",
+      "value": 51.3,
+      "label": "$51.3/day",
       "unit": "H100 spot proxy"
     }
   ]
