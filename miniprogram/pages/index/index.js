@@ -1,10 +1,23 @@
 const { fetchMetrics } = require("../../services/metrics");
 
+const HIDDEN_METRIC_IDS = new Set([
+  "aa_value",
+  "cloudflare_ai_bots",
+  "ramp_ai_adoption",
+  "nvda_dc_revenue",
+  "ai_crowding_unwind",
+  "hbm_dram_pressure",
+  "ai_hardware_heat",
+  "ai_downstream_odds",
+  "agent_token_share"
+]);
+
 Page({
   data: {
     metrics: [],
     history: {},
     visibleMetrics: [],
+    displayMetricCount: 0,
     activeGroup: "all",
     keyword: "",
     updatedAt: "--",
@@ -23,10 +36,13 @@ Page({
     this.setData({ loading: true });
     const data = await fetchMetrics();
     const history = data.history || {};
-    const metrics = decorateMetrics(data.metrics || [], history);
+    const metrics = decorateMetrics(data.metrics || [], history)
+      .filter((item) => !HIDDEN_METRIC_IDS.has(item.id));
+
     this.setData({
       metrics,
       history,
+      displayMetricCount: metrics.length,
       updatedAt: data.updatedAt || "--",
       source: data.source || "mock",
       errorMessage: buildErrorMessage(data),
@@ -81,12 +97,19 @@ Page({
 function decorateMetrics(metrics, history) {
   return metrics.map((item) => ({
     ...item,
-    accessClass: item.access === "自动" ? "auto" : item.access === "手动" ? "manual" : "semi",
+    accessClass: getAccessClass(item.access),
     canvasId: `chart_${item.id}`,
     chartPoints: getWindowedHistory(item, history[item.id] || []),
     windowLabel: getWindowLabel(item),
     historyLabel: getHistoryLabel(history[item.id] || [])
   }));
+}
+
+function getAccessClass(access) {
+  const value = String(access || "");
+  if (value.includes("自动") || value.includes("鑷")) return "auto";
+  if (value.includes("手动") || value.includes("鎵")) return "manual";
+  return "semi";
 }
 
 function getWindowedHistory(metric, records) {
@@ -121,7 +144,6 @@ function isQuarterlyMetric(metric) {
     "googl_capex",
     "amzn_capex",
     "meta_capex",
-    "nvda_dc_revenue",
     "ai_capex_roi"
   ].includes(metric.id);
 }
@@ -187,14 +209,14 @@ function drawSparkline(page, canvasId, points, trend) {
 function calcHealth(metrics) {
   const emptyValues = new Set(["待接入", "手动", "报告", "季报", "待填", "待建模"]);
   const liveCount = metrics.filter((item) => item.value && !emptyValues.has(item.value)).length;
-  if (liveCount >= 8) return "偏强";
-  if (liveCount >= 4) return "观察";
+  if (liveCount >= 10) return "核心在线";
+  if (liveCount >= 6) return "观察";
   return "待接入";
 }
 
 function calcHealthClass(metrics) {
   const label = calcHealth(metrics);
-  if (label === "偏强") return "strong";
+  if (label === "核心在线") return "strong";
   if (label === "观察") return "watch";
   return "neutral";
 }
