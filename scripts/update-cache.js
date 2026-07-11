@@ -7,6 +7,7 @@ const miniMetricsPath = path.join(rootDir, "miniprogram", "data", "mockMetrics.j
 const cloudMetricsPath = path.join(rootDir, "cloudfunctions", "fetchMetrics", "mockMetrics.js");
 const miniMetaPath = path.join(rootDir, "miniprogram", "data", "cacheMeta.js");
 const miniHistoryPath = path.join(rootDir, "miniprogram", "data", "metricHistory.js");
+const publicCachePath = path.join(rootDir, "public", "ai-monitor-cache.json");
 const manualOverridesPath = path.join(rootDir, "data", "manual-overrides.json");
 
 loadDotEnv(path.join(rootDir, ".env"));
@@ -47,6 +48,12 @@ async function main() {
   writeMetrics(cloudMetricsPath, next);
   writeMeta(miniMetaPath, updatedAt);
   writeHistory(miniHistoryPath, history);
+  writePublicCache(publicCachePath, {
+    metrics: next,
+    history,
+    updatedAt,
+    source: "github-actions-cache"
+  });
 
   console.log(JSON.stringify({
     updatedAt,
@@ -55,7 +62,8 @@ async function main() {
       path.relative(rootDir, miniMetricsPath),
       path.relative(rootDir, cloudMetricsPath),
       path.relative(rootDir, miniMetaPath),
-      path.relative(rootDir, miniHistoryPath)
+      path.relative(rootDir, miniHistoryPath),
+      path.relative(rootDir, publicCachePath)
     ]
   }, null, 2));
 }
@@ -432,6 +440,11 @@ function parseMetricNumber(value) {
 function writeHistory(filePath, history) {
   const body = `const metricHistory = ${JSON.stringify(history, null, 2)};\n\nmodule.exports = { metricHistory };\n`;
   fs.writeFileSync(filePath, body, "utf8");
+}
+
+function writePublicCache(filePath, payload) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
 }
 
 function loadDotEnv(filePath) {

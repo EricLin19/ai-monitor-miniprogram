@@ -17,15 +17,24 @@ async function main() {
       Object.assign(updates, await backfillOpenRouter(openRouterKey));
     } catch (error) {
       console.warn(`OpenRouter history backfill failed: ${error.message}`);
+      if (process.env.REQUIRE_OPENROUTER_API_KEY === "true") throw error;
     }
   } else {
-    console.warn("OPENROUTER_API_KEY is not set. Skipping OpenRouter history backfill.");
+    const message = "OPENROUTER_API_KEY is not set. Skipping OpenRouter history backfill.";
+    console.warn(message);
+    if (process.env.REQUIRE_OPENROUTER_API_KEY === "true") throw new Error(message);
   }
 
   try {
     Object.assign(updates, await backfillSecCapex());
   } catch (error) {
     console.warn(`SEC capex history backfill failed: ${error.message}`);
+  }
+
+  try {
+    Object.assign(updates, await backfillSacraArrMilestones());
+  } catch (error) {
+    console.warn(`Sacra ARR history backfill failed: ${error.message}`);
   }
 
   const next = { ...history, ...updates };
@@ -87,6 +96,53 @@ async function backfillOpenRouter(key) {
     openrouter_tokens: keepRecent(tokenHistory, 92),
     openrouter_share: keepRecent(shareHistory, 92)
   };
+}
+
+async function backfillSacraArrMilestones() {
+  const companies = [
+    {
+      id: "anthropic_arr",
+      name: "Anthropic",
+      url: "https://sacra.com/c/anthropic/"
+    },
+    {
+      id: "openai_arr",
+      name: "OpenAI",
+      url: "https://sacra.com/c/openai/"
+    }
+  ];
+  const entries = [];
+
+  for (const company of companies) {
+    const html = await getText(company.url, {
+      "User-Agent": "AI Monitor Mini Program"
+    });
+    const text = htmlToText(html);
+    const current = text.match(new RegExp(`Sacra estimates that\\s+${company.name}\\s+hit\\s+\\$\\s?([0-9]+(?:\\.[0-9]+)?)([BM])\\s+in annualized revenue\\s+in\\s+([^,.]+)`, "i"));
+    if (!current) continue;
+
+    const records = [];
+    const previous = text.match(/up from\s+\$\s?([0-9]+(?:\.[0-9]+)?)([BM])\s+at the end of\s+(\d{4})/i);
+    if (previous) {
+      records.push({
+        date: `${previous[3]}-12-31`,
+        value: moneyToNumber(previous[1], previous[2]),
+        label: `$${previous[1]}${previous[2].toUpperCase()}`,
+        unit: "annualized revenue"
+      });
+    }
+
+    records.push({
+      date: monthPhraseToDate(current[3].trim()),
+      value: moneyToNumber(current[1], current[2]),
+      label: `$${current[1]}${current[2].toUpperCase()}`,
+      unit: "annualized revenue"
+    });
+
+    entries.push([company.id, dedupeHistory(records)]);
+  }
+
+  return Object.fromEntries(entries);
 }
 
 async function backfillSecCapex() {
@@ -252,7 +308,7 @@ function calcTop10Share(rows, totalTokens) {
 }
 
 function getRowDate(row) {
-  const raw = row.date || row.day || row.timestamp || row.created_at || row.updated_at;
+  const raw = row.date || row.day || row.start_date || row.end_date || row.timestamp || row.created_at || row.updated_at;
   if (!raw) return "";
   return String(raw).slice(0, 10);
 }
@@ -312,6 +368,50 @@ function getJson(url, headers = {}, redirectCount = 0) {
   });
 }
 
+function getText(url, headers = {}, redirectCount = 0) {
+  return new Promise((resolve, reject) => {
+    const request = https.get(url, { headers }, (response) => {
+      let body = "";
+      response.setEncoding("utf8");
+      response.on("data", (chunk) => {
+        body += chunk;
+      });
+      response.on("end", () => {
+        if ([301, 302, 303, 307, 308].includes(response.statusCode) && response.headers.location) {
+          if (redirectCount >= 5) {
+            reject(new Error("Too many redirects"));
+            return;
+          }
+          const nextUrl = new URL(response.headers.location, url).toString();
+          getText(nextUrl, headers, redirectCount + 1).then(resolve, reject);
+          return;
+        }
+        if (response.statusCode < 200 || response.statusCode >= 300) {
+          reject(new Error(`HTTP ${response.statusCode}: ${body.slice(0, 180)}`));
+          return;
+        }
+        resolve(body);
+      });
+    });
+    request.setTimeout(30000, () => {
+      request.destroy(new Error("Request timeout"));
+    });
+    request.on("error", reject);
+  });
+}
+
+function htmlToText(html) {
+  return String(html)
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&#x27;/g, "'")
+    .replace(/&quot;/g, "\"")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function loadDotEnv(filePath) {
   if (!fs.existsSync(filePath)) return;
   const lines = fs.readFileSync(filePath, "utf8").split(/\r?\n/);
@@ -346,6 +446,37 @@ function formatLargeToken(value) {
 
 function formatUsdBillions(value) {
   return `$${(Number(value) / 1e9).toFixed(1)}B`;
+}
+
+function moneyToNumber(value, suffix) {
+  const multiplier = String(suffix).toUpperCase() === "T" ? 1e12 : String(suffix).toUpperCase() === "B" ? 1e9 : 1e6;
+  return Number(value) * multiplier;
+}
+
+function monthPhraseToDate(value) {
+  const match = String(value).match(/([A-Za-z]+)\s+(\d{4})/);
+  if (!match) return formatDate(new Date());
+  const months = {
+    january: "01",
+    february: "02",
+    march: "03",
+    april: "04",
+    may: "05",
+    june: "06",
+    july: "07",
+    august: "08",
+    september: "09",
+    october: "10",
+    november: "11",
+    december: "12"
+  };
+  return `${match[2]}-${months[match[1].toLowerCase()] || "01"}-01`;
+}
+
+function dedupeHistory(records) {
+  const byDate = new Map();
+  for (const record of records) byDate.set(record.date, record);
+  return [...byDate.values()].sort((a, b) => String(a.date).localeCompare(String(b.date)));
 }
 
 main().catch((error) => {

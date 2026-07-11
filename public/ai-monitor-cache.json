@@ -1,0 +1,578 @@
+{
+  "metrics": [
+    {
+      "id": "openrouter_tokens",
+      "group": "AI Demand",
+      "title": "OpenRouter 平台 token 用量趋势",
+      "value": "46.8T",
+      "unit": "7d",
+      "change": "2026-06-30 to 2026-07-06",
+      "trend": "up",
+      "access": "缓存",
+      "cadence": "周",
+      "source": "OpenRouter Datasets API",
+      "sourceUrl": "https://openrouter.ai/data",
+      "note": "OpenRouter 平台口径，观察跨模型开发者调用需求，不代表全球 token 总量。"
+    },
+    {
+      "id": "openrouter_share",
+      "group": "AI Demand",
+      "title": "OpenRouter 平台模型份额变化",
+      "value": "66%",
+      "unit": "Top10",
+      "change": "Anthropic 15.4%",
+      "trend": "flat",
+      "access": "缓存",
+      "cadence": "周",
+      "source": "OpenRouter Rankings",
+      "sourceUrl": "https://openrouter.ai/rankings",
+      "note": "Top10 模型集中度；第一模型：deepseek/deepseek-v4-flash-20260423。"
+    },
+    {
+      "id": "aa_value",
+      "group": "AI Efficiency",
+      "title": "Artificial Analysis 模型性价比",
+      "value": "待接入",
+      "unit": "",
+      "change": "周频",
+      "trend": "up",
+      "access": "自动",
+      "cadence": "周",
+      "source": "Artificial Analysis API",
+      "sourceUrl": "https://artificialanalysis.ai/api-reference",
+      "note": "能力、价格、延迟、吞吐综合，用于判断 AI 使用成本。"
+    },
+    {
+      "id": "cloudflare_ai_bots",
+      "group": "AI Demand",
+      "title": "Cloudflare AI crawler / bot traffic",
+      "value": "待接入",
+      "unit": "",
+      "change": "月频",
+      "trend": "flat",
+      "access": "自动",
+      "cadence": "周/月",
+      "source": "Cloudflare Radar",
+      "sourceUrl": "https://radar.cloudflare.com/ai-insights",
+      "note": "观察 AI bot、crawler、agent 对互联网流量的影响。"
+    },
+    {
+      "id": "anthropic_arr",
+      "group": "AI Monetization",
+      "title": "Anthropic ARR / run-rate",
+      "value": "$47B",
+      "unit": "annualized revenue",
+      "change": "May 2026",
+      "trend": "up",
+      "access": "自动",
+      "cadence": "事件/月",
+      "source": "Sacra estimates",
+      "sourceUrl": "https://sacra.com/c/anthropic/",
+      "note": "自动抓取 Sacra 公司页中的 annualized revenue 估算。该项不是公司官方财报披露，适合做商业化方向性跟踪。"
+    },
+    {
+      "id": "openai_arr",
+      "group": "AI Monetization",
+      "title": "OpenAI ARR / run-rate",
+      "value": "$25B",
+      "unit": "annualized revenue",
+      "change": "February 2026",
+      "trend": "up",
+      "access": "自动",
+      "cadence": "事件/月",
+      "source": "Sacra estimates",
+      "sourceUrl": "https://sacra.com/c/openai/",
+      "note": "自动抓取 Sacra 公司页中的 annualized revenue 估算。该项不是公司官方财报披露，适合做商业化方向性跟踪。"
+    },
+    {
+      "id": "ramp_ai_adoption",
+      "group": "AI Monetization",
+      "title": "Ramp 企业 AI 采用率",
+      "value": "报告",
+      "unit": "",
+      "change": "月/季",
+      "trend": "up",
+      "access": "半自动",
+      "cadence": "月/季",
+      "source": "Ramp AI Index",
+      "sourceUrl": "https://ramp.com/data/ai-index",
+      "note": "用企业付款数据观察 AI 软件是否变成真实预算项。"
+    },
+    {
+      "id": "msft_capex",
+      "group": "AI Infrastructure",
+      "title": "Microsoft CapEx",
+      "value": "$28.1B",
+      "unit": "FY2025",
+      "change": "filed 2025-07-30",
+      "trend": "up",
+      "access": "自动",
+      "cadence": "季",
+      "source": "SEC / Microsoft IR",
+      "sourceUrl": "https://www.microsoft.com/en-us/investor/default",
+      "note": "SEC companyconcept annual capex. Metric: PaymentsToAcquirePropertyPlantAndEquipment."
+    },
+    {
+      "id": "googl_capex",
+      "group": "AI Infrastructure",
+      "title": "Alphabet CapEx",
+      "value": "$32.3B",
+      "unit": "FY2025",
+      "change": "filed 2026-02-05",
+      "trend": "up",
+      "access": "自动",
+      "cadence": "季",
+      "source": "SEC / Alphabet IR",
+      "sourceUrl": "https://abc.xyz/investor/",
+      "note": "SEC companyconcept annual capex. Metric: PaymentsToAcquirePropertyPlantAndEquipment."
+    },
+    {
+      "id": "amzn_capex",
+      "group": "AI Infrastructure",
+      "title": "Amazon CapEx",
+      "value": "$52.7B",
+      "unit": "FY2025",
+      "change": "filed 2026-02-06",
+      "trend": "up",
+      "access": "自动",
+      "cadence": "季",
+      "source": "SEC / Amazon IR",
+      "sourceUrl": "https://ir.aboutamazon.com/overview/default.aspx",
+      "note": "SEC companyconcept annual capex. Metric: PaymentsToAcquireProductiveAssets."
+    },
+    {
+      "id": "meta_capex",
+      "group": "AI Infrastructure",
+      "title": "Meta CapEx",
+      "value": "$27.0B",
+      "unit": "FY2025",
+      "change": "filed 2026-01-29",
+      "trend": "up",
+      "access": "自动",
+      "cadence": "季",
+      "source": "SEC / Meta IR",
+      "sourceUrl": "https://investor.fb.com/",
+      "note": "SEC companyconcept annual capex. Metric: PaymentsToAcquirePropertyPlantAndEquipment."
+    },
+    {
+      "id": "nvda_dc_revenue",
+      "group": "AI Revenue Check",
+      "title": "NVIDIA data center revenue / guidance",
+      "value": "季报",
+      "unit": "",
+      "change": "季频",
+      "trend": "up",
+      "access": "半自动",
+      "cadence": "季",
+      "source": "NVIDIA IR",
+      "sourceUrl": "https://investor.nvidia.com/financial-info/quarterly-results/default.aspx",
+      "note": "AI CapEx 转化为供应链收入的关键确认项。"
+    },
+    {
+      "id": "ai_capex_roi",
+      "group": "AI Stress",
+      "title": "AI CapEx ROI 覆盖率",
+      "value": "待建模",
+      "unit": "",
+      "change": "季频",
+      "trend": "flat",
+      "access": "半自动",
+      "cadence": "季",
+      "source": "大厂财报 / 10-Q / 电话会",
+      "sourceUrl": "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
+      "note": "判断 AI 收入是否覆盖折旧、资本开支和现金流压力。"
+    },
+    {
+      "id": "token_price_elasticity",
+      "group": "AI Stress",
+      "title": "Token 价格/用量弹性",
+      "value": "待接入",
+      "unit": "",
+      "change": "周/月",
+      "trend": "flat",
+      "access": "自动",
+      "cadence": "周/月",
+      "source": "OpenRouter + Artificial Analysis",
+      "sourceUrl": "https://openrouter.ai/data",
+      "note": "验证模型降价是否带来足够多的 token 消费增长。"
+    },
+    {
+      "id": "hbm_dram_pressure",
+      "group": "AI Stress",
+      "title": "HBM/DRAM 价格压力指数",
+      "value": "手动",
+      "unit": "",
+      "change": "月/季",
+      "trend": "flat",
+      "access": "手动",
+      "cadence": "月/季",
+      "source": "TrendForce / 存储厂财报",
+      "sourceUrl": "https://www.trendforce.com/",
+      "note": "监控 AI 抢产能是否从供应链利好变成消费电子需求破坏。"
+    },
+    {
+      "id": "ai_crowding_unwind",
+      "group": "AI Stress",
+      "title": "AI 拥挤交易出清指数",
+      "value": "待接入",
+      "unit": "",
+      "change": "周频",
+      "trend": "flat",
+      "access": "半自动",
+      "cadence": "周",
+      "source": "Mag 7 / SOXX / 等权标普",
+      "sourceUrl": "https://www.spglobal.com/spdji/en/indices/equity/sp-500-equal-weight-index/",
+      "note": "判断 AI 统一 beta 是否转向分化 alpha，市场是轮动还是坍塌。"
+    },
+    {
+      "id": "ai_hardware_heat",
+      "group": "AI Valuation Heatmap",
+      "title": "AI 硬件上游拥挤温度",
+      "value": "GPU/HBM",
+      "unit": "最热",
+      "change": "兑现交易",
+      "trend": "flat",
+      "access": "框架",
+      "cadence": "周/月",
+      "source": "AI产业链估值温度图",
+      "sourceUrl": "https://openrouter.ai/data",
+      "note": "拥挤度排序：GPU > HBM > CoWoS/光模块 > ASIC > 云 > 模型 > Agent/应用。硬件上游已从景气交易进入兑现交易。"
+    },
+    {
+      "id": "ai_downstream_odds",
+      "group": "AI Valuation Heatmap",
+      "title": "AI 下游三年赔率",
+      "value": "Agent/应用",
+      "unit": "最高",
+      "change": "叙事交易",
+      "trend": "up",
+      "access": "框架",
+      "cadence": "周/月",
+      "source": "AI产业链估值温度图",
+      "sourceUrl": "https://openrouter.ai/data",
+      "note": "三年赔率排序：Agent/应用 ≈ 基础模型 > ASIC/光互连 > 云厂商 > HBM > GPU。下一阶段机会来自 CapEx 继续上修或 Agent 收入爆发。"
+    },
+    {
+      "id": "gpu_rental_price",
+      "group": "AI Daily Core",
+      "title": "GPU 租赁价格",
+      "value": "$2.14/h",
+      "unit": "H100 p25",
+      "change": "H100 $2.14/h / H200 $3.53/h / B200 $5.00/h",
+      "trend": "flat",
+      "access": "自动",
+      "cadence": "日/周",
+      "source": "Vast.ai public offers API",
+      "sourceUrl": "https://cloud.vast.ai/",
+      "note": "自动抓取 Vast.ai verified rentable offers，按单 GPU 每小时价格计算 25 分位。它代表现货/长尾供给代理指标，不等同于大厂长期合约价。"
+    },
+    {
+      "id": "api_price_index",
+      "group": "AI Daily Core",
+      "title": "主流模型 API 价格指数",
+      "value": "$7.23",
+      "unit": "$/1M blended",
+      "change": "openai $7.38 / anthropic $19.0 / google $1.84 / deepseek $0.70",
+      "trend": "down",
+      "access": "自动",
+      "cadence": "日/周",
+      "source": "OpenRouter Models API",
+      "sourceUrl": "https://openrouter.ai/api/v1/models",
+      "note": "自动抓取 OpenRouter models pricing，按 OpenAI/Anthropic/Google/DeepSeek 各自付费文本模型的中位价格计算；blended = 30% input + 70% output。"
+    },
+    {
+      "id": "agent_token_share",
+      "group": "AI Daily Core",
+      "title": "Agent Token 占比",
+      "value": "待填",
+      "unit": "%",
+      "change": "周频",
+      "trend": "up",
+      "access": "手动",
+      "cadence": "周",
+      "source": "OpenRouter / Fireworks / 平台披露",
+      "sourceUrl": "https://openrouter.ai/data",
+      "note": "手动记录 OpenRouter、Fireworks 或平台披露中的 Agent Token 占比。"
+    },
+    {
+      "id": "revenue_per_gpu",
+      "group": "AI Daily Core",
+      "title": "单位 GPU 每日收入",
+      "value": "$51.3/day",
+      "unit": "H100 spot proxy",
+      "change": "median $54.6/day",
+      "trend": "flat",
+      "access": "自动",
+      "cadence": "月/季",
+      "source": "Vast.ai public offers API",
+      "sourceUrl": "https://cloud.vast.ai/",
+      "note": "第一版用 GPU 租赁现货价格估算单卡每日收入上限代理；后续可加入云厂商收入和 GPU 数量估算，提升为利润/ROI 指标。"
+    }
+  ],
+  "history": {
+    "openrouter_tokens": [
+      {
+        "date": "2026-07-09",
+        "value": 46800000000000,
+        "label": "46.8T",
+        "unit": "7d"
+      },
+      {
+        "date": "2026-07-11",
+        "value": 46800000000000,
+        "label": "46.8T",
+        "unit": "7d"
+      }
+    ],
+    "openrouter_share": [
+      {
+        "date": "2026-07-09",
+        "value": 66,
+        "label": "66%",
+        "unit": "Top10"
+      },
+      {
+        "date": "2026-07-11",
+        "value": 66,
+        "label": "66%",
+        "unit": "Top10"
+      }
+    ],
+    "anthropic_arr": [
+      {
+        "date": "2025-12-31",
+        "value": 9000000000,
+        "label": "$9B",
+        "unit": "annualized revenue"
+      },
+      {
+        "date": "2026-05-01",
+        "value": 47000000000,
+        "label": "$47B",
+        "unit": "annualized revenue"
+      },
+      {
+        "date": "2026-07-11",
+        "value": 47000000000,
+        "label": "$47B",
+        "unit": "annualized revenue"
+      }
+    ],
+    "openai_arr": [
+      {
+        "date": "2025-12-31",
+        "value": 20000000000,
+        "label": "$20B",
+        "unit": "annualized revenue"
+      },
+      {
+        "date": "2026-02-01",
+        "value": 25000000000,
+        "label": "$25B",
+        "unit": "annualized revenue"
+      },
+      {
+        "date": "2026-07-11",
+        "value": 25000000000,
+        "label": "$25B",
+        "unit": "annualized revenue"
+      }
+    ],
+    "msft_capex": [
+      {
+        "date": "2024-12-31",
+        "value": 15804000000,
+        "label": "$15.8B",
+        "unit": "CY2024Q4"
+      },
+      {
+        "date": "2025-03-31",
+        "value": 16745000000,
+        "label": "$16.7B",
+        "unit": "CY2025Q1"
+      },
+      {
+        "date": "2025-06-30",
+        "value": 17079000000,
+        "label": "$17.1B",
+        "unit": "CY2025Q2"
+      },
+      {
+        "date": "2025-09-30",
+        "value": 19394000000,
+        "label": "$19.4B",
+        "unit": "CY2025Q3"
+      },
+      {
+        "date": "2025-12-31",
+        "value": 29876000000,
+        "label": "$29.9B",
+        "unit": "CY2025Q4"
+      },
+      {
+        "date": "2026-03-31",
+        "value": 30876000000,
+        "label": "$30.9B",
+        "unit": "CY2026Q1"
+      }
+    ],
+    "googl_capex": [
+      {
+        "date": "2024-12-31",
+        "value": 14276000000,
+        "label": "$14.3B",
+        "unit": "CY2024Q4"
+      },
+      {
+        "date": "2025-03-31",
+        "value": 17197000000,
+        "label": "$17.2B",
+        "unit": "CY2025Q1"
+      },
+      {
+        "date": "2025-06-30",
+        "value": 22446000000,
+        "label": "$22.4B",
+        "unit": "CY2025Q2"
+      },
+      {
+        "date": "2025-09-30",
+        "value": 23953000000,
+        "label": "$24.0B",
+        "unit": "CY2025Q3"
+      },
+      {
+        "date": "2025-12-31",
+        "value": 27851000000,
+        "label": "$27.9B",
+        "unit": "CY2025Q4"
+      },
+      {
+        "date": "2026-03-31",
+        "value": 35674000000,
+        "label": "$35.7B",
+        "unit": "CY2026Q1"
+      }
+    ],
+    "amzn_capex": [
+      {
+        "date": "2024-12-31",
+        "value": 27834000000,
+        "label": "$27.8B",
+        "unit": "CY2024Q4"
+      },
+      {
+        "date": "2025-03-31",
+        "value": 25019000000,
+        "label": "$25.0B",
+        "unit": "CY2025Q1"
+      },
+      {
+        "date": "2025-06-30",
+        "value": 32183000000,
+        "label": "$32.2B",
+        "unit": "CY2025Q2"
+      },
+      {
+        "date": "2025-09-30",
+        "value": 35095000000,
+        "label": "$35.1B",
+        "unit": "CY2025Q3"
+      },
+      {
+        "date": "2025-12-31",
+        "value": 39522000000,
+        "label": "$39.5B",
+        "unit": "CY2025Q4"
+      },
+      {
+        "date": "2026-03-31",
+        "value": 44203000000,
+        "label": "$44.2B",
+        "unit": "CY2026Q1"
+      }
+    ],
+    "meta_capex": [
+      {
+        "date": "2024-12-31",
+        "value": 14425000000,
+        "label": "$14.4B",
+        "unit": "CY2024Q4"
+      },
+      {
+        "date": "2025-03-31",
+        "value": 12941000000,
+        "label": "$12.9B",
+        "unit": "CY2025Q1"
+      },
+      {
+        "date": "2025-06-30",
+        "value": 16538000000,
+        "label": "$16.5B",
+        "unit": "CY2025Q2"
+      },
+      {
+        "date": "2025-09-30",
+        "value": 18829000000,
+        "label": "$18.8B",
+        "unit": "CY2025Q3"
+      },
+      {
+        "date": "2025-12-31",
+        "value": 21383000000,
+        "label": "$21.4B",
+        "unit": "CY2025Q4"
+      },
+      {
+        "date": "2026-03-31",
+        "value": 18997000000,
+        "label": "$19.0B",
+        "unit": "CY2026Q1"
+      }
+    ],
+    "gpu_rental_price": [
+      {
+        "date": "2026-07-09",
+        "value": 1.93,
+        "label": "$1.93/h",
+        "unit": "H100 p25"
+      },
+      {
+        "date": "2026-07-11",
+        "value": 2.14,
+        "label": "$2.14/h",
+        "unit": "H100 p25"
+      }
+    ],
+    "api_price_index": [
+      {
+        "date": "2026-07-09",
+        "value": 7.23,
+        "label": "$7.23",
+        "unit": "$/1M blended"
+      },
+      {
+        "date": "2026-07-11",
+        "value": 7.23,
+        "label": "$7.23",
+        "unit": "$/1M blended"
+      }
+    ],
+    "revenue_per_gpu": [
+      {
+        "date": "2026-07-09",
+        "value": 46.2,
+        "label": "$46.2/day",
+        "unit": "H100 spot proxy"
+      },
+      {
+        "date": "2026-07-11",
+        "value": 51.3,
+        "label": "$51.3/day",
+        "unit": "H100 spot proxy"
+      }
+    ]
+  },
+  "updatedAt": "2026-07-11 11:06",
+  "source": "github-actions-cache"
+}

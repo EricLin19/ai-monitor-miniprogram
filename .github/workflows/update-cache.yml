@@ -24,6 +24,7 @@ jobs:
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+          REQUIRE_OPENROUTER_API_KEY: "true"
         run: node scripts/backfill-history.js
 
       - name: Update cache
@@ -36,7 +37,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add miniprogram/data/mockMetrics.js cloudfunctions/fetchMetrics/mockMetrics.js miniprogram/data/cacheMeta.js miniprogram/data/metricHistory.js
+          git add miniprogram/data/mockMetrics.js cloudfunctions/fetchMetrics/mockMetrics.js miniprogram/data/cacheMeta.js miniprogram/data/metricHistory.js public/ai-monitor-cache.json
           if git diff --cached --quiet; then
             echo "No cache changes to commit."
           else
