@@ -15,6 +15,7 @@ loadDotEnv(path.join(rootDir, ".env"));
 async function main() {
   const current = require(miniMetricsPath).metrics;
   const currentById = Object.fromEntries(current.map((item) => [item.id, item]));
+  const existingHistory = readHistory();
   const updates = {};
 
   const openRouterKey = process.env.OPENROUTER_API_KEY;
@@ -32,6 +33,7 @@ async function main() {
   await mergeUpdate(updates, fetchVastGpuRentalPrices(), "Vast GPU rental prices");
   await mergeUpdate(updates, fetchSacraArrSignals(), "Sacra ARR signals");
   await mergeUpdate(updates, fetchSecCapex(), "SEC capex");
+  await mergeUpdate(updates, fetchCrowdingUnwind(), "AI crowding unwind");
 
   // Manual overrides are now only a fallback for real user-provided values.
   // Placeholder values such as "待填" are ignored so they do not erase auto data.
@@ -41,15 +43,20 @@ async function main() {
     ...item,
     ...(updates[item.id] || fallbackFailureNote(currentById[item.id], updates[item.id]))
   }));
+  Object.assign(updates, buildDerivedMetricUpdates(next, existingHistory));
+  const finalNext = next.map((item) => ({
+    ...item,
+    ...(updates[item.id] || {})
+  }));
 
   const updatedAt = formatTime(new Date());
-  const history = updateHistory(readHistory(), next, updatedAt);
-  writeMetrics(miniMetricsPath, next);
-  writeMetrics(cloudMetricsPath, next);
+  const history = updateHistory(existingHistory, finalNext, updatedAt);
+  writeMetrics(miniMetricsPath, finalNext);
+  writeMetrics(cloudMetricsPath, finalNext);
   writeMeta(miniMetaPath, updatedAt);
   writeHistory(miniHistoryPath, history);
   writePublicCache(publicCachePath, {
-    metrics: next,
+    metrics: finalNext,
     history,
     updatedAt,
     source: "github-actions-cache"
@@ -309,6 +316,114 @@ async function fetchSecCapex() {
   }));
 
   return Object.fromEntries(entries.filter(Boolean));
+}
+
+async function fetchCrowdingUnwind() {
+  const [soxx, spy, qqq, rsp] = await Promise.all([
+    fetchYahooReturns("SOXX"),
+    fetchYahooReturns("SPY"),
+    fetchYahooReturns("QQQ"),
+    fetchYahooReturns("RSP")
+  ]);
+
+  if (!soxx || !spy || !qqq || !rsp) return {};
+  const semiRelative = soxx.return20d - spy.return20d;
+  const megaCapRelative = qqq.return20d - rsp.return20d;
+  const pressure = -(semiRelative + megaCapRelative) / 2;
+  const label = pressure > 5 ? "出清升温" : pressure > 0 ? "轻度出清" : "拥挤未退";
+
+  return {
+    ai_crowding_unwind: {
+      value: `${round1(pressure)}pt`,
+      unit: label,
+      change: `SOXX-SPY ${round1(semiRelative)}pt / QQQ-RSP ${round1(megaCapRelative)}pt`,
+      access: "自动",
+      source: "Yahoo Finance chart API",
+      sourceUrl: "https://finance.yahoo.com/",
+      note: "用 SOXX 相对 SPY、QQQ 相对 RSP 的 20 日收益差构造拥挤交易出清代理。数值越高，代表 AI/科技拥挤交易相对市场更弱。"
+    }
+  };
+}
+
+async function fetchYahooReturns(symbol) {
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=3mo&interval=1d`;
+  const payload = await getJson(url);
+  const result = payload && payload.chart && payload.chart.result && payload.chart.result[0];
+  const closes = result && result.indicators && result.indicators.quote && result.indicators.quote[0]
+    ? result.indicators.quote[0].close
+    : [];
+  const prices = closes.filter((value) => Number.isFinite(Number(value))).map(Number);
+  if (prices.length < 21) return null;
+  const last = prices[prices.length - 1];
+  const previous = prices[prices.length - 21];
+  return {
+    symbol,
+    return20d: ((last / previous) - 1) * 100
+  };
+}
+
+function buildDerivedMetricUpdates(metrics, history) {
+  const byId = Object.fromEntries(metrics.map((item) => [item.id, item]));
+  return {
+    ...buildTokenPriceElasticity(byId, history),
+    ...buildCapexRoiCoverage(byId)
+  };
+}
+
+function buildTokenPriceElasticity(byId, history) {
+  const tokenHistory = withCurrentHistory(history.openrouter_tokens, byId.openrouter_tokens);
+  const priceHistory = withCurrentHistory(history.api_price_index, byId.api_price_index);
+  if (tokenHistory.length < 2 || priceHistory.length < 2) {
+    return {
+      token_price_elasticity: {
+        value: "累积中",
+        unit: "",
+        change: "需要价格和 token 至少 2 个点",
+        access: "自动",
+        source: "OpenRouter + API price index",
+        sourceUrl: "https://openrouter.ai/data",
+        note: "用 OpenRouter token 用量变化和主流模型 API 价格指数变化估算价格弹性。"
+      }
+    };
+  }
+
+  const tokenChange = pctChange(first(tokenHistory).value, last(tokenHistory).value);
+  const priceChange = pctChange(first(priceHistory).value, last(priceHistory).value);
+  const elasticity = Math.abs(priceChange) < 0.1 ? null : tokenChange / Math.abs(priceChange);
+
+  return {
+    token_price_elasticity: {
+      value: elasticity === null ? "价格未变" : round1(elasticity),
+      unit: elasticity === null ? "" : "x",
+      change: `token ${round1(tokenChange)}% / price ${round1(priceChange)}%`,
+      access: "自动",
+      source: "OpenRouter + OpenRouter Models API",
+      sourceUrl: "https://openrouter.ai/data",
+      note: "价格弹性 = token 用量变化率 / API 价格指数绝对变化率。价格不变时显示价格未变，继续积累历史。"
+    }
+  };
+}
+
+function buildCapexRoiCoverage(byId) {
+  const capexIds = ["msft_capex", "googl_capex", "amzn_capex", "meta_capex"];
+  const totalCapex = capexIds.reduce((sum, id) => sum + parseMetricNumber(byId[id] && byId[id].value), 0);
+  const openaiArr = parseMetricNumber(byId.openai_arr && byId.openai_arr.value);
+  const anthropicArr = parseMetricNumber(byId.anthropic_arr && byId.anthropic_arr.value);
+  const totalArr = openaiArr + anthropicArr;
+  if (!Number.isFinite(totalCapex) || !Number.isFinite(totalArr) || totalCapex <= 0 || totalArr <= 0) return {};
+  const coverage = totalArr / totalCapex * 100;
+
+  return {
+    ai_capex_roi: {
+      value: `${round1(coverage)}%`,
+      unit: "ARR / Big4 CapEx",
+      change: `ARR ${formatUsdBillions(totalArr)} / CapEx ${formatUsdBillions(totalCapex)}`,
+      access: "自动",
+      source: "Sacra estimates + SEC CapEx",
+      sourceUrl: "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
+      note: "第一版 ROI 代理：OpenAI + Anthropic annualized revenue 相对 Microsoft/Alphabet/Amazon/Meta 年度 CapEx。不是严格投资回报率，但能观察商业化收入相对资本开支的覆盖程度。"
+    }
+  };
 }
 
 async function fetchAnnualCapex(cik, userAgent) {
@@ -577,6 +692,37 @@ function formatUsd(value) {
 
 function round1(value) {
   return Math.round(value * 10) / 10;
+}
+
+function pctChange(start, end) {
+  const firstValue = Number(start);
+  const lastValue = Number(end);
+  if (!Number.isFinite(firstValue) || !Number.isFinite(lastValue) || firstValue === 0) return 0;
+  return ((lastValue / firstValue) - 1) * 100;
+}
+
+function first(records) {
+  return records[0];
+}
+
+function last(records) {
+  return records[records.length - 1];
+}
+
+function withCurrentHistory(records, metric) {
+  const next = Array.isArray(records) ? [...records] : [];
+  const currentValue = parseMetricNumber(metric && metric.value);
+  if (Number.isFinite(currentValue)) {
+    next.push({
+      date: formatDate(new Date()),
+      value: currentValue,
+      label: String(metric.value || ""),
+      unit: String(metric.unit || "")
+    });
+  }
+  return next
+    .filter((item) => Number.isFinite(Number(item.value)))
+    .sort((a, b) => String(a.date).localeCompare(String(b.date)));
 }
 
 main().catch((error) => {
