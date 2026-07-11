@@ -1109,13 +1109,13 @@ const metricHistory = {
   ],
   "anthropic_arr": [
     {
-      "date": "2026-07-09",
-      "value": 47000000000,
-      "label": "$47B",
+      "date": "2025-12-31",
+      "value": 9000000000,
+      "label": "$9B",
       "unit": "annualized revenue"
     },
     {
-      "date": "2026-07-10",
+      "date": "2026-05-01",
       "value": 47000000000,
       "label": "$47B",
       "unit": "annualized revenue"
@@ -1129,13 +1129,13 @@ const metricHistory = {
   ],
   "openai_arr": [
     {
-      "date": "2026-07-09",
-      "value": 25000000000,
-      "label": "$25B",
+      "date": "2025-12-31",
+      "value": 20000000000,
+      "label": "$20B",
       "unit": "annualized revenue"
     },
     {
-      "date": "2026-07-10",
+      "date": "2026-02-01",
       "value": 25000000000,
       "label": "$25B",
       "unit": "annualized revenue"
