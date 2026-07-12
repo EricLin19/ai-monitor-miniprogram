@@ -37,7 +37,14 @@ async function main() {
     console.warn(`Sacra ARR history backfill failed: ${error.message}`);
   }
 
+  try {
+    Object.assign(updates, await backfillFredTechJobPostings());
+  } catch (error) {
+    console.warn(`FRED tech job postings history backfill failed: ${error.message}`);
+  }
+
   const next = { ...history, ...updates };
+  Object.assign(next, buildDerivedHistory(next));
   writeHistory(historyPath, next);
 
   console.log(JSON.stringify({
@@ -167,6 +174,70 @@ async function backfillSecCapex() {
   }
 
   return Object.fromEntries(entries);
+}
+
+async function backfillFredTechJobPostings() {
+  const endDate = formatDate(new Date());
+  const startDate = formatDate(addDays(new Date(), -120));
+  const csv = await getTextFetch(`https://fred.stlouisfed.org/graph/fredgraph.csv?id=IHLIDXUSTPSOFTDEVE&cosd=${startDate}&coed=${endDate}`, {
+    "User-Agent": "AI Monitor Mini Program"
+  });
+  const records = parseFredCsv(csv)
+    .slice(-110)
+    .map((row) => ({
+      date: row.date,
+      value: row.value,
+      label: String(row.value),
+      unit: "Feb 2020=100"
+    }));
+
+  return records.length ? { tech_job_postings: keepRecent(records, 100) } : {};
+}
+
+function buildDerivedHistory(history) {
+  const updates = {};
+  const wagePoolRecords = buildWagePoolCoverageHistory(history);
+  if (wagePoolRecords.length) updates.ai_wage_pool_coverage = wagePoolRecords;
+  const tokenArrRecords = buildTokenArrConversionHistory(history);
+  if (tokenArrRecords.length) updates.token_arr_conversion = tokenArrRecords;
+  return updates;
+}
+
+function buildWagePoolCoverageHistory(history) {
+  const observedWagePool = 1.45e12;
+  const dates = mergeHistoryDates(history.openai_arr, history.anthropic_arr);
+  return dates.map((date) => {
+    const openaiArr = valueAtOrBefore(history.openai_arr, date);
+    const anthropicArr = valueAtOrBefore(history.anthropic_arr, date);
+    const totalArr = openaiArr + anthropicArr;
+    if (!Number.isFinite(totalArr) || totalArr <= 0) return null;
+    const value = totalArr / observedWagePool * 100;
+    return {
+      date,
+      value,
+      label: `${round1(value)}%`,
+      unit: "ARR / exposed wage pool"
+    };
+  }).filter(Boolean);
+}
+
+function buildTokenArrConversionHistory(history) {
+  const tokenRecords = Array.isArray(history.openrouter_tokens) ? history.openrouter_tokens : [];
+  return tokenRecords.map((record) => {
+    const openaiArr = valueAtOrBefore(history.openai_arr, record.date);
+    const anthropicArr = valueAtOrBefore(history.anthropic_arr, record.date);
+    const totalArr = openaiArr + anthropicArr;
+    const weeklyTokens = Number(record.value);
+    if (!Number.isFinite(totalArr) || !Number.isFinite(weeklyTokens) || totalArr <= 0 || weeklyTokens <= 0) return null;
+    const annualizedTokenTrillions = weeklyTokens * 52 / 1e12;
+    const value = totalArr / annualizedTokenTrillions;
+    return {
+      date: record.date,
+      value,
+      label: `$${(value / 1e6).toFixed(1)}M`,
+      unit: "ARR / annualized 1T OR tokens"
+    };
+  }).filter(Boolean).slice(-100);
 }
 
 async function fetchQuarterlyCapex(cik, userAgent) {
@@ -400,6 +471,15 @@ function getText(url, headers = {}, redirectCount = 0) {
   });
 }
 
+async function getTextFetch(url, headers = {}) {
+  const response = await fetch(url, { headers });
+  const body = await response.text();
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: ${body.slice(0, 180)}`);
+  }
+  return body;
+}
+
 function htmlToText(html) {
   return String(html)
     .replace(/<script[\s\S]*?<\/script>/gi, " ")
@@ -410,6 +490,41 @@ function htmlToText(html) {
     .replace(/&quot;/g, "\"")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function parseFredCsv(csv) {
+  return String(csv)
+    .trim()
+    .split(/\r?\n/)
+    .slice(1)
+    .map((line) => {
+      const [date, rawValue] = line.split(",");
+      const value = Number(rawValue);
+      return { date, value };
+    })
+    .filter((row) => /^\d{4}-\d{2}-\d{2}$/.test(row.date) && Number.isFinite(row.value));
+}
+
+function mergeHistoryDates(...seriesList) {
+  const dates = new Set();
+  for (const series of seriesList) {
+    if (!Array.isArray(series)) continue;
+    for (const item of series) {
+      if (item && item.date) dates.add(item.date);
+    }
+  }
+  return [...dates].sort();
+}
+
+function valueAtOrBefore(series, date) {
+  if (!Array.isArray(series)) return NaN;
+  let found = NaN;
+  for (const item of series) {
+    if (String(item.date) > String(date)) break;
+    const value = Number(item.value);
+    if (Number.isFinite(value)) found = value;
+  }
+  return found;
 }
 
 function loadDotEnv(filePath) {
@@ -446,6 +561,10 @@ function formatLargeToken(value) {
 
 function formatUsdBillions(value) {
   return `$${(Number(value) / 1e9).toFixed(1)}B`;
+}
+
+function round1(value) {
+  return Math.round(value * 10) / 10;
 }
 
 function moneyToNumber(value, suffix) {

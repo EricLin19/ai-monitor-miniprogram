@@ -10,6 +10,9 @@
 | 单位 GPU 每日收入 | Vast.ai public offers API | 第一版用 H100 现货小时价 * 24 估算，不等同于云厂商真实毛利 |
 | OpenAI / Anthropic ARR | Sacra company pages | 不需要 key；这是 Sacra estimates，不是公司官方财报 |
 | Microsoft / Alphabet / Amazon / Meta CapEx | SEC companyconcept API | 免费；建议配置 `SEC_USER_AGENT` |
+| Token / ARR 商业化效率 | OpenRouter + Sacra estimates | 不需要新 key；用 OpenAI + Anthropic ARR 除以 OpenRouter 年化 token 用量 |
+| AI 暴露工资池覆盖率 | 国金宏观文章口径 + Sacra estimates | 不需要新 key；用 $1.45T 实际暴露薪资池和 $5.68T 理论薪资池做分母 |
+| 软件开发岗位招聘指数 | FRED / Indeed Hiring Lab | 不需要 key；日频 7 日均值，2020-02-01=100 |
 
 `data/manual-overrides.json` 仍然保留，但只作为兜底。里面的 `待填`、`手动`、`待建模` 等占位值不会覆盖自动抓取结果。
 
@@ -22,6 +25,9 @@
 | OpenRouter token | 近 90 天 | OpenRouter `rankings-daily`，按每日滚动 7 天 token 合计计算 |
 | OpenRouter Top10 份额 | 近 90 天 | OpenRouter `rankings-daily`，按每日滚动 7 天 Top10 模型集中度计算 |
 | Microsoft / Alphabet / Amazon / Meta CapEx | 最近 6 个季度 | SEC companyconcept；若披露为年初至今累计值，则自动拆成单季度值 |
+| 软件开发岗位招聘指数 | 近 100 天 | FRED CSV，直接拉取 `IHLIDXUSTPSOFTDEVE` |
+| Token / ARR 商业化效率 | 近 90 天 | 用 OpenRouter token 历史和最近一次 ARR 事件口径派生 |
+| AI 暴露工资池覆盖率 | ARR 事件点 | 用 OpenAI / Anthropic ARR 历史事件点派生 |
 
 暂时不能可靠回填历史的指标：
 

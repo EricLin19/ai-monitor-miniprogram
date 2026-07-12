@@ -33,6 +33,7 @@ async function main() {
   await mergeUpdate(updates, fetchVastGpuRentalPrices(), "Vast GPU rental prices");
   await mergeUpdate(updates, fetchSacraArrSignals(), "Sacra ARR signals");
   await mergeUpdate(updates, fetchSecCapex(), "SEC capex");
+  await mergeUpdate(updates, fetchFredTechJobPostings(), "FRED tech job postings");
   await mergeUpdate(updates, fetchCrowdingUnwind(), "AI crowding unwind");
 
   // Manual overrides are now only a fallback for real user-provided values.
@@ -318,6 +319,35 @@ async function fetchSecCapex() {
   return Object.fromEntries(entries.filter(Boolean));
 }
 
+async function fetchFredTechJobPostings() {
+  const endDate = formatDate(new Date());
+  const startDate = formatDate(addDays(new Date(), -120));
+  const url = `https://fred.stlouisfed.org/graph/fredgraph.csv?id=IHLIDXUSTPSOFTDEVE&cosd=${startDate}&coed=${endDate}`;
+  const csv = await getTextFetch(url, {
+    "User-Agent": "AI Monitor Mini Program"
+  });
+  const rows = parseFredCsv(csv);
+  if (!rows.length) return {};
+
+  const latest = rows[rows.length - 1];
+  const previous = rows[Math.max(0, rows.length - 29)];
+  const change = previous ? pctChange(previous.value, latest.value) : 0;
+  const label = change < -5 ? "招聘降温" : change > 5 ? "招聘回暖" : "招聘平稳";
+
+  return {
+    tech_job_postings: {
+      value: round1(latest.value),
+      unit: "Feb 2020=100",
+      change: `${label} / 28d ${round1(change)}%`,
+      trend: change > 3 ? "up" : change < -3 ? "down" : "flat",
+      access: "自动",
+      source: "FRED / Indeed Hiring Lab",
+      sourceUrl: "https://fred.stlouisfed.org/series/IHLIDXUSTPSOFTDEVE",
+      note: "Indeed 美国软件开发岗位招聘指数，7日均值，2020-02-01=100。用来观察 AI 渗透和科技裁员叙事是否开始压低软件岗位需求。"
+    }
+  };
+}
+
 async function fetchCrowdingUnwind() {
   const [soxx, spy, qqq, rsp] = await Promise.all([
     fetchYahooReturns("SOXX"),
@@ -366,7 +396,9 @@ function buildDerivedMetricUpdates(metrics, history) {
   const byId = Object.fromEntries(metrics.map((item) => [item.id, item]));
   return {
     ...buildTokenPriceElasticity(byId, history),
-    ...buildCapexRoiCoverage(byId)
+    ...buildCapexRoiCoverage(byId),
+    ...buildTokenArrConversion(byId),
+    ...buildWagePoolCoverage(byId)
   };
 }
 
@@ -422,6 +454,53 @@ function buildCapexRoiCoverage(byId) {
       source: "Sacra estimates + SEC CapEx",
       sourceUrl: "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
       note: "第一版 ROI 代理：OpenAI + Anthropic annualized revenue 相对 Microsoft/Alphabet/Amazon/Meta 年度 CapEx。不是严格投资回报率，但能观察商业化收入相对资本开支的覆盖程度。"
+    }
+  };
+}
+
+function buildTokenArrConversion(byId) {
+  const weeklyTokens = parseMetricNumber(byId.openrouter_tokens && byId.openrouter_tokens.value);
+  const openaiArr = parseMetricNumber(byId.openai_arr && byId.openai_arr.value);
+  const anthropicArr = parseMetricNumber(byId.anthropic_arr && byId.anthropic_arr.value);
+  const totalArr = openaiArr + anthropicArr;
+  if (!Number.isFinite(weeklyTokens) || !Number.isFinite(totalArr) || weeklyTokens <= 0 || totalArr <= 0) return {};
+
+  const annualizedTokenTrillions = weeklyTokens * 52 / 1e12;
+  const arrPerTrillionTokens = totalArr / annualizedTokenTrillions;
+
+  return {
+    token_arr_conversion: {
+      value: formatUsdMillions(arrPerTrillionTokens),
+      unit: "ARR / annualized 1T OR tokens",
+      change: `ARR ${formatUsdBillions(totalArr)} / OR ${formatNumber(annualizedTokenTrillions)}T annualized`,
+      access: "自动",
+      source: "OpenRouter + Sacra estimates",
+      sourceUrl: "https://openrouter.ai/data",
+      note: "商业化效率代理：OpenAI + Anthropic ARR 相对 OpenRouter token 年化用量。若 token 增速快于 ARR，该值会下行，提示低价值调用或价格竞争加剧。"
+    }
+  };
+}
+
+function buildWagePoolCoverage(byId) {
+  const observedWagePool = 1.45e12;
+  const theoreticalWagePool = 5.68e12;
+  const openaiArr = parseMetricNumber(byId.openai_arr && byId.openai_arr.value);
+  const anthropicArr = parseMetricNumber(byId.anthropic_arr && byId.anthropic_arr.value);
+  const totalArr = openaiArr + anthropicArr;
+  if (!Number.isFinite(totalArr) || totalArr <= 0) return {};
+
+  const observedCoverage = totalArr / observedWagePool * 100;
+  const theoreticalCoverage = totalArr / theoreticalWagePool * 100;
+
+  return {
+    ai_wage_pool_coverage: {
+      value: `${round1(observedCoverage)}%`,
+      unit: "ARR / exposed wage pool",
+      change: `theoretical pool ${round1(theoreticalCoverage)}%`,
+      access: "自动",
+      source: "国金宏观 AI洪流三部曲 + Sacra estimates",
+      sourceUrl: "https://mp.weixin.qq.com/s/2MIroW_eh2hyaybRaACAXg",
+      note: "用文章中的美国 AI 实际暴露薪资池 $1.45T 和理论潜在薪资池 $5.68T 做分母，观察模型商 ARR 离“工资池重定价”还有多远。"
     }
   };
 }
@@ -644,6 +723,15 @@ function getText(url, headers = {}, redirectCount = 0) {
   });
 }
 
+async function getTextFetch(url, headers = {}) {
+  const response = await fetch(url, { headers });
+  const body = await response.text();
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: ${body.slice(0, 180)}`);
+  }
+  return body;
+}
+
 function htmlToText(html) {
   return String(html)
     .replace(/<script[\s\S]*?<\/script>/gi, " ")
@@ -654,6 +742,19 @@ function htmlToText(html) {
     .replace(/&quot;/g, "\"")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function parseFredCsv(csv) {
+  return String(csv)
+    .trim()
+    .split(/\r?\n/)
+    .slice(1)
+    .map((line) => {
+      const [date, rawValue] = line.split(",");
+      const value = Number(rawValue);
+      return { date, value };
+    })
+    .filter((row) => /^\d{4}-\d{2}-\d{2}$/.test(row.date) && Number.isFinite(row.value));
 }
 
 function addDays(date, days) {
@@ -688,6 +789,18 @@ function formatUsd(value) {
   if (!Number.isFinite(number)) return "$0.00";
   if (number >= 10) return `$${number.toFixed(1)}`;
   return `$${number.toFixed(2)}`;
+}
+
+function formatUsdMillions(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return "$0M";
+  return `$${(number / 1e6).toFixed(1)}M`;
+}
+
+function formatNumber(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return "0";
+  return number.toLocaleString("en-US", { maximumFractionDigits: 1 });
 }
 
 function round1(value) {

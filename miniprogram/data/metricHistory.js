@@ -1320,8 +1320,8 @@ const metricHistory = {
     },
     {
       "date": "2026-07-12",
-      "value": 2.2,
-      "label": "$2.20/h",
+      "value": 1.93,
+      "label": "$1.93/h",
       "unit": "H100 p25"
     }
   ],
@@ -1372,9 +1372,1101 @@ const metricHistory = {
     },
     {
       "date": "2026-07-12",
-      "value": 52.8,
-      "label": "$52.8/day",
+      "value": 46.2,
+      "label": "$46.2/day",
       "unit": "H100 spot proxy"
+    }
+  ],
+  "ai_wage_pool_coverage": [
+    {
+      "date": "2025-12-31",
+      "value": 2,
+      "label": "2%",
+      "unit": "ARR / exposed wage pool"
+    },
+    {
+      "date": "2026-02-01",
+      "value": 2.344827586206897,
+      "label": "2.3%",
+      "unit": "ARR / exposed wage pool"
+    },
+    {
+      "date": "2026-05-01",
+      "value": 4.9655172413793105,
+      "label": "5%",
+      "unit": "ARR / exposed wage pool"
+    },
+    {
+      "date": "2026-07-12",
+      "value": 5,
+      "label": "5%",
+      "unit": "ARR / exposed wage pool"
+    }
+  ],
+  "token_arr_conversion": [
+    {
+      "date": "2026-04-12",
+      "value": 31082712.050750997,
+      "label": "$31.1M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-04-13",
+      "value": 32128897.55120225,
+      "label": "$32.1M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-04-14",
+      "value": 33158596.750879984,
+      "label": "$33.2M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-04-15",
+      "value": 32882186.718456376,
+      "label": "$32.9M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-04-16",
+      "value": 32618788.390907638,
+      "label": "$32.6M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-04-17",
+      "value": 32064487.82759431,
+      "label": "$32.1M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-04-18",
+      "value": 31885151.401259426,
+      "label": "$31.9M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-04-19",
+      "value": 31804800.389599,
+      "label": "$31.8M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-04-20",
+      "value": 31532078.954540856,
+      "label": "$31.5M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-04-21",
+      "value": 31203273.368185032,
+      "label": "$31.2M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-04-22",
+      "value": 30872439.743399914,
+      "label": "$30.9M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-04-23",
+      "value": 30541829.288589444,
+      "label": "$30.5M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-04-24",
+      "value": 30473333.462059066,
+      "label": "$30.5M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-04-25",
+      "value": 30155116.8787671,
+      "label": "$30.2M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-04-26",
+      "value": 29784566.022496708,
+      "label": "$29.8M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-04-27",
+      "value": 29385598.047583524,
+      "label": "$29.4M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-04-28",
+      "value": 28978460.06724227,
+      "label": "$29.0M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-04-29",
+      "value": 28567577.670617286,
+      "label": "$28.6M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-04-30",
+      "value": 28404361.305999674,
+      "label": "$28.4M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-01",
+      "value": 59967147.564194486,
+      "label": "$60.0M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-02",
+      "value": 59197916.23096108,
+      "label": "$59.2M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-03",
+      "value": 58009991.34301138,
+      "label": "$58.0M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-04",
+      "value": 57208997.80681983,
+      "label": "$57.2M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-05",
+      "value": 56501952.81254153,
+      "label": "$56.5M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-06",
+      "value": 55920997.685524,
+      "label": "$55.9M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-07",
+      "value": 55046958.44207453,
+      "label": "$55.0M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-08",
+      "value": 54043546.17234191,
+      "label": "$54.0M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-09",
+      "value": 53713174.57059814,
+      "label": "$53.7M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-10",
+      "value": 53785085.08508029,
+      "label": "$53.8M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-11",
+      "value": 53510687.81364109,
+      "label": "$53.5M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-12",
+      "value": 53208714.50272888,
+      "label": "$53.2M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-13",
+      "value": 52830064.242455326,
+      "label": "$52.8M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-14",
+      "value": 52537269.76990914,
+      "label": "$52.5M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-15",
+      "value": 52020684.18246101,
+      "label": "$52.0M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-16",
+      "value": 51858488.97500642,
+      "label": "$51.9M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-17",
+      "value": 51443353.879454374,
+      "label": "$51.4M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-18",
+      "value": 51158172.50887958,
+      "label": "$51.2M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-19",
+      "value": 50934723.33500006,
+      "label": "$50.9M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-20",
+      "value": 50431010.402074814,
+      "label": "$50.4M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-21",
+      "value": 49794465.81522905,
+      "label": "$49.8M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-22",
+      "value": 48939881.63785747,
+      "label": "$48.9M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-23",
+      "value": 48436713.05802351,
+      "label": "$48.4M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-24",
+      "value": 47858979.99321565,
+      "label": "$47.9M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-25",
+      "value": 47555767.62502539,
+      "label": "$47.6M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-26",
+      "value": 46381438.94447261,
+      "label": "$46.4M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-27",
+      "value": 45955011.304939665,
+      "label": "$46.0M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-28",
+      "value": 45082986.87162323,
+      "label": "$45.1M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-29",
+      "value": 44874178.465573244,
+      "label": "$44.9M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-30",
+      "value": 44175708.815630876,
+      "label": "$44.2M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-05-31",
+      "value": 43512395.79834338,
+      "label": "$43.5M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-01",
+      "value": 42880129.577238016,
+      "label": "$42.9M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-02",
+      "value": 42966795.581923634,
+      "label": "$43.0M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-03",
+      "value": 41857852.21211959,
+      "label": "$41.9M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-04",
+      "value": 41326520.3244522,
+      "label": "$41.3M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-05",
+      "value": 40422010.25609025,
+      "label": "$40.4M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-06",
+      "value": 39524294.52621233,
+      "label": "$39.5M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-07",
+      "value": 38317516.99970851,
+      "label": "$38.3M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-08",
+      "value": 36483815.72412756,
+      "label": "$36.5M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-09",
+      "value": 35052093.486934006,
+      "label": "$35.1M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-10",
+      "value": 34068414.3547604,
+      "label": "$34.1M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-11",
+      "value": 32842351.392520245,
+      "label": "$32.8M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-12",
+      "value": 31834910.166086223,
+      "label": "$31.8M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-13",
+      "value": 31223171.708943456,
+      "label": "$31.2M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-14",
+      "value": 31029103.748393506,
+      "label": "$31.0M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-15",
+      "value": 31115781.410399064,
+      "label": "$31.1M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-16",
+      "value": 30709178.596192893,
+      "label": "$30.7M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-17",
+      "value": 30003483.937225025,
+      "label": "$30.0M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-18",
+      "value": 29762487.82983213,
+      "label": "$29.8M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-19",
+      "value": 29900670.24657433,
+      "label": "$29.9M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-20",
+      "value": 29798592.150473483,
+      "label": "$29.8M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-21",
+      "value": 29676668.886421412,
+      "label": "$29.7M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-22",
+      "value": 29347281.85157518,
+      "label": "$29.3M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-23",
+      "value": 29269020.810713384,
+      "label": "$29.3M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-24",
+      "value": 29590907.388676185,
+      "label": "$29.6M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-25",
+      "value": 29803235.907908913,
+      "label": "$29.8M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-26",
+      "value": 29660229.49228797,
+      "label": "$29.7M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-27",
+      "value": 29747424.18879572,
+      "label": "$29.7M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-28",
+      "value": 29636238.559531603,
+      "label": "$29.6M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-29",
+      "value": 29535038.543291252,
+      "label": "$29.5M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-06-30",
+      "value": 29523224.537841663,
+      "label": "$29.5M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-07-01",
+      "value": 29695613.170084197,
+      "label": "$29.7M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-07-02",
+      "value": 29694384.458656788,
+      "label": "$29.7M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-07-03",
+      "value": 29560874.76586209,
+      "label": "$29.6M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-07-04",
+      "value": 29547204.635371696,
+      "label": "$29.5M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-07-05",
+      "value": 29636625.4620304,
+      "label": "$29.6M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-07-06",
+      "value": 29593349.42587165,
+      "label": "$29.6M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-07-07",
+      "value": 29200989.48830482,
+      "label": "$29.2M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-07-08",
+      "value": 28663114.46677823,
+      "label": "$28.7M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-07-09",
+      "value": 28199244.47423606,
+      "label": "$28.2M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-07-10",
+      "value": 27734824.82414286,
+      "label": "$27.7M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-07-11",
+      "value": 26912840.900533587,
+      "label": "$26.9M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-07-12",
+      "value": 26900000,
+      "label": "$26.9M",
+      "unit": "ARR / annualized 1T OR tokens"
+    }
+  ],
+  "tech_job_postings": [
+    {
+      "date": "2026-04-04",
+      "value": 72.06,
+      "label": "72.06",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-05",
+      "value": 71.92,
+      "label": "71.92",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-06",
+      "value": 71.7,
+      "label": "71.7",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-07",
+      "value": 71.65,
+      "label": "71.65",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-08",
+      "value": 71.61,
+      "label": "71.61",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-09",
+      "value": 71.72,
+      "label": "71.72",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-10",
+      "value": 71.95,
+      "label": "71.95",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-11",
+      "value": 72.15,
+      "label": "72.15",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-12",
+      "value": 72.33,
+      "label": "72.33",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-13",
+      "value": 72.37,
+      "label": "72.37",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-14",
+      "value": 72.45,
+      "label": "72.45",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-15",
+      "value": 72.65,
+      "label": "72.65",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-16",
+      "value": 72.73,
+      "label": "72.73",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-17",
+      "value": 72.63,
+      "label": "72.63",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-18",
+      "value": 72.63,
+      "label": "72.63",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-19",
+      "value": 72.64,
+      "label": "72.64",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-20",
+      "value": 72.78,
+      "label": "72.78",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-21",
+      "value": 73.06,
+      "label": "73.06",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-22",
+      "value": 73.36,
+      "label": "73.36",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-23",
+      "value": 73.29,
+      "label": "73.29",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-24",
+      "value": 73.05,
+      "label": "73.05",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-25",
+      "value": 72.66,
+      "label": "72.66",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-26",
+      "value": 72.48,
+      "label": "72.48",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-27",
+      "value": 72.31,
+      "label": "72.31",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-28",
+      "value": 72.01,
+      "label": "72.01",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-29",
+      "value": 71.61,
+      "label": "71.61",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-04-30",
+      "value": 71.79,
+      "label": "71.79",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-01",
+      "value": 72.13,
+      "label": "72.13",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-02",
+      "value": 72.51,
+      "label": "72.51",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-03",
+      "value": 72.77,
+      "label": "72.77",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-04",
+      "value": 73.02,
+      "label": "73.02",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-05",
+      "value": 73.38,
+      "label": "73.38",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-06",
+      "value": 73.56,
+      "label": "73.56",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-07",
+      "value": 73.72,
+      "label": "73.72",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-08",
+      "value": 73.76,
+      "label": "73.76",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-09",
+      "value": 73.94,
+      "label": "73.94",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-10",
+      "value": 73.85,
+      "label": "73.85",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-11",
+      "value": 74.01,
+      "label": "74.01",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-12",
+      "value": 73.86,
+      "label": "73.86",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-13",
+      "value": 73.68,
+      "label": "73.68",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-14",
+      "value": 73.35,
+      "label": "73.35",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-15",
+      "value": 73.09,
+      "label": "73.09",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-16",
+      "value": 72.78,
+      "label": "72.78",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-17",
+      "value": 72.79,
+      "label": "72.79",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-18",
+      "value": 72.62,
+      "label": "72.62",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-19",
+      "value": 72.88,
+      "label": "72.88",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-20",
+      "value": 73.11,
+      "label": "73.11",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-21",
+      "value": 73.23,
+      "label": "73.23",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-22",
+      "value": 73.44,
+      "label": "73.44",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-23",
+      "value": 73.57,
+      "label": "73.57",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-24",
+      "value": 73.69,
+      "label": "73.69",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-25",
+      "value": 73.67,
+      "label": "73.67",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-26",
+      "value": 73.26,
+      "label": "73.26",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-27",
+      "value": 72.93,
+      "label": "72.93",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-28",
+      "value": 72.8,
+      "label": "72.8",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-29",
+      "value": 72.57,
+      "label": "72.57",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-30",
+      "value": 72.52,
+      "label": "72.52",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-05-31",
+      "value": 72.39,
+      "label": "72.39",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-01",
+      "value": 72.24,
+      "label": "72.24",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-02",
+      "value": 72.13,
+      "label": "72.13",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-03",
+      "value": 72.23,
+      "label": "72.23",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-04",
+      "value": 72.21,
+      "label": "72.21",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-05",
+      "value": 72.23,
+      "label": "72.23",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-06",
+      "value": 72.24,
+      "label": "72.24",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-07",
+      "value": 72.22,
+      "label": "72.22",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-08",
+      "value": 72.17,
+      "label": "72.17",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-09",
+      "value": 72.16,
+      "label": "72.16",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-10",
+      "value": 71.99,
+      "label": "71.99",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-11",
+      "value": 71.83,
+      "label": "71.83",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-12",
+      "value": 71.71,
+      "label": "71.71",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-13",
+      "value": 71.55,
+      "label": "71.55",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-14",
+      "value": 71.42,
+      "label": "71.42",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-15",
+      "value": 71.39,
+      "label": "71.39",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-16",
+      "value": 71.24,
+      "label": "71.24",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-17",
+      "value": 71.26,
+      "label": "71.26",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-18",
+      "value": 71.43,
+      "label": "71.43",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-19",
+      "value": 71.66,
+      "label": "71.66",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-20",
+      "value": 71.85,
+      "label": "71.85",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-21",
+      "value": 72.08,
+      "label": "72.08",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-22",
+      "value": 72.23,
+      "label": "72.23",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-23",
+      "value": 72.46,
+      "label": "72.46",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-24",
+      "value": 72.57,
+      "label": "72.57",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-25",
+      "value": 72.61,
+      "label": "72.61",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-06-26",
+      "value": 72.51,
+      "label": "72.51",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-07-12",
+      "value": 72.5,
+      "label": "72.5",
+      "unit": "Feb 2020=100"
     }
   ]
 };
