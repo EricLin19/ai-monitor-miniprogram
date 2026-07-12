@@ -4,9 +4,9 @@
       "id": "openrouter_tokens",
       "group": "AI Demand",
       "title": "OpenRouter 平台 token 用量趋势",
-      "value": "49.9T",
+      "value": "51.4T",
       "unit": "7d",
-      "change": "2026-07-04 to 2026-07-10",
+      "change": "2026-07-05 to 2026-07-11",
       "trend": "up",
       "access": "自动",
       "cadence": "周",
@@ -18,15 +18,15 @@
       "id": "openrouter_share",
       "group": "AI Demand",
       "title": "OpenRouter 平台模型份额变化",
-      "value": "67%",
+      "value": "69%",
       "unit": "Top10",
-      "change": "Anthropic 14.7%",
+      "change": "Anthropic 14%",
       "trend": "flat",
       "access": "自动",
       "cadence": "周",
       "source": "OpenRouter Rankings",
       "sourceUrl": "https://openrouter.ai/rankings",
-      "note": "Top10 模型集中度；第一模型：deepseek/deepseek-v4-flash-20260423。"
+      "note": "Top10 模型集中度；第一模型：xiaomi/mimo-v2.5-20260422。"
     },
     {
       "id": "aa_value",
@@ -188,7 +188,7 @@
       "title": "Token 价格/用量弹性",
       "value": "价格未变",
       "unit": "",
-      "change": "token 123.9% / price 0%",
+      "change": "token 144.3% / price 0%",
       "trend": "flat",
       "access": "自动",
       "cadence": "周/月",
@@ -256,9 +256,9 @@
       "id": "gpu_rental_price",
       "group": "AI Daily Core",
       "title": "GPU 租赁价格",
-      "value": "$2.14/h",
+      "value": "$2.20/h",
       "unit": "H100 p25",
-      "change": "H100 $2.14/h / H200 $3.71/h / B200 $7.50/h",
+      "change": "H100 $2.20/h / H200 $3.53/h / B200 $5.00/h",
       "trend": "flat",
       "access": "自动",
       "cadence": "日/周",
@@ -298,9 +298,9 @@
       "id": "revenue_per_gpu",
       "group": "AI Daily Core",
       "title": "单位 GPU 每日收入",
-      "value": "$51.3/day",
+      "value": "$52.8/day",
       "unit": "H100 spot proxy",
-      "change": "median $52.9/day",
+      "change": "median $54.5/day",
       "trend": "flat",
       "access": "自动",
       "cadence": "月/季",
@@ -311,12 +311,6 @@
   ],
   "history": {
     "openrouter_tokens": [
-      {
-        "date": "2026-04-11",
-        "value": 22286610191471,
-        "label": "22.3T",
-        "unit": "7d"
-      },
       {
         "date": "2026-04-12",
         "value": 21035685456873,
@@ -853,24 +847,24 @@
       },
       {
         "date": "2026-07-10",
-        "value": 49923094108074,
+        "value": 49923350639305,
         "label": "49.9T",
         "unit": "7d"
       },
       {
         "date": "2026-07-11",
-        "value": 49900000000000,
-        "label": "49.9T",
+        "value": 51448131757355,
+        "label": "51.4T",
+        "unit": "7d"
+      },
+      {
+        "date": "2026-07-12",
+        "value": 51400000000000,
+        "label": "51.4T",
         "unit": "7d"
       }
     ],
     "openrouter_share": [
-      {
-        "date": "2026-04-11",
-        "value": 59,
-        "label": "59%",
-        "unit": "Top10"
-      },
       {
         "date": "2026-04-12",
         "value": 56.1,
@@ -1413,8 +1407,14 @@
       },
       {
         "date": "2026-07-11",
-        "value": 67,
-        "label": "67%",
+        "value": 68.6,
+        "label": "68.6%",
+        "unit": "Top10"
+      },
+      {
+        "date": "2026-07-12",
+        "value": 69,
+        "label": "69%",
         "unit": "Top10"
       }
     ],
@@ -1432,7 +1432,7 @@
         "unit": "annualized revenue"
       },
       {
-        "date": "2026-07-11",
+        "date": "2026-07-12",
         "value": 47000000000,
         "label": "$47B",
         "unit": "annualized revenue"
@@ -1452,7 +1452,7 @@
         "unit": "annualized revenue"
       },
       {
-        "date": "2026-07-11",
+        "date": "2026-07-12",
         "value": 25000000000,
         "label": "$25B",
         "unit": "annualized revenue"
@@ -1628,6 +1628,12 @@
         "value": 2.14,
         "label": "$2.14/h",
         "unit": "H100 p25"
+      },
+      {
+        "date": "2026-07-12",
+        "value": 2.2,
+        "label": "$2.20/h",
+        "unit": "H100 p25"
       }
     ],
     "api_price_index": [
@@ -1645,6 +1651,12 @@
       },
       {
         "date": "2026-07-11",
+        "value": 7.23,
+        "label": "$7.23",
+        "unit": "$/1M blended"
+      },
+      {
+        "date": "2026-07-12",
         "value": 7.23,
         "label": "$7.23",
         "unit": "$/1M blended"
@@ -1668,9 +1680,15 @@
         "value": 51.3,
         "label": "$51.3/day",
         "unit": "H100 spot proxy"
+      },
+      {
+        "date": "2026-07-12",
+        "value": 52.8,
+        "label": "$52.8/day",
+        "unit": "H100 spot proxy"
       }
     ]
   },
-  "updatedAt": "2026-07-11 11:20",
+  "updatedAt": "2026-07-12 00:11",
   "source": "github-actions-cache"
 }
