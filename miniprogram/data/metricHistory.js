@@ -1,12 +1,6 @@
 const metricHistory = {
   "openrouter_tokens": [
     {
-      "date": "2026-04-12",
-      "value": 21035685456873,
-      "label": "21.0T",
-      "unit": "7d"
-    },
-    {
       "date": "2026-04-13",
       "value": 20350718626562,
       "label": "20.4T",
@@ -542,24 +536,24 @@ const metricHistory = {
     },
     {
       "date": "2026-07-11",
-      "value": 51448131757355,
+      "value": 51448208242855,
       "label": "51.4T",
       "unit": "7d"
     },
     {
       "date": "2026-07-12",
-      "value": 51400000000000,
-      "label": "51.4T",
+      "value": 52618763963509,
+      "label": "52.6T",
+      "unit": "7d"
+    },
+    {
+      "date": "2026-07-13",
+      "value": 52600000000000,
+      "label": "52.6T",
       "unit": "7d"
     }
   ],
   "openrouter_share": [
-    {
-      "date": "2026-04-12",
-      "value": 56.1,
-      "label": "56.1%",
-      "unit": "Top10"
-    },
     {
       "date": "2026-04-13",
       "value": 54.9,
@@ -1102,8 +1096,14 @@ const metricHistory = {
     },
     {
       "date": "2026-07-12",
-      "value": 69,
-      "label": "69%",
+      "value": 70.5,
+      "label": "70.5%",
+      "unit": "Top10"
+    },
+    {
+      "date": "2026-07-13",
+      "value": 70,
+      "label": "70%",
       "unit": "Top10"
     }
   ],
@@ -1121,7 +1121,7 @@ const metricHistory = {
       "unit": "annualized revenue"
     },
     {
-      "date": "2026-07-12",
+      "date": "2026-07-13",
       "value": 47000000000,
       "label": "$47B",
       "unit": "annualized revenue"
@@ -1141,7 +1141,7 @@ const metricHistory = {
       "unit": "annualized revenue"
     },
     {
-      "date": "2026-07-12",
+      "date": "2026-07-13",
       "value": 25000000000,
       "label": "$25B",
       "unit": "annualized revenue"
@@ -1323,6 +1323,12 @@ const metricHistory = {
       "value": 1.93,
       "label": "$1.93/h",
       "unit": "H100 p25"
+    },
+    {
+      "date": "2026-07-13",
+      "value": 1.92,
+      "label": "$1.92/h",
+      "unit": "H100 p25"
     }
   ],
   "api_price_index": [
@@ -1346,6 +1352,12 @@ const metricHistory = {
     },
     {
       "date": "2026-07-12",
+      "value": 7.23,
+      "label": "$7.23",
+      "unit": "$/1M blended"
+    },
+    {
+      "date": "2026-07-13",
       "value": 7.23,
       "label": "$7.23",
       "unit": "$/1M blended"
@@ -1375,6 +1387,12 @@ const metricHistory = {
       "value": 46.2,
       "label": "$46.2/day",
       "unit": "H100 spot proxy"
+    },
+    {
+      "date": "2026-07-13",
+      "value": 46.2,
+      "label": "$46.2/day",
+      "unit": "H100 spot proxy"
     }
   ],
   "ai_wage_pool_coverage": [
@@ -1397,19 +1415,13 @@ const metricHistory = {
       "unit": "ARR / exposed wage pool"
     },
     {
-      "date": "2026-07-12",
+      "date": "2026-07-13",
       "value": 5,
       "label": "5%",
       "unit": "ARR / exposed wage pool"
     }
   ],
   "token_arr_conversion": [
-    {
-      "date": "2026-04-12",
-      "value": 31082712.050750997,
-      "label": "$31.1M",
-      "unit": "ARR / annualized 1T OR tokens"
-    },
     {
       "date": "2026-04-13",
       "value": 32128897.55120225,
@@ -1946,24 +1958,24 @@ const metricHistory = {
     },
     {
       "date": "2026-07-11",
-      "value": 26912840.900533587,
+      "value": 26912800.890547562,
       "label": "$26.9M",
       "unit": "ARR / annualized 1T OR tokens"
     },
     {
       "date": "2026-07-12",
-      "value": 26900000,
-      "label": "$26.9M",
+      "value": 26314099.38811205,
+      "label": "$26.3M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-07-13",
+      "value": 26300000,
+      "label": "$26.3M",
       "unit": "ARR / annualized 1T OR tokens"
     }
   ],
   "tech_job_postings": [
-    {
-      "date": "2026-04-04",
-      "value": 72.06,
-      "label": "72.06",
-      "unit": "Feb 2020=100"
-    },
     {
       "date": "2026-04-05",
       "value": 71.92,
@@ -2463,7 +2475,7 @@ const metricHistory = {
       "unit": "Feb 2020=100"
     },
     {
-      "date": "2026-07-12",
+      "date": "2026-07-13",
       "value": 72.5,
       "label": "72.5",
       "unit": "Feb 2020=100"
