@@ -53,6 +53,40 @@ const METRIC_ORDER = [
   "meta_capex"
 ];
 
+const METRIC_GROUP_KEYS = {
+  demand: new Set([
+    "aa_us_score",
+    "aa_cn_score",
+    "openrouter_us_tokens",
+    "openrouter_cn_tokens",
+    "silicon_token_expenditure",
+    "llm_token_spend_index",
+    "ramp_enterprise_paid_ratio"
+  ]),
+  cash: new Set([
+    "openai_app_revenue",
+    "anthropic_app_revenue",
+    "openai_arr",
+    "anthropic_arr",
+    "hyperscaler_cloud_revenue",
+    "hyperscaler_fcf",
+    "hyperscaler_capex_ocf_ratio"
+  ]),
+  funding: new Set([
+    "big5_debt_equity_ratio",
+    "big5_bond_issuance",
+    "big5_cds",
+    "ig_credit_spread",
+    "silicon_vc_confidence",
+    "ai_risk_investment"
+  ]),
+  constraints: new Set([
+    "tech_finance_employment",
+    "tech_finance_layoff_share",
+    "data_center_construction"
+  ])
+};
+
 Page({
   data: {
     metrics: [],
@@ -108,7 +142,7 @@ Page({
     const keyword = this.data.keyword.trim().toLowerCase();
     const group = this.data.activeGroup;
     const visibleMetrics = this.data.metrics.filter((item) => {
-      const groupMatched = group === "all" || item.group === group;
+      const groupMatched = group === "all" || item.groupKey === group;
       const haystack = `${item.title} ${item.group} ${item.source} ${item.note}`.toLowerCase();
       const keywordMatched = !keyword || haystack.includes(keyword);
       return groupMatched && keywordMatched;
@@ -139,6 +173,7 @@ function decorateMetrics(metrics, history) {
   return metrics
     .map((item) => ({
       ...item,
+      groupKey: getMetricGroupKey(item.id),
       accessClass: getAccessClass(item.access),
       canvasId: `chart_${item.id}`,
       chartPoints: getWindowedHistory(item, history[item.id] || []),
@@ -146,6 +181,13 @@ function decorateMetrics(metrics, history) {
       historyLabel: getHistoryLabel(history[item.id] || [])
     }))
     .sort((a, b) => getMetricOrder(a.id) - getMetricOrder(b.id));
+}
+
+function getMetricGroupKey(id) {
+  for (const [key, ids] of Object.entries(METRIC_GROUP_KEYS)) {
+    if (ids.has(id)) return key;
+  }
+  return "other";
 }
 
 function getMetricOrder(id) {

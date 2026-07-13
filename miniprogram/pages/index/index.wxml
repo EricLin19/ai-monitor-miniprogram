@@ -26,10 +26,10 @@
 
   <view class="tabs">
     <view class="tab {{activeGroup === 'all' ? 'active' : ''}}" data-group="all" bindtap="changeGroup">全部</view>
-    <view class="tab {{activeGroup === '① 需求' ? 'active' : ''}}" data-group="① 需求" bindtap="changeGroup">① 需求</view>
-    <view class="tab {{activeGroup === '② 现金流' ? 'active' : ''}}" data-group="② 现金流" bindtap="changeGroup">② 现金流</view>
-    <view class="tab {{activeGroup === '③ 资金来源' ? 'active' : ''}}" data-group="③ 资金来源" bindtap="changeGroup">③ 资金来源</view>
-    <view class="tab {{activeGroup === '④ 外部约束' ? 'active' : ''}}" data-group="④ 外部约束" bindtap="changeGroup">④ 外部约束</view>
+    <view class="tab {{activeGroup === 'demand' ? 'active' : ''}}" data-group="demand" bindtap="changeGroup">① 需求</view>
+    <view class="tab {{activeGroup === 'cash' ? 'active' : ''}}" data-group="cash" bindtap="changeGroup">② 现金流</view>
+    <view class="tab {{activeGroup === 'funding' ? 'active' : ''}}" data-group="funding" bindtap="changeGroup">③ 资金来源</view>
+    <view class="tab {{activeGroup === 'constraints' ? 'active' : ''}}" data-group="constraints" bindtap="changeGroup">④ 外部约束</view>
   </view>
 
   <view class="cards">
