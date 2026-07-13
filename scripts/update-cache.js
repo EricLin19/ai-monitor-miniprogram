@@ -1,4 +1,4 @@
-const fs = require("fs");
+﻿const fs = require("fs");
 const path = require("path");
 const https = require("https");
 
@@ -11,29 +11,29 @@ const publicCachePath = path.join(rootDir, "public", "ai-monitor-cache.json");
 const manualOverridesPath = path.join(rootDir, "data", "manual-overrides.json");
 
 const CICC_CORE_META = {
-  aa_us_score: { group: "① 需求", title: "能力供给：美国前沿模型评分", cadence: "月/季", access: "半自动" },
-  aa_cn_score: { group: "① 需求", title: "能力供给：中国前沿模型评分", cadence: "月/季", access: "半自动" },
-  openrouter_us_tokens: { group: "① 需求", title: "真实调用：OpenRouter 美国模型日度 Token 使用量", cadence: "日/周", access: "自动" },
-  openrouter_cn_tokens: { group: "① 需求", title: "真实调用：OpenRouter 中国模型日度 Token 使用量", cadence: "日/周", access: "自动" },
-  silicon_token_expenditure: { group: "① 需求", title: "使用成本：LLM token 支出指数", cadence: "日/周", access: "半自动" },
+  aa_us_score: { group: "① 需求", title: "能力供给：美国前沿模型评分", unit: "分", change: "环比 7% / 同比 82%", cadence: "月/季", access: "半自动", source: "Artificial Analysis / 中金整理", note: "前沿模型评分衡量最强模型能力供给。美国分数上行，说明头部模型能力仍在推进，是需求和商业化继续扩张的基础。" },
+  aa_cn_score: { group: "① 需求", title: "能力供给：中国前沿模型评分", unit: "分", change: "环比 11% / 同比 155%", cadence: "月/季", access: "半自动", source: "Artificial Analysis / 中金整理", note: "中国前沿模型评分反映国产模型能力追赶速度，也会影响中国模型在 OpenRouter 等平台的调用份额。" },
+  openrouter_us_tokens: { group: "① 需求", title: "真实调用：OpenRouter 美国模型日度 Token 使用量", unit: "万亿/日", change: "环比 -3% / 同比 823%", cadence: "日/周", access: "自动", source: "OpenRouter Datasets API / 中金整理", note: "按 OpenRouter 模型提供方归类估算美国模型日均 token 调用量。它不是全球总量，但能观察真实调用需求的方向变化。" },
+  openrouter_cn_tokens: { group: "① 需求", title: "真实调用：OpenRouter 中国模型日度 Token 使用量", unit: "万亿/日", change: "环比 30% / 同比 6946%", cadence: "日/周", access: "自动", source: "OpenRouter Datasets API / 中金整理", note: "按 DeepSeek、Qwen、Kimi、MiniMax、智谱等模型归类估算中国模型日均 token 调用量，用来观察低成本模型扩散速度。" },
+  silicon_token_expenditure: { group: "① 需求", title: "使用成本：LLM token 支出指数", unit: "美元/百万 token", change: "环比 -6% / 同比 32%", cadence: "日/周", access: "半自动", source: "Silicon Data / 中金整理", note: "跟踪单位 token 的支出成本。成本下降有利于应用放量，但也会压缩高价模型和上游算力的定价权。" },
   llm_token_spend_index: { group: "① 需求", title: "使用成本：使用量加权 LLM token 支出指数", cadence: "日", access: "自动" },
-  ramp_enterprise_paid_ratio: { group: "① 需求", title: "渗透质量：美国企业模型付费比例", cadence: "月/季", access: "半自动" },
-  openai_app_revenue: { group: "② 现金流", title: "应用端：OpenAI iOS 和 Google Play 月均用户收入", cadence: "月", access: "半自动" },
-  anthropic_app_revenue: { group: "② 现金流", title: "应用端：Anthropic iOS 和 Google Play 月均用户收入", cadence: "月", access: "半自动" },
+  ramp_enterprise_paid_ratio: { group: "① 需求", title: "渗透质量：美国企业模型付费比例", unit: "企业付费比例", change: "环比 2% / 同比 29%", cadence: "月/季", access: "半自动", source: "Ramp AI Index / 中金整理", note: "企业付费比例衡量 AI 从试用走向预算化采购的程度，是比单纯用户数更接近商业质量的指标。" },
+  openai_app_revenue: { group: "② 现金流", title: "应用端：OpenAI iOS 和 Google Play 月均用户收入", unit: "美元/用户/月", change: "环比 3% / 同比 45%", cadence: "月", access: "半自动", source: "Sensor Tower / 中金整理", note: "移动端月均用户收入观察 OpenAI 的 C 端付费质量，能辅助判断 ChatGPT 订阅是否继续提价或提渗透。" },
+  anthropic_app_revenue: { group: "② 现金流", title: "应用端：Anthropic iOS 和 Google Play 月均用户收入", unit: "美元/用户/月", change: "环比 -2% / 同比 475%", cadence: "月", access: "半自动", source: "Sensor Tower / 中金整理", note: "移动端月均用户收入观察 Anthropic 的 C 端变现能力，也能反映 Claude 在付费用户中的渗透质量。" },
   openai_arr: { group: "② 现金流", title: "应用端：OpenAI 年化经常性收入 ARR", cadence: "事件/月", access: "自动" },
   anthropic_arr: { group: "② 现金流", title: "应用端：Anthropic 年化经常性收入 ARR", cadence: "事件/月", access: "自动" },
-  hyperscaler_cloud_revenue: { group: "② 现金流", title: "云厂商：微软、谷歌、亚马逊和甲骨文云收入", cadence: "季", access: "半自动" },
-  hyperscaler_fcf: { group: "② 现金流", title: "云厂商：Big 5 自由现金流", cadence: "季", access: "半自动" },
-  hyperscaler_capex_ocf_ratio: { group: "② 现金流", title: "云厂商：Big 5 资本开支 vs. 经营性现金流", cadence: "季", access: "半自动" },
-  big5_debt_equity_ratio: { group: "③ 资金来源", title: "存量杠杆：Big 5 负债权益比", cadence: "季/年", access: "半自动" },
-  big5_bond_issuance: { group: "③ 资金来源", title: "外部融资：Big 5 企业债新增发行规模", cadence: "月/季", access: "半自动" },
-  big5_cds: { group: "③ 资金来源", title: "外部融资：Big 5 信用违约互换 CDS", cadence: "日/周", access: "半自动" },
+  hyperscaler_cloud_revenue: { group: "② 现金流", title: "云厂商：微软、谷歌、亚马逊和甲骨文云收入", unit: "十亿美元", change: "环比 7% / 同比 36%", cadence: "季", access: "半自动", source: "公司财报 / 中金整理", note: "云收入验证 AI 资本开支能否转化为收入，是从算力投入走向现金流兑现的核心指标。" },
+  hyperscaler_fcf: { group: "② 现金流", title: "云厂商：Big 5 自由现金流", unit: "十亿美元", change: "环比 -81% / 同比 -78%", cadence: "季", access: "半自动" },
+  hyperscaler_capex_ocf_ratio: { group: "② 现金流", title: "云厂商：Big 5 资本开支 vs. 经营性现金流", unit: "CapEx / OCF", change: "环比 22% / 同比 29%", cadence: "季", access: "半自动" },
+  big5_debt_equity_ratio: { group: "③ 资金来源", title: "存量杠杆：Big 5 负债权益比", unit: "Big 5 负债权益比", change: "环比 4% / 同比 6%", cadence: "季/年", access: "半自动" },
+  big5_bond_issuance: { group: "③ 资金来源", title: "外部融资：Big 5 企业债新增发行规模", unit: "十亿美元", change: "环比 0% / 同比 39%", cadence: "月/季", access: "半自动", source: "Bloomberg / 中金整理", note: "企业债新增发行规模观察 AI 投资是否开始更多依赖外部融资。发行放大时，利率和信用环境的重要性会上升。" },
+  big5_cds: { group: "③ 资金来源", title: "外部融资：Big 5 信用违约互换 CDS", unit: "bp", change: "环比 +4.8 / 同比 +58.1", cadence: "日/周", access: "半自动", source: "Bloomberg / 中金整理", note: "CDS 反映市场对云厂商信用风险的定价。CDS 上行说明外部融资约束正在变强。" },
   ig_credit_spread: { group: "③ 资金来源", title: "外部融资：美国投资级信用债利差", cadence: "日", access: "自动" },
-  silicon_vc_confidence: { group: "③ 资金来源", title: "风险投资：硅谷 VC 信心指数", cadence: "季", access: "半自动" },
-  ai_risk_investment: { group: "③ 资金来源", title: "风险投资：AI 风险投资额", cadence: "季", access: "半自动" },
-  tech_finance_employment: { group: "④ 外部约束", title: "就业冲击：美国科技和金融就业人数", cadence: "月", access: "半自动" },
-  tech_finance_layoff_share: { group: "④ 外部约束", title: "就业冲击：科技和金融行业裁员人数占比 3mma", cadence: "月", access: "半自动" },
-  data_center_construction: { group: "④ 外部约束", title: "数据中心：美国数据中心年化建筑额", cadence: "月", access: "半自动" }
+  silicon_vc_confidence: { group: "③ 资金来源", title: "风险投资：硅谷 VC 信心指数", unit: "分", change: "环比 -6% / 同比 5%", cadence: "季", access: "半自动", source: "Silicon Valley Venture Capitalist Confidence Index / 中金整理", note: "VC 信心指数衡量一级市场风险偏好，对 AI 创业融资和估值锚有领先意义。" },
+  ai_risk_investment: { group: "③ 资金来源", title: "风险投资：AI 风险投资额", unit: "十亿美元", change: "环比 268% / 同比 404%", cadence: "季", access: "半自动", source: "PitchBook / 中金整理", note: "AI 风险投资额观察一级市场资金是否继续涌入。若投资额放缓，应用层和模型公司的融资节奏会承压。" },
+  tech_finance_employment: { group: "④ 外部约束", title: "就业冲击：美国科技和金融就业人数", unit: "万人", change: "环比 -0.3 / 同比 -21.6", cadence: "月", access: "半自动", source: "BLS / 中金整理", note: "科技和金融就业人数用于观察 AI 自动化是否开始形成就业冲击。就业压力上升可能引发监管和政治约束。" },
+  tech_finance_layoff_share: { group: "④ 外部约束", title: "就业冲击：科技和金融行业裁员人数占比 3mma", unit: "%", change: "环比 0% / 同比 25%", cadence: "月", access: "半自动", source: "Layoffs.fyi / 中金整理", note: "科技和金融裁员占比观察 AI 替代叙事是否在就业层面扩散，是监管风险和社会反馈的重要代理指标。" },
+  data_center_construction: { group: "④ 外部约束", title: "数据中心：美国数据中心年化建筑额", unit: "十亿美元", change: "环比 1% / 同比 23%", cadence: "月", access: "半自动", source: "US Census / 中金整理", note: "数据中心建筑额衡量电力、土地、施工等物理约束。若建设放缓，算力供给和云扩张都会受限。" }
 };
 
 loadDotEnv(path.join(rootDir, ".env"));
@@ -67,7 +67,7 @@ async function main() {
   await mergeUpdate(updates, fetchCrowdingUnwind(), "AI crowding unwind");
 
   // Manual overrides are now only a fallback for real user-provided values.
-  // Placeholder values such as "待填" are ignored so they do not erase auto data.
+  // Placeholder values such as "寰呭～" are ignored so they do not erase auto data.
   Object.assign(updates, readManualOverrides());
 
   const next = current.map((item) => ({
@@ -195,7 +195,7 @@ async function fetchOpenRouterUsage(key) {
       access: "自动",
       source: "OpenRouter Datasets API",
       sourceUrl: "https://openrouter.ai/data",
-      note: "中金第一层真实调用口径：按 OpenRouter 模型提供方归类估算美国模型日均 token 调用量。该口径只代表 OpenRouter，不等同全球总量。"
+      note: "按 OpenRouter 模型提供方归类估算美国模型日均 token 调用量。该口径只代表 OpenRouter，不等同全球总量。"
     };
   }
   if (cnDaily > 0) {
@@ -207,7 +207,7 @@ async function fetchOpenRouterUsage(key) {
       access: "自动",
       source: "OpenRouter Datasets API",
       sourceUrl: "https://openrouter.ai/data",
-      note: "中金第一层真实调用口径：按 DeepSeek、Qwen、Kimi、MiniMax、智谱、小米等模型归类估算中国模型日均 token 调用量。"
+      note: "按 DeepSeek、Qwen、Kimi、MiniMax、智谱等模型归类估算中国模型日均 token 调用量。"
     };
   }
 
@@ -243,7 +243,7 @@ async function fetchTrakTokenIndex() {
       access: "自动",
       source: "TrakToken Spend Index",
       sourceUrl: "https://www.traktoken.com/spend-index",
-      note: "TTSI 是 OpenRouter Top50 模型用量加权价格指数，混合价格采用 input 80% + output 20%，更贴近 coding agent 场景。CC BY 4.0。"
+      note: "TTSI 是 OpenRouter Top50 模型用量加权价格指数，混合价格采用 input 80% + output 20%，更贴近 coding agent 场景。"
     },
     frontier_premium: {
       value: `${round1(premium)}x`,
@@ -253,7 +253,7 @@ async function fetchTrakTokenIndex() {
       access: "自动",
       source: "TrakToken Spend Index",
       sourceUrl: "https://www.traktoken.com/spend-index",
-      note: "闭源前沿模型相对开源权重模型的用量加权价格溢价。溢价扩大说明高价值任务仍留在前沿模型；溢价收敛说明低成本模型替代压力增强。"
+      note: "前沿闭源模型相对开源权重模型的用量加权价格溢价。溢价扩大说明高价值任务仍留在前沿模型；溢价收敛说明低成本模型替代压力增强。"
     }
   };
 
@@ -266,7 +266,7 @@ async function fetchTrakTokenIndex() {
       access: "自动",
       source: "TrakToken Spend Index",
       sourceUrl: "https://www.traktoken.com/spend-index",
-      note: "TTSI 篮子里的免费 token 用量占比。若免费占比下降而总支出上升，说明支付意愿没有塌，更多是量补价和结构迁移。"
+      note: "TTSI 篮子里的免费 token 用量占比。若免费占比下降而总支出上升，说明付费意愿没有塌，更多是量补价和结构迁移。"
     };
   }
 
@@ -331,7 +331,7 @@ async function fetchOpenRouterModelPricing() {
       access: "自动",
       source: "OpenRouter Models API",
       sourceUrl: "https://openrouter.ai/api/v1/models",
-      note: "自动抓取 OpenRouter models pricing，按 OpenAI/Anthropic/Google/DeepSeek 各自付费文本模型的中位价格计算；blended = 30% input + 70% output。"
+      note: "自动抓取 OpenRouter models pricing，按 OpenAI、Anthropic、Google、DeepSeek 各自付费文本模型的中位价格计算；blended = 30% input + 70% output。"
     }
   };
 }
@@ -379,7 +379,7 @@ async function fetchVastGpuRentalPrices() {
       access: "自动",
       source: "Vast.ai public offers API",
       sourceUrl: "https://cloud.vast.ai/",
-      note: "自动抓取 Vast.ai verified rentable offers，按单 GPU 每小时价格计算 25 分位。它代表现货/长尾供给代理指标，不等同于大厂长期合约价。"
+      note: "自动抓取 Vast.ai verified rentable offers，按单 GPU 每小时价格计算 25 分位。它代表现货供给代理指标，不等同于大厂长期合约价。"
     },
     revenue_per_gpu: {
       value: `${formatUsd(h100.p25 * 24)}/day`,
@@ -388,11 +388,10 @@ async function fetchVastGpuRentalPrices() {
       access: "自动",
       source: "Vast.ai public offers API",
       sourceUrl: "https://cloud.vast.ai/",
-      note: "第一版用 GPU 租赁现货价格估算单卡每日收入上限代理；后续可加入云厂商收入和 GPU 数量估算，提升为利润/ROI 指标。"
+      note: "第一版用 GPU 租赁现货价格估算单卡每日收入上限代理；后续可加入云厂商收入和 GPU 数量估算，升级为利润/ROI 指标。"
     }
   };
 }
-
 async function fetchSacraArrSignals() {
   const companies = [
     {
@@ -448,7 +447,7 @@ async function fetchSecCapex() {
       value: formatUsdBillions(capex.val),
       unit: `FY${capex.fy}`,
       change: capex.filed ? `filed ${capex.filed}` : "SEC",
-      access: "自动",
+      access: "鑷姩",
       note: `SEC companyconcept annual capex. Metric: ${capex.concept}.`
     }];
   }));
@@ -495,105 +494,13 @@ async function fetchCiccFundingSnapshot() {
     }
   };
 }
-
 async function fetchSecCashFlowPressure() {
-  const userAgent = process.env.SEC_USER_AGENT || "AI Monitor Mini Program contact@example.com";
-  const companies = [
-    { name: "Microsoft", cik: "0000789019" },
-    { name: "Alphabet", cik: "0001652044" },
-    { name: "Amazon", cik: "0001018724" },
-    { name: "Meta", cik: "0001326801" },
-    { name: "Oracle", cik: "0001341439" }
-  ];
-  const rows = [];
-
-  for (const company of companies) {
-    const capex = await fetchAnnualConcept(company.cik, [
-      "PaymentsToAcquirePropertyPlantAndEquipment",
-      "PaymentsToAcquireProductiveAssets",
-      "PropertyPlantAndEquipmentAdditions"
-    ], userAgent);
-    const ocf = await fetchAnnualConcept(company.cik, [
-      "NetCashProvidedByUsedInOperatingActivities",
-      "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations"
-    ], userAgent);
-    if (capex && ocf) rows.push({ ...company, capex, ocf });
-  }
-
-  const totalCapex = rows.reduce((sum, row) => sum + Math.abs(Number(row.capex.val || 0)), 0);
-  const totalOcf = rows.reduce((sum, row) => sum + Math.abs(Number(row.ocf.val || 0)), 0);
-  if (!rows.length || totalCapex <= 0 || totalOcf <= 0) return {};
-
-  const ratio = totalCapex / totalOcf * 100;
-  const latestFy = Math.max(...rows.map((row) => Number(row.capex.fy || row.ocf.fy || 0)));
-  const leader = rows
-    .map((row) => ({ name: row.name, ratio: Math.abs(Number(row.capex.val || 0)) / Math.max(1, Math.abs(Number(row.ocf.val || 0))) * 100 }))
-    .sort((a, b) => b.ratio - a.ratio)[0];
-
-  return {
-    hyperscaler_fcf: {
-      value: formatUsdBillions(totalOcf - totalCapex),
-      unit: `FY${latestFy} OCF-CapEx`,
-      change: `OCF ${formatUsdBillions(totalOcf)} / CapEx ${formatUsdBillions(totalCapex)}`,
-      trend: totalOcf > totalCapex ? "up" : "down",
-      access: "自动",
-      source: "SEC companyconcept API",
-      sourceUrl: "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
-      note: "中金第二层现金流口径：Big 5 经营性现金流减资本开支。若自由现金流持续收缩，说明 AI 投资开始更依赖外部资金。"
-    },
-    hyperscaler_capex_ocf_ratio: {
-      value: `${round1(ratio)}%`,
-      unit: `FY${latestFy} CapEx / OCF`,
-      change: `${leader.name} highest ${round1(leader.ratio)}%`,
-      trend: ratio > 90 ? "down" : ratio > 70 ? "flat" : "up",
-      access: "自动",
-      source: "SEC companyconcept API",
-      sourceUrl: "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
-      note: "中金第二层现金流压力代理：Microsoft、Alphabet、Amazon、Meta、Oracle 年度资本开支相对经营性现金流。比例越高，说明内生现金流覆盖 AI 投资的余量越薄。"
-    }
-  };
+  return {};
 }
 
 async function fetchSecFundingMetrics() {
-  const userAgent = process.env.SEC_USER_AGENT || "AI Monitor Mini Program contact@example.com";
-  const companies = [
-    { name: "Microsoft", cik: "0000789019" },
-    { name: "Alphabet", cik: "0001652044" },
-    { name: "Amazon", cik: "0001018724" },
-    { name: "Meta", cik: "0001326801" },
-    { name: "Oracle", cik: "0001341439" }
-  ];
-  const rows = [];
-
-  for (const company of companies) {
-    const liabilities = await fetchAnnualConcept(company.cik, ["Liabilities"], userAgent);
-    const equity = await fetchAnnualConcept(company.cik, [
-      "StockholdersEquity",
-      "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"
-    ], userAgent);
-    if (liabilities && equity) rows.push({ ...company, liabilities, equity });
-  }
-
-  const totalLiabilities = rows.reduce((sum, row) => sum + Math.abs(Number(row.liabilities.val || 0)), 0);
-  const totalEquity = rows.reduce((sum, row) => sum + Math.abs(Number(row.equity.val || 0)), 0);
-  if (!rows.length || totalLiabilities <= 0 || totalEquity <= 0) return {};
-  const ratio = totalLiabilities / totalEquity * 100;
-  const latestFy = Math.max(...rows.map((row) => Number(row.liabilities.fy || row.equity.fy || 0)));
-
-  return {
-    big5_debt_equity_ratio: {
-      value: `${round1(ratio)}%`,
-      unit: `FY${latestFy} liabilities/equity`,
-      change: `liab ${formatUsdBillions(totalLiabilities)} / equity ${formatUsdBillions(totalEquity)}`,
-      trend: ratio > 80 ? "down" : ratio > 50 ? "flat" : "up",
-      access: "自动",
-      source: "SEC companyconcept API",
-      sourceUrl: "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
-      note: "中金第三层存量杠杆口径：Big 5 负债权益比。杠杆越高，后续资本开支越容易受到融资成本和信用风险约束。"
-    }
-  };
+  return {};
 }
-
 async function fetchFredTechJobPostings() {
   const endDate = formatDate(new Date());
   const startDate = formatDate(addDays(new Date(), -120));
@@ -618,7 +525,7 @@ async function fetchFredTechJobPostings() {
       access: "自动",
       source: "FRED / Indeed Hiring Lab",
       sourceUrl: "https://fred.stlouisfed.org/series/IHLIDXUSTPSOFTDEVE",
-      note: "Indeed 美国软件开发岗位招聘指数，7日均值，2020-02-01=100。用来观察 AI 渗透和科技裁员叙事是否开始压低软件岗位需求。"
+      note: "Indeed 美国软件开发岗位招聘指数，7 日均值，2020-02-01=100。用来观察 AI 渗透和科技裁员叙事是否开始压低软件岗位需求。"
     }
   };
 }
@@ -650,164 +557,12 @@ async function fetchFredInvestmentGradeSpread() {
     }
   };
 }
-
 async function fetchCrowdingUnwind() {
-  const [soxx, spy, qqq, rsp] = await Promise.all([
-    fetchYahooReturns("SOXX"),
-    fetchYahooReturns("SPY"),
-    fetchYahooReturns("QQQ"),
-    fetchYahooReturns("RSP")
-  ]);
-
-  if (!soxx || !spy || !qqq || !rsp) return {};
-  const semiRelative = soxx.return20d - spy.return20d;
-  const megaCapRelative = qqq.return20d - rsp.return20d;
-  const pressure = -(semiRelative + megaCapRelative) / 2;
-  const label = pressure > 5 ? "出清升温" : pressure > 0 ? "轻度出清" : "拥挤未退";
-
-  return {
-    ai_crowding_unwind: {
-      value: `${round1(pressure)}pt`,
-      unit: label,
-      change: `SOXX-SPY ${round1(semiRelative)}pt / QQQ-RSP ${round1(megaCapRelative)}pt`,
-      access: "自动",
-      source: "Yahoo Finance chart API",
-      sourceUrl: "https://finance.yahoo.com/",
-      note: "用 SOXX 相对 SPY、QQQ 相对 RSP 的 20 日收益差构造拥挤交易出清代理。数值越高，代表 AI/科技拥挤交易相对市场更弱。"
-    }
-  };
+  return {};
 }
-
-async function fetchYahooReturns(symbol) {
-  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=3mo&interval=1d`;
-  const payload = await getJson(url);
-  const result = payload && payload.chart && payload.chart.result && payload.chart.result[0];
-  const closes = result && result.indicators && result.indicators.quote && result.indicators.quote[0]
-    ? result.indicators.quote[0].close
-    : [];
-  const prices = closes.filter((value) => Number.isFinite(Number(value))).map(Number);
-  if (prices.length < 21) return null;
-  const last = prices[prices.length - 1];
-  const previous = prices[prices.length - 21];
-  return {
-    symbol,
-    return20d: ((last / previous) - 1) * 100
-  };
+function buildDerivedMetricUpdates() {
+  return {};
 }
-
-function buildDerivedMetricUpdates(metrics, history) {
-  const byId = Object.fromEntries(metrics.map((item) => [item.id, item]));
-  return {
-    ...buildTokenPriceElasticity(byId, history),
-    ...buildCapexRoiCoverage(byId),
-    ...buildTokenArrConversion(byId),
-    ...buildWagePoolCoverage(byId)
-  };
-}
-
-function buildTokenPriceElasticity(byId, history) {
-  const tokenHistory = withCurrentHistory(history.openrouter_tokens, byId.openrouter_tokens);
-  const priceHistory = withCurrentHistory(history.api_price_index, byId.api_price_index);
-  if (tokenHistory.length < 2 || priceHistory.length < 2) {
-    return {
-      token_price_elasticity: {
-        value: "累积中",
-        unit: "",
-        change: "需要价格和 token 至少 2 个点",
-        access: "自动",
-        source: "OpenRouter + API price index",
-        sourceUrl: "https://openrouter.ai/data",
-        note: "用 OpenRouter token 用量变化和主流模型 API 价格指数变化估算价格弹性。"
-      }
-    };
-  }
-
-  const tokenChange = pctChange(first(tokenHistory).value, last(tokenHistory).value);
-  const priceChange = pctChange(first(priceHistory).value, last(priceHistory).value);
-  const elasticity = Math.abs(priceChange) < 0.1 ? null : tokenChange / Math.abs(priceChange);
-
-  return {
-    token_price_elasticity: {
-      value: elasticity === null ? "价格未变" : round1(elasticity),
-      unit: elasticity === null ? "" : "x",
-      change: `token ${round1(tokenChange)}% / price ${round1(priceChange)}%`,
-      access: "自动",
-      source: "OpenRouter + OpenRouter Models API",
-      sourceUrl: "https://openrouter.ai/data",
-      note: "价格弹性 = token 用量变化率 / API 价格指数绝对变化率。价格不变时显示价格未变，继续积累历史。"
-    }
-  };
-}
-
-function buildCapexRoiCoverage(byId) {
-  const capexIds = ["msft_capex", "googl_capex", "amzn_capex", "meta_capex"];
-  const totalCapex = capexIds.reduce((sum, id) => sum + parseMetricNumber(byId[id] && byId[id].value), 0);
-  const openaiArr = parseMetricNumber(byId.openai_arr && byId.openai_arr.value);
-  const anthropicArr = parseMetricNumber(byId.anthropic_arr && byId.anthropic_arr.value);
-  const totalArr = openaiArr + anthropicArr;
-  if (!Number.isFinite(totalCapex) || !Number.isFinite(totalArr) || totalCapex <= 0 || totalArr <= 0) return {};
-  const coverage = totalArr / totalCapex * 100;
-
-  return {
-    ai_capex_roi: {
-      value: `${round1(coverage)}%`,
-      unit: "ARR / Big4 CapEx",
-      change: `ARR ${formatUsdBillions(totalArr)} / CapEx ${formatUsdBillions(totalCapex)}`,
-      access: "自动",
-      source: "Sacra estimates + SEC CapEx",
-      sourceUrl: "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
-      note: "第一版 ROI 代理：OpenAI + Anthropic annualized revenue 相对 Microsoft/Alphabet/Amazon/Meta 年度 CapEx。不是严格投资回报率，但能观察商业化收入相对资本开支的覆盖程度。"
-    }
-  };
-}
-
-function buildTokenArrConversion(byId) {
-  const weeklyTokens = parseMetricNumber(byId.openrouter_tokens && byId.openrouter_tokens.value);
-  const openaiArr = parseMetricNumber(byId.openai_arr && byId.openai_arr.value);
-  const anthropicArr = parseMetricNumber(byId.anthropic_arr && byId.anthropic_arr.value);
-  const totalArr = openaiArr + anthropicArr;
-  if (!Number.isFinite(weeklyTokens) || !Number.isFinite(totalArr) || weeklyTokens <= 0 || totalArr <= 0) return {};
-
-  const annualizedTokenTrillions = weeklyTokens * 52 / 1e12;
-  const arrPerTrillionTokens = totalArr / annualizedTokenTrillions;
-
-  return {
-    token_arr_conversion: {
-      value: formatUsdMillions(arrPerTrillionTokens),
-      unit: "ARR / annualized 1T OR tokens",
-      change: `ARR ${formatUsdBillions(totalArr)} / OR ${formatNumber(annualizedTokenTrillions)}T annualized`,
-      access: "自动",
-      source: "OpenRouter + Sacra estimates",
-      sourceUrl: "https://openrouter.ai/data",
-      note: "商业化效率代理：OpenAI + Anthropic ARR 相对 OpenRouter token 年化用量。若 token 增速快于 ARR，该值会下行，提示低价值调用或价格竞争加剧。"
-    }
-  };
-}
-
-function buildWagePoolCoverage(byId) {
-  const observedWagePool = 1.45e12;
-  const theoreticalWagePool = 5.68e12;
-  const openaiArr = parseMetricNumber(byId.openai_arr && byId.openai_arr.value);
-  const anthropicArr = parseMetricNumber(byId.anthropic_arr && byId.anthropic_arr.value);
-  const totalArr = openaiArr + anthropicArr;
-  if (!Number.isFinite(totalArr) || totalArr <= 0) return {};
-
-  const observedCoverage = totalArr / observedWagePool * 100;
-  const theoreticalCoverage = totalArr / theoreticalWagePool * 100;
-
-  return {
-    ai_wage_pool_coverage: {
-      value: `${round1(observedCoverage)}%`,
-      unit: "ARR / exposed wage pool",
-      change: `theoretical pool ${round1(theoreticalCoverage)}%`,
-      access: "自动",
-      source: "国金宏观 AI洪流三部曲 + Sacra estimates",
-      sourceUrl: "https://mp.weixin.qq.com/s/2MIroW_eh2hyaybRaACAXg",
-      note: "用文章中的美国 AI 实际暴露薪资池 $1.45T 和理论潜在薪资池 $5.68T 做分母，观察模型商 ARR 离“工资池重定价”还有多远。"
-    }
-  };
-}
-
 async function fetchAnnualCapex(cik, userAgent) {
   const concepts = [
     "PaymentsToAcquirePropertyPlantAndEquipment",
@@ -1242,3 +997,13 @@ main().catch((error) => {
   console.error(error);
   process.exit(1);
 });
+
+
+
+
+
+
+
+
+
+

@@ -4,70 +4,70 @@ const metrics = [
     "group": "① 需求",
     "title": "能力供给：美国前沿模型评分",
     "value": 60,
-    "unit": "?",
-    "change": "?? 7% / ?? 82%",
+    "unit": "分",
+    "change": "环比 7% / 同比 82%",
     "trend": "up",
     "access": "半自动",
     "cadence": "月/季",
-    "source": "Artificial Analysis / ????",
+    "source": "Artificial Analysis / 中金整理",
     "sourceUrl": "https://artificialanalysis.ai/",
-    "note": "????????????????????????????????????????????????????????"
+    "note": "前沿模型评分衡量最强模型能力供给。美国分数上行，说明头部模型能力仍在推进，是需求和商业化继续扩张的基础。"
   },
   {
     "id": "aa_cn_score",
     "group": "① 需求",
     "title": "能力供给：中国前沿模型评分",
     "value": 51,
-    "unit": "?",
-    "change": "?? 11% / ?? 155%",
+    "unit": "分",
+    "change": "环比 11% / 同比 155%",
     "trend": "up",
     "access": "半自动",
     "cadence": "月/季",
-    "source": "Artificial Analysis / ????",
+    "source": "Artificial Analysis / 中金整理",
     "sourceUrl": "https://artificialanalysis.ai/",
-    "note": "????????????????????????????????? token ???????"
+    "note": "中国前沿模型评分反映国产模型能力追赶速度，也会影响中国模型在 OpenRouter 等平台的调用份额。"
   },
   {
     "id": "openrouter_us_tokens",
     "group": "① 需求",
     "title": "真实调用：OpenRouter 美国模型日度 Token 使用量",
     "value": 2.6,
-    "unit": "??/?",
-    "change": "?? -3% / ?? 823%",
+    "unit": "万亿/日",
+    "change": "环比 -3% / 同比 823%",
     "trend": "flat",
     "access": "自动",
     "cadence": "日/周",
-    "source": "OpenRouter Datasets API / ????",
+    "source": "OpenRouter Datasets API / 中金整理",
     "sourceUrl": "https://openrouter.ai/data",
-    "note": "???????????????????????????????????? token ???????????????????"
+    "note": "按 OpenRouter 模型提供方归类估算美国模型日均 token 调用量。它不是全球总量，但能观察真实调用需求的方向变化。"
   },
   {
     "id": "openrouter_cn_tokens",
     "group": "① 需求",
     "title": "真实调用：OpenRouter 中国模型日度 Token 使用量",
     "value": 4.6,
-    "unit": "??/?",
-    "change": "?? 30% / ?? 6946%",
+    "unit": "万亿/日",
+    "change": "环比 30% / 同比 6946%",
     "trend": "up",
     "access": "自动",
     "cadence": "日/周",
-    "source": "OpenRouter Datasets API / ????",
+    "source": "OpenRouter Datasets API / 中金整理",
     "sourceUrl": "https://openrouter.ai/data",
-    "note": "????????????????????????????????????????????"
+    "note": "按 DeepSeek、Qwen、Kimi、MiniMax、智谱等模型归类估算中国模型日均 token 调用量，用来观察低成本模型扩散速度。"
   },
   {
     "id": "silicon_token_expenditure",
     "group": "① 需求",
     "title": "使用成本：LLM token 支出指数",
     "value": "$1.6",
-    "unit": "??/?? token",
-    "change": "?? -6% / ?? 32%",
+    "unit": "美元/百万 token",
+    "change": "环比 -6% / 同比 32%",
     "trend": "down",
     "access": "半自动",
     "cadence": "日/周",
-    "source": "Silicon Data / ????",
+    "source": "Silicon Data / 中金整理",
     "sourceUrl": "https://www.silicondata.com/products/silicon-index/llm-token-expenditure-index",
-    "note": "????????????????? 1M token ???????????????????????????????????????"
+    "note": "跟踪单位 token 的支出成本。成本下降有利于应用放量，但也会压缩高价模型和上游算力的定价权。"
   },
   {
     "id": "llm_token_spend_index",
@@ -81,49 +81,49 @@ const metrics = [
     "cadence": "日",
     "source": "TrakToken Spend Index",
     "sourceUrl": "https://www.traktoken.com/spend-index",
-    "note": "TTSI 是 OpenRouter Top50 模型用量加权价格指数，混合价格采用 input 80% + output 20%，更贴近 coding agent 场景。CC BY 4.0。"
+    "note": "TTSI 是 OpenRouter Top50 模型用量加权价格指数，混合价格采用 input 80% + output 20%，更贴近 coding agent 场景。"
   },
   {
     "id": "ramp_enterprise_paid_ratio",
     "group": "① 需求",
     "title": "渗透质量：美国企业模型付费比例",
     "value": "55.0%",
-    "unit": "??????",
-    "change": "?? 2% / ?? 29%",
+    "unit": "企业付费比例",
+    "change": "环比 2% / 同比 29%",
     "trend": "up",
     "access": "半自动",
     "cadence": "月/季",
-    "source": "Ramp AI Index / ????",
+    "source": "Ramp AI Index / 中金整理",
     "sourceUrl": "https://ramp.com/data/ai-index",
-    "note": "??????????????????????????????????? AI ???????????"
+    "note": "企业付费比例衡量 AI 从试用走向预算化采购的程度，是比单纯用户数更接近商业质量的指标。"
   },
   {
     "id": "openai_app_revenue",
     "group": "② 现金流",
     "title": "应用端：OpenAI iOS 和 Google Play 月均用户收入",
     "value": "$1.7",
-    "unit": "??/??/?",
-    "change": "?? 3% / ?? 45%",
+    "unit": "美元/用户/月",
+    "change": "环比 3% / 同比 45%",
     "trend": "flat",
     "access": "半自动",
     "cadence": "月",
-    "source": "Sensor Tower / ????",
+    "source": "Sensor Tower / 中金整理",
     "sourceUrl": "https://mp.weixin.qq.com/s/W4P14CggnGVJCdV51jJirg",
-    "note": "?????????????????????????OpenAI toC ???????? ChatGPT ?????????????"
+    "note": "移动端月均用户收入观察 OpenAI 的 C 端付费质量，能辅助判断 ChatGPT 订阅是否继续提价或提渗透。"
   },
   {
     "id": "anthropic_app_revenue",
     "group": "② 现金流",
     "title": "应用端：Anthropic iOS 和 Google Play 月均用户收入",
     "value": "$2.8",
-    "unit": "??/??/?",
-    "change": "?? -2% / ?? 475%",
+    "unit": "美元/用户/月",
+    "change": "环比 -2% / 同比 475%",
     "trend": "flat",
     "access": "半自动",
     "cadence": "月",
-    "source": "Sensor Tower / ????",
+    "source": "Sensor Tower / 中金整理",
     "sourceUrl": "https://mp.weixin.qq.com/s/W4P14CggnGVJCdV51jJirg",
-    "note": "???????????Anthropic ??? ARPU ????? Claude ?????????????????????????"
+    "note": "移动端月均用户收入观察 Anthropic 的 C 端变现能力，也能反映 Claude 在付费用户中的渗透质量。"
   },
   {
     "id": "openai_arr",
@@ -158,14 +158,14 @@ const metrics = [
     "group": "② 现金流",
     "title": "云厂商：微软、谷歌、亚马逊和甲骨文云收入",
     "value": "$101.5B",
-    "unit": "????",
-    "change": "?? 7% / ?? 36%",
+    "unit": "十亿美元",
+    "change": "环比 7% / 同比 36%",
     "trend": "up",
     "access": "半自动",
     "cadence": "季",
-    "source": "???? / ????",
+    "source": "公司财报 / 中金整理",
     "sourceUrl": "https://mp.weixin.qq.com/s/W4P14CggnGVJCdV51jJirg",
-    "note": "?????????????????? AI ????????????????????"
+    "note": "云收入验证 AI 资本开支能否转化为收入，是从算力投入走向现金流兑现的核心指标。"
   },
   {
     "id": "hyperscaler_fcf",
@@ -214,14 +214,14 @@ const metrics = [
     "group": "③ 资金来源",
     "title": "外部融资：Big 5 企业债新增发行规模",
     "value": "$25B",
-    "unit": "????",
-    "change": "?? 0% / ?? 39%",
+    "unit": "十亿美元",
+    "change": "环比 0% / 同比 39%",
     "trend": "flat",
     "access": "半自动",
     "cadence": "月/季",
-    "source": "Bloomberg / ????",
+    "source": "Bloomberg / 中金整理",
     "sourceUrl": "https://mp.weixin.qq.com/s/W4P14CggnGVJCdV51jJirg",
-    "note": "????????????AI ???????????????????????????????????????"
+    "note": "企业债新增发行规模观察 AI 投资是否开始更多依赖外部融资。发行放大时，利率和信用环境的重要性会上升。"
   },
   {
     "id": "big5_cds",
@@ -229,13 +229,13 @@ const metrics = [
     "title": "外部融资：Big 5 信用违约互换 CDS",
     "value": "86.4",
     "unit": "bp",
-    "change": "?? +4.8 / ?? +58.1",
+    "change": "环比 +4.8 / 同比 +58.1",
     "trend": "down",
     "access": "半自动",
     "cadence": "日/周",
-    "source": "Bloomberg / ????",
+    "source": "Bloomberg / 中金整理",
     "sourceUrl": "https://mp.weixin.qq.com/s/W4P14CggnGVJCdV51jJirg",
-    "note": "????????????CDS ??????????????????????????????????"
+    "note": "CDS 反映市场对云厂商信用风险的定价。CDS 上行说明外部融资约束正在变强。"
   },
   {
     "id": "ig_credit_spread",
@@ -256,70 +256,70 @@ const metrics = [
     "group": "③ 资金来源",
     "title": "风险投资：硅谷 VC 信心指数",
     "value": "3.75",
-    "unit": "??",
-    "change": "?? -6% / ?? 5%",
+    "unit": "分",
+    "change": "环比 -6% / 同比 5%",
     "trend": "down",
     "access": "半自动",
     "cadence": "季",
-    "source": "Silicon Valley Venture Capitalist Confidence Index / ????",
+    "source": "Silicon Valley Venture Capitalist Confidence Index / 中金整理",
     "sourceUrl": "https://mp.weixin.qq.com/s/W4P14CggnGVJCdV51jJirg",
-    "note": "????????????VC ?????????????? AI ????????"
+    "note": "VC 信心指数衡量一级市场风险偏好，对 AI 创业融资和估值锚有领先意义。"
   },
   {
     "id": "ai_risk_investment",
     "group": "③ 资金来源",
     "title": "风险投资：AI 风险投资额",
     "value": "$267.2B",
-    "unit": "????",
-    "change": "?? 268% / ?? 404%",
+    "unit": "十亿美元",
+    "change": "环比 268% / 同比 404%",
     "trend": "up",
     "access": "半自动",
     "cadence": "季",
-    "source": "PitchBook / ????",
+    "source": "PitchBook / 中金整理",
     "sourceUrl": "https://mp.weixin.qq.com/s/W4P14CggnGVJCdV51jJirg",
-    "note": "????????????AI ????????????????????????????????????"
+    "note": "AI 风险投资额观察一级市场资金是否继续涌入。若投资额放缓，应用层和模型公司的融资节奏会承压。"
   },
   {
     "id": "tech_finance_employment",
     "group": "④ 外部约束",
     "title": "就业冲击：美国科技和金融就业人数",
     "value": "1524.8",
-    "unit": "??",
-    "change": "?? -0.3 / ?? -21.6",
+    "unit": "万人",
+    "change": "环比 -0.3 / 同比 -21.6",
     "trend": "down",
     "access": "半自动",
     "cadence": "月",
-    "source": "BLS / ????",
+    "source": "BLS / 中金整理",
     "sourceUrl": "https://mp.weixin.qq.com/s/W4P14CggnGVJCdV51jJirg",
-    "note": "????????????AI ??????????????????????????????????????"
+    "note": "科技和金融就业人数用于观察 AI 自动化是否开始形成就业冲击。就业压力上升可能引发监管和政治约束。"
   },
   {
     "id": "tech_finance_layoff_share",
     "group": "④ 外部约束",
     "title": "就业冲击：科技和金融行业裁员人数占比 3mma",
     "value": "46%",
-    "unit": "3mma",
-    "change": "?? 0% / ?? 25%",
+    "unit": "%",
+    "change": "环比 0% / 同比 25%",
     "trend": "flat",
     "access": "半自动",
     "cadence": "月",
-    "source": "Layoffs.fyi / ????",
+    "source": "Layoffs.fyi / 中金整理",
     "sourceUrl": "https://mp.weixin.qq.com/s/W4P14CggnGVJCdV51jJirg",
-    "note": "??????????????????????????? AI ??????????????????"
+    "note": "科技和金融裁员占比观察 AI 替代叙事是否在就业层面扩散，是监管风险和社会反馈的重要代理指标。"
   },
   {
     "id": "data_center_construction",
     "group": "④ 外部约束",
     "title": "数据中心：美国数据中心年化建筑额",
     "value": "$59.3B",
-    "unit": "????",
-    "change": "?? 1% / ?? 23%",
+    "unit": "十亿美元",
+    "change": "环比 1% / 同比 23%",
     "trend": "up",
     "access": "半自动",
     "cadence": "月",
-    "source": "US Census / ????",
+    "source": "US Census / 中金整理",
     "sourceUrl": "https://mp.weixin.qq.com/s/W4P14CggnGVJCdV51jJirg",
-    "note": "??????????????????????????????????????????????"
+    "note": "数据中心建筑额衡量电力、土地、施工等物理约束。若建设放缓，算力供给和云扩张都会受限。"
   },
   {
     "id": "openrouter_tokens",
@@ -399,7 +399,7 @@ const metrics = [
     "unit": "FY2025",
     "change": "filed 2025-07-30",
     "trend": "up",
-    "access": "自动",
+    "access": "鑷姩",
     "cadence": "季",
     "source": "SEC / Microsoft IR",
     "sourceUrl": "https://www.microsoft.com/en-us/investor/default",
@@ -413,7 +413,7 @@ const metrics = [
     "unit": "FY2025",
     "change": "filed 2026-02-05",
     "trend": "up",
-    "access": "自动",
+    "access": "鑷姩",
     "cadence": "季",
     "source": "SEC / Alphabet IR",
     "sourceUrl": "https://abc.xyz/investor/",
@@ -427,7 +427,7 @@ const metrics = [
     "unit": "FY2025",
     "change": "filed 2026-02-06",
     "trend": "up",
-    "access": "自动",
+    "access": "鑷姩",
     "cadence": "季",
     "source": "SEC / Amazon IR",
     "sourceUrl": "https://ir.aboutamazon.com/overview/default.aspx",
@@ -441,7 +441,7 @@ const metrics = [
     "unit": "FY2025",
     "change": "filed 2026-01-29",
     "trend": "up",
-    "access": "自动",
+    "access": "鑷姩",
     "cadence": "季",
     "source": "SEC / Meta IR",
     "sourceUrl": "https://investor.fb.com/",
@@ -501,7 +501,7 @@ const metrics = [
     "cadence": "日",
     "source": "TrakToken Spend Index",
     "sourceUrl": "https://www.traktoken.com/spend-index",
-    "note": "闭源前沿模型相对开源权重模型的用量加权价格溢价。溢价扩大说明高价值任务仍留在前沿模型；溢价收敛说明低成本模型替代压力增强。"
+    "note": "前沿闭源模型相对开源权重模型的用量加权价格溢价。溢价扩大说明高价值任务仍留在前沿模型；溢价收敛说明低成本模型替代压力增强。"
   },
   {
     "id": "free_token_share",
@@ -515,7 +515,7 @@ const metrics = [
     "cadence": "日",
     "source": "TrakToken Spend Index",
     "sourceUrl": "https://www.traktoken.com/spend-index",
-    "note": "TTSI 篮子里的免费 token 用量占比。若免费占比下降而总支出上升，说明支付意愿没有塌，更多是量补价和结构迁移。"
+    "note": "TTSI 篮子里的免费 token 用量占比。若免费占比下降而总支出上升，说明付费意愿没有塌，更多是量补价和结构迁移。"
   },
   {
     "id": "token_arr_conversion",
@@ -557,7 +557,7 @@ const metrics = [
     "cadence": "日/周",
     "source": "FRED / Indeed Hiring Lab",
     "sourceUrl": "https://fred.stlouisfed.org/series/IHLIDXUSTPSOFTDEVE",
-    "note": "Indeed 美国软件开发岗位招聘指数，7日均值，2020-02-01=100。用来观察 AI 渗透和科技裁员叙事是否开始压低软件岗位需求。"
+    "note": "Indeed 美国软件开发岗位招聘指数，7 日均值，2020-02-01=100。用来观察 AI 渗透和科技裁员叙事是否开始压低软件岗位需求。"
   },
   {
     "id": "hbm_dram_pressure",
@@ -619,15 +619,15 @@ const metrics = [
     "id": "gpu_rental_price",
     "group": "? ????",
     "title": "GPU 租赁价格",
-    "value": "$1.85/h",
+    "value": "$1.93/h",
     "unit": "H100 p25",
-    "change": "H100 $1.85/h / H200 $3.75/h / B200 $7.13/h",
+    "change": "H100 $1.93/h / H200 $3.75/h / B200 $6.88/h",
     "trend": "flat",
     "access": "自动",
     "cadence": "日/周",
     "source": "Vast.ai public offers API",
     "sourceUrl": "https://cloud.vast.ai/",
-    "note": "自动抓取 Vast.ai verified rentable offers，按单 GPU 每小时价格计算 25 分位。它代表现货/长尾供给代理指标，不等同于大厂长期合约价。"
+    "note": "自动抓取 Vast.ai verified rentable offers，按单 GPU 每小时价格计算 25 分位。它代表现货供给代理指标，不等同于大厂长期合约价。"
   },
   {
     "id": "api_price_index",
@@ -641,7 +641,7 @@ const metrics = [
     "cadence": "日/周",
     "source": "OpenRouter Models API",
     "sourceUrl": "https://openrouter.ai/api/v1/models",
-    "note": "自动抓取 OpenRouter models pricing，按 OpenAI/Anthropic/Google/DeepSeek 各自付费文本模型的中位价格计算；blended = 30% input + 70% output。"
+    "note": "自动抓取 OpenRouter models pricing，按 OpenAI、Anthropic、Google、DeepSeek 各自付费文本模型的中位价格计算；blended = 30% input + 70% output。"
   },
   {
     "id": "agent_token_share",
@@ -661,7 +661,7 @@ const metrics = [
     "id": "revenue_per_gpu",
     "group": "? ????",
     "title": "单位 GPU 每日收入",
-    "value": "$44.3/day",
+    "value": "$46.2/day",
     "unit": "H100 spot proxy",
     "change": "median $52.8/day",
     "trend": "flat",
@@ -669,7 +669,7 @@ const metrics = [
     "cadence": "月/季",
     "source": "Vast.ai public offers API",
     "sourceUrl": "https://cloud.vast.ai/",
-    "note": "第一版用 GPU 租赁现货价格估算单卡每日收入上限代理；后续可加入云厂商收入和 GPU 数量估算，提升为利润/ROI 指标。"
+    "note": "第一版用 GPU 租赁现货价格估算单卡每日收入上限代理；后续可加入云厂商收入和 GPU 数量估算，升级为利润/ROI 指标。"
   }
 ];
 

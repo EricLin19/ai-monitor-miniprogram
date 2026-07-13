@@ -1534,8 +1534,8 @@ const metricHistory = {
     },
     {
       "date": "2026-07-13",
-      "value": 1.85,
-      "label": "$1.85/h",
+      "value": 1.93,
+      "label": "$1.93/h",
       "unit": "H100 p25"
     }
   ],
@@ -1598,8 +1598,8 @@ const metricHistory = {
     },
     {
       "date": "2026-07-13",
-      "value": 44.3,
-      "label": "$44.3/day",
+      "value": 46.2,
+      "label": "$46.2/day",
       "unit": "H100 spot proxy"
     }
   ],
@@ -4574,7 +4574,7 @@ const metricHistory = {
       "date": "2026-07-13",
       "value": 60,
       "label": "60",
-      "unit": "?"
+      "unit": "分"
     }
   ],
   "aa_cn_score": [
@@ -4582,7 +4582,7 @@ const metricHistory = {
       "date": "2026-07-13",
       "value": 51,
       "label": "51",
-      "unit": "?"
+      "unit": "分"
     }
   ],
   "openrouter_us_tokens": [
@@ -4590,7 +4590,7 @@ const metricHistory = {
       "date": "2026-07-13",
       "value": 2.6,
       "label": "2.6",
-      "unit": "??/?"
+      "unit": "万亿/日"
     }
   ],
   "openrouter_cn_tokens": [
@@ -4598,7 +4598,7 @@ const metricHistory = {
       "date": "2026-07-13",
       "value": 4.6,
       "label": "4.6",
-      "unit": "??/?"
+      "unit": "万亿/日"
     }
   ],
   "silicon_token_expenditure": [
@@ -4606,7 +4606,7 @@ const metricHistory = {
       "date": "2026-07-13",
       "value": 1.6,
       "label": "$1.6",
-      "unit": "??/?? token"
+      "unit": "美元/百万 token"
     }
   ],
   "ramp_enterprise_paid_ratio": [
@@ -4614,7 +4614,7 @@ const metricHistory = {
       "date": "2026-07-13",
       "value": 55,
       "label": "55.0%",
-      "unit": "??????"
+      "unit": "企业付费比例"
     }
   ],
   "openai_app_revenue": [
@@ -4622,7 +4622,7 @@ const metricHistory = {
       "date": "2026-07-13",
       "value": 1.7,
       "label": "$1.7",
-      "unit": "??/??/?"
+      "unit": "美元/用户/月"
     }
   ],
   "anthropic_app_revenue": [
@@ -4630,7 +4630,7 @@ const metricHistory = {
       "date": "2026-07-13",
       "value": 2.8,
       "label": "$2.8",
-      "unit": "??/??/?"
+      "unit": "美元/用户/月"
     }
   ],
   "hyperscaler_cloud_revenue": [
@@ -4638,7 +4638,7 @@ const metricHistory = {
       "date": "2026-07-13",
       "value": 101500000000,
       "label": "$101.5B",
-      "unit": "????"
+      "unit": "十亿美元"
     }
   ],
   "big5_bond_issuance": [
@@ -4646,7 +4646,7 @@ const metricHistory = {
       "date": "2026-07-13",
       "value": 25000000000,
       "label": "$25B",
-      "unit": "????"
+      "unit": "十亿美元"
     }
   ],
   "big5_cds": [
@@ -4670,7 +4670,7 @@ const metricHistory = {
       "date": "2026-07-13",
       "value": 3.75,
       "label": "3.75",
-      "unit": "??"
+      "unit": "分"
     }
   ],
   "ai_risk_investment": [
@@ -4678,7 +4678,7 @@ const metricHistory = {
       "date": "2026-07-13",
       "value": 267200000000,
       "label": "$267.2B",
-      "unit": "????"
+      "unit": "十亿美元"
     }
   ],
   "tech_finance_employment": [
@@ -4686,7 +4686,7 @@ const metricHistory = {
       "date": "2026-07-13",
       "value": 1524.8,
       "label": "1524.8",
-      "unit": "??"
+      "unit": "万人"
     }
   ],
   "tech_finance_layoff_share": [
@@ -4694,7 +4694,7 @@ const metricHistory = {
       "date": "2026-07-13",
       "value": 46,
       "label": "46%",
-      "unit": "3mma"
+      "unit": "%"
     }
   ],
   "data_center_construction": [
@@ -4702,7 +4702,7 @@ const metricHistory = {
       "date": "2026-07-13",
       "value": 59300000000,
       "label": "$59.3B",
-      "unit": "????"
+      "unit": "十亿美元"
     }
   ],
   "hyperscaler_fcf": [

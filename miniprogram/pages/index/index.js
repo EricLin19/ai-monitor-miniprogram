@@ -53,6 +53,8 @@ const METRIC_ORDER = [
   "meta_capex"
 ];
 
+const CICC_METRIC_IDS = new Set(METRIC_ORDER.slice(0, 23));
+
 const METRIC_GROUP_KEYS = {
   demand: new Set([
     "aa_us_score",
@@ -112,7 +114,7 @@ Page({
     const data = await fetchMetrics();
     const history = data.history || {};
     const metrics = decorateMetrics(data.metrics || [], history)
-      .filter((item) => !HIDDEN_METRIC_IDS.has(item.id));
+      .filter((item) => CICC_METRIC_IDS.has(item.id) && !HIDDEN_METRIC_IDS.has(item.id));
 
     this.setData({
       metrics,
