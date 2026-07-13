@@ -1338,8 +1338,8 @@ const metricHistory = {
     },
     {
       "date": "2026-07-13",
-      "value": 1.93,
-      "label": "$1.93/h",
+      "value": 1.92,
+      "label": "$1.92/h",
       "unit": "H100 p25"
     }
   ],
@@ -1402,8 +1402,8 @@ const metricHistory = {
     },
     {
       "date": "2026-07-13",
-      "value": 46.2,
-      "label": "$46.2/day",
+      "value": 46.1,
+      "label": "$46.1/day",
       "unit": "H100 spot proxy"
     }
   ],
@@ -3089,9 +3089,15 @@ const metricHistory = {
       "unit": "$/1M weighted"
     },
     {
+      "date": "2026-07-12",
+      "value": 2.2201,
+      "label": "$2.22",
+      "unit": "$/1M weighted"
+    },
+    {
       "date": "2026-07-13",
-      "value": 2.26,
-      "label": "$2.26",
+      "value": 2.22,
+      "label": "$2.22",
       "unit": "$/1M weighted"
     }
   ],
@@ -3685,9 +3691,15 @@ const metricHistory = {
       "unit": "frontier / open-weight"
     },
     {
+      "date": "2026-07-12",
+      "value": 11.3,
+      "label": "11.3x",
+      "unit": "frontier / open-weight"
+    },
+    {
       "date": "2026-07-13",
-      "value": 10,
-      "label": "10x",
+      "value": 11.3,
+      "label": "11.3x",
       "unit": "frontier / open-weight"
     }
   ],
@@ -4281,9 +4293,15 @@ const metricHistory = {
       "unit": "free token share"
     },
     {
+      "date": "2026-07-12",
+      "value": 27.860000000000003,
+      "label": "27.9%",
+      "unit": "free token share"
+    },
+    {
       "date": "2026-07-13",
-      "value": 25.3,
-      "label": "25.3%",
+      "value": 27.9,
+      "label": "27.9%",
       "unit": "free token share"
     }
   ],

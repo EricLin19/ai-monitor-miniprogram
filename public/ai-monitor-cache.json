@@ -214,9 +214,9 @@
       "id": "llm_token_spend_index",
       "group": "AI Demand",
       "title": "LLM Token 支出指数",
-      "value": "$2.26",
+      "value": "$2.22",
       "unit": "$/1M weighted",
-      "change": "TTSI 103 / 28d 5.1%",
+      "change": "TTSI 101.1 / 28d 4.1%",
       "trend": "up",
       "access": "自动",
       "cadence": "日",
@@ -228,9 +228,9 @@
       "id": "frontier_premium",
       "group": "AI Demand",
       "title": "前沿模型价格溢价",
-      "value": "10x",
+      "value": "11.3x",
       "unit": "frontier / open-weight",
-      "change": "frontier $5.64 / open-weight $0.57",
+      "change": "frontier $5.63 / open-weight $0.56",
       "trend": "up",
       "access": "自动",
       "cadence": "日",
@@ -242,9 +242,9 @@
       "id": "free_token_share",
       "group": "AI Demand",
       "title": "免费 Token 占比",
-      "value": "25.3%",
+      "value": "27.9%",
       "unit": "free token share",
-      "change": "basket 41 models",
+      "change": "basket 40 models",
       "trend": "down",
       "access": "自动",
       "cadence": "日",
@@ -354,9 +354,9 @@
       "id": "gpu_rental_price",
       "group": "AI Daily Core",
       "title": "GPU 租赁价格",
-      "value": "$1.93/h",
+      "value": "$1.92/h",
       "unit": "H100 p25",
-      "change": "H100 $1.93/h / H200 $3.75/h / B200 $8.13/h",
+      "change": "H100 $1.92/h / H200 $3.75/h / B200 $7.51/h",
       "trend": "flat",
       "access": "自动",
       "cadence": "日/周",
@@ -396,9 +396,9 @@
       "id": "revenue_per_gpu",
       "group": "AI Daily Core",
       "title": "单位 GPU 每日收入",
-      "value": "$46.2/day",
+      "value": "$46.1/day",
       "unit": "H100 spot proxy",
-      "change": "median $52.8/day",
+      "change": "median $51.3/day",
       "trend": "flat",
       "access": "自动",
       "cadence": "月/季",
@@ -1747,8 +1747,8 @@
       },
       {
         "date": "2026-07-13",
-        "value": 1.93,
-        "label": "$1.93/h",
+        "value": 1.92,
+        "label": "$1.92/h",
         "unit": "H100 p25"
       }
     ],
@@ -1811,8 +1811,8 @@
       },
       {
         "date": "2026-07-13",
-        "value": 46.2,
-        "label": "$46.2/day",
+        "value": 46.1,
+        "label": "$46.1/day",
         "unit": "H100 spot proxy"
       }
     ],
@@ -3498,9 +3498,15 @@
         "unit": "$/1M weighted"
       },
       {
+        "date": "2026-07-12",
+        "value": 2.2201,
+        "label": "$2.22",
+        "unit": "$/1M weighted"
+      },
+      {
         "date": "2026-07-13",
-        "value": 2.26,
-        "label": "$2.26",
+        "value": 2.22,
+        "label": "$2.22",
         "unit": "$/1M weighted"
       }
     ],
@@ -4094,9 +4100,15 @@
         "unit": "frontier / open-weight"
       },
       {
+        "date": "2026-07-12",
+        "value": 11.3,
+        "label": "11.3x",
+        "unit": "frontier / open-weight"
+      },
+      {
         "date": "2026-07-13",
-        "value": 10,
-        "label": "10x",
+        "value": 11.3,
+        "label": "11.3x",
         "unit": "frontier / open-weight"
       }
     ],
@@ -4690,9 +4702,15 @@
         "unit": "free token share"
       },
       {
+        "date": "2026-07-12",
+        "value": 27.860000000000003,
+        "label": "27.9%",
+        "unit": "free token share"
+      },
+      {
         "date": "2026-07-13",
-        "value": 25.3,
-        "label": "25.3%",
+        "value": 27.9,
+        "label": "27.9%",
         "unit": "free token share"
       }
     ],
@@ -4705,6 +4723,6 @@
       }
     ]
   },
-  "updatedAt": "2026-07-13 13:34",
+  "updatedAt": "2026-07-13 15:22",
   "source": "github-actions-cache"
 }
