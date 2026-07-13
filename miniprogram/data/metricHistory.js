@@ -1566,8 +1566,8 @@ const metricHistory = {
     },
     {
       "date": "2026-07-13",
-      "value": 7.23,
-      "label": "$7.23",
+      "value": 7.24,
+      "label": "$7.24",
       "unit": "$/1M blended"
     }
   ],
@@ -4563,6 +4563,24 @@ const metricHistory = {
   ],
   "hyperscaler_capex_ocf_ratio": [
     {
+      "date": "2025-09-30",
+      "value": 63.28596643431956,
+      "label": "63.3%",
+      "unit": "CapEx / OCF"
+    },
+    {
+      "date": "2025-12-31",
+      "value": 72.23091338260576,
+      "label": "72.2%",
+      "unit": "CapEx / OCF"
+    },
+    {
+      "date": "2026-03-31",
+      "value": 93.98712930237272,
+      "label": "94%",
+      "unit": "CapEx / OCF"
+    },
+    {
       "date": "2026-07-13",
       "value": 94,
       "label": "94%",
@@ -4659,6 +4677,612 @@ const metricHistory = {
   ],
   "ig_credit_spread": [
     {
+      "date": "2026-02-23",
+      "value": 0.8,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-02-24",
+      "value": 0.81,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-02-25",
+      "value": 0.8,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-02-26",
+      "value": 0.82,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-02-27",
+      "value": 0.85,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-02-28",
+      "value": 0.86,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-03-02",
+      "value": 0.85,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-03-03",
+      "value": 0.84,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-03-04",
+      "value": 0.82,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-03-05",
+      "value": 0.82,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-03-06",
+      "value": 0.84,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-03-09",
+      "value": 0.85,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-03-10",
+      "value": 0.84,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-03-11",
+      "value": 0.88,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-03-12",
+      "value": 0.91,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-03-13",
+      "value": 0.93,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-03-16",
+      "value": 0.94,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-03-17",
+      "value": 0.92,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-03-18",
+      "value": 0.91,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-03-19",
+      "value": 0.9,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-03-20",
+      "value": 0.88,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-03-23",
+      "value": 0.88,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-03-24",
+      "value": 0.87,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-03-25",
+      "value": 0.87,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-03-26",
+      "value": 0.88,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-03-27",
+      "value": 0.91,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-03-30",
+      "value": 0.93,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-03-31",
+      "value": 0.9,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-04-01",
+      "value": 0.87,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-04-02",
+      "value": 0.86,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-04-03",
+      "value": 0.86,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-04-06",
+      "value": 0.85,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-04-07",
+      "value": 0.86,
+      "label": "0.9ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-04-08",
+      "value": 0.83,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-04-09",
+      "value": 0.83,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-04-10",
+      "value": 0.82,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-04-13",
+      "value": 0.82,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-04-14",
+      "value": 0.81,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-04-15",
+      "value": 0.8,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-04-16",
+      "value": 0.81,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-04-17",
+      "value": 0.8,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-04-20",
+      "value": 0.81,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-04-21",
+      "value": 0.8,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-04-22",
+      "value": 0.79,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-04-23",
+      "value": 0.8,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-04-24",
+      "value": 0.8,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-04-27",
+      "value": 0.81,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-04-28",
+      "value": 0.81,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-04-29",
+      "value": 0.81,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-04-30",
+      "value": 0.81,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-05-01",
+      "value": 0.81,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-05-04",
+      "value": 0.8,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-05-05",
+      "value": 0.79,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-05-06",
+      "value": 0.78,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-05-07",
+      "value": 0.79,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-05-08",
+      "value": 0.79,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-05-11",
+      "value": 0.78,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-05-12",
+      "value": 0.77,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-05-13",
+      "value": 0.76,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-05-14",
+      "value": 0.76,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-05-15",
+      "value": 0.75,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-05-18",
+      "value": 0.75,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-05-19",
+      "value": 0.76,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-05-20",
+      "value": 0.75,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-05-21",
+      "value": 0.75,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-05-22",
+      "value": 0.74,
+      "label": "0.7ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-05-25",
+      "value": 0.74,
+      "label": "0.7ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-05-26",
+      "value": 0.74,
+      "label": "0.7ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-05-27",
+      "value": 0.74,
+      "label": "0.7ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-05-28",
+      "value": 0.73,
+      "label": "0.7ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-05-29",
+      "value": 0.73,
+      "label": "0.7ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-05-31",
+      "value": 0.74,
+      "label": "0.7ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-06-01",
+      "value": 0.73,
+      "label": "0.7ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-06-02",
+      "value": 0.74,
+      "label": "0.7ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-06-03",
+      "value": 0.74,
+      "label": "0.7ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-06-04",
+      "value": 0.74,
+      "label": "0.7ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-06-05",
+      "value": 0.74,
+      "label": "0.7ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-06-08",
+      "value": 0.75,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-06-09",
+      "value": 0.75,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-06-10",
+      "value": 0.75,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-06-11",
+      "value": 0.75,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-06-12",
+      "value": 0.74,
+      "label": "0.7ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-06-15",
+      "value": 0.73,
+      "label": "0.7ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-06-16",
+      "value": 0.75,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-06-17",
+      "value": 0.74,
+      "label": "0.7ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-06-18",
+      "value": 0.74,
+      "label": "0.7ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-06-19",
+      "value": 0.74,
+      "label": "0.7ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-06-22",
+      "value": 0.74,
+      "label": "0.7ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-06-23",
+      "value": 0.74,
+      "label": "0.7ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-06-24",
+      "value": 0.75,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-06-25",
+      "value": 0.76,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-06-26",
+      "value": 0.77,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-06-29",
+      "value": 0.76,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-06-30",
+      "value": 0.76,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-07-01",
+      "value": 0.76,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-07-02",
+      "value": 0.75,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-07-03",
+      "value": 0.75,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-07-06",
+      "value": 0.75,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-07-07",
+      "value": 0.76,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-07-08",
+      "value": 0.76,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-07-09",
+      "value": 0.76,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
       "date": "2026-07-13",
       "value": 0.8,
       "label": "0.8ppt",
@@ -4683,6 +5307,72 @@ const metricHistory = {
   ],
   "tech_finance_employment": [
     {
+      "date": "2025-08-01",
+      "value": 1531.7230953513365,
+      "label": 1531.7,
+      "unit": "万人"
+    },
+    {
+      "date": "2025-09-01",
+      "value": 1531.58208176998,
+      "label": 1531.6,
+      "unit": "万人"
+    },
+    {
+      "date": "2025-10-01",
+      "value": 1530.4069685920133,
+      "label": 1530.4,
+      "unit": "万人"
+    },
+    {
+      "date": "2025-11-01",
+      "value": 1532.6027515017001,
+      "label": 1532.6,
+      "unit": "万人"
+    },
+    {
+      "date": "2025-12-01",
+      "value": 1531.8506790678011,
+      "label": 1531.9,
+      "unit": "万人"
+    },
+    {
+      "date": "2026-01-01",
+      "value": 1527.8082897355955,
+      "label": 1527.8,
+      "unit": "万人"
+    },
+    {
+      "date": "2026-02-01",
+      "value": 1527.7142806813579,
+      "label": 1527.7,
+      "unit": "万人"
+    },
+    {
+      "date": "2026-03-01",
+      "value": 1525.6729412179184,
+      "label": 1525.7,
+      "unit": "万人"
+    },
+    {
+      "date": "2026-04-01",
+      "value": 1525.7602353397103,
+      "label": 1525.8,
+      "unit": "万人"
+    },
+    {
+      "date": "2026-05-01",
+      "value": 1524.182226215012,
+      "label": 1524.2,
+      "unit": "万人"
+    },
+    {
+      "date": "2026-06-01",
+      "value": 1524.8,
+      "label": 1524.8,
+      "unit": "万人"
+    },
+    {
       "date": "2026-07-13",
       "value": 1524.8,
       "label": "1524.8",
@@ -4699,6 +5389,42 @@ const metricHistory = {
   ],
   "data_center_construction": [
     {
+      "date": "2025-08-01",
+      "value": 31.07792016,
+      "label": "$31.1B",
+      "unit": "annualized"
+    },
+    {
+      "date": "2025-09-01",
+      "value": 31.179169632,
+      "label": "$31.2B",
+      "unit": "annualized"
+    },
+    {
+      "date": "2025-10-01",
+      "value": 30.035343288,
+      "label": "$30B",
+      "unit": "annualized"
+    },
+    {
+      "date": "2025-11-01",
+      "value": 30.293308272,
+      "label": "$30.3B",
+      "unit": "annualized"
+    },
+    {
+      "date": "2025-12-01",
+      "value": 29.798538144,
+      "label": "$29.8B",
+      "unit": "annualized"
+    },
+    {
+      "date": "2026-01-01",
+      "value": 29.131291236,
+      "label": "$29.1B",
+      "unit": "annualized"
+    },
+    {
       "date": "2026-07-13",
       "value": 59300000000,
       "label": "$59.3B",
@@ -4707,6 +5433,24 @@ const metricHistory = {
   ],
   "hyperscaler_fcf": [
     {
+      "date": "2025-09-30",
+      "value": 61362000000,
+      "label": "$61.4B",
+      "unit": "OCF-CapEx"
+    },
+    {
+      "date": "2025-12-31",
+      "value": 50234000000,
+      "label": "$50.2B",
+      "unit": "OCF-CapEx"
+    },
+    {
+      "date": "2026-03-31",
+      "value": 9493000000,
+      "label": "$9.5B",
+      "unit": "OCF-CapEx"
+    },
+    {
       "date": "2026-07-13",
       "value": 9500000000,
       "label": "$9.5B",
@@ -4714,6 +5458,24 @@ const metricHistory = {
     }
   ],
   "big5_debt_equity_ratio": [
+    {
+      "date": "2025-09-30",
+      "value": 39.80068833286259,
+      "label": "39.8%",
+      "unit": "liabilities/equity"
+    },
+    {
+      "date": "2025-12-31",
+      "value": 41.178165136988405,
+      "label": "41.2%",
+      "unit": "liabilities/equity"
+    },
+    {
+      "date": "2026-03-31",
+      "value": 40.587195002469464,
+      "label": "40.6%",
+      "unit": "liabilities/equity"
+    },
     {
       "date": "2026-07-13",
       "value": 43,

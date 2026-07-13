@@ -1,4 +1,4 @@
-const fs = require("fs");
+﻿const fs = require("fs");
 const path = require("path");
 const https = require("https");
 
@@ -38,6 +38,12 @@ async function main() {
   }
 
   try {
+    Object.assign(updates, await backfillSecBig5CashFunding());
+  } catch (error) {
+    console.warn(`SEC Big5 cash/funding history backfill failed: ${error.message}`);
+  }
+
+  try {
     Object.assign(updates, await backfillSacraArrMilestones());
   } catch (error) {
     console.warn(`Sacra ARR history backfill failed: ${error.message}`);
@@ -47,6 +53,24 @@ async function main() {
     Object.assign(updates, await backfillFredTechJobPostings());
   } catch (error) {
     console.warn(`FRED tech job postings history backfill failed: ${error.message}`);
+  }
+
+  try {
+    Object.assign(updates, await backfillFredInvestmentGradeSpread());
+  } catch (error) {
+    console.warn(`FRED investment grade spread history backfill failed: ${error.message}`);
+  }
+
+  try {
+    Object.assign(updates, await backfillDataCenterConstruction());
+  } catch (error) {
+    console.warn(`Data center construction history backfill failed: ${error.message}`);
+  }
+
+  try {
+    Object.assign(updates, await backfillTechFinanceEmploymentProxy());
+  } catch (error) {
+    console.warn(`Tech and finance employment proxy backfill failed: ${error.message}`);
   }
 
   const next = { ...history, ...updates };
@@ -271,6 +295,105 @@ async function backfillSecCapex() {
   return Object.fromEntries(entries);
 }
 
+async function backfillSecBig5CashFunding() {
+  const userAgent = process.env.SEC_USER_AGENT || "AI Monitor Mini Program contact@example.com";
+  const companies = [
+    { name: "Microsoft", cik: "0000789019" },
+    { name: "Alphabet", cik: "0001652044" },
+    { name: "Amazon", cik: "0001018724" },
+    { name: "Meta", cik: "0001326801" },
+    { name: "Oracle", cik: "0001341439" }
+  ];
+  const capexByCompany = new Map();
+  const ocfByCompany = new Map();
+  const leverageByCompany = new Map();
+
+  for (const company of companies) {
+    capexByCompany.set(company.name, await fetchQuarterlyConcept(company.cik, [
+      "PaymentsToAcquirePropertyPlantAndEquipment",
+      "PaymentsToAcquireProductiveAssets",
+      "PropertyPlantAndEquipmentAdditions"
+    ], userAgent));
+    ocfByCompany.set(company.name, await fetchQuarterlyConcept(company.cik, [
+      "NetCashProvidedByUsedInOperatingActivities",
+      "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations"
+    ], userAgent));
+    const liabilities = await fetchInstantConcept(company.cik, ["Liabilities"], userAgent);
+    const equity = await fetchInstantConcept(company.cik, [
+      "StockholdersEquity",
+      "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"
+    ], userAgent);
+    leverageByCompany.set(company.name, { liabilities, equity });
+  }
+
+  const quarterDates = [...new Set(companies.flatMap((company) => (capexByCompany.get(company.name) || []).map((row) => calendarQuarterEnd(row.end))))]
+    .filter(Boolean)
+    .sort()
+    .slice(-8);
+  const fcfRecords = [];
+  const ratioRecords = [];
+  for (const date of quarterDates) {
+    let totalCapex = 0;
+    let totalOcf = 0;
+    let companyCount = 0;
+    for (const company of companies) {
+      const capex = valueInCalendarQuarter(capexByCompany.get(company.name), date);
+      const ocf = valueInCalendarQuarter(ocfByCompany.get(company.name), date);
+      if (capex > 0 && ocf > 0) companyCount += 1;
+      totalCapex += capex;
+      totalOcf += ocf;
+    }
+    if (companyCount < 4 || totalCapex <= 0 || totalOcf <= 0) continue;
+    const fcf = totalOcf - totalCapex;
+    const ratio = totalCapex / totalOcf * 100;
+    fcfRecords.push({
+      date,
+      value: fcf,
+      label: formatUsdBillions(fcf),
+      unit: "OCF-CapEx"
+    });
+    ratioRecords.push({
+      date,
+      value: ratio,
+      label: `${round1(ratio)}%`,
+      unit: "CapEx / OCF"
+    });
+  }
+
+  const leverageDates = [...new Set(companies.flatMap((company) => (leverageByCompany.get(company.name).liabilities || []).map((row) => calendarQuarterEnd(row.end))))]
+    .filter(Boolean)
+    .sort()
+    .slice(-8);
+  const leverageRecords = [];
+  for (const date of leverageDates) {
+    let totalLiabilities = 0;
+    let totalEquity = 0;
+    let companyCount = 0;
+    for (const company of companies) {
+      const rows = leverageByCompany.get(company.name);
+      const liabilities = valueInCalendarQuarter(rows.liabilities, date);
+      const equity = valueInCalendarQuarter(rows.equity, date);
+      if (liabilities > 0 && equity > 0) companyCount += 1;
+      totalLiabilities += liabilities;
+      totalEquity += equity;
+    }
+    if (companyCount < 3 || totalLiabilities <= 0 || totalEquity <= 0) continue;
+    const value = totalLiabilities / totalEquity * 100;
+    leverageRecords.push({
+      date,
+      value,
+      label: `${round1(value)}%`,
+      unit: "liabilities/equity"
+    });
+  }
+
+  return {
+    hyperscaler_fcf: fcfRecords,
+    hyperscaler_capex_ocf_ratio: ratioRecords,
+    big5_debt_equity_ratio: leverageRecords
+  };
+}
+
 async function backfillFredTechJobPostings() {
   const endDate = formatDate(new Date());
   const startDate = formatDate(addDays(new Date(), -120));
@@ -287,6 +410,89 @@ async function backfillFredTechJobPostings() {
     }));
 
   return records.length ? { tech_job_postings: keepRecent(records, 100) } : {};
+}
+
+async function backfillFredInvestmentGradeSpread() {
+  const endDate = formatDate(new Date());
+  const startDate = formatDate(addDays(new Date(), -140));
+  const csv = await getTextFetch(`https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLC0A0CM&cosd=${startDate}&coed=${endDate}`, {
+    "User-Agent": "AI Monitor Mini Program"
+  });
+  const records = parseFredCsv(csv)
+    .slice(-110)
+    .map((row) => ({
+      date: row.date,
+      value: row.value,
+      label: `${round1(row.value)}ppt`,
+      unit: "US IG OAS"
+    }));
+
+  return records.length ? { ig_credit_spread: records } : {};
+}
+
+async function backfillDataCenterConstruction() {
+  const csv = await getTextFetch("https://ourworldindata.org/grapher/monthly-spending-data-center-us.csv", {
+    "User-Agent": "AI Monitor Mini Program"
+  });
+  const rows = parseCsvRows(csv)
+    .map((row) => {
+      const value = Number(row["Monthly spending on data center construction in the United States"]);
+      return {
+        date: row.Day,
+        value: value * 12 / 1e9,
+        label: `$${round1(value * 12 / 1e9)}B`,
+        unit: "annualized"
+      };
+    })
+    .filter((row) => /^\d{4}-\d{2}-\d{2}$/.test(row.date) && Number.isFinite(row.value));
+
+  return rows.length ? { data_center_construction: keepRecent(rows, 370) } : {};
+}
+
+async function backfillTechFinanceEmploymentProxy() {
+  const endDate = formatDate(new Date());
+  const startDate = formatDate(addDays(new Date(), -420));
+  const series = await Promise.all([
+    fetchFredSeries("USINFO", startDate, endDate),
+    fetchFredSeries("USFIRE", startDate, endDate),
+    fetchFredSeries("CES6054000001", startDate, endDate)
+  ]);
+  const byDate = new Map();
+  for (const rows of series) {
+    for (const row of rows) {
+      if (!byDate.has(row.date)) byDate.set(row.date, []);
+      byDate.get(row.date).push(row.value);
+    }
+  }
+  const raw = [...byDate.entries()]
+    .filter(([, values]) => values.length === series.length)
+    .map(([date, values]) => ({
+      date,
+      value: values.reduce((sum, value) => sum + value, 0) / 10
+    }))
+    .sort((a, b) => String(a.date).localeCompare(String(b.date)));
+  if (!raw.length) return {};
+
+  const ciccCurrent = 1524.8;
+  const scale = ciccCurrent / raw[raw.length - 1].value;
+  const records = raw.map((row) => {
+    const value = row.value * scale;
+    return {
+      date: row.date,
+      value,
+      label: round1(value),
+      unit: "万人"
+    };
+  });
+
+  return { tech_finance_employment: keepRecent(records, 370) };
+}
+
+async function fetchFredSeries(id, startDate, endDate) {
+  const csv = await getTextFetch(`https://fred.stlouisfed.org/graph/fredgraph.csv?id=${id}&cosd=${startDate}&coed=${endDate}`, {
+    "User-Agent": "AI Monitor Mini Program"
+  });
+  return parseFredCsv(csv);
 }
 
 function buildDerivedHistory(history) {
@@ -372,6 +578,97 @@ async function fetchQuarterlyCapex(cik, userAgent) {
   }
 
   return best;
+}
+
+async function fetchQuarterlyConcept(cik, concepts, userAgent) {
+  let best = [];
+  let bestLatest = "";
+  for (const concept of concepts) {
+    try {
+      const url = `https://data.sec.gov/api/xbrl/companyconcept/CIK${cik}/us-gaap/${concept}.json`;
+      const payload = await getJson(url, {
+        "User-Agent": userAgent,
+        Accept: "application/json"
+      });
+      const rows = payload && payload.units && Array.isArray(payload.units.USD) ? payload.units.USD : [];
+      const reportedRows = rows
+        .filter((row) => ["10-Q", "10-K"].includes(row.form) && Number.isFinite(Number(row.val)))
+        .filter((row) => row.start && row.end)
+        .sort((a, b) => {
+          const startDiff = String(a.start || "").localeCompare(String(b.start || ""));
+          if (startDiff) return startDiff;
+          return String(a.end || "").localeCompare(String(b.end || ""));
+        });
+      const quarterly = deriveQuarterlyRows(reportedRows);
+      const latest = quarterly.length ? quarterly[quarterly.length - 1].end : "";
+      if (latest > bestLatest || (latest === bestLatest && quarterly.length > best.length)) {
+        best = quarterly;
+        bestLatest = latest;
+      }
+    } catch (error) {
+      // Some companies do not report every concept.
+    }
+  }
+  return best;
+}
+
+async function fetchInstantConcept(cik, concepts, userAgent) {
+  let best = [];
+  let bestLatest = "";
+  for (const concept of concepts) {
+    try {
+      const url = `https://data.sec.gov/api/xbrl/companyconcept/CIK${cik}/us-gaap/${concept}.json`;
+      const payload = await getJson(url, {
+        "User-Agent": userAgent,
+        Accept: "application/json"
+      });
+      const rows = payload && payload.units && Array.isArray(payload.units.USD) ? payload.units.USD : [];
+      const records = dedupeByEndDate(rows
+        .filter((row) => ["10-Q", "10-K"].includes(row.form) && Number.isFinite(Number(row.val)))
+        .filter((row) => row.end)
+        .map((row) => ({ ...row, val: Number(row.val) })));
+      const latest = records.length ? records[records.length - 1].end : "";
+      if (latest > bestLatest || (latest === bestLatest && records.length > best.length)) {
+        best = records;
+        bestLatest = latest;
+      }
+    } catch (error) {
+      // Some companies do not report every concept.
+    }
+  }
+  return best;
+}
+
+function intersectDates(seriesList) {
+  if (!seriesList.length) return [];
+  let dates = new Set((seriesList[0] || []).map((row) => row.end));
+  for (const series of seriesList.slice(1)) {
+    const current = new Set((series || []).map((row) => row.end));
+    dates = new Set([...dates].filter((date) => current.has(date)));
+  }
+  return [...dates].filter(Boolean).sort();
+}
+
+function valueOnDate(series, date) {
+  const row = (series || []).find((item) => item.end === date);
+  return row ? Math.abs(Number(row.val || 0)) : 0;
+}
+
+function valueInCalendarQuarter(series, quarterEnd) {
+  const row = (series || [])
+    .filter((item) => calendarQuarterEnd(item.end) === quarterEnd)
+    .sort((a, b) => String(b.filed || "").localeCompare(String(a.filed || "")))[0];
+  return row ? Math.abs(Number(row.val || 0)) : 0;
+}
+
+function calendarQuarterEnd(date) {
+  const year = Number(String(date || "").slice(0, 4));
+  const month = Number(String(date || "").slice(5, 7));
+  if (!year || !month) return "";
+  const quarter = Math.ceil(month / 3);
+  const endMonth = quarter * 3;
+  const endDay = new Date(year, endMonth, 0).getDate();
+  return `${year}-${pad(endMonth)}-${pad(endDay)}`;
 }
 
 function deriveQuarterlyRows(rows) {
@@ -719,8 +1016,11 @@ function addDays(date, days) {
 }
 
 function formatDate(date) {
-  const pad = (n) => String(n).padStart(2, "0");
   return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+}
+
+function pad(value) {
+  return String(value).padStart(2, "0");
 }
 
 function formatLargeToken(value) {
@@ -773,3 +1073,6 @@ main().catch((error) => {
   console.error(error);
   process.exit(1);
 });
+
+
+
