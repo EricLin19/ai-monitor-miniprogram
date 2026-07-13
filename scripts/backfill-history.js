@@ -4,6 +4,7 @@ const https = require("https");
 
 const rootDir = path.resolve(__dirname, "..");
 const historyPath = path.join(rootDir, "miniprogram", "data", "metricHistory.js");
+const rampDir = path.join(rootDir, "data", "ramp");
 
 loadDotEnv(path.join(rootDir, ".env"));
 
@@ -29,6 +30,12 @@ async function main() {
     Object.assign(updates, await backfillTrakTokenIndex());
   } catch (error) {
     console.warn(`TrakToken history backfill failed: ${error.message}`);
+  }
+
+  try {
+    Object.assign(updates, backfillRampAiIndex());
+  } catch (error) {
+    console.warn(`Ramp AI Index history backfill failed: ${error.message}`);
   }
 
   try {
@@ -187,6 +194,62 @@ async function backfillTrakTokenIndex() {
       label: `${(Number(row.free_share) * 100).toFixed(1)}%`,
       unit: "free token share"
     })).filter((row) => Number.isFinite(row.value)), 100)
+  };
+}
+
+function backfillRampAiIndex() {
+  const headlineRows = readRampCsv("ramp-ai-index-headline.csv");
+  const sectorRows = readRampCsv("ramp-ai-index-sector.csv");
+  const modelRows = readRampCsv("ramp-ai-index-models.csv");
+  const updates = {};
+
+  const rampHeadline = headlineRows
+    .filter((row) => row.series === "Ramp AI Index")
+    .map((row) => rampHistoryPoint(row, "enterprise adoption"))
+    .filter(Boolean);
+  if (rampHeadline.length) {
+    updates.ramp_enterprise_paid_ratio = dedupeHistory(rampHeadline);
+    updates.ramp_ai_adoption = dedupeHistory(rampHeadline);
+  }
+
+  const techMedia = sectorRows
+    .filter((row) => row.sector === "Technology and media")
+    .map((row) => rampHistoryPoint(row, "Technology and media"))
+    .filter(Boolean);
+  if (techMedia.length) updates.ramp_sector_technology_media = dedupeHistory(techMedia);
+
+  const finance = sectorRows
+    .filter((row) => row.sector === "Finance and insurance")
+    .map((row) => rampHistoryPoint(row, "Finance and insurance"))
+    .filter(Boolean);
+  if (finance.length) updates.ramp_sector_finance_insurance = dedupeHistory(finance);
+
+  for (const company of ["OpenAI", "Anthropic", "Google", "DeepSeek", "xAI"]) {
+    const id = `ramp_model_${company.toLowerCase().replace(/[^a-z0-9]+/g, "_")}`;
+    const records = modelRows
+      .filter((row) => row.model_company === company)
+      .map((row) => rampHistoryPoint(row, company))
+      .filter(Boolean);
+    if (records.length) updates[id] = dedupeHistory(records);
+  }
+
+  return updates;
+}
+
+function readRampCsv(fileName) {
+  const filePath = path.join(rampDir, fileName);
+  if (!fs.existsSync(filePath)) return [];
+  return parseCsvRows(fs.readFileSync(filePath, "utf8"));
+}
+
+function rampHistoryPoint(row, unit) {
+  const value = Number(row.adoption_rate_pct);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(row.date_month || "")) || !Number.isFinite(value)) return null;
+  return {
+    date: row.date_month,
+    value,
+    label: `${round1(value)}%`,
+    unit
   };
 }
 

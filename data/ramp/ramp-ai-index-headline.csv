@@ -1,0 +1,77 @@
+date_month,series,adoption_rate_pct,mom_change_pp,yoy_change_pp
+2023-01-01,Ramp AI Index,7.46,0,
+2023-02-01,Ramp AI Index,12.06,4.6,
+2023-03-01,Ramp AI Index,20.91,8.85,
+2023-04-01,Ramp AI Index,24.4,3.49,
+2023-05-01,Ramp AI Index,26.1,1.7,
+2023-06-01,Ramp AI Index,25.66,-0.44,
+2023-07-01,Ramp AI Index,27.14,1.48,
+2023-08-01,Ramp AI Index,27.89,0.75,
+2023-09-01,Ramp AI Index,29.03,1.15,
+2023-09-01,U.S. Census BTOS estimate,3.7,,
+2023-10-01,Ramp AI Index,29.65,0.62,
+2023-10-01,U.S. Census BTOS estimate,3.85,0.15,
+2023-11-01,Ramp AI Index,30.47,0.82,
+2023-11-01,U.S. Census BTOS estimate,4.5,0.65,
+2023-12-01,Ramp AI Index,31.68,1.21,
+2023-12-01,U.S. Census BTOS estimate,4.9,0.4,
+2024-01-01,Ramp AI Index,32.51,0.83,25.06
+2024-01-01,U.S. Census BTOS estimate,4.9667,0.07,
+2024-02-01,Ramp AI Index,32.73,0.22,20.68
+2024-02-01,U.S. Census BTOS estimate,4.85,-0.12,
+2024-03-01,Ramp AI Index,33.35,0.61,12.44
+2024-03-01,U.S. Census BTOS estimate,4.3,-0.55,
+2024-04-01,Ramp AI Index,33.12,-0.23,8.72
+2024-04-01,U.S. Census BTOS estimate,4.75,0.45,
+2024-05-01,Ramp AI Index,33.22,0.1,7.13
+2024-05-01,U.S. Census BTOS estimate,4.7,-0.05,
+2024-06-01,Ramp AI Index,33.47,0.25,7.81
+2024-06-01,U.S. Census BTOS estimate,4.85,0.15,
+2024-07-01,Ramp AI Index,33.88,0.42,6.75
+2024-07-01,U.S. Census BTOS estimate,5.0667,0.22,
+2024-08-01,Ramp AI Index,34.21,0.33,6.33
+2024-08-01,U.S. Census BTOS estimate,5.6,0.53,
+2024-09-01,Ramp AI Index,35.21,1,6.17
+2024-09-01,U.S. Census BTOS estimate,5.95,0.35,
+2024-10-01,Ramp AI Index,35.83,0.62,6.18
+2024-10-01,U.S. Census BTOS estimate,6,0.05,
+2024-11-01,Ramp AI Index,36.36,0.52,5.88
+2024-11-01,U.S. Census BTOS estimate,6.1,0.1,
+2024-12-01,Ramp AI Index,36.65,0.3,4.97
+2024-12-01,U.S. Census BTOS estimate,6.1333,0.03,
+2025-01-01,Ramp AI Index,37.73,1.08,5.21
+2025-01-01,U.S. Census BTOS estimate,6.75,0.62,
+2025-02-01,Ramp AI Index,38.67,0.94,5.94
+2025-02-01,U.S. Census BTOS estimate,7.35,0.6,
+2025-03-01,Ramp AI Index,39.17,0.5,5.83
+2025-03-01,U.S. Census BTOS estimate,7.9,0.55,
+2025-04-01,Ramp AI Index,40.77,1.6,7.65
+2025-04-01,U.S. Census BTOS estimate,8.5,0.6,
+2025-05-01,Ramp AI Index,41.9,1.13,8.68
+2025-05-01,U.S. Census BTOS estimate,8.95,0.45,
+2025-06-01,Ramp AI Index,42.72,0.81,9.25
+2025-06-01,U.S. Census BTOS estimate,9.2667,0.32,
+2025-07-01,Ramp AI Index,44.08,1.36,10.2
+2025-07-01,U.S. Census BTOS estimate,9.1,-0.17,
+2025-08-01,Ramp AI Index,44.98,0.9,10.77
+2025-08-01,U.S. Census BTOS estimate,9.4,0.3,
+2025-09-01,Ramp AI Index,45.19,0.21,9.98
+2025-09-01,U.S. Census BTOS estimate,9.95,0.55,
+2025-10-01,Ramp AI Index,45.1,-0.09,9.27
+2025-10-01,U.S. Census BTOS estimate,,,
+2025-11-01,Ramp AI Index,45.94,0.84,9.58
+2025-11-01,U.S. Census BTOS estimate,17.3,,
+2025-12-01,Ramp AI Index,45.92,-0.02,9.26
+2025-12-01,U.S. Census BTOS estimate,17.5667,0.27,
+2026-01-01,Ramp AI Index,46.96,1.05,9.24
+2026-01-01,U.S. Census BTOS estimate,18.55,0.98,
+2026-02-01,Ramp AI Index,49.1,2.14,10.43
+2026-02-01,U.S. Census BTOS estimate,17.85,-0.7,
+2026-03-01,Ramp AI Index,51.26,2.17,12.09
+2026-03-01,U.S. Census BTOS estimate,19,1.15,
+2026-04-01,Ramp AI Index,52.98,1.71,12.2
+2026-04-01,U.S. Census BTOS estimate,19.8,0.8,
+2026-05-01,Ramp AI Index,54.17,1.19,12.26
+2026-05-01,U.S. Census BTOS estimate,20.05,0.25,
+2026-06-01,Ramp AI Index,54.95,0.78,12.23
+2026-06-01,U.S. Census BTOS estimate,20.6,0.55,

@@ -9,6 +9,7 @@ const miniMetaPath = path.join(rootDir, "miniprogram", "data", "cacheMeta.js");
 const miniHistoryPath = path.join(rootDir, "miniprogram", "data", "metricHistory.js");
 const publicCachePath = path.join(rootDir, "public", "ai-monitor-cache.json");
 const manualOverridesPath = path.join(rootDir, "data", "manual-overrides.json");
+const rampDir = path.join(rootDir, "data", "ramp");
 
 const CICC_CORE_META = {
   aa_us_score: { group: "① 需求", title: "能力供给：美国前沿模型评分", unit: "分", change: "环比 7% / 同比 82%", cadence: "月/季", access: "半自动", source: "Artificial Analysis / 中金整理", note: "前沿模型评分衡量最强模型能力供给。美国分数上行，说明头部模型能力仍在推进，是需求和商业化继续扩张的基础。" },
@@ -56,6 +57,7 @@ async function main() {
   }
 
   await mergeUpdate(updates, fetchTrakTokenIndex(), "TrakToken spend index");
+  await mergeUpdate(updates, fetchRampAiIndex(), "Ramp AI Index");
   await mergeUpdate(updates, fetchOpenRouterModelPricing(), "OpenRouter model pricing");
   await mergeUpdate(updates, fetchVastGpuRentalPrices(), "Vast GPU rental prices");
   await mergeUpdate(updates, fetchSacraArrSignals(), "Sacra ARR signals");
@@ -75,8 +77,8 @@ async function main() {
     ...(updates[item.id] || fallbackFailureNote(currentById[item.id], updates[item.id]))
   }));
   Object.assign(updates, buildDerivedMetricUpdates(next, existingHistory));
-  const finalNext = next.map((item) => normalizeCiccMetricMetadata({
-    ...item,
+  const finalNext = next.map((item) => ({
+    ...normalizeCiccMetricMetadata(item),
     ...(updates[item.id] || {})
   }));
 
@@ -271,6 +273,47 @@ async function fetchTrakTokenIndex() {
   }
 
   return updates;
+}
+
+function fetchRampAiIndex() {
+  const filePath = path.join(rampDir, "ramp-ai-index-headline.csv");
+  if (!fs.existsSync(filePath)) return {};
+  const rows = parseCsvRows(fs.readFileSync(filePath, "utf8"))
+    .filter((row) => row.series === "Ramp AI Index")
+    .filter((row) => Number.isFinite(Number(row.adoption_rate_pct)))
+    .sort((a, b) => String(a.date_month).localeCompare(String(b.date_month)));
+  if (!rows.length) return {};
+
+  const latest = rows[rows.length - 1];
+  const value = Number(latest.adoption_rate_pct);
+  const mom = Number(latest.mom_change_pp);
+  const yoy = Number(latest.yoy_change_pp);
+  const changeParts = [];
+  if (Number.isFinite(mom)) changeParts.push(`环比 ${round1(mom)}ppt`);
+  if (Number.isFinite(yoy)) changeParts.push(`同比 ${round1(yoy)}ppt`);
+
+  return {
+    ramp_enterprise_paid_ratio: {
+      value: `${round1(value)}%`,
+      unit: "企业采用率",
+      change: changeParts.join(" / ") || latest.date_month,
+      trend: Number.isFinite(mom) ? (mom > 0 ? "up" : mom < 0 ? "down" : "flat") : "flat",
+      access: "本地CSV",
+      source: "Ramp AI Index CSV",
+      sourceUrl: "https://ramp.com/data/ai-index",
+      note: "Ramp AI Index 基于企业支出数据观察美国企业 AI 工具采用率。它更接近企业预算化采购，而不是普通用户热度。"
+    },
+    ramp_ai_adoption: {
+      value: `${round1(value)}%`,
+      unit: "enterprise adoption",
+      change: changeParts.join(" / ") || latest.date_month,
+      trend: Number.isFinite(mom) ? (mom > 0 ? "up" : mom < 0 ? "down" : "flat") : "flat",
+      access: "本地CSV",
+      source: "Ramp AI Index CSV",
+      sourceUrl: "https://ramp.com/data/ai-index",
+      note: "Ramp AI Index headline series."
+    }
+  };
 }
 
 async function fetchTrakTokenCsvRows() {
