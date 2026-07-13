@@ -49,7 +49,7 @@ Page({
 });
 
 function getWindowedHistory(metric, records) {
-  const days = isQuarterlyMetric(metric) ? 370 : 92;
+  const days = isLongWindowMetric(metric) ? 1100 : isQuarterlyMetric(metric) ? 370 : 92;
   const cutoff = addDays(new Date(), -days);
   return records
     .filter((item) => {
@@ -64,6 +64,7 @@ function getWindowedHistory(metric, records) {
 }
 
 function getWindowLabel(metric) {
+  if (isLongWindowMetric(metric)) return "近三年趋势";
   return isQuarterlyMetric(metric) ? "近一年趋势" : "近三个月趋势";
 }
 
@@ -81,9 +82,15 @@ function isQuarterlyMetric(metric) {
     "amzn_capex",
     "meta_capex",
     "nvda_dc_revenue",
+    "openai_arr",
+    "anthropic_arr",
     "hyperscaler_capex_ocf_ratio",
     "ai_capex_roi"
   ].includes(metric.id);
+}
+
+function isLongWindowMetric(metric) {
+  return ["openai_arr", "anthropic_arr"].includes(metric.id);
 }
 
 function drawDetailChart(page, points, trend) {
@@ -173,10 +180,11 @@ function getMonthTicks(points) {
   const ticks = [];
   let lastMonth = "";
   points.forEach((point, index) => {
-    const month = String(point.date || "").slice(5, 7);
+    const date = String(point.date || "");
+    const month = date.slice(5, 7);
     if (!month || month === lastMonth) return;
     lastMonth = month;
-    ticks.push({ index, label: `${Number(month)}月` });
+    ticks.push({ index, label: date.slice(5, 10) || month });
   });
   return ticks.slice(-6);
 }

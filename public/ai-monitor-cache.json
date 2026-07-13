@@ -620,9 +620,9 @@
       "id": "gpu_rental_price",
       "group": "? ????",
       "title": "GPU 租赁价格",
-      "value": "$1.79/h",
+      "value": "$1.85/h",
       "unit": "H100 p25",
-      "change": "H100 $1.79/h / H200 $3.71/h / B200 $7.13/h",
+      "change": "H100 $1.85/h / H200 $3.75/h / B200 $7.13/h",
       "trend": "flat",
       "access": "自动",
       "cadence": "日/周",
@@ -662,7 +662,7 @@
       "id": "revenue_per_gpu",
       "group": "? ????",
       "title": "单位 GPU 每日收入",
-      "value": "$42.9/day",
+      "value": "$44.3/day",
       "unit": "H100 spot proxy",
       "change": "median $52.8/day",
       "trend": "flat",
@@ -1796,16 +1796,107 @@
     ],
     "anthropic_arr": [
       {
+        "date": "2023-10-01",
+        "value": 100000000,
+        "label": "$0.1B",
+        "unit": "Annualized run rate",
+        "source": "https://www.theinformation.com/articles/openai-rival-anthropic-in-talks-to-raise-2-billion-from-google-others-as-ai-arms-race-accelerates?rc=4ylmkj"
+      },
+      {
+        "date": "2024-01-01",
+        "value": 87000000,
+        "label": "$0.1B",
+        "unit": "Annualized run rate",
+        "source": "https://www.anthropic.com/news/anthropic-expands-global-leadership-in-enterprise-ai-naming-chris-ciauri-as-managing-director-of"
+      },
+      {
+        "date": "2024-12-31",
+        "value": 1000000000,
+        "label": "$1.0B",
+        "unit": "Annualized run rate",
+        "source": "https://www.cnbc.com/2025/01/22/google-agrees-to-new-1-billion-investment-in-anthropic.html"
+      },
+      {
+        "date": "2025-03-01",
+        "value": 1400000000,
+        "label": "$1.4B",
+        "unit": "Annualized run rate",
+        "source": "https://www.theinformation.com/articles/anthropics-claude-drives-strong-revenue-growth-while-powering-manus-sensation?rc=9mzoog "
+      },
+      {
+        "date": "2025-03-31",
+        "value": 2000000000,
+        "label": "$2.0B",
+        "unit": "Annualized run rate",
+        "source": "https://www.cnbc.com/2025/05/16/anthropic-ai-credit-facility.html"
+      },
+      {
+        "date": "2025-05-30",
+        "value": 3000000000,
+        "label": "$3.0B",
+        "unit": "Annualized run rate",
+        "source": "https://www.cnbc.com/2025/05/30/anthropic-hits-3-billion-in-annualized-revenue-on-business-demand-for-ai.html"
+      },
+      {
+        "date": "2025-07-01",
+        "value": 4000000000,
+        "label": "$4.0B",
+        "unit": "Annualized run rate",
+        "source": "https://www.theinformation.com/articles/anthropic-revenue-hits-4-billion-annual-pace-competition-cursor-intensifies?rc=9mzoog"
+      },
+      {
+        "date": "2025-07-29",
+        "value": 5000000000,
+        "label": "$5.0B",
+        "unit": "Annual recurring revenue (ARR)",
+        "source": "https://www.bloomberg.com/news/articles/2025-07-29/anthropic-nears-deal-to-raise-funding-at-170-billion-valuation"
+      },
+      {
+        "date": "2025-10-21",
+        "value": 7000000000,
+        "label": "$7.0B",
+        "unit": "Annualized run rate",
+        "source": "https://www.anthropic.com/news/statement-dario-amodei-american-ai-leadership"
+      },
+      {
         "date": "2025-12-31",
         "value": 9000000000,
         "label": "$9B",
         "unit": "annualized revenue"
       },
       {
+        "date": "2026-02-12",
+        "value": 14000000000,
+        "label": "$14.0B",
+        "unit": "Annualized run rate",
+        "source": "https://www.anthropic.com/news/anthropic-raises-30-billion-series-g-funding-380-billion-post-money-valuation"
+      },
+      {
+        "date": "2026-03-03",
+        "value": 19000000000,
+        "label": "$19.0B",
+        "unit": "Annualized run rate",
+        "source": "https://x.com/apoorv03/status/2029018856342290550?s=20"
+      },
+      {
+        "date": "2026-04-06",
+        "value": 30000000000,
+        "label": "$30.0B",
+        "unit": "Annualized run rate",
+        "source": "https://www.anthropic.com/news/google-broadcom-partnership-compute"
+      },
+      {
         "date": "2026-05-01",
         "value": 47000000000,
         "label": "$47B",
         "unit": "annualized revenue"
+      },
+      {
+        "date": "2026-05-15",
+        "value": 47000000000,
+        "label": "$47.0B",
+        "unit": "Annualized run rate",
+        "source": "https://www.anthropic.com/news/series-h"
       },
       {
         "date": "2026-07-13",
@@ -1815,6 +1906,104 @@
       }
     ],
     "openai_arr": [
+      {
+        "date": "2022-12-31",
+        "value": 28000000,
+        "label": "$0.0B",
+        "unit": "annualized revenue",
+        "source": "https://www.theinformation.com/articles/openai-passes-1-billion-revenue-pace-as-big-companies-boost-ai-spending?rc=9mzoog"
+      },
+      {
+        "date": "2023-03-01",
+        "value": 200000000,
+        "label": "$0.2B",
+        "unit": "Annualized run rate",
+        "source": "https://www.theinformation.com/articles/openais-losses-doubled-to-540-million-as-it-developed-chatgpt?rc=9mzoog"
+      },
+      {
+        "date": "2023-08-29",
+        "value": 1000000000,
+        "label": "$1.0B",
+        "unit": "Annualized run rate",
+        "source": "https://www.theinformation.com/articles/openai-passes-1-billion-revenue-pace-as-big-companies-boost-ai-spending?rc=4ylmkj"
+      },
+      {
+        "date": "2023-10-10",
+        "value": 1300000000,
+        "label": "$1.3B",
+        "unit": "Annualized run rate",
+        "source": "https://www.theinformation.com/articles/openais-revenue-crossed-1-3-billion-annualized-rate-ceo-tells-staff?rc=9mzoog"
+      },
+      {
+        "date": "2023-12-30",
+        "value": 1600000000,
+        "label": "$1.6B",
+        "unit": "Annualized run rate",
+        "source": "https://www.theinformation.com/articles/openais-annualized-revenue-tops-1-6-billion-as-customers-shrug-off-ceo-drama?rc=9mzoog"
+      },
+      {
+        "date": "2023-12-31",
+        "value": 2000000000,
+        "label": "$2.0B",
+        "unit": "Annualized run rate",
+        "source": "https://www.ft.com/content/81ac0e78-5b9b-43c2-b135-d11c47480119"
+      },
+      {
+        "date": "2024-06-12",
+        "value": 3400000000,
+        "label": "$3.4B",
+        "unit": "Annualized run rate",
+        "source": "https://www.theinformation.com/articles/openais-annualized-revenue-doubles-to-3-4-billion-since-late-2023?rc=9mzoog"
+      },
+      {
+        "date": "2024-08-15",
+        "value": 3600000000,
+        "label": "$3.6B",
+        "unit": "Annualized run rate",
+        "source": "https://www.nytimes.com/2024/09/27/technology/openai-chatgpt-investors-funding.html"
+      },
+      {
+        "date": "2024-09-12",
+        "value": 4000000000,
+        "label": "$4.0B",
+        "unit": "Annual recurring revenue (ARR)",
+        "source": "https://www.wsj.com/tech/ai/united-arab-emirates-fund-in-talks-to-invest-in-openai-fd4e4977?"
+      },
+      {
+        "date": "2024-12-31",
+        "value": 3700000000,
+        "label": "$3.7B",
+        "unit": "annualized revenue",
+        "source": "https://www.bloomberg.com/news/articles/2025-03-26/openai-expects-revenue-will-triple-to-12-7-billion-this-year"
+      },
+      {
+        "date": "2025-06-09",
+        "value": 10000000000,
+        "label": "$10.0B",
+        "unit": "Annual recurring revenue (ARR)",
+        "source": "https://www.cnbc.com/2025/06/09/openai-hits-10-billion-in-annualized-revenue-fueled-by-chatgpt-growth.html"
+      },
+      {
+        "date": "2025-07-30",
+        "value": 12000000000,
+        "label": "$12.0B",
+        "unit": "Annualized run rate",
+        "source": "https://www.cnbc.com/2025/08/20/openai-compute-ai.html "
+      },
+      {
+        "date": "2025-08-01",
+        "value": 13000000000,
+        "label": "$13.0B",
+        "unit": "Annual recurring revenue (ARR)",
+        "source": "https://www.nytimes.com/2025/08/01/business/dealbook/openai-ai-mega-funding-deal.html"
+      },
+      {
+        "date": "2025-12-18",
+        "value": 19000000000,
+        "label": "$19.0B",
+        "unit": "Annualized run rate",
+        "source": "https://www.theinformation.com/articles/openais-organizational-problems-hurt-chatgpt?rc=9mzoog"
+      },
       {
         "date": "2025-12-31",
         "value": 20000000000,
@@ -1826,6 +2015,13 @@
         "value": 25000000000,
         "label": "$25B",
         "unit": "annualized revenue"
+      },
+      {
+        "date": "2026-02-28",
+        "value": 25000000000,
+        "label": "$25.0B",
+        "unit": "Annualized run rate",
+        "source": "https://www.theinformation.com/articles/openai-tops-25-billion-annualized-revenue-anthropic-narrows-gap?rc=9mzoog"
       },
       {
         "date": "2026-07-13",
@@ -2013,8 +2209,8 @@
       },
       {
         "date": "2026-07-13",
-        "value": 1.79,
-        "label": "$1.79/h",
+        "value": 1.85,
+        "label": "$1.85/h",
         "unit": "H100 p25"
       }
     ],
@@ -2077,12 +2273,42 @@
       },
       {
         "date": "2026-07-13",
-        "value": 42.9,
-        "label": "$42.9/day",
+        "value": 44.3,
+        "label": "$44.3/day",
         "unit": "H100 spot proxy"
       }
     ],
     "ai_wage_pool_coverage": [
+      {
+        "date": "2025-07-29",
+        "value": 1.0344827586206897,
+        "label": "1%",
+        "unit": "ARR / exposed wage pool"
+      },
+      {
+        "date": "2025-07-30",
+        "value": 1.1724137931034484,
+        "label": "1.2%",
+        "unit": "ARR / exposed wage pool"
+      },
+      {
+        "date": "2025-08-01",
+        "value": 1.2413793103448276,
+        "label": "1.2%",
+        "unit": "ARR / exposed wage pool"
+      },
+      {
+        "date": "2025-10-21",
+        "value": 1.3793103448275863,
+        "label": "1.4%",
+        "unit": "ARR / exposed wage pool"
+      },
+      {
+        "date": "2025-12-18",
+        "value": 1.7931034482758619,
+        "label": "1.8%",
+        "unit": "ARR / exposed wage pool"
+      },
       {
         "date": "2025-12-31",
         "value": 2,
@@ -2096,7 +2322,37 @@
         "unit": "ARR / exposed wage pool"
       },
       {
+        "date": "2026-02-12",
+        "value": 2.689655172413793,
+        "label": "2.7%",
+        "unit": "ARR / exposed wage pool"
+      },
+      {
+        "date": "2026-02-28",
+        "value": 2.689655172413793,
+        "label": "2.7%",
+        "unit": "ARR / exposed wage pool"
+      },
+      {
+        "date": "2026-03-03",
+        "value": 3.0344827586206895,
+        "label": "3%",
+        "unit": "ARR / exposed wage pool"
+      },
+      {
+        "date": "2026-04-06",
+        "value": 3.793103448275862,
+        "label": "3.8%",
+        "unit": "ARR / exposed wage pool"
+      },
+      {
         "date": "2026-05-01",
+        "value": 4.9655172413793105,
+        "label": "5%",
+        "unit": "ARR / exposed wage pool"
+      },
+      {
+        "date": "2026-05-15",
         "value": 4.9655172413793105,
         "label": "5%",
         "unit": "ARR / exposed wage pool"
@@ -2111,116 +2367,116 @@
     "token_arr_conversion": [
       {
         "date": "2026-04-12",
-        "value": 31082712.050750997,
-        "label": "$31.1M",
+        "value": 50280857.729156025,
+        "label": "$50.3M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
         "date": "2026-04-13",
-        "value": 32128897.55120225,
-        "label": "$32.1M",
+        "value": 51973216.62694482,
+        "label": "$52.0M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
         "date": "2026-04-14",
-        "value": 33158596.750879984,
-        "label": "$33.2M",
+        "value": 53638906.50877645,
+        "label": "$53.6M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
         "date": "2026-04-15",
-        "value": 32882186.718456376,
-        "label": "$32.9M",
+        "value": 53191772.63279708,
+        "label": "$53.2M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
         "date": "2026-04-16",
-        "value": 32618788.390907638,
-        "label": "$32.6M",
+        "value": 52765687.10293882,
+        "label": "$52.8M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
         "date": "2026-04-17",
-        "value": 32064487.82759431,
-        "label": "$32.1M",
+        "value": 51869024.42699079,
+        "label": "$51.9M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
         "date": "2026-04-18",
-        "value": 31885151.401259426,
-        "label": "$31.9M",
+        "value": 51578921.38439025,
+        "label": "$51.6M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
         "date": "2026-04-19",
-        "value": 31804800.389599,
-        "label": "$31.8M",
+        "value": 51448941.80670427,
+        "label": "$51.4M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
         "date": "2026-04-20",
-        "value": 31532078.954540856,
-        "label": "$31.5M",
+        "value": 51007774.77940433,
+        "label": "$51.0M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
         "date": "2026-04-21",
-        "value": 31203273.368185032,
-        "label": "$31.2M",
+        "value": 50475883.38971108,
+        "label": "$50.5M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
         "date": "2026-04-22",
-        "value": 30872439.743399914,
-        "label": "$30.9M",
+        "value": 49940711.34961751,
+        "label": "$49.9M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
         "date": "2026-04-23",
-        "value": 30541829.288589444,
-        "label": "$30.5M",
+        "value": 49405900.31977704,
+        "label": "$49.4M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
         "date": "2026-04-24",
-        "value": 30473333.462059066,
-        "label": "$30.5M",
+        "value": 49295098.24744849,
+        "label": "$49.3M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
         "date": "2026-04-25",
-        "value": 30155116.8787671,
-        "label": "$30.2M",
+        "value": 48780336.12741736,
+        "label": "$48.8M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
         "date": "2026-04-26",
-        "value": 29784566.022496708,
-        "label": "$29.8M",
+        "value": 48180915.624627024,
+        "label": "$48.2M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
         "date": "2026-04-27",
-        "value": 29385598.047583524,
-        "label": "$29.4M",
+        "value": 47535526.253443934,
+        "label": "$47.5M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
         "date": "2026-04-28",
-        "value": 28978460.06724227,
-        "label": "$29.0M",
+        "value": 46876920.69700955,
+        "label": "$46.9M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
         "date": "2026-04-29",
-        "value": 28567577.670617286,
-        "label": "$28.6M",
+        "value": 46212257.996586785,
+        "label": "$46.2M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
         "date": "2026-04-30",
-        "value": 28404361.305999674,
-        "label": "$28.4M",
+        "value": 45948231.52441124,
+        "label": "$45.9M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
@@ -5141,6 +5397,6 @@
       }
     ]
   },
-  "updatedAt": "2026-07-13 18:06",
+  "updatedAt": "2026-07-13 19:10",
   "source": "github-actions-cache"
 }

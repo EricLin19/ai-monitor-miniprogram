@@ -81,6 +81,8 @@ async function backfillOpenRouter(key) {
   const dates = [...byDate.keys()].sort();
   const tokenHistory = [];
   const shareHistory = [];
+  const usTokenHistory = [];
+  const cnTokenHistory = [];
 
   for (const date of dates) {
     const windowStart = formatDate(addDays(new Date(`${date}T00:00:00`), -6));
@@ -91,6 +93,8 @@ async function backfillOpenRouter(key) {
 
     const totalTokens = sumTokens(windowRows);
     const top10Share = calcTop10Share(windowRows, totalTokens);
+    const usDailyTokens = sumCountryTokens(byDate.get(date) || [], "us");
+    const cnDailyTokens = sumCountryTokens(byDate.get(date) || [], "cn");
     tokenHistory.push({
       date,
       value: totalTokens,
@@ -103,11 +107,29 @@ async function backfillOpenRouter(key) {
       label: `${Math.round(top10Share * 1000) / 10}%`,
       unit: "Top10"
     });
+    if (usDailyTokens > 0) {
+      usTokenHistory.push({
+        date,
+        value: usDailyTokens / 1e12,
+        label: `${round1(usDailyTokens / 1e12)}T`,
+        unit: "万亿/日"
+      });
+    }
+    if (cnDailyTokens > 0) {
+      cnTokenHistory.push({
+        date,
+        value: cnDailyTokens / 1e12,
+        label: `${round1(cnDailyTokens / 1e12)}T`,
+        unit: "万亿/日"
+      });
+    }
   }
 
   return {
     openrouter_tokens: keepRecent(tokenHistory, 92),
-    openrouter_share: keepRecent(shareHistory, 92)
+    openrouter_share: keepRecent(shareHistory, 92),
+    openrouter_us_tokens: keepRecent(usTokenHistory, 92),
+    openrouter_cn_tokens: keepRecent(cnTokenHistory, 92)
   };
 }
 
@@ -145,6 +167,7 @@ async function backfillTrakTokenIndex() {
 }
 
 async function backfillSacraArrMilestones() {
+  const epochEntries = await backfillEpochRevenueReports();
   const companies = [
     {
       id: "anthropic_arr",
@@ -185,10 +208,43 @@ async function backfillSacraArrMilestones() {
       unit: "annualized revenue"
     });
 
-    entries.push([company.id, dedupeHistory(records)]);
+    const epochRecords = epochEntries[company.id] || [];
+    entries.push([company.id, dedupeHistory([...epochRecords, ...records])]);
   }
 
-  return Object.fromEntries(entries);
+  const merged = { ...epochEntries, ...Object.fromEntries(entries) };
+  return Object.fromEntries(Object.entries(merged).map(([id, records]) => [id, dedupeHistory(records)]));
+}
+
+async function backfillEpochRevenueReports() {
+  const csv = await getTextFetch("https://epoch.ai/data/ai_companies_revenue_reports.csv", {
+    "User-Agent": "AI Monitor Mini Program"
+  });
+  const rows = parseCsvRows(csv);
+  const ids = {
+    OpenAI: "openai_arr",
+    Anthropic: "anthropic_arr"
+  };
+  const updates = {};
+
+  for (const row of rows) {
+    const id = ids[row.Company];
+    const date = row.Date;
+    const value = Number(row["Annualized revenue (USD)"] || row["Revenue amount (normalize to annual)"]);
+    const scope = String(row.Scope || "");
+    if (!id || !/^\d{4}-\d{2}-\d{2}$/.test(date) || !Number.isFinite(value) || value <= 0) continue;
+    if (scope && scope !== "Full company") continue;
+    if (!updates[id]) updates[id] = [];
+    updates[id].push({
+      date,
+      value,
+      label: formatUsdBillions(value),
+      unit: row["Annualized revenue type"] || "annualized revenue",
+      source: row["Source 1"] || "Epoch AI"
+    });
+  }
+
+  return Object.fromEntries(Object.entries(updates).map(([id, records]) => [id, dedupeHistory(records)]));
 }
 
 async function backfillSecCapex() {
@@ -417,6 +473,38 @@ function calcTop10Share(rows, totalTokens) {
   return top10.reduce((sum, value) => sum + value, 0) / Math.max(1, totalTokens);
 }
 
+function sumCountryTokens(rows, country) {
+  return rows.reduce((sum, row) => {
+    const model = row.model_permaslug || row.model || "";
+    const provider = model.includes("/") ? model.split("/")[0] : "";
+    return getProviderCountry(provider) === country ? sum + Number(row.total_tokens || 0) : sum;
+  }, 0);
+}
+
+function getProviderCountry(provider) {
+  const normalized = String(provider || "").toLowerCase();
+  const usProviders = new Set(["openai", "anthropic", "google", "meta-llama", "x-ai", "perplexity", "cohere"]);
+  const cnProviders = new Set([
+    "deepseek",
+    "qwen",
+    "alibaba",
+    "moonshotai",
+    "minimax",
+    "z-ai",
+    "thudm",
+    "xiaomi",
+    "tencent",
+    "hunyuan",
+    "baidu",
+    "bytedance",
+    "stepfun",
+    "01-ai"
+  ]);
+  if (usProviders.has(normalized)) return "us";
+  if (cnProviders.has(normalized)) return "cn";
+  return "";
+}
+
 function getRowDate(row) {
   const raw = row.date || row.day || row.start_date || row.end_date || row.timestamp || row.created_at || row.updated_at;
   if (!raw) return "";
@@ -558,11 +646,34 @@ function parseCsvRows(csv) {
     .split(/\r?\n/)
     .filter((line) => line.trim() && !line.startsWith("#"));
   if (lines.length < 2) return [];
-  const headers = lines[0].split(",").map((item) => item.trim());
+  const headers = splitCsvLine(lines[0]).map((item) => item.trim());
   return lines.slice(1).map((line) => {
-    const values = line.split(",");
+    const values = splitCsvLine(line);
     return Object.fromEntries(headers.map((header, index) => [header, values[index]]));
   });
+}
+
+function splitCsvLine(line) {
+  const values = [];
+  let current = "";
+  let quoted = false;
+  for (let index = 0; index < line.length; index += 1) {
+    const char = line[index];
+    const next = line[index + 1];
+    if (char === "\"" && quoted && next === "\"") {
+      current += "\"";
+      index += 1;
+    } else if (char === "\"") {
+      quoted = !quoted;
+    } else if (char === "," && !quoted) {
+      values.push(current);
+      current = "";
+    } else {
+      current += char;
+    }
+  }
+  values.push(current);
+  return values;
 }
 
 function mergeHistoryDates(...seriesList) {

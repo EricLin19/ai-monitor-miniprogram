@@ -930,8 +930,13 @@ function trimHistory(records, metric) {
 }
 
 function getHistoryWindowDays(metric) {
+  if (isLongHistoryMetric(metric.id)) return 1460;
   if (isQuarterlyHistoryMetric(metric.id)) return 370;
   return 100;
+}
+
+function isLongHistoryMetric(id) {
+  return new Set(["openai_arr", "anthropic_arr"]).has(id);
 }
 
 function isQuarterlyHistoryMetric(id) {
