@@ -81,6 +81,7 @@ function isQuarterlyMetric(metric) {
     "amzn_capex",
     "meta_capex",
     "nvda_dc_revenue",
+    "hyperscaler_capex_ocf_ratio",
     "ai_capex_roi"
   ].includes(metric.id);
 }
@@ -90,6 +91,7 @@ function drawDetailChart(page, points, trend) {
   const width = 320;
   const height = 150;
   const padding = 18;
+  const labelHeight = 18;
   const color = trend === "up" ? "#15803d" : trend === "down" ? "#b42318" : "#2563eb";
 
   context.clearRect(0, 0, width, height);
@@ -116,7 +118,7 @@ function drawDetailChart(page, points, trend) {
   const max = Math.max(...values);
   const span = max - min || 1;
   const drawableWidth = width - padding * 2;
-  const drawableHeight = height - padding * 2;
+  const drawableHeight = height - padding * 2 - labelHeight;
   const plotted = points.map((item, index) => {
     const ratioX = points.length === 1 ? 1 : index / (points.length - 1);
     const ratioY = (item.value - min) / span;
@@ -150,7 +152,33 @@ function drawDetailChart(page, points, trend) {
     context.fill();
   });
 
+  drawMonthTicks(context, points, padding, drawableWidth, height);
   context.draw();
+}
+
+function drawMonthTicks(context, points, padding, drawableWidth, height) {
+  const ticks = getMonthTicks(points);
+  if (!ticks.length) return;
+  context.setFillStyle("#9aa4af");
+  context.setFontSize(10);
+  ticks.forEach((tick) => {
+    const ratio = points.length === 1 ? 1 : tick.index / (points.length - 1);
+    const x = padding + drawableWidth * ratio;
+    const label = tick.label;
+    context.fillText(label, Math.min(x, 292), height - 3);
+  });
+}
+
+function getMonthTicks(points) {
+  const ticks = [];
+  let lastMonth = "";
+  points.forEach((point, index) => {
+    const month = String(point.date || "").slice(5, 7);
+    if (!month || month === lastMonth) return;
+    lastMonth = month;
+    ticks.push({ index, label: `${Number(month)}月` });
+  });
+  return ticks.slice(-6);
 }
 
 function addDays(date, days) {

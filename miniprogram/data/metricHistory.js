@@ -1338,8 +1338,8 @@ const metricHistory = {
     },
     {
       "date": "2026-07-13",
-      "value": 1.92,
-      "label": "$1.92/h",
+      "value": 1.79,
+      "label": "$1.79/h",
       "unit": "H100 p25"
     }
   ],
@@ -1402,8 +1402,8 @@ const metricHistory = {
     },
     {
       "date": "2026-07-13",
-      "value": 46.1,
-      "label": "$46.1/day",
+      "value": 42.9,
+      "label": "$42.9/day",
       "unit": "H100 spot proxy"
     }
   ],
@@ -4308,9 +4308,161 @@ const metricHistory = {
   "hyperscaler_capex_ocf_ratio": [
     {
       "date": "2026-07-13",
-      "value": 40.4,
-      "label": "40.4%",
-      "unit": "FY2026 CapEx / OCF"
+      "value": 94,
+      "label": "94%",
+      "unit": "CapEx / OCF"
+    }
+  ],
+  "aa_us_score": [
+    {
+      "date": "2026-07-13",
+      "value": 60,
+      "label": "60",
+      "unit": "?"
+    }
+  ],
+  "aa_cn_score": [
+    {
+      "date": "2026-07-13",
+      "value": 51,
+      "label": "51",
+      "unit": "?"
+    }
+  ],
+  "openrouter_us_tokens": [
+    {
+      "date": "2026-07-13",
+      "value": 2.6,
+      "label": "2.6",
+      "unit": "??/?"
+    }
+  ],
+  "openrouter_cn_tokens": [
+    {
+      "date": "2026-07-13",
+      "value": 4.6,
+      "label": "4.6",
+      "unit": "??/?"
+    }
+  ],
+  "silicon_token_expenditure": [
+    {
+      "date": "2026-07-13",
+      "value": 1.6,
+      "label": "$1.6",
+      "unit": "??/?? token"
+    }
+  ],
+  "ramp_enterprise_paid_ratio": [
+    {
+      "date": "2026-07-13",
+      "value": 55,
+      "label": "55.0%",
+      "unit": "??????"
+    }
+  ],
+  "openai_app_revenue": [
+    {
+      "date": "2026-07-13",
+      "value": 1.7,
+      "label": "$1.7",
+      "unit": "??/??/?"
+    }
+  ],
+  "anthropic_app_revenue": [
+    {
+      "date": "2026-07-13",
+      "value": 2.8,
+      "label": "$2.8",
+      "unit": "??/??/?"
+    }
+  ],
+  "hyperscaler_cloud_revenue": [
+    {
+      "date": "2026-07-13",
+      "value": 101500000000,
+      "label": "$101.5B",
+      "unit": "????"
+    }
+  ],
+  "big5_bond_issuance": [
+    {
+      "date": "2026-07-13",
+      "value": 25000000000,
+      "label": "$25B",
+      "unit": "????"
+    }
+  ],
+  "big5_cds": [
+    {
+      "date": "2026-07-13",
+      "value": 86.4,
+      "label": "86.4",
+      "unit": "bp"
+    }
+  ],
+  "ig_credit_spread": [
+    {
+      "date": "2026-07-13",
+      "value": 0.8,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    }
+  ],
+  "silicon_vc_confidence": [
+    {
+      "date": "2026-07-13",
+      "value": 3.75,
+      "label": "3.75",
+      "unit": "??"
+    }
+  ],
+  "ai_risk_investment": [
+    {
+      "date": "2026-07-13",
+      "value": 267200000000,
+      "label": "$267.2B",
+      "unit": "????"
+    }
+  ],
+  "tech_finance_employment": [
+    {
+      "date": "2026-07-13",
+      "value": 1524.8,
+      "label": "1524.8",
+      "unit": "??"
+    }
+  ],
+  "tech_finance_layoff_share": [
+    {
+      "date": "2026-07-13",
+      "value": 46,
+      "label": "46%",
+      "unit": "3mma"
+    }
+  ],
+  "data_center_construction": [
+    {
+      "date": "2026-07-13",
+      "value": 59300000000,
+      "label": "$59.3B",
+      "unit": "????"
+    }
+  ],
+  "hyperscaler_fcf": [
+    {
+      "date": "2026-07-13",
+      "value": 9500000000,
+      "label": "$9.5B",
+      "unit": "十亿美元"
+    }
+  ],
+  "big5_debt_equity_ratio": [
+    {
+      "date": "2026-07-13",
+      "value": 43,
+      "label": "43%",
+      "unit": "Big 5 负债权益比"
     }
   ]
 };

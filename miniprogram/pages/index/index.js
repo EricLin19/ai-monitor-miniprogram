@@ -12,6 +12,47 @@ const HIDDEN_METRIC_IDS = new Set([
   "agent_token_share"
 ]);
 
+const METRIC_ORDER = [
+  "aa_us_score",
+  "aa_cn_score",
+  "openrouter_us_tokens",
+  "openrouter_cn_tokens",
+  "silicon_token_expenditure",
+  "llm_token_spend_index",
+  "ramp_enterprise_paid_ratio",
+  "openai_app_revenue",
+  "anthropic_app_revenue",
+  "openai_arr",
+  "anthropic_arr",
+  "hyperscaler_cloud_revenue",
+  "hyperscaler_fcf",
+  "hyperscaler_capex_ocf_ratio",
+  "big5_debt_equity_ratio",
+  "big5_bond_issuance",
+  "big5_cds",
+  "ig_credit_spread",
+  "silicon_vc_confidence",
+  "ai_risk_investment",
+  "tech_finance_employment",
+  "tech_finance_layoff_share",
+  "data_center_construction",
+  "openrouter_tokens",
+  "openrouter_share",
+  "frontier_premium",
+  "free_token_share",
+  "api_price_index",
+  "gpu_rental_price",
+  "revenue_per_gpu",
+  "ai_capex_roi",
+  "token_arr_conversion",
+  "ai_wage_pool_coverage",
+  "tech_job_postings",
+  "msft_capex",
+  "googl_capex",
+  "amzn_capex",
+  "meta_capex"
+];
+
 Page({
   data: {
     metrics: [],
@@ -95,14 +136,21 @@ Page({
 });
 
 function decorateMetrics(metrics, history) {
-  return metrics.map((item) => ({
-    ...item,
-    accessClass: getAccessClass(item.access),
-    canvasId: `chart_${item.id}`,
-    chartPoints: getWindowedHistory(item, history[item.id] || []),
-    windowLabel: getWindowLabel(item),
-    historyLabel: getHistoryLabel(history[item.id] || [])
-  }));
+  return metrics
+    .map((item) => ({
+      ...item,
+      accessClass: getAccessClass(item.access),
+      canvasId: `chart_${item.id}`,
+      chartPoints: getWindowedHistory(item, history[item.id] || []),
+      windowLabel: getWindowLabel(item),
+      historyLabel: getHistoryLabel(history[item.id] || [])
+    }))
+    .sort((a, b) => getMetricOrder(a.id) - getMetricOrder(b.id));
+}
+
+function getMetricOrder(id) {
+  const index = METRIC_ORDER.indexOf(id);
+  return index >= 0 ? index : 999;
 }
 
 function getAccessClass(access) {
@@ -144,6 +192,7 @@ function isQuarterlyMetric(metric) {
     "googl_capex",
     "amzn_capex",
     "meta_capex",
+    "hyperscaler_capex_ocf_ratio",
     "ai_capex_roi"
   ].includes(metric.id);
 }
@@ -153,6 +202,7 @@ function drawSparkline(page, canvasId, points, trend) {
   const width = 300;
   const height = 76;
   const padding = 10;
+  const labelHeight = 14;
   const color = trend === "up" ? "#15803d" : trend === "down" ? "#b42318" : "#2563eb";
 
   context.clearRect(0, 0, width, height);
@@ -176,7 +226,7 @@ function drawSparkline(page, canvasId, points, trend) {
   const max = Math.max(...values);
   const span = max - min || 1;
   const drawableWidth = width - padding * 2;
-  const drawableHeight = height - padding * 2 - 8;
+  const drawableHeight = height - padding * 2 - labelHeight;
   const plotted = points.map((item, index) => {
     const ratioX = points.length === 1 ? 1 : index / (points.length - 1);
     const ratioY = (item.value - min) / span;
@@ -203,7 +253,34 @@ function drawSparkline(page, canvasId, points, trend) {
   context.beginPath();
   context.arc(last.x, last.y, 3, 0, Math.PI * 2);
   context.fill();
+
+  drawMonthTicks(context, points, padding, drawableWidth, height);
   context.draw();
+}
+
+function drawMonthTicks(context, points, padding, drawableWidth, height) {
+  const ticks = getMonthTicks(points);
+  if (!ticks.length) return;
+  context.setFillStyle("#9aa4af");
+  context.setFontSize(9);
+  ticks.forEach((tick) => {
+    const ratio = points.length === 1 ? 1 : tick.index / (points.length - 1);
+    const x = padding + drawableWidth * ratio;
+    const label = tick.label;
+    context.fillText(label, Math.min(x, 278), height - 2);
+  });
+}
+
+function getMonthTicks(points) {
+  const ticks = [];
+  let lastMonth = "";
+  points.forEach((point, index) => {
+    const month = String(point.date || "").slice(5, 7);
+    if (!month || month === lastMonth) return;
+    lastMonth = month;
+    ticks.push({ index, label: `${Number(month)}月` });
+  });
+  return ticks.slice(-4);
 }
 
 function calcHealth(metrics) {

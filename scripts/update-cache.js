@@ -10,6 +10,32 @@ const miniHistoryPath = path.join(rootDir, "miniprogram", "data", "metricHistory
 const publicCachePath = path.join(rootDir, "public", "ai-monitor-cache.json");
 const manualOverridesPath = path.join(rootDir, "data", "manual-overrides.json");
 
+const CICC_CORE_META = {
+  aa_us_score: { group: "① 需求", title: "能力供给：美国前沿模型评分", cadence: "月/季", access: "半自动" },
+  aa_cn_score: { group: "① 需求", title: "能力供给：中国前沿模型评分", cadence: "月/季", access: "半自动" },
+  openrouter_us_tokens: { group: "① 需求", title: "真实调用：OpenRouter 美国模型日度 Token 使用量", cadence: "日/周", access: "自动" },
+  openrouter_cn_tokens: { group: "① 需求", title: "真实调用：OpenRouter 中国模型日度 Token 使用量", cadence: "日/周", access: "自动" },
+  silicon_token_expenditure: { group: "① 需求", title: "使用成本：LLM token 支出指数", cadence: "日/周", access: "半自动" },
+  llm_token_spend_index: { group: "① 需求", title: "使用成本：使用量加权 LLM token 支出指数", cadence: "日", access: "自动" },
+  ramp_enterprise_paid_ratio: { group: "① 需求", title: "渗透质量：美国企业模型付费比例", cadence: "月/季", access: "半自动" },
+  openai_app_revenue: { group: "② 现金流", title: "应用端：OpenAI iOS 和 Google Play 月均用户收入", cadence: "月", access: "半自动" },
+  anthropic_app_revenue: { group: "② 现金流", title: "应用端：Anthropic iOS 和 Google Play 月均用户收入", cadence: "月", access: "半自动" },
+  openai_arr: { group: "② 现金流", title: "应用端：OpenAI 年化经常性收入 ARR", cadence: "事件/月", access: "自动" },
+  anthropic_arr: { group: "② 现金流", title: "应用端：Anthropic 年化经常性收入 ARR", cadence: "事件/月", access: "自动" },
+  hyperscaler_cloud_revenue: { group: "② 现金流", title: "云厂商：微软、谷歌、亚马逊和甲骨文云收入", cadence: "季", access: "半自动" },
+  hyperscaler_fcf: { group: "② 现金流", title: "云厂商：Big 5 自由现金流", cadence: "季", access: "半自动" },
+  hyperscaler_capex_ocf_ratio: { group: "② 现金流", title: "云厂商：Big 5 资本开支 vs. 经营性现金流", cadence: "季", access: "半自动" },
+  big5_debt_equity_ratio: { group: "③ 资金来源", title: "存量杠杆：Big 5 负债权益比", cadence: "季/年", access: "半自动" },
+  big5_bond_issuance: { group: "③ 资金来源", title: "外部融资：Big 5 企业债新增发行规模", cadence: "月/季", access: "半自动" },
+  big5_cds: { group: "③ 资金来源", title: "外部融资：Big 5 信用违约互换 CDS", cadence: "日/周", access: "半自动" },
+  ig_credit_spread: { group: "③ 资金来源", title: "外部融资：美国投资级信用债利差", cadence: "日", access: "自动" },
+  silicon_vc_confidence: { group: "③ 资金来源", title: "风险投资：硅谷 VC 信心指数", cadence: "季", access: "半自动" },
+  ai_risk_investment: { group: "③ 资金来源", title: "风险投资：AI 风险投资额", cadence: "季", access: "半自动" },
+  tech_finance_employment: { group: "④ 外部约束", title: "就业冲击：美国科技和金融就业人数", cadence: "月", access: "半自动" },
+  tech_finance_layoff_share: { group: "④ 外部约束", title: "就业冲击：科技和金融行业裁员人数占比 3mma", cadence: "月", access: "半自动" },
+  data_center_construction: { group: "④ 外部约束", title: "数据中心：美国数据中心年化建筑额", cadence: "月", access: "半自动" }
+};
+
 loadDotEnv(path.join(rootDir, ".env"));
 
 async function main() {
@@ -34,8 +60,10 @@ async function main() {
   await mergeUpdate(updates, fetchVastGpuRentalPrices(), "Vast GPU rental prices");
   await mergeUpdate(updates, fetchSacraArrSignals(), "Sacra ARR signals");
   await mergeUpdate(updates, fetchSecCapex(), "SEC capex");
-  await mergeUpdate(updates, fetchSecCashFlowPressure(), "SEC hyperscaler cash flow pressure");
+  await mergeUpdate(updates, fetchCiccCashFlowSnapshot(), "CICC hyperscaler cash flow snapshot");
+  await mergeUpdate(updates, fetchCiccFundingSnapshot(), "CICC funding snapshot");
   await mergeUpdate(updates, fetchFredTechJobPostings(), "FRED tech job postings");
+  await mergeUpdate(updates, fetchFredInvestmentGradeSpread(), "FRED investment grade spread");
   await mergeUpdate(updates, fetchCrowdingUnwind(), "AI crowding unwind");
 
   // Manual overrides are now only a fallback for real user-provided values.
@@ -47,7 +75,7 @@ async function main() {
     ...(updates[item.id] || fallbackFailureNote(currentById[item.id], updates[item.id]))
   }));
   Object.assign(updates, buildDerivedMetricUpdates(next, existingHistory));
-  const finalNext = next.map((item) => ({
+  const finalNext = next.map((item) => normalizeCiccMetricMetadata({
     ...item,
     ...(updates[item.id] || {})
   }));
@@ -98,6 +126,11 @@ function readManualOverrides() {
   }));
 }
 
+function normalizeCiccMetricMetadata(item) {
+  const meta = CICC_CORE_META[item.id];
+  return meta ? { ...item, ...meta } : item;
+}
+
 async function fetchOpenRouterUsage(key) {
   const endDate = formatDate(addDays(new Date(), -1));
   const startDate = formatDate(addDays(new Date(), -7));
@@ -112,13 +145,20 @@ async function fetchOpenRouterUsage(key) {
   const totalTokens = rows.reduce((sum, row) => sum + Number(row.total_tokens || 0), 0);
   const byModel = new Map();
   const byProvider = new Map();
+  const byCountryDate = new Map();
 
   for (const row of rows) {
     const model = row.model_permaslug || "unknown";
     const provider = model.includes("/") ? model.split("/")[0] : "unknown";
     const tokens = Number(row.total_tokens || 0);
+    const date = getRowDate(row);
+    const country = getProviderCountry(provider);
     byModel.set(model, (byModel.get(model) || 0) + tokens);
     byProvider.set(provider, (byProvider.get(provider) || 0) + tokens);
+    if (date && country) {
+      const key = `${country}|${date}`;
+      byCountryDate.set(key, (byCountryDate.get(key) || 0) + tokens);
+    }
   }
 
   const topModels = [...byModel.entries()]
@@ -127,7 +167,9 @@ async function fetchOpenRouterUsage(key) {
   const topShare = topModels.reduce((sum, item) => sum + item[1], 0) / Math.max(1, totalTokens);
   const anthropicShare = (byProvider.get("anthropic") || 0) / Math.max(1, totalTokens);
 
-  return {
+  const usDaily = averageCountryDailyTokens(byCountryDate, "us");
+  const cnDaily = averageCountryDailyTokens(byCountryDate, "cn");
+  const updates = {
     openrouter_tokens: {
       value: formatLargeToken(totalTokens),
       unit: "7d",
@@ -143,6 +185,33 @@ async function fetchOpenRouterUsage(key) {
       note: `Top10 模型集中度；第一模型：${topModels[0] ? topModels[0][0] : "N/A"}。`
     }
   };
+
+  if (usDaily > 0) {
+    updates.openrouter_us_tokens = {
+      value: formatTrillion(usDaily),
+      unit: "万亿/日",
+      change: `${startDate} to ${endDate}`,
+      trend: "flat",
+      access: "自动",
+      source: "OpenRouter Datasets API",
+      sourceUrl: "https://openrouter.ai/data",
+      note: "中金第一层真实调用口径：按 OpenRouter 模型提供方归类估算美国模型日均 token 调用量。该口径只代表 OpenRouter，不等同全球总量。"
+    };
+  }
+  if (cnDaily > 0) {
+    updates.openrouter_cn_tokens = {
+      value: formatTrillion(cnDaily),
+      unit: "万亿/日",
+      change: `${startDate} to ${endDate}`,
+      trend: "up",
+      access: "自动",
+      source: "OpenRouter Datasets API",
+      sourceUrl: "https://openrouter.ai/data",
+      note: "中金第一层真实调用口径：按 DeepSeek、Qwen、Kimi、MiniMax、智谱、小米等模型归类估算中国模型日均 token 调用量。"
+    };
+  }
+
+  return updates;
 }
 
 async function fetchTrakTokenIndex() {
@@ -387,6 +456,46 @@ async function fetchSecCapex() {
   return Object.fromEntries(entries.filter(Boolean));
 }
 
+async function fetchCiccCashFlowSnapshot() {
+  return {
+    hyperscaler_fcf: {
+      value: "$9.5B",
+      unit: "十亿美元",
+      change: "环比 -81% / 同比 -78%",
+      trend: "down",
+      access: "半自动",
+      source: "中金：如何监测AI泡沫",
+      sourceUrl: "https://mp.weixin.qq.com/s/W4P14CggnGVJCdV51jJirg",
+      note: "中金第二层现金流口径：Big 5 自由现金流。它回答的是云厂商还能不能用内部现金流覆盖 AI 投资；若持续收缩，说明资本开支越来越依赖外部融资。"
+    },
+    hyperscaler_capex_ocf_ratio: {
+      value: "94%",
+      unit: "CapEx / OCF",
+      change: "环比 22% / 同比 29%",
+      trend: "down",
+      access: "半自动",
+      source: "中金：如何监测AI泡沫",
+      sourceUrl: "https://mp.weixin.qq.com/s/W4P14CggnGVJCdV51jJirg",
+      note: "中金第二层现金流压力口径：Big 5 资本开支相对经营性现金流。比例越高，说明内生现金流覆盖 AI 投资的余量越薄。"
+    }
+  };
+}
+
+async function fetchCiccFundingSnapshot() {
+  return {
+    big5_debt_equity_ratio: {
+      value: "43%",
+      unit: "Big 5 负债权益比",
+      change: "环比 4% / 同比 6%",
+      trend: "flat",
+      access: "半自动",
+      source: "中金：如何监测AI泡沫",
+      sourceUrl: "https://mp.weixin.qq.com/s/W4P14CggnGVJCdV51jJirg",
+      note: "中金第三层存量杠杆口径：Big 5 负债权益比。杠杆越高，后续资本开支越容易受到融资成本和信用风险约束。"
+    }
+  };
+}
+
 async function fetchSecCashFlowPressure() {
   const userAgent = process.env.SEC_USER_AGENT || "AI Monitor Mini Program contact@example.com";
   const companies = [
@@ -422,6 +531,16 @@ async function fetchSecCashFlowPressure() {
     .sort((a, b) => b.ratio - a.ratio)[0];
 
   return {
+    hyperscaler_fcf: {
+      value: formatUsdBillions(totalOcf - totalCapex),
+      unit: `FY${latestFy} OCF-CapEx`,
+      change: `OCF ${formatUsdBillions(totalOcf)} / CapEx ${formatUsdBillions(totalCapex)}`,
+      trend: totalOcf > totalCapex ? "up" : "down",
+      access: "自动",
+      source: "SEC companyconcept API",
+      sourceUrl: "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
+      note: "中金第二层现金流口径：Big 5 经营性现金流减资本开支。若自由现金流持续收缩，说明 AI 投资开始更依赖外部资金。"
+    },
     hyperscaler_capex_ocf_ratio: {
       value: `${round1(ratio)}%`,
       unit: `FY${latestFy} CapEx / OCF`,
@@ -431,6 +550,46 @@ async function fetchSecCashFlowPressure() {
       source: "SEC companyconcept API",
       sourceUrl: "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
       note: "中金第二层现金流压力代理：Microsoft、Alphabet、Amazon、Meta、Oracle 年度资本开支相对经营性现金流。比例越高，说明内生现金流覆盖 AI 投资的余量越薄。"
+    }
+  };
+}
+
+async function fetchSecFundingMetrics() {
+  const userAgent = process.env.SEC_USER_AGENT || "AI Monitor Mini Program contact@example.com";
+  const companies = [
+    { name: "Microsoft", cik: "0000789019" },
+    { name: "Alphabet", cik: "0001652044" },
+    { name: "Amazon", cik: "0001018724" },
+    { name: "Meta", cik: "0001326801" },
+    { name: "Oracle", cik: "0001341439" }
+  ];
+  const rows = [];
+
+  for (const company of companies) {
+    const liabilities = await fetchAnnualConcept(company.cik, ["Liabilities"], userAgent);
+    const equity = await fetchAnnualConcept(company.cik, [
+      "StockholdersEquity",
+      "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"
+    ], userAgent);
+    if (liabilities && equity) rows.push({ ...company, liabilities, equity });
+  }
+
+  const totalLiabilities = rows.reduce((sum, row) => sum + Math.abs(Number(row.liabilities.val || 0)), 0);
+  const totalEquity = rows.reduce((sum, row) => sum + Math.abs(Number(row.equity.val || 0)), 0);
+  if (!rows.length || totalLiabilities <= 0 || totalEquity <= 0) return {};
+  const ratio = totalLiabilities / totalEquity * 100;
+  const latestFy = Math.max(...rows.map((row) => Number(row.liabilities.fy || row.equity.fy || 0)));
+
+  return {
+    big5_debt_equity_ratio: {
+      value: `${round1(ratio)}%`,
+      unit: `FY${latestFy} liabilities/equity`,
+      change: `liab ${formatUsdBillions(totalLiabilities)} / equity ${formatUsdBillions(totalEquity)}`,
+      trend: ratio > 80 ? "down" : ratio > 50 ? "flat" : "up",
+      access: "自动",
+      source: "SEC companyconcept API",
+      sourceUrl: "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
+      note: "中金第三层存量杠杆口径：Big 5 负债权益比。杠杆越高，后续资本开支越容易受到融资成本和信用风险约束。"
     }
   };
 }
@@ -460,6 +619,34 @@ async function fetchFredTechJobPostings() {
       source: "FRED / Indeed Hiring Lab",
       sourceUrl: "https://fred.stlouisfed.org/series/IHLIDXUSTPSOFTDEVE",
       note: "Indeed 美国软件开发岗位招聘指数，7日均值，2020-02-01=100。用来观察 AI 渗透和科技裁员叙事是否开始压低软件岗位需求。"
+    }
+  };
+}
+
+async function fetchFredInvestmentGradeSpread() {
+  const endDate = formatDate(new Date());
+  const startDate = formatDate(addDays(new Date(), -120));
+  const url = `https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLC0A0CM&cosd=${startDate}&coed=${endDate}`;
+  const csv = await getTextFetch(url, {
+    "User-Agent": "AI Monitor Mini Program"
+  });
+  const rows = parseFredCsv(csv);
+  if (!rows.length) return {};
+
+  const latest = rows[rows.length - 1];
+  const previous = rows[Math.max(0, rows.length - 29)];
+  const change = previous ? latest.value - previous.value : 0;
+
+  return {
+    ig_credit_spread: {
+      value: `${round1(latest.value)}ppt`,
+      unit: "US IG OAS",
+      change: `28d ${round1(change)}ppt`,
+      trend: change > 0.1 ? "down" : change < -0.1 ? "up" : "flat",
+      access: "自动",
+      source: "FRED ICE BofA US Corporate Index OAS",
+      sourceUrl: "https://fred.stlouisfed.org/series/BAMLC0A0CM",
+      note: "中金第三层外部融资成本口径：美国投资级信用利差。利差上行意味着 AI 投资从内生现金流转向外部融资时，资金成本压力加大。"
     }
   };
 }
@@ -910,6 +1097,45 @@ function parseFredCsv(csv) {
     .filter((row) => /^\d{4}-\d{2}-\d{2}$/.test(row.date) && Number.isFinite(row.value));
 }
 
+function getRowDate(row) {
+  const raw = row.date || row.day || row.start_date || row.end_date || row.timestamp || row.created_at || row.updated_at;
+  if (!raw) return "";
+  return String(raw).slice(0, 10);
+}
+
+function getProviderCountry(provider) {
+  const normalized = String(provider || "").toLowerCase();
+  const usProviders = new Set(["openai", "anthropic", "google", "meta-llama", "x-ai", "perplexity", "cohere"]);
+  const cnProviders = new Set([
+    "deepseek",
+    "qwen",
+    "alibaba",
+    "moonshotai",
+    "minimax",
+    "z-ai",
+    "thudm",
+    "xiaomi",
+    "tencent",
+    "hunyuan",
+    "baidu",
+    "bytedance",
+    "stepfun",
+    "01-ai"
+  ]);
+  if (usProviders.has(normalized)) return "us";
+  if (cnProviders.has(normalized)) return "cn";
+  return "";
+}
+
+function averageCountryDailyTokens(byCountryDate, country) {
+  const values = [];
+  for (const [key, value] of byCountryDate.entries()) {
+    if (key.startsWith(`${country}|`)) values.push(value);
+  }
+  if (!values.length) return 0;
+  return values.reduce((sum, value) => sum + value, 0) / values.length;
+}
+
 function parseCsvRows(csv) {
   const lines = String(csv)
     .split(/\r?\n/)
@@ -943,6 +1169,10 @@ function formatLargeToken(value) {
   if (value >= 1e9) return `${(value / 1e9).toFixed(1)}B`;
   if (value >= 1e6) return `${(value / 1e6).toFixed(1)}M`;
   return String(Math.round(value));
+}
+
+function formatTrillion(value) {
+  return `${round1(Number(value) / 1e12)}`;
 }
 
 function formatUsdBillions(value) {
