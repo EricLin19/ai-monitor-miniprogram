@@ -26,6 +26,12 @@ async function main() {
   }
 
   try {
+    Object.assign(updates, await backfillTrakTokenIndex());
+  } catch (error) {
+    console.warn(`TrakToken history backfill failed: ${error.message}`);
+  }
+
+  try {
     Object.assign(updates, await backfillSecCapex());
   } catch (error) {
     console.warn(`SEC capex history backfill failed: ${error.message}`);
@@ -102,6 +108,39 @@ async function backfillOpenRouter(key) {
   return {
     openrouter_tokens: keepRecent(tokenHistory, 92),
     openrouter_share: keepRecent(shareHistory, 92)
+  };
+}
+
+async function backfillTrakTokenIndex() {
+  const payload = await getJsonFetch("https://www.traktoken.com/api/index/history", {
+    "User-Agent": "AI Monitor Mini Program"
+  });
+  const rows = Array.isArray(payload.data) ? payload.data : [];
+  if (!rows.length) return {};
+  const csv = await getTextFetch("https://www.traktoken.com/downloads/ttsi.csv", {
+    "User-Agent": "AI Monitor Mini Program"
+  });
+  const csvRows = parseCsvRows(csv);
+
+  return {
+    llm_token_spend_index: keepRecent(rows.map((row) => ({
+      date: row.date,
+      value: Number(row.spend_price_usd_ma7 || row.spend_price_usd),
+      label: `$${Number(row.spend_price_usd_ma7 || row.spend_price_usd).toFixed(2)}`,
+      unit: "$/1M weighted"
+    })).filter((row) => Number.isFinite(row.value)), 100),
+    frontier_premium: keepRecent(rows.map((row) => ({
+      date: row.date,
+      value: Number(row.frontier_premium),
+      label: `${Number(row.frontier_premium).toFixed(1)}x`,
+      unit: "frontier / open-weight"
+    })).filter((row) => Number.isFinite(row.value)), 100),
+    free_token_share: keepRecent(csvRows.map((row) => ({
+      date: row.date,
+      value: Number(row.free_share) * 100,
+      label: `${(Number(row.free_share) * 100).toFixed(1)}%`,
+      unit: "free token share"
+    })).filter((row) => Number.isFinite(row.value)), 100)
   };
 }
 
@@ -439,6 +478,15 @@ function getJson(url, headers = {}, redirectCount = 0) {
   });
 }
 
+async function getJsonFetch(url, headers = {}) {
+  const response = await fetch(url, { headers });
+  const body = await response.text();
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: ${body.slice(0, 180)}`);
+  }
+  return JSON.parse(body);
+}
+
 function getText(url, headers = {}, redirectCount = 0) {
   return new Promise((resolve, reject) => {
     const request = https.get(url, { headers }, (response) => {
@@ -503,6 +551,18 @@ function parseFredCsv(csv) {
       return { date, value };
     })
     .filter((row) => /^\d{4}-\d{2}-\d{2}$/.test(row.date) && Number.isFinite(row.value));
+}
+
+function parseCsvRows(csv) {
+  const lines = String(csv)
+    .split(/\r?\n/)
+    .filter((line) => line.trim() && !line.startsWith("#"));
+  if (lines.length < 2) return [];
+  const headers = lines[0].split(",").map((item) => item.trim());
+  return lines.slice(1).map((line) => {
+    const values = line.split(",");
+    return Object.fromEntries(headers.map((header, index) => [header, values[index]]));
+  });
 }
 
 function mergeHistoryDates(...seriesList) {

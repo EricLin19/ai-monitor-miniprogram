@@ -29,10 +29,12 @@ async function main() {
     console.warn("OPENROUTER_API_KEY is not set. Keeping OpenRouter usage cache unchanged.");
   }
 
+  await mergeUpdate(updates, fetchTrakTokenIndex(), "TrakToken spend index");
   await mergeUpdate(updates, fetchOpenRouterModelPricing(), "OpenRouter model pricing");
   await mergeUpdate(updates, fetchVastGpuRentalPrices(), "Vast GPU rental prices");
   await mergeUpdate(updates, fetchSacraArrSignals(), "Sacra ARR signals");
   await mergeUpdate(updates, fetchSecCapex(), "SEC capex");
+  await mergeUpdate(updates, fetchSecCashFlowPressure(), "SEC hyperscaler cash flow pressure");
   await mergeUpdate(updates, fetchFredTechJobPostings(), "FRED tech job postings");
   await mergeUpdate(updates, fetchCrowdingUnwind(), "AI crowding unwind");
 
@@ -141,6 +143,72 @@ async function fetchOpenRouterUsage(key) {
       note: `Top10 模型集中度；第一模型：${topModels[0] ? topModels[0][0] : "N/A"}。`
     }
   };
+}
+
+async function fetchTrakTokenIndex() {
+  const payload = await getJsonFetch("https://www.traktoken.com/api/index/history", {
+    "User-Agent": "AI Monitor Mini Program"
+  });
+  const rows = Array.isArray(payload.data) ? payload.data : [];
+  if (!rows.length) return {};
+  const csvRows = await fetchTrakTokenCsvRows();
+
+  const latest = rows[rows.length - 1];
+  const latestCsv = csvRows[csvRows.length - 1] || {};
+  const previous = rows[Math.max(0, rows.length - 29)];
+  const price = Number(latest.spend_price_usd_ma7 || latest.spend_price_usd);
+  const ttsi = Number(latest.ttsi_ma7 || latest.ttsi);
+  const previousPrice = previous ? Number(previous.spend_price_usd_ma7 || previous.spend_price_usd) : NaN;
+  const change = Number.isFinite(previousPrice) ? pctChange(previousPrice, price) : 0;
+  const frontierPrice = Number(latest.spend_price_f_usd_ma7 || latest.spend_price_f_usd);
+  const openWeightPrice = Number(latest.spend_price_o_usd_ma7 || latest.spend_price_o_usd);
+  const freeShare = Number(latestCsv.free_share);
+  const premium = Number(latest.frontier_premium);
+
+  const updates = {
+    llm_token_spend_index: {
+      value: formatUsd(price),
+      unit: "$/1M weighted",
+      change: `TTSI ${round1(ttsi)} / 28d ${round1(change)}%`,
+      trend: change > 3 ? "up" : change < -3 ? "down" : "flat",
+      access: "自动",
+      source: "TrakToken Spend Index",
+      sourceUrl: "https://www.traktoken.com/spend-index",
+      note: "TTSI 是 OpenRouter Top50 模型用量加权价格指数，混合价格采用 input 80% + output 20%，更贴近 coding agent 场景。CC BY 4.0。"
+    },
+    frontier_premium: {
+      value: `${round1(premium)}x`,
+      unit: "frontier / open-weight",
+      change: `frontier ${formatUsd(frontierPrice)} / open-weight ${formatUsd(openWeightPrice)}`,
+      trend: premium > 8 ? "up" : premium < 4 ? "down" : "flat",
+      access: "自动",
+      source: "TrakToken Spend Index",
+      sourceUrl: "https://www.traktoken.com/spend-index",
+      note: "闭源前沿模型相对开源权重模型的用量加权价格溢价。溢价扩大说明高价值任务仍留在前沿模型；溢价收敛说明低成本模型替代压力增强。"
+    }
+  };
+
+  if (Number.isFinite(freeShare)) {
+    updates.free_token_share = {
+      value: `${round1(freeShare * 100)}%`,
+      unit: "free token share",
+      change: `basket ${latestCsv.basket_size || rows.length} models`,
+      trend: freeShare > 0.15 ? "down" : "up",
+      access: "自动",
+      source: "TrakToken Spend Index",
+      sourceUrl: "https://www.traktoken.com/spend-index",
+      note: "TTSI 篮子里的免费 token 用量占比。若免费占比下降而总支出上升，说明支付意愿没有塌，更多是量补价和结构迁移。"
+    };
+  }
+
+  return updates;
+}
+
+async function fetchTrakTokenCsvRows() {
+  const csv = await getTextFetch("https://www.traktoken.com/downloads/ttsi.csv", {
+    "User-Agent": "AI Monitor Mini Program"
+  });
+  return parseCsvRows(csv).filter((row) => row.date);
 }
 
 async function fetchOpenRouterModelPricing() {
@@ -317,6 +385,54 @@ async function fetchSecCapex() {
   }));
 
   return Object.fromEntries(entries.filter(Boolean));
+}
+
+async function fetchSecCashFlowPressure() {
+  const userAgent = process.env.SEC_USER_AGENT || "AI Monitor Mini Program contact@example.com";
+  const companies = [
+    { name: "Microsoft", cik: "0000789019" },
+    { name: "Alphabet", cik: "0001652044" },
+    { name: "Amazon", cik: "0001018724" },
+    { name: "Meta", cik: "0001326801" },
+    { name: "Oracle", cik: "0001341439" }
+  ];
+  const rows = [];
+
+  for (const company of companies) {
+    const capex = await fetchAnnualConcept(company.cik, [
+      "PaymentsToAcquirePropertyPlantAndEquipment",
+      "PaymentsToAcquireProductiveAssets",
+      "PropertyPlantAndEquipmentAdditions"
+    ], userAgent);
+    const ocf = await fetchAnnualConcept(company.cik, [
+      "NetCashProvidedByUsedInOperatingActivities",
+      "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations"
+    ], userAgent);
+    if (capex && ocf) rows.push({ ...company, capex, ocf });
+  }
+
+  const totalCapex = rows.reduce((sum, row) => sum + Math.abs(Number(row.capex.val || 0)), 0);
+  const totalOcf = rows.reduce((sum, row) => sum + Math.abs(Number(row.ocf.val || 0)), 0);
+  if (!rows.length || totalCapex <= 0 || totalOcf <= 0) return {};
+
+  const ratio = totalCapex / totalOcf * 100;
+  const latestFy = Math.max(...rows.map((row) => Number(row.capex.fy || row.ocf.fy || 0)));
+  const leader = rows
+    .map((row) => ({ name: row.name, ratio: Math.abs(Number(row.capex.val || 0)) / Math.max(1, Math.abs(Number(row.ocf.val || 0))) * 100 }))
+    .sort((a, b) => b.ratio - a.ratio)[0];
+
+  return {
+    hyperscaler_capex_ocf_ratio: {
+      value: `${round1(ratio)}%`,
+      unit: `FY${latestFy} CapEx / OCF`,
+      change: `${leader.name} highest ${round1(leader.ratio)}%`,
+      trend: ratio > 90 ? "down" : ratio > 70 ? "flat" : "up",
+      access: "自动",
+      source: "SEC companyconcept API",
+      sourceUrl: "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
+      note: "中金第二层现金流压力代理：Microsoft、Alphabet、Amazon、Meta、Oracle 年度资本开支相对经营性现金流。比例越高，说明内生现金流覆盖 AI 投资的余量越薄。"
+    }
+  };
 }
 
 async function fetchFredTechJobPostings() {
@@ -539,6 +655,34 @@ async function fetchAnnualCapex(cik, userAgent) {
   return best;
 }
 
+async function fetchAnnualConcept(cik, concepts, userAgent) {
+  let best = null;
+  for (const concept of concepts) {
+    try {
+      const url = `https://data.sec.gov/api/xbrl/companyconcept/CIK${cik}/us-gaap/${concept}.json`;
+      const payload = await getJson(url, {
+        "User-Agent": userAgent,
+        Accept: "application/json"
+      });
+      const rows = payload && payload.units && Array.isArray(payload.units.USD) ? payload.units.USD : [];
+      const annualRows = rows
+        .filter((row) => row.form === "10-K" && row.fp === "FY" && Number.isFinite(Number(row.val)))
+        .sort((a, b) => {
+          const fyDiff = Number(b.fy || 0) - Number(a.fy || 0);
+          if (fyDiff) return fyDiff;
+          return String(b.filed || "").localeCompare(String(a.filed || ""));
+        });
+
+      if (annualRows[0] && (!best || Number(annualRows[0].fy || 0) > Number(best.fy || 0))) {
+        best = { ...annualRows[0], concept };
+      }
+    } catch (error) {
+      // Some companies do not report every concept.
+    }
+  }
+  return best;
+}
+
 function fallbackFailureNote(current, update) {
   if (update || !current) return {};
   return {};
@@ -691,6 +835,15 @@ function getJson(url, headers = {}, redirectCount = 0) {
   });
 }
 
+async function getJsonFetch(url, headers = {}) {
+  const response = await fetch(url, { headers });
+  const body = await response.text();
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: ${body.slice(0, 180)}`);
+  }
+  return JSON.parse(body);
+}
+
 function getText(url, headers = {}, redirectCount = 0) {
   return new Promise((resolve, reject) => {
     const request = https.get(url, { headers }, (response) => {
@@ -755,6 +908,18 @@ function parseFredCsv(csv) {
       return { date, value };
     })
     .filter((row) => /^\d{4}-\d{2}-\d{2}$/.test(row.date) && Number.isFinite(row.value));
+}
+
+function parseCsvRows(csv) {
+  const lines = String(csv)
+    .split(/\r?\n/)
+    .filter((line) => line.trim() && !line.startsWith("#"));
+  if (lines.length < 2) return [];
+  const headers = lines[0].split(",").map((item) => item.trim());
+  return lines.slice(1).map((line) => {
+    const values = line.split(",");
+    return Object.fromEntries(headers.map((header, index) => [header, values[index]]));
+  });
 }
 
 function addDays(date, days) {
