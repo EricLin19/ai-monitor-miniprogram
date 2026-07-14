@@ -144,10 +144,20 @@ function buildRampCompositeMetrics(history) {
 }
 
 function buildSeries(history, prefix, limit) {
-  return Object.keys(history)
+  const byName = new Map();
+  Object.keys(history)
     .filter((id) => id.startsWith(prefix))
-    .map((id) => ({ id, name: humanizeRampName(id.slice(prefix.length)), points: getAllHistoryPoints(history[id]) }))
-    .filter((item) => item.points.length >= 10)
+    .forEach((id) => {
+      const name = humanizeRampName(id.slice(prefix.length));
+      const points = getAllHistoryPoints(history[id]);
+      if (points.length < 10) return;
+      const existing = byName.get(name);
+      if (!existing || points.length > existing.points.length) {
+        byName.set(name, { id, name, points });
+      }
+    });
+
+  return [...byName.values()]
     .sort((a, b) => latestValue(b.points) - latestValue(a.points))
     .slice(0, limit)
     .map((item, index) => ({ ...item, color: SERIES_COLORS[index % SERIES_COLORS.length] }));
@@ -198,24 +208,25 @@ function drawDetailChart(page, metric) {
   const max = Math.max(...values);
   const drawableWidth = width - leftPadding - rightPadding;
   const drawableHeight = height - topPadding - bottomPadding;
+  const timeBounds = getTimeBounds(points);
 
-  drawAxis(context, axisPoints, min, max, leftPadding, topPadding, drawableWidth, drawableHeight, height);
+  drawAxis(context, axisPoints, min, max, leftPadding, topPadding, drawableWidth, drawableHeight, height, timeBounds);
 
   if (series) {
     drawLegend(context, series, leftPadding, 12);
     series.forEach((item) => {
-      drawLine(context, item.points, min, max, leftPadding, topPadding, drawableWidth, drawableHeight, item.color, 2);
+      drawLine(context, item.points, min, max, leftPadding, topPadding, drawableWidth, drawableHeight, item.color, 2, timeBounds);
     });
   } else {
     const color = getTrendColor(metric.trend);
-    drawLine(context, points, min, max, leftPadding, topPadding, drawableWidth, drawableHeight, color, 2.5);
-    drawEndpointLabels(context, points, leftPadding, topPadding, drawableWidth, drawableHeight, min, max, color);
+    drawLine(context, points, min, max, leftPadding, topPadding, drawableWidth, drawableHeight, color, 2.5, timeBounds);
+    drawEndpointLabels(context, points, leftPadding, topPadding, drawableWidth, drawableHeight, min, max, color, timeBounds);
   }
 
   context.draw();
 }
 
-function drawAxis(context, points, min, max, leftPadding, topPadding, drawableWidth, drawableHeight, height) {
+function drawAxis(context, points, min, max, leftPadding, topPadding, drawableWidth, drawableHeight, height, timeBounds) {
   const bottomY = topPadding + drawableHeight;
   const mid = min + (max - min) / 2;
 
@@ -236,7 +247,7 @@ function drawAxis(context, points, min, max, leftPadding, topPadding, drawableWi
     context.fillText(formatAxisValue(tick.value), 2, y + 3);
   });
 
-  getDateTicks(points).forEach((tick) => {
+  getDateTicks(timeBounds).forEach((tick) => {
     const x = leftPadding + drawableWidth * tick.ratio;
     context.beginPath();
     context.moveTo(x, bottomY);
@@ -244,15 +255,17 @@ function drawAxis(context, points, min, max, leftPadding, topPadding, drawableWi
     context.stroke();
     context.setFillStyle("#9aa4af");
     context.setFontSize(10);
-    context.fillText(tick.label, Math.min(x, 286), height - 6);
+    context.setTextAlign(tick.align);
+    context.fillText(tick.label, x, height - 14);
+    context.setTextAlign("left");
   });
 }
 
-function drawLine(context, points, min, max, leftPadding, topPadding, drawableWidth, drawableHeight, color, lineWidth) {
+function drawLine(context, points, min, max, leftPadding, topPadding, drawableWidth, drawableHeight, color, lineWidth, timeBounds) {
   if (!points.length) return;
   const span = max - min || 1;
-  const plotted = points.map((item, index) => {
-    const ratioX = points.length === 1 ? 1 : index / (points.length - 1);
+  const plotted = points.map((item) => {
+    const ratioX = pointTimeRatio(item, timeBounds);
     const ratioY = (item.value - min) / span;
     return {
       x: leftPadding + drawableWidth * ratioX,
@@ -295,31 +308,35 @@ function drawLegend(context, series, x, y) {
   });
 }
 
-function drawEndpointLabels(context, points, leftPadding, topPadding, drawableWidth, drawableHeight, min, max, color) {
+function drawEndpointLabels(context, points, leftPadding, topPadding, drawableWidth, drawableHeight, min, max, color, timeBounds) {
   if (!points.length) return;
   const span = max - min || 1;
   const first = points[0];
   const last = points[points.length - 1];
   const firstY = topPadding + drawableHeight * (1 - (first.value - min) / span);
   const lastY = topPadding + drawableHeight * (1 - (last.value - min) / span);
+  const lastX = leftPadding + drawableWidth * pointTimeRatio(last, timeBounds);
 
   context.setFontSize(10);
   context.setFillStyle("#66707b");
   context.fillText(first.label || formatAxisValue(first.value), leftPadding - 28, Math.max(12, firstY - 8));
   context.setFillStyle(color);
-  context.fillText(last.label || formatAxisValue(last.value), Math.min(250, leftPadding + drawableWidth - 24), Math.max(12, lastY - 8));
+  context.setTextAlign("right");
+  context.fillText(last.label || formatAxisValue(last.value), Math.min(leftPadding + drawableWidth, lastX), Math.max(12, lastY - 8));
+  context.setTextAlign("left");
 }
 
-function getDateTicks(points) {
-  if (!points.length) return [];
-  const lastIndex = points.length - 1;
-  const middleIndex = Math.floor(lastIndex / 2);
-  return [0, middleIndex, lastIndex]
-    .filter((index, pos, arr) => arr.indexOf(index) === pos)
-    .map((index) => ({
-      ratio: lastIndex === 0 ? 1 : index / lastIndex,
-      label: formatDateTick(points[index].date)
-    }));
+function getDateTicks(timeBounds) {
+  if (!timeBounds || !Number.isFinite(timeBounds.start) || !Number.isFinite(timeBounds.end)) return [];
+  if (timeBounds.start === timeBounds.end) {
+    return [{ ratio: 1, label: formatDateTickFromTime(timeBounds.end), align: "right" }];
+  }
+  const mid = timeBounds.start + (timeBounds.end - timeBounds.start) / 2;
+  return [
+    { ratio: 0, label: formatDateTickFromTime(timeBounds.start), align: "left" },
+    { ratio: 0.5, label: formatDateTickFromTime(mid), align: "center" },
+    { ratio: 1, label: formatDateTickFromTime(timeBounds.end), align: "right" }
+  ];
 }
 
 function flattenSeries(series) {
@@ -390,6 +407,28 @@ function formatDateTick(date) {
   const raw = String(date || "");
   if (raw.length >= 7) return raw.slice(2, 7);
   return raw;
+}
+
+function getTimeBounds(points) {
+  const times = (points || [])
+    .map((point) => Date.parse(`${point.date}T00:00:00`))
+    .filter((time) => Number.isFinite(time));
+  if (!times.length) return { start: NaN, end: NaN };
+  return { start: Math.min(...times), end: Math.max(...times) };
+}
+
+function pointTimeRatio(point, timeBounds) {
+  const time = Date.parse(`${point.date}T00:00:00`);
+  if (!Number.isFinite(time) || !timeBounds || timeBounds.start === timeBounds.end) return 1;
+  return (time - timeBounds.start) / (timeBounds.end - timeBounds.start);
+}
+
+function formatDateTickFromTime(time) {
+  const date = new Date(time);
+  if (Number.isNaN(date.getTime())) return "--";
+  const year = String(date.getFullYear()).slice(2);
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  return `${year}-${month}`;
 }
 
 function formatAxisValue(value) {
