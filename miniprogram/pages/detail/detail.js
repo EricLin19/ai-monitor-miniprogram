@@ -130,26 +130,19 @@ function isLongWindowMetric(metric) {
 function drawDetailChart(page, points, trend) {
   const context = wx.createCanvasContext("detailChart", page);
   const width = 320;
-  const height = 150;
-  const padding = 18;
-  const labelHeight = 18;
+  const height = 176;
+  const leftPadding = 54;
+  const rightPadding = 16;
+  const topPadding = 18;
+  const bottomPadding = 28;
   const color = trend === "up" ? "#15803d" : trend === "down" ? "#b42318" : "#2563eb";
 
   context.clearRect(0, 0, width, height);
-  context.setStrokeStyle("#edf1f4");
-  context.setLineWidth(1);
-  [0.25, 0.5, 0.75].forEach((ratio) => {
-    const y = padding + (height - padding * 2) * ratio;
-    context.beginPath();
-    context.moveTo(padding, y);
-    context.lineTo(width - padding, y);
-    context.stroke();
-  });
 
   if (!points || !points.length) {
     context.setFillStyle("#9aa4af");
     context.setFontSize(13);
-    context.fillText("waiting for history", padding, 78);
+    context.fillText("waiting for history", leftPadding, 88);
     context.draw();
     return;
   }
@@ -158,14 +151,17 @@ function drawDetailChart(page, points, trend) {
   const min = Math.min(...values);
   const max = Math.max(...values);
   const span = max - min || 1;
-  const drawableWidth = width - padding * 2;
-  const drawableHeight = height - padding * 2 - labelHeight;
+  const drawableWidth = width - leftPadding - rightPadding;
+  const drawableHeight = height - topPadding - bottomPadding;
+
+  drawDetailAxis(context, points, min, max, leftPadding, topPadding, drawableWidth, drawableHeight, height);
+
   const plotted = points.map((item, index) => {
     const ratioX = points.length === 1 ? 1 : index / (points.length - 1);
     const ratioY = (item.value - min) / span;
     return {
-      x: padding + drawableWidth * ratioX,
-      y: padding + drawableHeight * (1 - ratioY)
+      x: leftPadding + drawableWidth * ratioX,
+      y: topPadding + drawableHeight * (1 - ratioY)
     };
   });
 
@@ -177,7 +173,7 @@ function drawDetailChart(page, points, trend) {
     else context.lineTo(point.x, point.y);
   });
   if (plotted.length === 1) {
-    context.lineTo(width - padding, plotted[0].y);
+    context.lineTo(width - rightPadding, plotted[0].y);
   }
   context.stroke();
 
@@ -193,20 +189,54 @@ function drawDetailChart(page, points, trend) {
     context.fill();
   });
 
-  drawMonthTicks(context, points, padding, drawableWidth, height);
+  drawEndpointLabels(context, points, plotted, color);
   context.draw();
 }
 
-function drawMonthTicks(context, points, padding, drawableWidth, height) {
+function drawDetailAxis(context, points, min, max, leftPadding, topPadding, drawableWidth, drawableHeight, height) {
+  const bottomY = topPadding + drawableHeight;
+  const mid = min + (max - min) / 2;
+
+  context.setStrokeStyle("#edf1f4");
+  context.setLineWidth(1);
+  [
+    { ratio: 0, value: max },
+    { ratio: 0.5, value: mid },
+    { ratio: 1, value: min }
+  ].forEach((tick) => {
+    const y = topPadding + drawableHeight * tick.ratio;
+    context.beginPath();
+    context.moveTo(leftPadding, y);
+    context.lineTo(leftPadding + drawableWidth, y);
+    context.stroke();
+    context.setFillStyle("#66707b");
+    context.setFontSize(10);
+    context.fillText(formatAxisValue(tick.value), 2, y + 3);
+  });
+
   const ticks = getMonthTicks(points);
-  if (!ticks.length) return;
   context.setFillStyle("#9aa4af");
   context.setFontSize(10);
   ticks.forEach((tick) => {
     const ratio = points.length === 1 ? 1 : tick.index / (points.length - 1);
-    const x = padding + drawableWidth * ratio;
-    context.fillText(tick.label, Math.min(x, 292), height - 3);
+    const x = leftPadding + drawableWidth * ratio;
+    context.beginPath();
+    context.moveTo(x, bottomY);
+    context.lineTo(x, bottomY + 4);
+    context.stroke();
+    context.fillText(tick.label, Math.min(x, 288), height - 5);
   });
+}
+
+function drawEndpointLabels(context, points, plotted, color) {
+  if (!points.length || !plotted.length) return;
+  const first = plotted[0];
+  const last = plotted[plotted.length - 1];
+  context.setFillStyle("#66707b");
+  context.setFontSize(10);
+  context.fillText(points[0].label || formatAxisValue(points[0].value), Math.max(2, first.x - 28), Math.max(12, first.y - 8));
+  context.setFillStyle(color);
+  context.fillText(points[points.length - 1].label || formatAxisValue(points[points.length - 1].value), Math.min(250, last.x - 20), Math.max(12, last.y - 8));
 }
 
 function getMonthTicks(points) {
@@ -226,4 +256,22 @@ function addDays(date, days) {
   const next = new Date(date);
   next.setDate(next.getDate() + days);
   return next;
+}
+
+function formatAxisValue(value) {
+  const abs = Math.abs(Number(value));
+  if (!Number.isFinite(abs)) return "--";
+  if (abs >= 1e12) return `${roundAxis(value / 1e12)}T`;
+  if (abs >= 1e9) return `${roundAxis(value / 1e9)}B`;
+  if (abs >= 1e6) return `${roundAxis(value / 1e6)}M`;
+  if (abs >= 1e3) return `${roundAxis(value / 1e3)}K`;
+  return roundAxis(value);
+}
+
+function roundAxis(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return "--";
+  if (Math.abs(number) >= 100) return String(Math.round(number));
+  if (Math.abs(number) >= 10) return number.toFixed(1).replace(/\.0$/, "");
+  return number.toFixed(2).replace(/\.?0+$/, "");
 }
