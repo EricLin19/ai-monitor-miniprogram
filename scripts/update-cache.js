@@ -778,11 +778,9 @@ function updateHistory(history, metrics, updatedAt) {
 }
 
 function trimHistory(records, metric) {
-  const days = getHistoryWindowDays(metric);
-  const cutoff = addDays(new Date(), -Math.max(days, 370));
   return records.filter((item) => {
     const date = new Date(`${item.date}T00:00:00`);
-    return !Number.isNaN(date.getTime()) && date >= cutoff;
+    return !Number.isNaN(date.getTime());
   });
 }
 

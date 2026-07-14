@@ -212,20 +212,17 @@ function backfillRampAiIndex() {
     updates.ramp_ai_adoption = dedupeHistory(rampHeadline);
   }
 
-  const techMedia = sectorRows
-    .filter((row) => row.sector === "Technology and media")
-    .map((row) => rampHistoryPoint(row, "Technology and media"))
-    .filter(Boolean);
-  if (techMedia.length) updates.ramp_sector_technology_media = dedupeHistory(techMedia);
+  for (const sector of topRampNames(sectorRows, "sector", 4)) {
+    const id = `ramp_sector_${slugifyRampName(sector)}`;
+    const records = sectorRows
+      .filter((row) => row.sector === sector)
+      .map((row) => rampHistoryPoint(row, sector))
+      .filter(Boolean);
+    if (records.length) updates[id] = dedupeHistory(records);
+  }
 
-  const finance = sectorRows
-    .filter((row) => row.sector === "Finance and insurance")
-    .map((row) => rampHistoryPoint(row, "Finance and insurance"))
-    .filter(Boolean);
-  if (finance.length) updates.ramp_sector_finance_insurance = dedupeHistory(finance);
-
-  for (const company of ["OpenAI", "Anthropic", "Google", "DeepSeek", "xAI"]) {
-    const id = `ramp_model_${company.toLowerCase().replace(/[^a-z0-9]+/g, "_")}`;
+  for (const company of topRampNames(modelRows, "model_company", 4)) {
+    const id = `ramp_model_${slugifyRampName(company)}`;
     const records = modelRows
       .filter((row) => row.model_company === company)
       .map((row) => rampHistoryPoint(row, company))
@@ -234,6 +231,30 @@ function backfillRampAiIndex() {
   }
 
   return updates;
+}
+
+function topRampNames(rows, nameField, limit) {
+  const latestDate = rows
+    .map((row) => row.date_month)
+    .filter(Boolean)
+    .sort()
+    .pop();
+  if (!latestDate) return [];
+  return rows
+    .filter((row) => row.date_month === latestDate)
+    .filter((row) => Number.isFinite(Number(row.adoption_rate_pct)))
+    .sort((a, b) => Number(b.adoption_rate_pct) - Number(a.adoption_rate_pct))
+    .slice(0, limit)
+    .map((row) => row[nameField])
+    .filter(Boolean);
+}
+
+function slugifyRampName(name) {
+  return String(name || "")
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
 }
 
 function readRampCsv(fileName) {

@@ -1528,8 +1528,8 @@ const metricHistory = {
     },
     {
       "date": "2026-07-14",
-      "value": 1.74,
-      "label": "$1.74/h",
+      "value": 1.73,
+      "label": "$1.73/h",
       "unit": "H100 p25"
     }
   ],
@@ -1604,12 +1604,96 @@ const metricHistory = {
     },
     {
       "date": "2026-07-14",
-      "value": 41.7,
-      "label": "$41.7/day",
+      "value": 41.6,
+      "label": "$41.6/day",
       "unit": "H100 spot proxy"
     }
   ],
   "ai_wage_pool_coverage": [
+    {
+      "date": "2023-10-01",
+      "value": 0.07586206896551724,
+      "label": "0.1%",
+      "unit": "ARR / exposed wage pool"
+    },
+    {
+      "date": "2023-10-10",
+      "value": 0.09655172413793103,
+      "label": "0.1%",
+      "unit": "ARR / exposed wage pool"
+    },
+    {
+      "date": "2023-12-30",
+      "value": 0.11724137931034484,
+      "label": "0.1%",
+      "unit": "ARR / exposed wage pool"
+    },
+    {
+      "date": "2023-12-31",
+      "value": 0.14482758620689654,
+      "label": "0.1%",
+      "unit": "ARR / exposed wage pool"
+    },
+    {
+      "date": "2024-01-01",
+      "value": 0.14393103448275862,
+      "label": "0.1%",
+      "unit": "ARR / exposed wage pool"
+    },
+    {
+      "date": "2024-06-12",
+      "value": 0.24048275862068963,
+      "label": "0.2%",
+      "unit": "ARR / exposed wage pool"
+    },
+    {
+      "date": "2024-08-15",
+      "value": 0.2542758620689655,
+      "label": "0.3%",
+      "unit": "ARR / exposed wage pool"
+    },
+    {
+      "date": "2024-09-12",
+      "value": 0.28186206896551724,
+      "label": "0.3%",
+      "unit": "ARR / exposed wage pool"
+    },
+    {
+      "date": "2024-12-31",
+      "value": 0.32413793103448274,
+      "label": "0.3%",
+      "unit": "ARR / exposed wage pool"
+    },
+    {
+      "date": "2025-03-01",
+      "value": 0.35172413793103446,
+      "label": "0.4%",
+      "unit": "ARR / exposed wage pool"
+    },
+    {
+      "date": "2025-03-31",
+      "value": 0.393103448275862,
+      "label": "0.4%",
+      "unit": "ARR / exposed wage pool"
+    },
+    {
+      "date": "2025-05-30",
+      "value": 0.46206896551724136,
+      "label": "0.5%",
+      "unit": "ARR / exposed wage pool"
+    },
+    {
+      "date": "2025-06-09",
+      "value": 0.8965517241379309,
+      "label": "0.9%",
+      "unit": "ARR / exposed wage pool"
+    },
+    {
+      "date": "2025-07-01",
+      "value": 0.9655172413793104,
+      "label": "1%",
+      "unit": "ARR / exposed wage pool"
+    },
     {
       "date": "2025-07-29",
       "value": 1.0344827586206897,
@@ -4557,6 +4641,30 @@ const metricHistory = {
   ],
   "hyperscaler_capex_ocf_ratio": [
     {
+      "date": "2024-09-30",
+      "value": 49.72764227642276,
+      "label": "49.7%",
+      "unit": "CapEx / OCF"
+    },
+    {
+      "date": "2024-12-31",
+      "value": 55.97291905055306,
+      "label": "56%",
+      "unit": "CapEx / OCF"
+    },
+    {
+      "date": "2025-03-31",
+      "value": 64.71273550362825,
+      "label": "64.7%",
+      "unit": "CapEx / OCF"
+    },
+    {
+      "date": "2025-06-30",
+      "value": 72.29307642597695,
+      "label": "72.3%",
+      "unit": "CapEx / OCF"
+    },
+    {
       "date": "2025-09-30",
       "value": 63.28596643431956,
       "label": "63.3%",
@@ -5733,6 +5841,192 @@ const metricHistory = {
   ],
   "ramp_enterprise_paid_ratio": [
     {
+      "date": "2023-01-01",
+      "value": 7.46,
+      "label": "7.5%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2023-02-01",
+      "value": 12.06,
+      "label": "12.1%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2023-03-01",
+      "value": 20.91,
+      "label": "20.9%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2023-04-01",
+      "value": 24.4,
+      "label": "24.4%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2023-05-01",
+      "value": 26.1,
+      "label": "26.1%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2023-06-01",
+      "value": 25.66,
+      "label": "25.7%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2023-07-01",
+      "value": 27.14,
+      "label": "27.1%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2023-08-01",
+      "value": 27.89,
+      "label": "27.9%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2023-09-01",
+      "value": 29.03,
+      "label": "29%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2023-10-01",
+      "value": 29.65,
+      "label": "29.7%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2023-11-01",
+      "value": 30.47,
+      "label": "30.5%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2023-12-01",
+      "value": 31.68,
+      "label": "31.7%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-01-01",
+      "value": 32.51,
+      "label": "32.5%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-02-01",
+      "value": 32.73,
+      "label": "32.7%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-03-01",
+      "value": 33.35,
+      "label": "33.4%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-04-01",
+      "value": 33.12,
+      "label": "33.1%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-05-01",
+      "value": 33.22,
+      "label": "33.2%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-06-01",
+      "value": 33.47,
+      "label": "33.5%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-07-01",
+      "value": 33.88,
+      "label": "33.9%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-08-01",
+      "value": 34.21,
+      "label": "34.2%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-09-01",
+      "value": 35.21,
+      "label": "35.2%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-10-01",
+      "value": 35.83,
+      "label": "35.8%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-11-01",
+      "value": 36.36,
+      "label": "36.4%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-12-01",
+      "value": 36.65,
+      "label": "36.7%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2025-01-01",
+      "value": 37.73,
+      "label": "37.7%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2025-02-01",
+      "value": 38.67,
+      "label": "38.7%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2025-03-01",
+      "value": 39.17,
+      "label": "39.2%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2025-04-01",
+      "value": 40.77,
+      "label": "40.8%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2025-05-01",
+      "value": 41.9,
+      "label": "41.9%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2025-06-01",
+      "value": 42.72,
+      "label": "42.7%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2025-07-01",
+      "value": 44.08,
+      "label": "44.1%",
+      "unit": "enterprise adoption"
+    },
+    {
       "date": "2025-08-01",
       "value": 44.98,
       "label": "45%",
@@ -6651,6 +6945,30 @@ const metricHistory = {
   ],
   "hyperscaler_fcf": [
     {
+      "date": "2024-09-30",
+      "value": 61835000000,
+      "label": "$61.8B",
+      "unit": "OCF-CapEx"
+    },
+    {
+      "date": "2024-12-31",
+      "value": 60023000000,
+      "label": "$60.0B",
+      "unit": "OCF-CapEx"
+    },
+    {
+      "date": "2025-03-31",
+      "value": 42404000000,
+      "label": "$42.4B",
+      "unit": "OCF-CapEx"
+    },
+    {
+      "date": "2025-06-30",
+      "value": 37301000000,
+      "label": "$37.3B",
+      "unit": "OCF-CapEx"
+    },
+    {
       "date": "2025-09-30",
       "value": 61362000000,
       "label": "$61.4B",
@@ -6677,6 +6995,36 @@ const metricHistory = {
   ],
   "big5_debt_equity_ratio": [
     {
+      "date": "2024-06-30",
+      "value": 44.37453109514562,
+      "label": "44.4%",
+      "unit": "liabilities/equity"
+    },
+    {
+      "date": "2024-09-30",
+      "value": 42.75847301915236,
+      "label": "42.8%",
+      "unit": "liabilities/equity"
+    },
+    {
+      "date": "2024-12-31",
+      "value": 40.499107707212715,
+      "label": "40.5%",
+      "unit": "liabilities/equity"
+    },
+    {
+      "date": "2025-03-31",
+      "value": 39.650987182159675,
+      "label": "39.7%",
+      "unit": "liabilities/equity"
+    },
+    {
+      "date": "2025-06-30",
+      "value": 40.94342581529029,
+      "label": "40.9%",
+      "unit": "liabilities/equity"
+    },
+    {
       "date": "2025-09-30",
       "value": 39.80068833286259,
       "label": "39.8%",
@@ -6702,6 +7050,192 @@ const metricHistory = {
     }
   ],
   "ramp_ai_adoption": [
+    {
+      "date": "2023-01-01",
+      "value": 7.46,
+      "label": "7.5%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2023-02-01",
+      "value": 12.06,
+      "label": "12.1%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2023-03-01",
+      "value": 20.91,
+      "label": "20.9%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2023-04-01",
+      "value": 24.4,
+      "label": "24.4%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2023-05-01",
+      "value": 26.1,
+      "label": "26.1%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2023-06-01",
+      "value": 25.66,
+      "label": "25.7%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2023-07-01",
+      "value": 27.14,
+      "label": "27.1%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2023-08-01",
+      "value": 27.89,
+      "label": "27.9%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2023-09-01",
+      "value": 29.03,
+      "label": "29%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2023-10-01",
+      "value": 29.65,
+      "label": "29.7%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2023-11-01",
+      "value": 30.47,
+      "label": "30.5%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2023-12-01",
+      "value": 31.68,
+      "label": "31.7%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-01-01",
+      "value": 32.51,
+      "label": "32.5%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-02-01",
+      "value": 32.73,
+      "label": "32.7%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-03-01",
+      "value": 33.35,
+      "label": "33.4%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-04-01",
+      "value": 33.12,
+      "label": "33.1%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-05-01",
+      "value": 33.22,
+      "label": "33.2%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-06-01",
+      "value": 33.47,
+      "label": "33.5%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-07-01",
+      "value": 33.88,
+      "label": "33.9%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-08-01",
+      "value": 34.21,
+      "label": "34.2%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-09-01",
+      "value": 35.21,
+      "label": "35.2%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-10-01",
+      "value": 35.83,
+      "label": "35.8%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-11-01",
+      "value": 36.36,
+      "label": "36.4%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2024-12-01",
+      "value": 36.65,
+      "label": "36.7%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2025-01-01",
+      "value": 37.73,
+      "label": "37.7%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2025-02-01",
+      "value": 38.67,
+      "label": "38.7%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2025-03-01",
+      "value": 39.17,
+      "label": "39.2%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2025-04-01",
+      "value": 40.77,
+      "label": "40.8%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2025-05-01",
+      "value": 41.9,
+      "label": "41.9%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2025-06-01",
+      "value": 42.72,
+      "label": "42.7%",
+      "unit": "enterprise adoption"
+    },
+    {
+      "date": "2025-07-01",
+      "value": 44.08,
+      "label": "44.1%",
+      "unit": "enterprise adoption"
+    },
     {
       "date": "2025-08-01",
       "value": 44.98,
@@ -6925,6 +7459,192 @@ const metricHistory = {
   ],
   "ramp_model_openai": [
     {
+      "date": "2023-01-01",
+      "value": 2.06,
+      "label": "2.1%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2023-02-01",
+      "value": 7.74,
+      "label": "7.7%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2023-03-01",
+      "value": 17.65,
+      "label": "17.7%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2023-04-01",
+      "value": 21.64,
+      "label": "21.6%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2023-05-01",
+      "value": 23.62,
+      "label": "23.6%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2023-06-01",
+      "value": 23.09,
+      "label": "23.1%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2023-07-01",
+      "value": 24.69,
+      "label": "24.7%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2023-08-01",
+      "value": 25.62,
+      "label": "25.6%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2023-09-01",
+      "value": 26.76,
+      "label": "26.8%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2023-10-01",
+      "value": 27.47,
+      "label": "27.5%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2023-11-01",
+      "value": 28.2,
+      "label": "28.2%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2023-12-01",
+      "value": 29.56,
+      "label": "29.6%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2024-01-01",
+      "value": 30.42,
+      "label": "30.4%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2024-02-01",
+      "value": 30.64,
+      "label": "30.6%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2024-03-01",
+      "value": 30.97,
+      "label": "31%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2024-04-01",
+      "value": 30.48,
+      "label": "30.5%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2024-05-01",
+      "value": 30.72,
+      "label": "30.7%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2024-06-01",
+      "value": 30.73,
+      "label": "30.7%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2024-07-01",
+      "value": 30.9,
+      "label": "30.9%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2024-08-01",
+      "value": 30.97,
+      "label": "31%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2024-09-01",
+      "value": 31.93,
+      "label": "31.9%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2024-10-01",
+      "value": 32.31,
+      "label": "32.3%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2024-11-01",
+      "value": 32.68,
+      "label": "32.7%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2024-12-01",
+      "value": 33,
+      "label": "33%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2025-01-01",
+      "value": 34.01,
+      "label": "34%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2025-02-01",
+      "value": 35.09,
+      "label": "35.1%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2025-03-01",
+      "value": 35.7,
+      "label": "35.7%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2025-04-01",
+      "value": 37.53,
+      "label": "37.5%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2025-05-01",
+      "value": 38.69,
+      "label": "38.7%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2025-06-01",
+      "value": 39.38,
+      "label": "39.4%",
+      "unit": "OpenAI"
+    },
+    {
+      "date": "2025-07-01",
+      "value": 40.26,
+      "label": "40.3%",
+      "unit": "OpenAI"
+    },
+    {
       "date": "2025-08-01",
       "value": 40.97,
       "label": "41%",
@@ -6999,6 +7719,192 @@ const metricHistory = {
   ],
   "ramp_model_anthropic": [
     {
+      "date": "2023-01-01",
+      "value": 0.17,
+      "label": "0.2%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2023-02-01",
+      "value": 0.17,
+      "label": "0.2%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2023-03-01",
+      "value": 0.28,
+      "label": "0.3%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2023-04-01",
+      "value": 0.19,
+      "label": "0.2%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2023-05-01",
+      "value": 0.29,
+      "label": "0.3%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2023-06-01",
+      "value": 0.27,
+      "label": "0.3%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2023-07-01",
+      "value": 0.43,
+      "label": "0.4%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2023-08-01",
+      "value": 0.39,
+      "label": "0.4%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2023-09-01",
+      "value": 0.96,
+      "label": "1%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2023-10-01",
+      "value": 1.13,
+      "label": "1.1%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2023-11-01",
+      "value": 1.34,
+      "label": "1.3%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2023-12-01",
+      "value": 1.4,
+      "label": "1.4%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2024-01-01",
+      "value": 1.48,
+      "label": "1.5%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2024-02-01",
+      "value": 1.55,
+      "label": "1.6%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2024-03-01",
+      "value": 4.61,
+      "label": "4.6%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2024-04-01",
+      "value": 5.3,
+      "label": "5.3%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2024-05-01",
+      "value": 5.01,
+      "label": "5%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2024-06-01",
+      "value": 5.73,
+      "label": "5.7%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2024-07-01",
+      "value": 7.11,
+      "label": "7.1%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2024-08-01",
+      "value": 8.07,
+      "label": "8.1%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2024-09-01",
+      "value": 8.91,
+      "label": "8.9%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2024-10-01",
+      "value": 9.61,
+      "label": "9.6%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2024-11-01",
+      "value": 10.31,
+      "label": "10.3%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2024-12-01",
+      "value": 10.57,
+      "label": "10.6%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2025-01-01",
+      "value": 11.15,
+      "label": "11.2%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2025-02-01",
+      "value": 11.47,
+      "label": "11.5%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2025-03-01",
+      "value": 12.5,
+      "label": "12.5%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2025-04-01",
+      "value": 12.44,
+      "label": "12.4%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2025-05-01",
+      "value": 12.92,
+      "label": "12.9%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2025-06-01",
+      "value": 14.2,
+      "label": "14.2%",
+      "unit": "Anthropic"
+    },
+    {
+      "date": "2025-07-01",
+      "value": 15.45,
+      "label": "15.5%",
+      "unit": "Anthropic"
+    },
+    {
       "date": "2025-08-01",
       "value": 16.2,
       "label": "16.2%",
@@ -7072,6 +7978,192 @@ const metricHistory = {
     }
   ],
   "ramp_model_google": [
+    {
+      "date": "2023-01-01",
+      "value": 4.73,
+      "label": "4.7%",
+      "unit": "Google"
+    },
+    {
+      "date": "2023-02-01",
+      "value": 4.75,
+      "label": "4.8%",
+      "unit": "Google"
+    },
+    {
+      "date": "2023-03-01",
+      "value": 4.62,
+      "label": "4.6%",
+      "unit": "Google"
+    },
+    {
+      "date": "2023-04-01",
+      "value": 4.81,
+      "label": "4.8%",
+      "unit": "Google"
+    },
+    {
+      "date": "2023-05-01",
+      "value": 4.73,
+      "label": "4.7%",
+      "unit": "Google"
+    },
+    {
+      "date": "2023-06-01",
+      "value": 4.76,
+      "label": "4.8%",
+      "unit": "Google"
+    },
+    {
+      "date": "2023-07-01",
+      "value": 4.67,
+      "label": "4.7%",
+      "unit": "Google"
+    },
+    {
+      "date": "2023-08-01",
+      "value": 4.63,
+      "label": "4.6%",
+      "unit": "Google"
+    },
+    {
+      "date": "2023-09-01",
+      "value": 4.68,
+      "label": "4.7%",
+      "unit": "Google"
+    },
+    {
+      "date": "2023-10-01",
+      "value": 4.6,
+      "label": "4.6%",
+      "unit": "Google"
+    },
+    {
+      "date": "2023-11-01",
+      "value": 4.93,
+      "label": "4.9%",
+      "unit": "Google"
+    },
+    {
+      "date": "2023-12-01",
+      "value": 4.96,
+      "label": "5%",
+      "unit": "Google"
+    },
+    {
+      "date": "2024-01-01",
+      "value": 4.88,
+      "label": "4.9%",
+      "unit": "Google"
+    },
+    {
+      "date": "2024-02-01",
+      "value": 4.94,
+      "label": "4.9%",
+      "unit": "Google"
+    },
+    {
+      "date": "2024-03-01",
+      "value": 5.36,
+      "label": "5.4%",
+      "unit": "Google"
+    },
+    {
+      "date": "2024-04-01",
+      "value": 5.73,
+      "label": "5.7%",
+      "unit": "Google"
+    },
+    {
+      "date": "2024-05-01",
+      "value": 5.67,
+      "label": "5.7%",
+      "unit": "Google"
+    },
+    {
+      "date": "2024-06-01",
+      "value": 5.64,
+      "label": "5.6%",
+      "unit": "Google"
+    },
+    {
+      "date": "2024-07-01",
+      "value": 5.71,
+      "label": "5.7%",
+      "unit": "Google"
+    },
+    {
+      "date": "2024-08-01",
+      "value": 5.84,
+      "label": "5.8%",
+      "unit": "Google"
+    },
+    {
+      "date": "2024-09-01",
+      "value": 5.95,
+      "label": "6%",
+      "unit": "Google"
+    },
+    {
+      "date": "2024-10-01",
+      "value": 5.97,
+      "label": "6%",
+      "unit": "Google"
+    },
+    {
+      "date": "2024-11-01",
+      "value": 6.29,
+      "label": "6.3%",
+      "unit": "Google"
+    },
+    {
+      "date": "2024-12-01",
+      "value": 6.36,
+      "label": "6.4%",
+      "unit": "Google"
+    },
+    {
+      "date": "2025-01-01",
+      "value": 6.41,
+      "label": "6.4%",
+      "unit": "Google"
+    },
+    {
+      "date": "2025-02-01",
+      "value": 6.43,
+      "label": "6.4%",
+      "unit": "Google"
+    },
+    {
+      "date": "2025-03-01",
+      "value": 4.67,
+      "label": "4.7%",
+      "unit": "Google"
+    },
+    {
+      "date": "2025-04-01",
+      "value": 5.04,
+      "label": "5%",
+      "unit": "Google"
+    },
+    {
+      "date": "2025-05-01",
+      "value": 5.44,
+      "label": "5.4%",
+      "unit": "Google"
+    },
+    {
+      "date": "2025-06-01",
+      "value": 5.39,
+      "label": "5.4%",
+      "unit": "Google"
+    },
+    {
+      "date": "2025-07-01",
+      "value": 5.46,
+      "label": "5.5%",
+      "unit": "Google"
+    },
     {
       "date": "2025-08-01",
       "value": 5.33,
@@ -7221,6 +8313,192 @@ const metricHistory = {
   ],
   "ramp_model_xai": [
     {
+      "date": "2023-01-01",
+      "value": 0.84,
+      "label": "0.8%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2023-02-01",
+      "value": 0.89,
+      "label": "0.9%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2023-03-01",
+      "value": 1.05,
+      "label": "1.1%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2023-04-01",
+      "value": 1.03,
+      "label": "1%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2023-05-01",
+      "value": 1.01,
+      "label": "1%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2023-06-01",
+      "value": 1.03,
+      "label": "1%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2023-07-01",
+      "value": 1.08,
+      "label": "1.1%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2023-08-01",
+      "value": 1.16,
+      "label": "1.2%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2023-09-01",
+      "value": 1.1,
+      "label": "1.1%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2023-10-01",
+      "value": 1.08,
+      "label": "1.1%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2023-11-01",
+      "value": 1.1,
+      "label": "1.1%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2023-12-01",
+      "value": 1.1,
+      "label": "1.1%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2024-01-01",
+      "value": 1.15,
+      "label": "1.2%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2024-02-01",
+      "value": 1.11,
+      "label": "1.1%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2024-03-01",
+      "value": 1.2,
+      "label": "1.2%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2024-04-01",
+      "value": 1.17,
+      "label": "1.2%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2024-05-01",
+      "value": 1.21,
+      "label": "1.2%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2024-06-01",
+      "value": 1.08,
+      "label": "1.1%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2024-07-01",
+      "value": 1.1,
+      "label": "1.1%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2024-08-01",
+      "value": 1.15,
+      "label": "1.2%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2024-09-01",
+      "value": 1.07,
+      "label": "1.1%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2024-10-01",
+      "value": 1.17,
+      "label": "1.2%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2024-11-01",
+      "value": 1.15,
+      "label": "1.2%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2024-12-01",
+      "value": 1.14,
+      "label": "1.1%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2025-01-01",
+      "value": 1.24,
+      "label": "1.2%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2025-02-01",
+      "value": 1.53,
+      "label": "1.5%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2025-03-01",
+      "value": 1.78,
+      "label": "1.8%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2025-04-01",
+      "value": 1.77,
+      "label": "1.8%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2025-05-01",
+      "value": 1.75,
+      "label": "1.8%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2025-06-01",
+      "value": 1.72,
+      "label": "1.7%",
+      "unit": "xAI"
+    },
+    {
+      "date": "2025-07-01",
+      "value": 3.3,
+      "label": "3.3%",
+      "unit": "xAI"
+    },
+    {
       "date": "2025-08-01",
       "value": 3.04,
       "label": "3%",
@@ -7329,6 +8607,1022 @@ const metricHistory = {
       "value": 16493000000,
       "label": "$16.5B",
       "unit": "2026FY"
+    }
+  ],
+  "ramp_sector_technology_and_media": [
+    {
+      "date": "2023-01-01",
+      "value": 15.37,
+      "label": "15.4%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2023-02-01",
+      "value": 24.74,
+      "label": "24.7%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2023-03-01",
+      "value": 40.94,
+      "label": "40.9%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2023-04-01",
+      "value": 46.91,
+      "label": "46.9%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2023-05-01",
+      "value": 49.7,
+      "label": "49.7%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2023-06-01",
+      "value": 50.19,
+      "label": "50.2%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2023-07-01",
+      "value": 51.98,
+      "label": "52%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2023-08-01",
+      "value": 51.73,
+      "label": "51.7%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2023-09-01",
+      "value": 53.65,
+      "label": "53.7%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2023-10-01",
+      "value": 55.36,
+      "label": "55.4%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2023-11-01",
+      "value": 57.13,
+      "label": "57.1%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2023-12-01",
+      "value": 58.02,
+      "label": "58%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2024-01-01",
+      "value": 59.06,
+      "label": "59.1%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2024-02-01",
+      "value": 59.65,
+      "label": "59.7%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2024-03-01",
+      "value": 61.02,
+      "label": "61%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2024-04-01",
+      "value": 61.59,
+      "label": "61.6%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2024-05-01",
+      "value": 61.64,
+      "label": "61.6%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2024-06-01",
+      "value": 61.98,
+      "label": "62%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2024-07-01",
+      "value": 63.06,
+      "label": "63.1%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2024-08-01",
+      "value": 63.51,
+      "label": "63.5%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2024-09-01",
+      "value": 64.47,
+      "label": "64.5%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2024-10-01",
+      "value": 64.99,
+      "label": "65%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2024-11-01",
+      "value": 65.88,
+      "label": "65.9%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2024-12-01",
+      "value": 65.66,
+      "label": "65.7%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2025-01-01",
+      "value": 66.49,
+      "label": "66.5%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2025-02-01",
+      "value": 67.12,
+      "label": "67.1%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2025-03-01",
+      "value": 68.7,
+      "label": "68.7%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2025-04-01",
+      "value": 69.03,
+      "label": "69%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2025-05-01",
+      "value": 69.9,
+      "label": "69.9%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2025-06-01",
+      "value": 70.75,
+      "label": "70.8%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2025-07-01",
+      "value": 72.23,
+      "label": "72.2%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2025-08-01",
+      "value": 72.42,
+      "label": "72.4%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2025-09-01",
+      "value": 73.01,
+      "label": "73%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2025-10-01",
+      "value": 73.08,
+      "label": "73.1%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2025-11-01",
+      "value": 73.36,
+      "label": "73.4%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2025-12-01",
+      "value": 73.27,
+      "label": "73.3%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2026-01-01",
+      "value": 74.56,
+      "label": "74.6%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2026-02-01",
+      "value": 76.82,
+      "label": "76.8%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2026-03-01",
+      "value": 77.97,
+      "label": "78%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2026-04-01",
+      "value": 79.13,
+      "label": "79.1%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2026-05-01",
+      "value": 79.01,
+      "label": "79%",
+      "unit": "Technology and media"
+    },
+    {
+      "date": "2026-06-01",
+      "value": 79.76,
+      "label": "79.8%",
+      "unit": "Technology and media"
+    }
+  ],
+  "ramp_sector_finance_and_insurance": [
+    {
+      "date": "2023-01-01",
+      "value": 8.65,
+      "label": "8.7%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2023-02-01",
+      "value": 13.73,
+      "label": "13.7%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2023-03-01",
+      "value": 27.97,
+      "label": "28%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2023-04-01",
+      "value": 32.8,
+      "label": "32.8%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2023-05-01",
+      "value": 35.03,
+      "label": "35%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2023-06-01",
+      "value": 33.85,
+      "label": "33.9%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2023-07-01",
+      "value": 37.75,
+      "label": "37.8%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2023-08-01",
+      "value": 38.92,
+      "label": "38.9%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2023-09-01",
+      "value": 39.18,
+      "label": "39.2%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2023-10-01",
+      "value": 39.92,
+      "label": "39.9%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2023-11-01",
+      "value": 41.41,
+      "label": "41.4%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2023-12-01",
+      "value": 43.13,
+      "label": "43.1%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2024-01-01",
+      "value": 44.83,
+      "label": "44.8%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2024-02-01",
+      "value": 45.26,
+      "label": "45.3%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2024-03-01",
+      "value": 45.8,
+      "label": "45.8%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2024-04-01",
+      "value": 45.54,
+      "label": "45.5%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2024-05-01",
+      "value": 45.75,
+      "label": "45.8%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2024-06-01",
+      "value": 46.99,
+      "label": "47%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2024-07-01",
+      "value": 48.6,
+      "label": "48.6%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2024-08-01",
+      "value": 49.76,
+      "label": "49.8%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2024-09-01",
+      "value": 49.77,
+      "label": "49.8%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2024-10-01",
+      "value": 50.27,
+      "label": "50.3%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2024-11-01",
+      "value": 51.24,
+      "label": "51.2%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2024-12-01",
+      "value": 51.65,
+      "label": "51.7%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2025-01-01",
+      "value": 53.07,
+      "label": "53.1%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2025-02-01",
+      "value": 55.11,
+      "label": "55.1%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2025-03-01",
+      "value": 55.37,
+      "label": "55.4%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2025-04-01",
+      "value": 57.15,
+      "label": "57.2%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2025-05-01",
+      "value": 58.56,
+      "label": "58.6%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2025-06-01",
+      "value": 59.59,
+      "label": "59.6%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2025-07-01",
+      "value": 59.57,
+      "label": "59.6%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2025-08-01",
+      "value": 60.1,
+      "label": "60.1%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2025-09-01",
+      "value": 59.83,
+      "label": "59.8%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2025-10-01",
+      "value": 60.46,
+      "label": "60.5%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2025-11-01",
+      "value": 60.2,
+      "label": "60.2%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2025-12-01",
+      "value": 59.65,
+      "label": "59.7%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2026-01-01",
+      "value": 62.35,
+      "label": "62.4%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2026-02-01",
+      "value": 66.56,
+      "label": "66.6%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2026-03-01",
+      "value": 69.68,
+      "label": "69.7%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2026-04-01",
+      "value": 71.09,
+      "label": "71.1%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2026-05-01",
+      "value": 73.05,
+      "label": "73.1%",
+      "unit": "Finance and insurance"
+    },
+    {
+      "date": "2026-06-01",
+      "value": 73.55,
+      "label": "73.6%",
+      "unit": "Finance and insurance"
+    }
+  ],
+  "ramp_sector_manufacturing": [
+    {
+      "date": "2023-01-01",
+      "value": 4.31,
+      "label": "4.3%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2023-02-01",
+      "value": 6.87,
+      "label": "6.9%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2023-03-01",
+      "value": 13,
+      "label": "13%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2023-04-01",
+      "value": 15.77,
+      "label": "15.8%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2023-05-01",
+      "value": 16.54,
+      "label": "16.5%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2023-06-01",
+      "value": 16.98,
+      "label": "17%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2023-07-01",
+      "value": 19.03,
+      "label": "19%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2023-08-01",
+      "value": 19.92,
+      "label": "19.9%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2023-09-01",
+      "value": 21.38,
+      "label": "21.4%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2023-10-01",
+      "value": 22.48,
+      "label": "22.5%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2023-11-01",
+      "value": 23.43,
+      "label": "23.4%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2023-12-01",
+      "value": 24.73,
+      "label": "24.7%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2024-01-01",
+      "value": 25.71,
+      "label": "25.7%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2024-02-01",
+      "value": 25.55,
+      "label": "25.6%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2024-03-01",
+      "value": 26.45,
+      "label": "26.5%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2024-04-01",
+      "value": 26.3,
+      "label": "26.3%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2024-05-01",
+      "value": 26.49,
+      "label": "26.5%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2024-06-01",
+      "value": 27.09,
+      "label": "27.1%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2024-07-01",
+      "value": 27.65,
+      "label": "27.7%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2024-08-01",
+      "value": 28.74,
+      "label": "28.7%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2024-09-01",
+      "value": 30.32,
+      "label": "30.3%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2024-10-01",
+      "value": 31.45,
+      "label": "31.5%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2024-11-01",
+      "value": 31.98,
+      "label": "32%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2024-12-01",
+      "value": 31.8,
+      "label": "31.8%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2025-01-01",
+      "value": 33.77,
+      "label": "33.8%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2025-02-01",
+      "value": 34.41,
+      "label": "34.4%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2025-03-01",
+      "value": 35.56,
+      "label": "35.6%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2025-04-01",
+      "value": 38.14,
+      "label": "38.1%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2025-05-01",
+      "value": 39.93,
+      "label": "39.9%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2025-06-01",
+      "value": 41.34,
+      "label": "41.3%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2025-07-01",
+      "value": 43.46,
+      "label": "43.5%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2025-08-01",
+      "value": 44.81,
+      "label": "44.8%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2025-09-01",
+      "value": 44.7,
+      "label": "44.7%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2025-10-01",
+      "value": 44.73,
+      "label": "44.7%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2025-11-01",
+      "value": 46.62,
+      "label": "46.6%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2025-12-01",
+      "value": 46.84,
+      "label": "46.8%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2026-01-01",
+      "value": 47.91,
+      "label": "47.9%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2026-02-01",
+      "value": 50.4,
+      "label": "50.4%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2026-03-01",
+      "value": 53.49,
+      "label": "53.5%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2026-04-01",
+      "value": 56.34,
+      "label": "56.3%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2026-05-01",
+      "value": 58.01,
+      "label": "58%",
+      "unit": "Manufacturing"
+    },
+    {
+      "date": "2026-06-01",
+      "value": 59.14,
+      "label": "59.1%",
+      "unit": "Manufacturing"
+    }
+  ],
+  "ramp_sector_retail": [
+    {
+      "date": "2023-01-01",
+      "value": 5.29,
+      "label": "5.3%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2023-02-01",
+      "value": 8.16,
+      "label": "8.2%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2023-03-01",
+      "value": 13.48,
+      "label": "13.5%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2023-04-01",
+      "value": 16.49,
+      "label": "16.5%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2023-05-01",
+      "value": 16.16,
+      "label": "16.2%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2023-06-01",
+      "value": 17.17,
+      "label": "17.2%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2023-07-01",
+      "value": 18.32,
+      "label": "18.3%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2023-08-01",
+      "value": 17.41,
+      "label": "17.4%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2023-09-01",
+      "value": 19.13,
+      "label": "19.1%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2023-10-01",
+      "value": 17.91,
+      "label": "17.9%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2023-11-01",
+      "value": 20.1,
+      "label": "20.1%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2023-12-01",
+      "value": 22.89,
+      "label": "22.9%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2024-01-01",
+      "value": 24.38,
+      "label": "24.4%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2024-02-01",
+      "value": 24.28,
+      "label": "24.3%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2024-03-01",
+      "value": 23.94,
+      "label": "23.9%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2024-04-01",
+      "value": 24.71,
+      "label": "24.7%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2024-05-01",
+      "value": 25.93,
+      "label": "25.9%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2024-06-01",
+      "value": 24.31,
+      "label": "24.3%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2024-07-01",
+      "value": 25.39,
+      "label": "25.4%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2024-08-01",
+      "value": 24.7,
+      "label": "24.7%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2024-09-01",
+      "value": 25.2,
+      "label": "25.2%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2024-10-01",
+      "value": 26.47,
+      "label": "26.5%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2024-11-01",
+      "value": 27.29,
+      "label": "27.3%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2024-12-01",
+      "value": 28.88,
+      "label": "28.9%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2025-01-01",
+      "value": 28.64,
+      "label": "28.6%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2025-02-01",
+      "value": 28.36,
+      "label": "28.4%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2025-03-01",
+      "value": 27.87,
+      "label": "27.9%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2025-04-01",
+      "value": 33.81,
+      "label": "33.8%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2025-05-01",
+      "value": 32.66,
+      "label": "32.7%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2025-06-01",
+      "value": 33.79,
+      "label": "33.8%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2025-07-01",
+      "value": 35.54,
+      "label": "35.5%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2025-08-01",
+      "value": 35.22,
+      "label": "35.2%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2025-09-01",
+      "value": 35.54,
+      "label": "35.5%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2025-10-01",
+      "value": 35.95,
+      "label": "36%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2025-11-01",
+      "value": 37.09,
+      "label": "37.1%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2025-12-01",
+      "value": 37.66,
+      "label": "37.7%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2026-01-01",
+      "value": 39.5,
+      "label": "39.5%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2026-02-01",
+      "value": 42.32,
+      "label": "42.3%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2026-03-01",
+      "value": 44.69,
+      "label": "44.7%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2026-04-01",
+      "value": 47,
+      "label": "47%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2026-05-01",
+      "value": 47,
+      "label": "47%",
+      "unit": "Retail"
+    },
+    {
+      "date": "2026-06-01",
+      "value": 48.81,
+      "label": "48.8%",
+      "unit": "Retail"
     }
   ]
 };

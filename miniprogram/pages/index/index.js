@@ -1,5 +1,8 @@
 const { fetchMetrics } = require("../../services/metrics");
 
+const MIN_HISTORY_POINTS = 10;
+const SERIES_COLORS = ["#2563eb", "#15803d", "#b7791f", "#b42318", "#7c3aed"];
+
 const HIDDEN_METRIC_IDS = new Set([
   "aa_value",
   "cloudflare_ai_bots",
@@ -8,10 +11,10 @@ const HIDDEN_METRIC_IDS = new Set([
   "hbm_dram_pressure",
   "ai_hardware_heat",
   "ai_downstream_odds",
-  "agent_token_share"
+  "agent_token_share",
+  "ramp_enterprise_paid_ratio",
+  "ramp_ai_adoption"
 ]);
-
-const MIN_HISTORY_POINTS = 10;
 
 const PRIORITY_METRIC_IDS = new Set([
   "openrouter_tokens",
@@ -24,7 +27,10 @@ const PRIORITY_METRIC_IDS = new Set([
   "googl_capex",
   "amzn_capex",
   "meta_capex",
-  "orcl_capex"
+  "orcl_capex",
+  "ramp_total",
+  "ramp_by_sector",
+  "ramp_by_model"
 ]);
 
 const METRIC_ORDER = [
@@ -39,42 +45,18 @@ const METRIC_ORDER = [
   "amzn_capex",
   "meta_capex",
   "orcl_capex",
+  "ramp_total",
+  "ramp_by_sector",
+  "ramp_by_model",
   "llm_token_spend_index",
   "frontier_premium",
   "free_token_share",
-  "ramp_enterprise_paid_ratio",
-  "ramp_ai_adoption",
-  "ramp_sector_technology_media",
-  "ramp_sector_finance_insurance",
-  "ramp_model_openai",
-  "ramp_model_anthropic",
-  "ramp_model_google",
-  "ramp_model_deepseek",
-  "ramp_model_xai",
   "token_arr_conversion",
   "ai_wage_pool_coverage",
   "ig_credit_spread",
   "tech_finance_employment",
   "data_center_construction",
-  "tech_job_postings",
-  "aa_us_score",
-  "aa_cn_score",
-  "silicon_token_expenditure",
-  "openai_app_revenue",
-  "anthropic_app_revenue",
-  "hyperscaler_cloud_revenue",
-  "hyperscaler_fcf",
-  "hyperscaler_capex_ocf_ratio",
-  "big5_debt_equity_ratio",
-  "big5_bond_issuance",
-  "big5_cds",
-  "silicon_vc_confidence",
-  "ai_risk_investment",
-  "tech_finance_layoff_share",
-  "api_price_index",
-  "gpu_rental_price",
-  "revenue_per_gpu",
-  "ai_capex_roi"
+  "tech_job_postings"
 ];
 
 const METRIC_GROUP_KEYS = {
@@ -83,32 +65,18 @@ const METRIC_GROUP_KEYS = {
     "openrouter_us_tokens",
     "openrouter_cn_tokens",
     "openrouter_share",
+    "ramp_total",
+    "ramp_by_sector",
+    "ramp_by_model",
     "llm_token_spend_index",
     "frontier_premium",
-    "free_token_share",
-    "ramp_enterprise_paid_ratio",
-    "ramp_ai_adoption",
-    "ramp_sector_technology_media",
-    "ramp_sector_finance_insurance",
-    "ramp_model_openai",
-    "ramp_model_anthropic",
-    "ramp_model_google",
-    "ramp_model_deepseek",
-    "ramp_model_xai",
-    "aa_us_score",
-    "aa_cn_score",
-    "silicon_token_expenditure"
+    "free_token_share"
   ]),
   cash: new Set([
     "openai_arr",
     "anthropic_arr",
     "token_arr_conversion",
-    "ai_wage_pool_coverage",
-    "openai_app_revenue",
-    "anthropic_app_revenue",
-    "hyperscaler_cloud_revenue",
-    "hyperscaler_fcf",
-    "hyperscaler_capex_ocf_ratio"
+    "ai_wage_pool_coverage"
   ]),
   capex: new Set([
     "msft_capex",
@@ -118,19 +86,8 @@ const METRIC_GROUP_KEYS = {
     "orcl_capex",
     "data_center_construction"
   ]),
-  funding: new Set([
-    "big5_debt_equity_ratio",
-    "big5_bond_issuance",
-    "big5_cds",
-    "ig_credit_spread",
-    "silicon_vc_confidence",
-    "ai_risk_investment"
-  ]),
-  constraints: new Set([
-    "tech_finance_employment",
-    "tech_finance_layoff_share",
-    "tech_job_postings"
-  ])
+  funding: new Set(["ig_credit_spread"]),
+  constraints: new Set(["tech_finance_employment", "tech_job_postings"])
 };
 
 const DISPLAY_OVERRIDES = {
@@ -141,15 +98,6 @@ const DISPLAY_OVERRIDES = {
   llm_token_spend_index: { group: "① 需求", title: "使用量加权 LLM Token 支出指数", cadence: "日", access: "自动" },
   frontier_premium: { group: "① 需求", title: "前沿闭源模型价格溢价", cadence: "日", access: "自动" },
   free_token_share: { group: "① 需求", title: "免费 Token 占比", cadence: "日", access: "自动" },
-  ramp_enterprise_paid_ratio: { group: "① 需求", title: "Ramp：美国企业 AI 付费/采用率", cadence: "月", access: "本地CSV" },
-  ramp_ai_adoption: { group: "① 需求", title: "Ramp AI Index：企业 AI 采用率", cadence: "月", access: "本地CSV" },
-  ramp_sector_technology_media: { group: "① 需求", title: "Ramp：科技与媒体行业 AI 采用率", cadence: "月", access: "本地CSV" },
-  ramp_sector_finance_insurance: { group: "① 需求", title: "Ramp：金融保险行业 AI 采用率", cadence: "月", access: "本地CSV" },
-  ramp_model_openai: { group: "① 需求", title: "Ramp：OpenAI 企业支出份额", cadence: "月", access: "本地CSV" },
-  ramp_model_anthropic: { group: "① 需求", title: "Ramp：Anthropic 企业支出份额", cadence: "月", access: "本地CSV" },
-  ramp_model_google: { group: "① 需求", title: "Ramp：Google 企业支出份额", cadence: "月", access: "本地CSV" },
-  ramp_model_deepseek: { group: "① 需求", title: "Ramp：DeepSeek 企业支出份额", cadence: "月", access: "本地CSV" },
-  ramp_model_xai: { group: "① 需求", title: "Ramp：xAI 企业支出份额", cadence: "月", access: "本地CSV" },
   openai_arr: { group: "② 现金流", title: "OpenAI ARR", cadence: "事件/月", access: "自动" },
   anthropic_arr: { group: "② 现金流", title: "Anthropic ARR", cadence: "事件/月", access: "自动" },
   token_arr_conversion: { group: "② 现金流", title: "Token 用量转 ARR 效率", cadence: "日/周", access: "自动" },
@@ -159,9 +107,9 @@ const DISPLAY_OVERRIDES = {
   amzn_capex: { group: "③ CapEx", title: "Amazon CapEx", cadence: "季", access: "自动" },
   meta_capex: { group: "③ CapEx", title: "Meta CapEx", cadence: "季", access: "自动" },
   orcl_capex: { group: "③ CapEx", title: "Oracle CapEx", cadence: "季", access: "自动" },
+  data_center_construction: { group: "③ CapEx", title: "美国数据中心年化建筑额", cadence: "月", access: "半自动" },
   ig_credit_spread: { group: "④ 资金来源", title: "美国投资级信用债利差", cadence: "日", access: "自动" },
   tech_finance_employment: { group: "⑤ 外部约束", title: "美国科技和金融就业人数", cadence: "月", access: "半自动" },
-  data_center_construction: { group: "③ CapEx", title: "美国数据中心年化建筑额", cadence: "月", access: "半自动" },
   tech_job_postings: { group: "⑤ 外部约束", title: "美国软件开发招聘指数", cadence: "周", access: "自动" }
 };
 
@@ -189,7 +137,8 @@ Page({
     this.setData({ loading: true });
     const data = await fetchMetrics();
     const history = data.history || {};
-    const metrics = decorateMetrics(data.metrics || [], history)
+    const rawMetrics = [...(data.metrics || []), ...buildRampCompositeMetrics(history)];
+    const metrics = decorateMetrics(rawMetrics, history)
       .filter((item) => shouldDisplayMetric(item, history));
 
     this.setData({
@@ -242,7 +191,7 @@ Page({
 
   drawVisibleCharts() {
     (this.data.visibleMetrics || []).forEach((metric) => {
-      drawSparkline(this, metric.canvasId, metric.chartPoints, metric.trend);
+      drawSparkline(this, metric);
     });
   }
 });
@@ -251,21 +200,95 @@ function decorateMetrics(metrics, history) {
   return metrics
     .map((item) => {
       const displayItem = { ...item, ...(DISPLAY_OVERRIDES[item.id] || {}) };
+      const chartPoints = displayItem.series ? [] : getAllHistoryPoints(history[item.id] || []);
       return {
         ...displayItem,
         groupKey: getMetricGroupKey(item.id),
         accessClass: getAccessClass(displayItem.access),
         canvasId: `chart_${item.id}`,
-        chartPoints: getWindowedHistory(displayItem, history[item.id] || []),
-        windowLabel: getWindowLabel(displayItem),
-        historyLabel: getHistoryLabel(history[item.id] || [])
+        chartPoints,
+        windowLabel: "全历史趋势",
+        historyLabel: getHistoryLabel(displayItem.series ? getLongestSeries(displayItem.series) : history[item.id] || [])
       };
     })
     .sort((a, b) => getMetricOrder(a.id) - getMetricOrder(b.id));
 }
 
+function buildRampCompositeMetrics(history) {
+  const total = getAllHistoryPoints(history.ramp_enterprise_paid_ratio || history.ramp_ai_adoption || []);
+  const sectorSeries = buildSeries(history, "ramp_sector_", 4);
+  const modelSeries = buildSeries(history, "ramp_model_", 4);
+  const metrics = [];
+
+  if (total.length) {
+    metrics.push({
+      id: "ramp_total",
+      group: "① 需求",
+      title: "Ramp AI Index：企业 AI 采用率",
+      value: total[total.length - 1].label || `${roundAxis(total[total.length - 1].value)}%`,
+      unit: "企业采用率",
+      change: `${total[0].date} → ${total[total.length - 1].date}`,
+      trend: getTrend(total),
+      cadence: "月",
+      access: "本地CSV",
+      source: "Ramp AI Index CSV",
+      sourceUrl: "https://ramp.com/data/ai-index",
+      note: "总指数：美国企业 AI 工具采用率，反映 AI 从试用走向预算化采购的速度。"
+    });
+  }
+
+  if (sectorSeries.length) {
+    metrics.push({
+      id: "ramp_by_sector",
+      group: "① 需求",
+      title: "Ramp AI Index：Top4 行业采用率",
+      value: latestSeriesSummary(sectorSeries),
+      unit: "行业 Top4",
+      change: seriesDateRange(sectorSeries),
+      trend: getTrend(sectorSeries[0].points),
+      cadence: "月",
+      access: "本地CSV",
+      source: "Ramp AI Index sector CSV",
+      sourceUrl: "https://ramp.com/data/ai-index",
+      note: `多线图：${sectorSeries.map((item) => item.name).join("、")}。看 AI 采用率是否从科技行业扩散到更多传统行业。`,
+      series: sectorSeries
+    });
+  }
+
+  if (modelSeries.length) {
+    metrics.push({
+      id: "ramp_by_model",
+      group: "① 需求",
+      title: "Ramp AI Index：Top4 模型公司份额",
+      value: latestSeriesSummary(modelSeries),
+      unit: "模型 Top4",
+      change: seriesDateRange(modelSeries),
+      trend: getTrend(modelSeries[0].points),
+      cadence: "月",
+      access: "本地CSV",
+      source: "Ramp AI Index model CSV",
+      sourceUrl: "https://ramp.com/data/ai-index",
+      note: `多线图：${modelSeries.map((item) => item.name).join("、")}。看企业 AI 预算在 OpenAI、Anthropic、Google 等模型公司之间如何迁移。`,
+      series: modelSeries
+    });
+  }
+
+  return metrics;
+}
+
+function buildSeries(history, prefix, limit) {
+  return Object.keys(history)
+    .filter((id) => id.startsWith(prefix))
+    .map((id) => ({ id, name: humanizeRampName(id.slice(prefix.length)), points: getAllHistoryPoints(history[id]) }))
+    .filter((item) => item.points.length >= MIN_HISTORY_POINTS)
+    .sort((a, b) => latestValue(b.points) - latestValue(a.points))
+    .slice(0, limit)
+    .map((item, index) => ({ ...item, color: SERIES_COLORS[index % SERIES_COLORS.length] }));
+}
+
 function shouldDisplayMetric(item, history) {
   if (!item || HIDDEN_METRIC_IDS.has(item.id)) return false;
+  if (item.id.startsWith("ramp_sector_") || item.id.startsWith("ramp_model_")) return false;
   if (PRIORITY_METRIC_IDS.has(item.id)) return true;
   const records = history[item.id] || [];
   return Array.isArray(records) && records.length >= MIN_HISTORY_POINTS;
@@ -290,24 +313,15 @@ function getAccessClass(access) {
   return "semi";
 }
 
-function getWindowedHistory(metric, records) {
-  const days = isLongWindowMetric(metric) ? 1100 : isQuarterlyMetric(metric) ? 370 : 92;
-  const cutoff = addDays(new Date(), -days);
-  return records
-    .filter((item) => {
-      const date = new Date(`${item.date}T00:00:00`);
-      return !Number.isNaN(date.getTime()) && date >= cutoff && Number.isFinite(Number(item.value));
-    })
+function getAllHistoryPoints(records) {
+  return (Array.isArray(records) ? records : [])
+    .filter((item) => Number.isFinite(Number(item.value)) && item.date)
     .map((item) => ({
       date: item.date,
       value: Number(item.value),
       label: item.label || String(item.value)
-    }));
-}
-
-function getWindowLabel(metric) {
-  if (isLongWindowMetric(metric)) return "近三年趋势";
-  return isQuarterlyMetric(metric) ? "近一年趋势" : "近三个月趋势";
+    }))
+    .sort((a, b) => String(a.date).localeCompare(String(b.date)));
 }
 
 function getHistoryLabel(records) {
@@ -317,40 +331,22 @@ function getHistoryLabel(records) {
   return `${count} 个点`;
 }
 
-function isQuarterlyMetric(metric) {
-  return [
-    "msft_capex",
-    "googl_capex",
-    "amzn_capex",
-    "meta_capex",
-    "orcl_capex",
-    "openai_arr",
-    "anthropic_arr",
-    "hyperscaler_capex_ocf_ratio",
-    "ai_capex_roi"
-  ].includes(metric.id);
-}
-
-function isLongWindowMetric(metric) {
-  return ["openai_arr", "anthropic_arr"].includes(metric.id);
-}
-
-function drawSparkline(page, canvasId, points, trend) {
-  const context = wx.createCanvasContext(canvasId, page);
+function drawSparkline(page, metric) {
+  const context = wx.createCanvasContext(metric.canvasId, page);
+  const points = metric.series ? flattenSeries(metric.series) : metric.chartPoints;
   const width = 300;
-  const height = 92;
+  const height = 118;
   const leftPadding = 44;
-  const rightPadding = 8;
-  const topPadding = 10;
-  const bottomPadding = 20;
-  const color = trend === "up" ? "#15803d" : trend === "down" ? "#b42318" : "#2563eb";
+  const rightPadding = 10;
+  const topPadding = metric.series ? 28 : 12;
+  const bottomPadding = 28;
 
   context.clearRect(0, 0, width, height);
 
   if (!points || !points.length) {
     context.setFillStyle("#9aa4af");
     context.setFontSize(11);
-    context.fillText("waiting for history", leftPadding, 48);
+    context.fillText("waiting for history", leftPadding, 58);
     context.draw();
     return;
   }
@@ -358,56 +354,25 @@ function drawSparkline(page, canvasId, points, trend) {
   const values = points.map((item) => item.value);
   const min = Math.min(...values);
   const max = Math.max(...values);
-  const span = max - min || 1;
   const drawableWidth = width - leftPadding - rightPadding;
   const drawableHeight = height - topPadding - bottomPadding;
+  const axisPoints = metric.series ? getLongestSeries(metric.series) : metric.chartPoints;
 
-  drawSparkAxis(context, points, min, max, leftPadding, topPadding, drawableWidth, drawableHeight, height);
+  drawAxis(context, axisPoints, min, max, leftPadding, topPadding, drawableWidth, drawableHeight, height);
 
-  const plotted = points.map((item, index) => {
-    const ratioX = points.length === 1 ? 1 : index / (points.length - 1);
-    const ratioY = (item.value - min) / span;
-    return {
-      x: leftPadding + drawableWidth * ratioX,
-      y: topPadding + drawableHeight * (1 - ratioY)
-    };
-  });
-
-  context.setStrokeStyle(color);
-  context.setLineWidth(2);
-  context.beginPath();
-  plotted.forEach((point, index) => {
-    if (index === 0) context.moveTo(point.x, point.y);
-    else context.lineTo(point.x, point.y);
-  });
-  if (plotted.length === 1) {
-    context.lineTo(width - padding, plotted[0].y);
+  if (metric.series) {
+    drawLegend(context, metric.series, leftPadding, 8);
+    metric.series.forEach((series) => {
+      drawLine(context, series.points, min, max, leftPadding, topPadding, drawableWidth, drawableHeight, series.color, 1.6);
+    });
+  } else {
+    drawLine(context, metric.chartPoints, min, max, leftPadding, topPadding, drawableWidth, drawableHeight, getTrendColor(metric.trend), 2);
   }
-  context.stroke();
-
-  const last = plotted[plotted.length - 1];
-  const first = plotted[0];
-  context.setFillStyle("#ffffff");
-  context.beginPath();
-  context.arc(first.x, first.y, 3, 0, Math.PI * 2);
-  context.fill();
-  context.setFillStyle(color);
-  context.beginPath();
-  context.arc(first.x, first.y, 2.5, 0, Math.PI * 2);
-  context.fill();
-  context.setFillStyle("#ffffff");
-  context.beginPath();
-  context.arc(last.x, last.y, 3.5, 0, Math.PI * 2);
-  context.fill();
-  context.setFillStyle(color);
-  context.beginPath();
-  context.arc(last.x, last.y, 3, 0, Math.PI * 2);
-  context.fill();
 
   context.draw();
 }
 
-function drawSparkAxis(context, points, min, max, leftPadding, topPadding, drawableWidth, drawableHeight, height) {
+function drawAxis(context, points, min, max, leftPadding, topPadding, drawableWidth, drawableHeight, height) {
   const bottomY = topPadding + drawableHeight;
   context.setStrokeStyle("#edf1f4");
   context.setLineWidth(1);
@@ -424,23 +389,143 @@ function drawSparkAxis(context, points, min, max, leftPadding, topPadding, drawa
   context.fillText(formatAxisValue(max), 2, topPadding + 4);
   context.fillText(formatAxisValue(min), 2, bottomY + 3);
 
-  const start = String(points[0].date || "").slice(5, 10);
-  const end = String(points[points.length - 1].date || "").slice(5, 10);
-  context.fillText(start, leftPadding, height - 4);
-  context.fillText(end, Math.max(leftPadding, leftPadding + drawableWidth - 32), height - 4);
+  getDateTicks(points).forEach((tick) => {
+    const x = leftPadding + drawableWidth * tick.ratio;
+    context.beginPath();
+    context.moveTo(x, bottomY);
+    context.lineTo(x, bottomY + 4);
+    context.stroke();
+    context.fillText(tick.label, Math.min(x, 268), height - 6);
+  });
 }
 
-function getMonthTicks(points) {
-  const ticks = [];
-  let lastMonth = "";
-  points.forEach((point, index) => {
-    const date = String(point.date || "");
-    const month = date.slice(5, 7);
-    if (!month || month === lastMonth) return;
-    lastMonth = month;
-    ticks.push({ index, label: date.slice(5, 10) || month });
+function drawLine(context, points, min, max, leftPadding, topPadding, drawableWidth, drawableHeight, color, lineWidth) {
+  if (!points.length) return;
+  const span = max - min || 1;
+  const plotted = points.map((item, index) => {
+    const ratioX = points.length === 1 ? 1 : index / (points.length - 1);
+    const ratioY = (item.value - min) / span;
+    return {
+      x: leftPadding + drawableWidth * ratioX,
+      y: topPadding + drawableHeight * (1 - ratioY)
+    };
   });
-  return ticks.slice(-4);
+
+  context.setStrokeStyle(color);
+  context.setLineWidth(lineWidth);
+  context.beginPath();
+  plotted.forEach((point, index) => {
+    if (index === 0) context.moveTo(point.x, point.y);
+    else context.lineTo(point.x, point.y);
+  });
+  if (plotted.length === 1) context.lineTo(leftPadding + drawableWidth, plotted[0].y);
+  context.stroke();
+
+  const last = plotted[plotted.length - 1];
+  context.setFillStyle("#ffffff");
+  context.beginPath();
+  context.arc(last.x, last.y, 3, 0, Math.PI * 2);
+  context.fill();
+  context.setFillStyle(color);
+  context.beginPath();
+  context.arc(last.x, last.y, 2.5, 0, Math.PI * 2);
+  context.fill();
+}
+
+function drawLegend(context, series, x, y) {
+  context.setFontSize(8);
+  series.forEach((item, index) => {
+    const col = index % 2;
+    const row = Math.floor(index / 2);
+    const lx = x + col * 118;
+    const ly = y + row * 10;
+    context.setFillStyle(item.color);
+    context.fillRect(lx, ly - 5, 7, 2);
+    context.setFillStyle("#66707b");
+    context.fillText(shortLabel(item.name), lx + 10, ly);
+  });
+}
+
+function getDateTicks(points) {
+  if (!points.length) return [];
+  const lastIndex = points.length - 1;
+  const middleIndex = Math.floor(lastIndex / 2);
+  return [0, middleIndex, lastIndex]
+    .filter((index, pos, arr) => arr.indexOf(index) === pos)
+    .map((index) => ({
+      ratio: lastIndex === 0 ? 1 : index / lastIndex,
+      label: formatDateTick(points[index].date)
+    }));
+}
+
+function flattenSeries(series) {
+  return series.flatMap((item) => item.points || []);
+}
+
+function getLongestSeries(series) {
+  return [...(series || [])].sort((a, b) => (b.points || []).length - (a.points || []).length)[0]?.points || [];
+}
+
+function latestValue(points) {
+  return points.length ? Number(points[points.length - 1].value) : -Infinity;
+}
+
+function latestSeriesSummary(series) {
+  if (!series.length) return "--";
+  const first = series[0];
+  const latest = first.points[first.points.length - 1];
+  return `${first.name} ${latest ? latest.label : "--"}`;
+}
+
+function seriesDateRange(series) {
+  const points = getLongestSeries(series);
+  if (!points.length) return "--";
+  return `${points[0].date} → ${points[points.length - 1].date}`;
+}
+
+function getTrend(points) {
+  if (!points || points.length < 2) return "flat";
+  const first = points[0].value;
+  const last = points[points.length - 1].value;
+  if (last > first) return "up";
+  if (last < first) return "down";
+  return "flat";
+}
+
+function getTrendColor(trend) {
+  if (trend === "up") return "#15803d";
+  if (trend === "down") return "#b42318";
+  return "#2563eb";
+}
+
+function humanizeRampName(slug) {
+  const names = {
+    technology_media: "科技媒体",
+    technology_and_media: "科技媒体",
+    finance_insurance: "金融保险",
+    finance_and_insurance: "金融保险",
+    manufacturing: "制造业",
+    retail: "零售",
+    health_care: "医疗健康",
+    construction: "建筑",
+    accommodation_and_food_services: "住宿餐饮",
+    openai: "OpenAI",
+    anthropic: "Anthropic",
+    google: "Google",
+    deepseek: "DeepSeek",
+    xai: "xAI"
+  };
+  return names[slug] || slug.replace(/_/g, " ");
+}
+
+function shortLabel(label) {
+  return String(label || "").length > 8 ? `${String(label).slice(0, 8)}…` : String(label || "");
+}
+
+function formatDateTick(date) {
+  const raw = String(date || "");
+  if (raw.length >= 7) return raw.slice(2, 7);
+  return raw;
 }
 
 function formatAxisValue(value) {
@@ -481,10 +566,4 @@ function buildErrorMessage(data) {
   if (Array.isArray(data.errors) && data.errors.length) return data.errors.join("；");
   if (data.source === "mock") return "当前显示 mock 数据，说明云函数未返回实时指标。";
   return "";
-}
-
-function addDays(date, days) {
-  const next = new Date(date);
-  next.setDate(next.getDate() + days);
-  return next;
 }
