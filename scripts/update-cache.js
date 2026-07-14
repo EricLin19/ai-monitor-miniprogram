@@ -37,10 +37,22 @@ const CICC_CORE_META = {
   data_center_construction: { group: "④ 外部约束", title: "数据中心：美国数据中心年化建筑额", unit: "十亿美元", change: "环比 1% / 同比 23%", cadence: "月", access: "半自动", source: "US Census / 中金整理", note: "数据中心建筑额衡量电力、土地、施工等物理约束。若建设放缓，算力供给和云扩张都会受限。" }
 };
 
+const EXTRA_METRIC_TEMPLATES = [
+  { id: "orcl_capex", group: "③ CapEx", title: "Oracle CapEx", value: "待更新", unit: "季度", change: "SEC", trend: "flat", cadence: "季", access: "自动", source: "SEC Company Facts API", sourceUrl: "https://www.sec.gov/edgar/sec-api-documentation", note: "Oracle 资本开支，和 Microsoft、Alphabet、Amazon、Meta 一起观察云厂商 AI 基建投入强度。" },
+  { id: "ramp_ai_adoption", group: "① 需求", title: "Ramp AI Index：企业 AI 采用率", value: "待更新", unit: "%", change: "Ramp CSV", trend: "flat", cadence: "月", access: "本地CSV", source: "Ramp AI Index CSV", sourceUrl: "https://ramp.com/data/ai-index", note: "Ramp 基于企业支出数据观察 AI 工具采用率，更接近企业预算化采购，而不是普通用户热度。" },
+  { id: "ramp_sector_technology_media", group: "① 需求", title: "Ramp：科技与媒体行业 AI 采用率", value: "待更新", unit: "%", change: "Ramp CSV", trend: "flat", cadence: "月", access: "本地CSV", source: "Ramp AI Index CSV", sourceUrl: "https://ramp.com/data/ai-index", note: "科技与媒体行业通常是 AI 工具最先渗透的企业样本，用来观察早期采用者是否继续加速。" },
+  { id: "ramp_sector_finance_insurance", group: "① 需求", title: "Ramp：金融保险行业 AI 采用率", value: "待更新", unit: "%", change: "Ramp CSV", trend: "flat", cadence: "月", access: "本地CSV", source: "Ramp AI Index CSV", sourceUrl: "https://ramp.com/data/ai-index", note: "金融保险行业采用率能观察 AI 从科技圈向严肃企业预算扩散的速度。" },
+  { id: "ramp_model_openai", group: "① 需求", title: "Ramp：OpenAI 企业支出份额", value: "待更新", unit: "%", change: "Ramp CSV", trend: "flat", cadence: "月", access: "本地CSV", source: "Ramp AI Index CSV", sourceUrl: "https://ramp.com/data/ai-index", note: "OpenAI 在 Ramp 企业 AI 支出样本中的份额，观察企业端模型选择是否继续集中。" },
+  { id: "ramp_model_anthropic", group: "① 需求", title: "Ramp：Anthropic 企业支出份额", value: "待更新", unit: "%", change: "Ramp CSV", trend: "flat", cadence: "月", access: "本地CSV", source: "Ramp AI Index CSV", sourceUrl: "https://ramp.com/data/ai-index", note: "Anthropic 在 Ramp 企业 AI 支出样本中的份额，观察 Claude 在企业和 coding 场景的商业化渗透。" },
+  { id: "ramp_model_google", group: "① 需求", title: "Ramp：Google 企业支出份额", value: "待更新", unit: "%", change: "Ramp CSV", trend: "flat", cadence: "月", access: "本地CSV", source: "Ramp AI Index CSV", sourceUrl: "https://ramp.com/data/ai-index", note: "Google 模型在 Ramp 企业 AI 支出样本中的份额，观察 Gemini 企业端渗透。" },
+  { id: "ramp_model_deepseek", group: "① 需求", title: "Ramp：DeepSeek 企业支出份额", value: "待更新", unit: "%", change: "Ramp CSV", trend: "flat", cadence: "月", access: "本地CSV", source: "Ramp AI Index CSV", sourceUrl: "https://ramp.com/data/ai-index", note: "DeepSeek 在 Ramp 企业 AI 支出样本中的份额，观察低成本模型是否进入海外企业预算。" },
+  { id: "ramp_model_xai", group: "① 需求", title: "Ramp：xAI 企业支出份额", value: "待更新", unit: "%", change: "Ramp CSV", trend: "flat", cadence: "月", access: "本地CSV", source: "Ramp AI Index CSV", sourceUrl: "https://ramp.com/data/ai-index", note: "xAI 在 Ramp 企业 AI 支出样本中的份额，观察新模型供给方的企业端突破。" }
+];
+
 loadDotEnv(path.join(rootDir, ".env"));
 
 async function main() {
-  const current = require(miniMetricsPath).metrics;
+  const current = ensureMetricTemplates(require(miniMetricsPath).metrics);
   const currentById = Object.fromEntries(current.map((item) => [item.id, item]));
   const existingHistory = readHistory();
   const updates = {};
@@ -126,6 +138,12 @@ function readManualOverrides() {
     if (!value || typeof value !== "object") return false;
     return !placeholders.has(String(value.value || "").trim());
   }));
+}
+
+function ensureMetricTemplates(metrics) {
+  const existingIds = new Set(metrics.map((item) => item.id));
+  const missing = EXTRA_METRIC_TEMPLATES.filter((item) => !existingIds.has(item.id));
+  return [...metrics, ...missing];
 }
 
 function normalizeCiccMetricMetadata(item) {
@@ -276,43 +294,81 @@ async function fetchTrakTokenIndex() {
 }
 
 function fetchRampAiIndex() {
-  const filePath = path.join(rampDir, "ramp-ai-index-headline.csv");
-  if (!fs.existsSync(filePath)) return {};
-  const rows = parseCsvRows(fs.readFileSync(filePath, "utf8"))
+  const headlinePath = path.join(rampDir, "ramp-ai-index-headline.csv");
+  const sectorPath = path.join(rampDir, "ramp-ai-index-sector.csv");
+  const modelPath = path.join(rampDir, "ramp-ai-index-models.csv");
+  if (!fs.existsSync(headlinePath)) return {};
+
+  const rows = parseCsvRows(fs.readFileSync(headlinePath, "utf8"))
     .filter((row) => row.series === "Ramp AI Index")
     .filter((row) => Number.isFinite(Number(row.adoption_rate_pct)))
     .sort((a, b) => String(a.date_month).localeCompare(String(b.date_month)));
   if (!rows.length) return {};
 
+  const updates = {};
   const latest = rows[rows.length - 1];
-  const value = Number(latest.adoption_rate_pct);
-  const mom = Number(latest.mom_change_pp);
-  const yoy = Number(latest.yoy_change_pp);
+  const headlineCard = rampCurrentCard(latest, "企业采用率", "Ramp AI Index 基于企业支出数据观察美国企业 AI 工具采用率。它更接近企业预算化采购，而不是普通用户热度。");
+  updates.ramp_enterprise_paid_ratio = headlineCard;
+  updates.ramp_ai_adoption = {
+    ...headlineCard,
+    unit: "enterprise adoption",
+    note: "Ramp AI Index headline series."
+  };
+
+  if (fs.existsSync(sectorPath)) {
+    const sectorRows = parseCsvRows(fs.readFileSync(sectorPath, "utf8"));
+    const sectorMap = {
+      ramp_sector_technology_media: "Technology and media",
+      ramp_sector_finance_insurance: "Finance and insurance"
+    };
+    for (const [id, sector] of Object.entries(sectorMap)) {
+      const record = latestRampRow(sectorRows, (row) => row.sector === sector);
+      if (record) updates[id] = rampCurrentCard(record, sector, `${sector} sector adoption rate from Ramp AI Index CSV.`);
+    }
+  }
+
+  if (fs.existsSync(modelPath)) {
+    const modelRows = parseCsvRows(fs.readFileSync(modelPath, "utf8"));
+    const modelMap = {
+      ramp_model_openai: "OpenAI",
+      ramp_model_anthropic: "Anthropic",
+      ramp_model_google: "Google",
+      ramp_model_deepseek: "DeepSeek",
+      ramp_model_xai: "xAI"
+    };
+    for (const [id, company] of Object.entries(modelMap)) {
+      const record = latestRampRow(modelRows, (row) => row.model_company === company);
+      if (record) updates[id] = rampCurrentCard(record, company, `${company} share/adoption series from Ramp AI Index model-company CSV.`);
+    }
+  }
+
+  return updates;
+}
+
+function latestRampRow(rows, predicate) {
+  const filtered = rows
+    .filter(predicate)
+    .filter((row) => Number.isFinite(Number(row.adoption_rate_pct)))
+    .sort((a, b) => String(a.date_month).localeCompare(String(b.date_month)));
+  return filtered[filtered.length - 1] || null;
+}
+
+function rampCurrentCard(row, unit, note) {
+  const value = Number(row.adoption_rate_pct);
+  const mom = Number(row.mom_change_pp);
+  const yoy = Number(row.yoy_change_pp);
   const changeParts = [];
   if (Number.isFinite(mom)) changeParts.push(`环比 ${round1(mom)}ppt`);
   if (Number.isFinite(yoy)) changeParts.push(`同比 ${round1(yoy)}ppt`);
-
   return {
-    ramp_enterprise_paid_ratio: {
-      value: `${round1(value)}%`,
-      unit: "企业采用率",
-      change: changeParts.join(" / ") || latest.date_month,
-      trend: Number.isFinite(mom) ? (mom > 0 ? "up" : mom < 0 ? "down" : "flat") : "flat",
-      access: "本地CSV",
-      source: "Ramp AI Index CSV",
-      sourceUrl: "https://ramp.com/data/ai-index",
-      note: "Ramp AI Index 基于企业支出数据观察美国企业 AI 工具采用率。它更接近企业预算化采购，而不是普通用户热度。"
-    },
-    ramp_ai_adoption: {
-      value: `${round1(value)}%`,
-      unit: "enterprise adoption",
-      change: changeParts.join(" / ") || latest.date_month,
-      trend: Number.isFinite(mom) ? (mom > 0 ? "up" : mom < 0 ? "down" : "flat") : "flat",
-      access: "本地CSV",
-      source: "Ramp AI Index CSV",
-      sourceUrl: "https://ramp.com/data/ai-index",
-      note: "Ramp AI Index headline series."
-    }
+    value: `${round1(value)}%`,
+    unit,
+    change: changeParts.join(" / ") || row.date_month,
+    trend: Number.isFinite(mom) ? (mom > 0 ? "up" : mom < 0 ? "down" : "flat") : "flat",
+    access: "本地CSV",
+    source: "Ramp AI Index CSV",
+    sourceUrl: "https://ramp.com/data/ai-index",
+    note
   };
 }
 
@@ -479,7 +535,8 @@ async function fetchSecCapex() {
     { id: "msft_capex", name: "Microsoft", cik: "0000789019" },
     { id: "googl_capex", name: "Alphabet", cik: "0001652044" },
     { id: "amzn_capex", name: "Amazon", cik: "0001018724" },
-    { id: "meta_capex", name: "Meta", cik: "0001326801" }
+    { id: "meta_capex", name: "Meta", cik: "0001326801" },
+    { id: "orcl_capex", name: "Oracle", cik: "0001341439" }
   ];
 
   const entries = await Promise.all(companies.map(async (company) => {
@@ -490,7 +547,9 @@ async function fetchSecCapex() {
       value: formatUsdBillions(capex.val),
       unit: `FY${capex.fy}`,
       change: capex.filed ? `filed ${capex.filed}` : "SEC",
-      access: "鑷姩",
+      access: "自动",
+      source: "SEC Company Facts API",
+      sourceUrl: "https://www.sec.gov/edgar/sec-api-documentation",
       note: `SEC companyconcept annual capex. Metric: ${capex.concept}.`
     }];
   }));
@@ -743,6 +802,7 @@ function isQuarterlyHistoryMetric(id) {
     "googl_capex",
     "amzn_capex",
     "meta_capex",
+    "orcl_capex",
     "nvda_dc_revenue",
     "ai_capex_roi"
   ]);

@@ -340,7 +340,8 @@ async function backfillSecCapex() {
     { id: "msft_capex", cik: "0000789019" },
     { id: "googl_capex", cik: "0001652044" },
     { id: "amzn_capex", cik: "0001018724" },
-    { id: "meta_capex", cik: "0001326801" }
+    { id: "meta_capex", cik: "0001326801" },
+    { id: "orcl_capex", cik: "0001341439" }
   ];
   const entries = [];
 

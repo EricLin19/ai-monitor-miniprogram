@@ -3339,6 +3339,12 @@ const metricHistory = {
       "unit": "$/1M weighted"
     },
     {
+      "date": "2026-07-13",
+      "value": 2.2202,
+      "label": "$2.22",
+      "unit": "$/1M weighted"
+    },
+    {
       "date": "2026-07-14",
       "value": 2.22,
       "label": "$2.22",
@@ -3935,9 +3941,15 @@ const metricHistory = {
       "unit": "frontier / open-weight"
     },
     {
+      "date": "2026-07-13",
+      "value": 10.71,
+      "label": "10.7x",
+      "unit": "frontier / open-weight"
+    },
+    {
       "date": "2026-07-14",
-      "value": 11.3,
-      "label": "11.3x",
+      "value": 10.7,
+      "label": "10.7x",
       "unit": "frontier / open-weight"
     }
   ],
@@ -4531,9 +4543,15 @@ const metricHistory = {
       "unit": "free token share"
     },
     {
+      "date": "2026-07-13",
+      "value": 24.73,
+      "label": "24.7%",
+      "unit": "free token share"
+    },
+    {
       "date": "2026-07-14",
-      "value": 27.9,
-      "label": "27.9%",
+      "value": 24.7,
+      "label": "24.7%",
       "unit": "free token share"
     }
   ],
@@ -6759,192 +6777,6 @@ const metricHistory = {
   ],
   "ramp_sector_technology_media": [
     {
-      "date": "2023-01-01",
-      "value": 15.37,
-      "label": "15.4%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2023-02-01",
-      "value": 24.74,
-      "label": "24.7%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2023-03-01",
-      "value": 40.94,
-      "label": "40.9%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2023-04-01",
-      "value": 46.91,
-      "label": "46.9%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2023-05-01",
-      "value": 49.7,
-      "label": "49.7%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2023-06-01",
-      "value": 50.19,
-      "label": "50.2%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2023-07-01",
-      "value": 51.98,
-      "label": "52%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2023-08-01",
-      "value": 51.73,
-      "label": "51.7%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2023-09-01",
-      "value": 53.65,
-      "label": "53.7%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2023-10-01",
-      "value": 55.36,
-      "label": "55.4%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2023-11-01",
-      "value": 57.13,
-      "label": "57.1%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2023-12-01",
-      "value": 58.02,
-      "label": "58%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2024-01-01",
-      "value": 59.06,
-      "label": "59.1%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2024-02-01",
-      "value": 59.65,
-      "label": "59.7%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2024-03-01",
-      "value": 61.02,
-      "label": "61%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2024-04-01",
-      "value": 61.59,
-      "label": "61.6%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2024-05-01",
-      "value": 61.64,
-      "label": "61.6%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2024-06-01",
-      "value": 61.98,
-      "label": "62%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2024-07-01",
-      "value": 63.06,
-      "label": "63.1%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2024-08-01",
-      "value": 63.51,
-      "label": "63.5%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2024-09-01",
-      "value": 64.47,
-      "label": "64.5%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2024-10-01",
-      "value": 64.99,
-      "label": "65%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2024-11-01",
-      "value": 65.88,
-      "label": "65.9%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2024-12-01",
-      "value": 65.66,
-      "label": "65.7%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2025-01-01",
-      "value": 66.49,
-      "label": "66.5%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2025-02-01",
-      "value": 67.12,
-      "label": "67.1%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2025-03-01",
-      "value": 68.7,
-      "label": "68.7%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2025-04-01",
-      "value": 69.03,
-      "label": "69%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2025-05-01",
-      "value": 69.9,
-      "label": "69.9%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2025-06-01",
-      "value": 70.75,
-      "label": "70.8%",
-      "unit": "Technology and media"
-    },
-    {
-      "date": "2025-07-01",
-      "value": 72.23,
-      "label": "72.2%",
-      "unit": "Technology and media"
-    },
-    {
       "date": "2025-08-01",
       "value": 72.42,
       "label": "72.4%",
@@ -7009,195 +6841,15 @@ const metricHistory = {
       "value": 79.76,
       "label": "79.8%",
       "unit": "Technology and media"
+    },
+    {
+      "date": "2026-07-14",
+      "value": 79.8,
+      "label": "79.8%",
+      "unit": "Technology and media"
     }
   ],
   "ramp_sector_finance_insurance": [
-    {
-      "date": "2023-01-01",
-      "value": 8.65,
-      "label": "8.7%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2023-02-01",
-      "value": 13.73,
-      "label": "13.7%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2023-03-01",
-      "value": 27.97,
-      "label": "28%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2023-04-01",
-      "value": 32.8,
-      "label": "32.8%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2023-05-01",
-      "value": 35.03,
-      "label": "35%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2023-06-01",
-      "value": 33.85,
-      "label": "33.9%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2023-07-01",
-      "value": 37.75,
-      "label": "37.8%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2023-08-01",
-      "value": 38.92,
-      "label": "38.9%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2023-09-01",
-      "value": 39.18,
-      "label": "39.2%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2023-10-01",
-      "value": 39.92,
-      "label": "39.9%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2023-11-01",
-      "value": 41.41,
-      "label": "41.4%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2023-12-01",
-      "value": 43.13,
-      "label": "43.1%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2024-01-01",
-      "value": 44.83,
-      "label": "44.8%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2024-02-01",
-      "value": 45.26,
-      "label": "45.3%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2024-03-01",
-      "value": 45.8,
-      "label": "45.8%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2024-04-01",
-      "value": 45.54,
-      "label": "45.5%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2024-05-01",
-      "value": 45.75,
-      "label": "45.8%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2024-06-01",
-      "value": 46.99,
-      "label": "47%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2024-07-01",
-      "value": 48.6,
-      "label": "48.6%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2024-08-01",
-      "value": 49.76,
-      "label": "49.8%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2024-09-01",
-      "value": 49.77,
-      "label": "49.8%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2024-10-01",
-      "value": 50.27,
-      "label": "50.3%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2024-11-01",
-      "value": 51.24,
-      "label": "51.2%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2024-12-01",
-      "value": 51.65,
-      "label": "51.7%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2025-01-01",
-      "value": 53.07,
-      "label": "53.1%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2025-02-01",
-      "value": 55.11,
-      "label": "55.1%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2025-03-01",
-      "value": 55.37,
-      "label": "55.4%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2025-04-01",
-      "value": 57.15,
-      "label": "57.2%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2025-05-01",
-      "value": 58.56,
-      "label": "58.6%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2025-06-01",
-      "value": 59.59,
-      "label": "59.6%",
-      "unit": "Finance and insurance"
-    },
-    {
-      "date": "2025-07-01",
-      "value": 59.57,
-      "label": "59.6%",
-      "unit": "Finance and insurance"
-    },
     {
       "date": "2025-08-01",
       "value": 60.1,
@@ -7263,195 +6915,15 @@ const metricHistory = {
       "value": 73.55,
       "label": "73.6%",
       "unit": "Finance and insurance"
+    },
+    {
+      "date": "2026-07-14",
+      "value": 73.6,
+      "label": "73.6%",
+      "unit": "Finance and insurance"
     }
   ],
   "ramp_model_openai": [
-    {
-      "date": "2023-01-01",
-      "value": 2.06,
-      "label": "2.1%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2023-02-01",
-      "value": 7.74,
-      "label": "7.7%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2023-03-01",
-      "value": 17.65,
-      "label": "17.7%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2023-04-01",
-      "value": 21.64,
-      "label": "21.6%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2023-05-01",
-      "value": 23.62,
-      "label": "23.6%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2023-06-01",
-      "value": 23.09,
-      "label": "23.1%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2023-07-01",
-      "value": 24.69,
-      "label": "24.7%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2023-08-01",
-      "value": 25.62,
-      "label": "25.6%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2023-09-01",
-      "value": 26.76,
-      "label": "26.8%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2023-10-01",
-      "value": 27.47,
-      "label": "27.5%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2023-11-01",
-      "value": 28.2,
-      "label": "28.2%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2023-12-01",
-      "value": 29.56,
-      "label": "29.6%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2024-01-01",
-      "value": 30.42,
-      "label": "30.4%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2024-02-01",
-      "value": 30.64,
-      "label": "30.6%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2024-03-01",
-      "value": 30.97,
-      "label": "31%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2024-04-01",
-      "value": 30.48,
-      "label": "30.5%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2024-05-01",
-      "value": 30.72,
-      "label": "30.7%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2024-06-01",
-      "value": 30.73,
-      "label": "30.7%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2024-07-01",
-      "value": 30.9,
-      "label": "30.9%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2024-08-01",
-      "value": 30.97,
-      "label": "31%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2024-09-01",
-      "value": 31.93,
-      "label": "31.9%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2024-10-01",
-      "value": 32.31,
-      "label": "32.3%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2024-11-01",
-      "value": 32.68,
-      "label": "32.7%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2024-12-01",
-      "value": 33,
-      "label": "33%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2025-01-01",
-      "value": 34.01,
-      "label": "34%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2025-02-01",
-      "value": 35.09,
-      "label": "35.1%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2025-03-01",
-      "value": 35.7,
-      "label": "35.7%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2025-04-01",
-      "value": 37.53,
-      "label": "37.5%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2025-05-01",
-      "value": 38.69,
-      "label": "38.7%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2025-06-01",
-      "value": 39.38,
-      "label": "39.4%",
-      "unit": "OpenAI"
-    },
-    {
-      "date": "2025-07-01",
-      "value": 40.26,
-      "label": "40.3%",
-      "unit": "OpenAI"
-    },
     {
       "date": "2025-08-01",
       "value": 40.97,
@@ -7517,195 +6989,15 @@ const metricHistory = {
       "value": 39.47,
       "label": "39.5%",
       "unit": "OpenAI"
+    },
+    {
+      "date": "2026-07-14",
+      "value": 39.5,
+      "label": "39.5%",
+      "unit": "OpenAI"
     }
   ],
   "ramp_model_anthropic": [
-    {
-      "date": "2023-01-01",
-      "value": 0.17,
-      "label": "0.2%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2023-02-01",
-      "value": 0.17,
-      "label": "0.2%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2023-03-01",
-      "value": 0.28,
-      "label": "0.3%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2023-04-01",
-      "value": 0.19,
-      "label": "0.2%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2023-05-01",
-      "value": 0.29,
-      "label": "0.3%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2023-06-01",
-      "value": 0.27,
-      "label": "0.3%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2023-07-01",
-      "value": 0.43,
-      "label": "0.4%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2023-08-01",
-      "value": 0.39,
-      "label": "0.4%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2023-09-01",
-      "value": 0.96,
-      "label": "1%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2023-10-01",
-      "value": 1.13,
-      "label": "1.1%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2023-11-01",
-      "value": 1.34,
-      "label": "1.3%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2023-12-01",
-      "value": 1.4,
-      "label": "1.4%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2024-01-01",
-      "value": 1.48,
-      "label": "1.5%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2024-02-01",
-      "value": 1.55,
-      "label": "1.6%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2024-03-01",
-      "value": 4.61,
-      "label": "4.6%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2024-04-01",
-      "value": 5.3,
-      "label": "5.3%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2024-05-01",
-      "value": 5.01,
-      "label": "5%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2024-06-01",
-      "value": 5.73,
-      "label": "5.7%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2024-07-01",
-      "value": 7.11,
-      "label": "7.1%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2024-08-01",
-      "value": 8.07,
-      "label": "8.1%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2024-09-01",
-      "value": 8.91,
-      "label": "8.9%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2024-10-01",
-      "value": 9.61,
-      "label": "9.6%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2024-11-01",
-      "value": 10.31,
-      "label": "10.3%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2024-12-01",
-      "value": 10.57,
-      "label": "10.6%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2025-01-01",
-      "value": 11.15,
-      "label": "11.2%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2025-02-01",
-      "value": 11.47,
-      "label": "11.5%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2025-03-01",
-      "value": 12.5,
-      "label": "12.5%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2025-04-01",
-      "value": 12.44,
-      "label": "12.4%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2025-05-01",
-      "value": 12.92,
-      "label": "12.9%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2025-06-01",
-      "value": 14.2,
-      "label": "14.2%",
-      "unit": "Anthropic"
-    },
-    {
-      "date": "2025-07-01",
-      "value": 15.45,
-      "label": "15.5%",
-      "unit": "Anthropic"
-    },
     {
       "date": "2025-08-01",
       "value": 16.2,
@@ -7771,195 +7063,15 @@ const metricHistory = {
       "value": 42.4,
       "label": "42.4%",
       "unit": "Anthropic"
+    },
+    {
+      "date": "2026-07-14",
+      "value": 42.4,
+      "label": "42.4%",
+      "unit": "Anthropic"
     }
   ],
   "ramp_model_google": [
-    {
-      "date": "2023-01-01",
-      "value": 4.73,
-      "label": "4.7%",
-      "unit": "Google"
-    },
-    {
-      "date": "2023-02-01",
-      "value": 4.75,
-      "label": "4.8%",
-      "unit": "Google"
-    },
-    {
-      "date": "2023-03-01",
-      "value": 4.62,
-      "label": "4.6%",
-      "unit": "Google"
-    },
-    {
-      "date": "2023-04-01",
-      "value": 4.81,
-      "label": "4.8%",
-      "unit": "Google"
-    },
-    {
-      "date": "2023-05-01",
-      "value": 4.73,
-      "label": "4.7%",
-      "unit": "Google"
-    },
-    {
-      "date": "2023-06-01",
-      "value": 4.76,
-      "label": "4.8%",
-      "unit": "Google"
-    },
-    {
-      "date": "2023-07-01",
-      "value": 4.67,
-      "label": "4.7%",
-      "unit": "Google"
-    },
-    {
-      "date": "2023-08-01",
-      "value": 4.63,
-      "label": "4.6%",
-      "unit": "Google"
-    },
-    {
-      "date": "2023-09-01",
-      "value": 4.68,
-      "label": "4.7%",
-      "unit": "Google"
-    },
-    {
-      "date": "2023-10-01",
-      "value": 4.6,
-      "label": "4.6%",
-      "unit": "Google"
-    },
-    {
-      "date": "2023-11-01",
-      "value": 4.93,
-      "label": "4.9%",
-      "unit": "Google"
-    },
-    {
-      "date": "2023-12-01",
-      "value": 4.96,
-      "label": "5%",
-      "unit": "Google"
-    },
-    {
-      "date": "2024-01-01",
-      "value": 4.88,
-      "label": "4.9%",
-      "unit": "Google"
-    },
-    {
-      "date": "2024-02-01",
-      "value": 4.94,
-      "label": "4.9%",
-      "unit": "Google"
-    },
-    {
-      "date": "2024-03-01",
-      "value": 5.36,
-      "label": "5.4%",
-      "unit": "Google"
-    },
-    {
-      "date": "2024-04-01",
-      "value": 5.73,
-      "label": "5.7%",
-      "unit": "Google"
-    },
-    {
-      "date": "2024-05-01",
-      "value": 5.67,
-      "label": "5.7%",
-      "unit": "Google"
-    },
-    {
-      "date": "2024-06-01",
-      "value": 5.64,
-      "label": "5.6%",
-      "unit": "Google"
-    },
-    {
-      "date": "2024-07-01",
-      "value": 5.71,
-      "label": "5.7%",
-      "unit": "Google"
-    },
-    {
-      "date": "2024-08-01",
-      "value": 5.84,
-      "label": "5.8%",
-      "unit": "Google"
-    },
-    {
-      "date": "2024-09-01",
-      "value": 5.95,
-      "label": "6%",
-      "unit": "Google"
-    },
-    {
-      "date": "2024-10-01",
-      "value": 5.97,
-      "label": "6%",
-      "unit": "Google"
-    },
-    {
-      "date": "2024-11-01",
-      "value": 6.29,
-      "label": "6.3%",
-      "unit": "Google"
-    },
-    {
-      "date": "2024-12-01",
-      "value": 6.36,
-      "label": "6.4%",
-      "unit": "Google"
-    },
-    {
-      "date": "2025-01-01",
-      "value": 6.41,
-      "label": "6.4%",
-      "unit": "Google"
-    },
-    {
-      "date": "2025-02-01",
-      "value": 6.43,
-      "label": "6.4%",
-      "unit": "Google"
-    },
-    {
-      "date": "2025-03-01",
-      "value": 4.67,
-      "label": "4.7%",
-      "unit": "Google"
-    },
-    {
-      "date": "2025-04-01",
-      "value": 5.04,
-      "label": "5%",
-      "unit": "Google"
-    },
-    {
-      "date": "2025-05-01",
-      "value": 5.44,
-      "label": "5.4%",
-      "unit": "Google"
-    },
-    {
-      "date": "2025-06-01",
-      "value": 5.39,
-      "label": "5.4%",
-      "unit": "Google"
-    },
-    {
-      "date": "2025-07-01",
-      "value": 5.46,
-      "label": "5.5%",
-      "unit": "Google"
-    },
     {
       "date": "2025-08-01",
       "value": 5.33,
@@ -8025,195 +7137,15 @@ const metricHistory = {
       "value": 6.38,
       "label": "6.4%",
       "unit": "Google"
+    },
+    {
+      "date": "2026-07-14",
+      "value": 6.4,
+      "label": "6.4%",
+      "unit": "Google"
     }
   ],
   "ramp_model_deepseek": [
-    {
-      "date": "2023-01-01",
-      "value": 0,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2023-02-01",
-      "value": 0,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2023-03-01",
-      "value": 0,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2023-04-01",
-      "value": 0,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2023-05-01",
-      "value": 0,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2023-06-01",
-      "value": 0,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2023-07-01",
-      "value": 0,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2023-08-01",
-      "value": 0,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2023-09-01",
-      "value": 0,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2023-10-01",
-      "value": 0,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2023-11-01",
-      "value": 0,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2023-12-01",
-      "value": 0,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2024-01-01",
-      "value": 0,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2024-02-01",
-      "value": 0,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2024-03-01",
-      "value": 0.01,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2024-04-01",
-      "value": 0,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2024-05-01",
-      "value": 0,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2024-06-01",
-      "value": 0.01,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2024-07-01",
-      "value": 0.01,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2024-08-01",
-      "value": 0.01,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2024-09-01",
-      "value": 0.01,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2024-10-01",
-      "value": 0.01,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2024-11-01",
-      "value": 0.01,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2024-12-01",
-      "value": 0.02,
-      "label": "0%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2025-01-01",
-      "value": 0.23,
-      "label": "0.2%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2025-02-01",
-      "value": 0.1,
-      "label": "0.1%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2025-03-01",
-      "value": 0.14,
-      "label": "0.1%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2025-04-01",
-      "value": 0.11,
-      "label": "0.1%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2025-05-01",
-      "value": 0.08,
-      "label": "0.1%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2025-06-01",
-      "value": 0.07,
-      "label": "0.1%",
-      "unit": "DeepSeek"
-    },
-    {
-      "date": "2025-07-01",
-      "value": 0.1,
-      "label": "0.1%",
-      "unit": "DeepSeek"
-    },
     {
       "date": "2025-08-01",
       "value": 0.07,
@@ -8279,195 +7211,15 @@ const metricHistory = {
       "value": 0.29,
       "label": "0.3%",
       "unit": "DeepSeek"
+    },
+    {
+      "date": "2026-07-14",
+      "value": 0.3,
+      "label": "0.3%",
+      "unit": "DeepSeek"
     }
   ],
   "ramp_model_xai": [
-    {
-      "date": "2023-01-01",
-      "value": 0.84,
-      "label": "0.8%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2023-02-01",
-      "value": 0.89,
-      "label": "0.9%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2023-03-01",
-      "value": 1.05,
-      "label": "1.1%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2023-04-01",
-      "value": 1.03,
-      "label": "1%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2023-05-01",
-      "value": 1.01,
-      "label": "1%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2023-06-01",
-      "value": 1.03,
-      "label": "1%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2023-07-01",
-      "value": 1.08,
-      "label": "1.1%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2023-08-01",
-      "value": 1.16,
-      "label": "1.2%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2023-09-01",
-      "value": 1.1,
-      "label": "1.1%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2023-10-01",
-      "value": 1.08,
-      "label": "1.1%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2023-11-01",
-      "value": 1.1,
-      "label": "1.1%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2023-12-01",
-      "value": 1.1,
-      "label": "1.1%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2024-01-01",
-      "value": 1.15,
-      "label": "1.2%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2024-02-01",
-      "value": 1.11,
-      "label": "1.1%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2024-03-01",
-      "value": 1.2,
-      "label": "1.2%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2024-04-01",
-      "value": 1.17,
-      "label": "1.2%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2024-05-01",
-      "value": 1.21,
-      "label": "1.2%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2024-06-01",
-      "value": 1.08,
-      "label": "1.1%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2024-07-01",
-      "value": 1.1,
-      "label": "1.1%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2024-08-01",
-      "value": 1.15,
-      "label": "1.2%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2024-09-01",
-      "value": 1.07,
-      "label": "1.1%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2024-10-01",
-      "value": 1.17,
-      "label": "1.2%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2024-11-01",
-      "value": 1.15,
-      "label": "1.2%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2024-12-01",
-      "value": 1.14,
-      "label": "1.1%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2025-01-01",
-      "value": 1.24,
-      "label": "1.2%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2025-02-01",
-      "value": 1.53,
-      "label": "1.5%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2025-03-01",
-      "value": 1.78,
-      "label": "1.8%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2025-04-01",
-      "value": 1.77,
-      "label": "1.8%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2025-05-01",
-      "value": 1.75,
-      "label": "1.8%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2025-06-01",
-      "value": 1.72,
-      "label": "1.7%",
-      "unit": "xAI"
-    },
-    {
-      "date": "2025-07-01",
-      "value": 3.3,
-      "label": "3.3%",
-      "unit": "xAI"
-    },
     {
       "date": "2025-08-01",
       "value": 3.04,
@@ -8533,6 +7285,50 @@ const metricHistory = {
       "value": 3.03,
       "label": "3%",
       "unit": "xAI"
+    },
+    {
+      "date": "2026-07-14",
+      "value": 3,
+      "label": "3%",
+      "unit": "xAI"
+    }
+  ],
+  "orcl_capex": [
+    {
+      "date": "2025-02-28",
+      "value": 5862000000,
+      "label": "$5.9B",
+      "unit": "2026Q3"
+    },
+    {
+      "date": "2025-05-31",
+      "value": 9080000000,
+      "label": "$9.1B",
+      "unit": "2026FY"
+    },
+    {
+      "date": "2025-08-31",
+      "value": 8502000000,
+      "label": "$8.5B",
+      "unit": "CY2025Q3"
+    },
+    {
+      "date": "2025-11-30",
+      "value": 12033000000,
+      "label": "$12.0B",
+      "unit": "2026Q2"
+    },
+    {
+      "date": "2026-02-28",
+      "value": 18635000000,
+      "label": "$18.6B",
+      "unit": "2026Q3"
+    },
+    {
+      "date": "2026-05-31",
+      "value": 16493000000,
+      "label": "$16.5B",
+      "unit": "2026FY"
     }
   ]
 };

@@ -3,7 +3,6 @@ const { fetchMetrics } = require("../../services/metrics");
 const HIDDEN_METRIC_IDS = new Set([
   "aa_value",
   "cloudflare_ai_bots",
-  "ramp_ai_adoption",
   "nvda_dc_revenue",
   "ai_crowding_unwind",
   "hbm_dram_pressure",
@@ -12,67 +11,112 @@ const HIDDEN_METRIC_IDS = new Set([
   "agent_token_share"
 ]);
 
-const METRIC_ORDER = [
-  "aa_us_score",
-  "aa_cn_score",
+const MIN_HISTORY_POINTS = 10;
+
+const PRIORITY_METRIC_IDS = new Set([
+  "openrouter_tokens",
   "openrouter_us_tokens",
   "openrouter_cn_tokens",
-  "silicon_token_expenditure",
-  "llm_token_spend_index",
-  "ramp_enterprise_paid_ratio",
-  "openai_app_revenue",
-  "anthropic_app_revenue",
+  "openrouter_share",
   "openai_arr",
   "anthropic_arr",
+  "msft_capex",
+  "googl_capex",
+  "amzn_capex",
+  "meta_capex",
+  "orcl_capex"
+]);
+
+const METRIC_ORDER = [
+  "openrouter_tokens",
+  "openrouter_us_tokens",
+  "openrouter_cn_tokens",
+  "openrouter_share",
+  "openai_arr",
+  "anthropic_arr",
+  "msft_capex",
+  "googl_capex",
+  "amzn_capex",
+  "meta_capex",
+  "orcl_capex",
+  "llm_token_spend_index",
+  "frontier_premium",
+  "free_token_share",
+  "ramp_enterprise_paid_ratio",
+  "ramp_ai_adoption",
+  "ramp_sector_technology_media",
+  "ramp_sector_finance_insurance",
+  "ramp_model_openai",
+  "ramp_model_anthropic",
+  "ramp_model_google",
+  "ramp_model_deepseek",
+  "ramp_model_xai",
+  "token_arr_conversion",
+  "ai_wage_pool_coverage",
+  "ig_credit_spread",
+  "tech_finance_employment",
+  "data_center_construction",
+  "tech_job_postings",
+  "aa_us_score",
+  "aa_cn_score",
+  "silicon_token_expenditure",
+  "openai_app_revenue",
+  "anthropic_app_revenue",
   "hyperscaler_cloud_revenue",
   "hyperscaler_fcf",
   "hyperscaler_capex_ocf_ratio",
   "big5_debt_equity_ratio",
   "big5_bond_issuance",
   "big5_cds",
-  "ig_credit_spread",
   "silicon_vc_confidence",
   "ai_risk_investment",
-  "tech_finance_employment",
   "tech_finance_layoff_share",
-  "data_center_construction",
-  "openrouter_tokens",
-  "openrouter_share",
-  "frontier_premium",
-  "free_token_share",
   "api_price_index",
   "gpu_rental_price",
   "revenue_per_gpu",
-  "ai_capex_roi",
-  "token_arr_conversion",
-  "ai_wage_pool_coverage",
-  "tech_job_postings",
-  "msft_capex",
-  "googl_capex",
-  "amzn_capex",
-  "meta_capex"
+  "ai_capex_roi"
 ];
-
-const CICC_METRIC_IDS = new Set(METRIC_ORDER.slice(0, 23));
 
 const METRIC_GROUP_KEYS = {
   demand: new Set([
-    "aa_us_score",
-    "aa_cn_score",
+    "openrouter_tokens",
     "openrouter_us_tokens",
     "openrouter_cn_tokens",
-    "silicon_token_expenditure",
+    "openrouter_share",
     "llm_token_spend_index",
-    "ramp_enterprise_paid_ratio"
+    "frontier_premium",
+    "free_token_share",
+    "ramp_enterprise_paid_ratio",
+    "ramp_ai_adoption",
+    "ramp_sector_technology_media",
+    "ramp_sector_finance_insurance",
+    "ramp_model_openai",
+    "ramp_model_anthropic",
+    "ramp_model_google",
+    "ramp_model_deepseek",
+    "ramp_model_xai",
+    "aa_us_score",
+    "aa_cn_score",
+    "silicon_token_expenditure"
   ]),
   cash: new Set([
-    "openai_app_revenue",
-    "anthropic_app_revenue",
     "openai_arr",
     "anthropic_arr",
+    "token_arr_conversion",
+    "ai_wage_pool_coverage",
+    "openai_app_revenue",
+    "anthropic_app_revenue",
     "hyperscaler_cloud_revenue",
     "hyperscaler_fcf",
     "hyperscaler_capex_ocf_ratio"
+  ]),
+  capex: new Set([
+    "msft_capex",
+    "googl_capex",
+    "amzn_capex",
+    "meta_capex",
+    "orcl_capex",
+    "data_center_construction"
   ]),
   funding: new Set([
     "big5_debt_equity_ratio",
@@ -85,8 +129,40 @@ const METRIC_GROUP_KEYS = {
   constraints: new Set([
     "tech_finance_employment",
     "tech_finance_layoff_share",
-    "data_center_construction"
+    "tech_job_postings"
   ])
+};
+
+const DISPLAY_OVERRIDES = {
+  openrouter_tokens: { group: "① 需求", title: "OpenRouter 全平台 Token 使用量", cadence: "日/周", access: "自动" },
+  openrouter_us_tokens: { group: "① 需求", title: "OpenRouter 美国模型 Token 使用量", cadence: "日/周", access: "自动" },
+  openrouter_cn_tokens: { group: "① 需求", title: "OpenRouter 中国模型 Token 使用量", cadence: "日/周", access: "自动" },
+  openrouter_share: { group: "① 需求", title: "OpenRouter 模型份额集中度", cadence: "日/周", access: "自动" },
+  llm_token_spend_index: { group: "① 需求", title: "使用量加权 LLM Token 支出指数", cadence: "日", access: "自动" },
+  frontier_premium: { group: "① 需求", title: "前沿闭源模型价格溢价", cadence: "日", access: "自动" },
+  free_token_share: { group: "① 需求", title: "免费 Token 占比", cadence: "日", access: "自动" },
+  ramp_enterprise_paid_ratio: { group: "① 需求", title: "Ramp：美国企业 AI 付费/采用率", cadence: "月", access: "本地CSV" },
+  ramp_ai_adoption: { group: "① 需求", title: "Ramp AI Index：企业 AI 采用率", cadence: "月", access: "本地CSV" },
+  ramp_sector_technology_media: { group: "① 需求", title: "Ramp：科技与媒体行业 AI 采用率", cadence: "月", access: "本地CSV" },
+  ramp_sector_finance_insurance: { group: "① 需求", title: "Ramp：金融保险行业 AI 采用率", cadence: "月", access: "本地CSV" },
+  ramp_model_openai: { group: "① 需求", title: "Ramp：OpenAI 企业支出份额", cadence: "月", access: "本地CSV" },
+  ramp_model_anthropic: { group: "① 需求", title: "Ramp：Anthropic 企业支出份额", cadence: "月", access: "本地CSV" },
+  ramp_model_google: { group: "① 需求", title: "Ramp：Google 企业支出份额", cadence: "月", access: "本地CSV" },
+  ramp_model_deepseek: { group: "① 需求", title: "Ramp：DeepSeek 企业支出份额", cadence: "月", access: "本地CSV" },
+  ramp_model_xai: { group: "① 需求", title: "Ramp：xAI 企业支出份额", cadence: "月", access: "本地CSV" },
+  openai_arr: { group: "② 现金流", title: "OpenAI ARR", cadence: "事件/月", access: "自动" },
+  anthropic_arr: { group: "② 现金流", title: "Anthropic ARR", cadence: "事件/月", access: "自动" },
+  token_arr_conversion: { group: "② 现金流", title: "Token 用量转 ARR 效率", cadence: "日/周", access: "自动" },
+  ai_wage_pool_coverage: { group: "② 现金流", title: "AI 收入覆盖潜在工资池比例", cadence: "月", access: "自动" },
+  msft_capex: { group: "③ CapEx", title: "Microsoft CapEx", cadence: "季", access: "自动" },
+  googl_capex: { group: "③ CapEx", title: "Alphabet CapEx", cadence: "季", access: "自动" },
+  amzn_capex: { group: "③ CapEx", title: "Amazon CapEx", cadence: "季", access: "自动" },
+  meta_capex: { group: "③ CapEx", title: "Meta CapEx", cadence: "季", access: "自动" },
+  orcl_capex: { group: "③ CapEx", title: "Oracle CapEx", cadence: "季", access: "自动" },
+  ig_credit_spread: { group: "④ 资金来源", title: "美国投资级信用债利差", cadence: "日", access: "自动" },
+  tech_finance_employment: { group: "⑤ 外部约束", title: "美国科技和金融就业人数", cadence: "月", access: "半自动" },
+  data_center_construction: { group: "③ CapEx", title: "美国数据中心年化建筑额", cadence: "月", access: "半自动" },
+  tech_job_postings: { group: "⑤ 外部约束", title: "美国软件开发招聘指数", cadence: "周", access: "自动" }
 };
 
 Page({
@@ -114,7 +190,7 @@ Page({
     const data = await fetchMetrics();
     const history = data.history || {};
     const metrics = decorateMetrics(data.metrics || [], history)
-      .filter((item) => CICC_METRIC_IDS.has(item.id) && !HIDDEN_METRIC_IDS.has(item.id));
+      .filter((item) => shouldDisplayMetric(item, history));
 
     this.setData({
       metrics,
@@ -173,16 +249,26 @@ Page({
 
 function decorateMetrics(metrics, history) {
   return metrics
-    .map((item) => ({
-      ...item,
-      groupKey: getMetricGroupKey(item.id),
-      accessClass: getAccessClass(item.access),
-      canvasId: `chart_${item.id}`,
-      chartPoints: getWindowedHistory(item, history[item.id] || []),
-      windowLabel: getWindowLabel(item),
-      historyLabel: getHistoryLabel(history[item.id] || [])
-    }))
+    .map((item) => {
+      const displayItem = { ...item, ...(DISPLAY_OVERRIDES[item.id] || {}) };
+      return {
+        ...displayItem,
+        groupKey: getMetricGroupKey(item.id),
+        accessClass: getAccessClass(displayItem.access),
+        canvasId: `chart_${item.id}`,
+        chartPoints: getWindowedHistory(displayItem, history[item.id] || []),
+        windowLabel: getWindowLabel(displayItem),
+        historyLabel: getHistoryLabel(history[item.id] || [])
+      };
+    })
     .sort((a, b) => getMetricOrder(a.id) - getMetricOrder(b.id));
+}
+
+function shouldDisplayMetric(item, history) {
+  if (!item || HIDDEN_METRIC_IDS.has(item.id)) return false;
+  if (PRIORITY_METRIC_IDS.has(item.id)) return true;
+  const records = history[item.id] || [];
+  return Array.isArray(records) && records.length >= MIN_HISTORY_POINTS;
 }
 
 function getMetricGroupKey(id) {
@@ -198,9 +284,9 @@ function getMetricOrder(id) {
 }
 
 function getAccessClass(access) {
-  const value = String(access || "");
-  if (value.includes("自动") || value.includes("鑷")) return "auto";
-  if (value.includes("手动") || value.includes("鎵")) return "manual";
+  const value = String(access || "").toLowerCase();
+  if (value.includes("自动") || value.includes("csv")) return "auto";
+  if (value.includes("手动")) return "manual";
   return "semi";
 }
 
@@ -226,7 +312,7 @@ function getWindowLabel(metric) {
 
 function getHistoryLabel(records) {
   const count = Array.isArray(records) ? records.length : 0;
-  if (count <= 0) return "待累积";
+  if (count <= 0) return "待积累";
   if (count === 1) return "1 个点";
   return `${count} 个点`;
 }
@@ -237,6 +323,7 @@ function isQuarterlyMetric(metric) {
     "googl_capex",
     "amzn_capex",
     "meta_capex",
+    "orcl_capex",
     "openai_arr",
     "anthropic_arr",
     "hyperscaler_capex_ocf_ratio",
@@ -317,8 +404,7 @@ function drawMonthTicks(context, points, padding, drawableWidth, height) {
   ticks.forEach((tick) => {
     const ratio = points.length === 1 ? 1 : tick.index / (points.length - 1);
     const x = padding + drawableWidth * ratio;
-    const label = tick.label;
-    context.fillText(label, Math.min(x, 278), height - 2);
+    context.fillText(tick.label, Math.min(x, 278), height - 2);
   });
 }
 

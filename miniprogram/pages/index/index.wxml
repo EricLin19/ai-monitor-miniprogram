@@ -3,7 +3,7 @@
     <view>
       <view class="eyebrow">AI 景气度雷达</view>
       <view class="title">{{displayMetricCount}} 个核心指标</view>
-      <view class="desc">按中金框架跟踪：需求、现金流、资金来源、外部约束。</view>
+      <view class="desc">优先跟踪 OpenRouter 调用、OpenAI / Anthropic ARR、五大厂商 CapEx；其余指标需有足够历史点才展示。</view>
     </view>
     <view class="health {{healthClass}}">
       <text>{{healthLabel}}</text>
@@ -28,8 +28,9 @@
     <view class="tab {{activeGroup === 'all' ? 'active' : ''}}" data-group="all" bindtap="changeGroup">全部</view>
     <view class="tab {{activeGroup === 'demand' ? 'active' : ''}}" data-group="demand" bindtap="changeGroup">① 需求</view>
     <view class="tab {{activeGroup === 'cash' ? 'active' : ''}}" data-group="cash" bindtap="changeGroup">② 现金流</view>
-    <view class="tab {{activeGroup === 'funding' ? 'active' : ''}}" data-group="funding" bindtap="changeGroup">③ 资金来源</view>
-    <view class="tab {{activeGroup === 'constraints' ? 'active' : ''}}" data-group="constraints" bindtap="changeGroup">④ 外部约束</view>
+    <view class="tab {{activeGroup === 'capex' ? 'active' : ''}}" data-group="capex" bindtap="changeGroup">③ CapEx</view>
+    <view class="tab {{activeGroup === 'funding' ? 'active' : ''}}" data-group="funding" bindtap="changeGroup">④ 资金</view>
+    <view class="tab {{activeGroup === 'constraints' ? 'active' : ''}}" data-group="constraints" bindtap="changeGroup">⑤ 约束</view>
   </view>
 
   <view class="cards">

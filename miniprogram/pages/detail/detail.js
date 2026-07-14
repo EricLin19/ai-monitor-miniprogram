@@ -2,25 +2,58 @@ const { metrics } = require("../../data/mockMetrics");
 const { cacheMeta } = require("../../data/cacheMeta");
 const { metricHistory } = require("../../data/metricHistory");
 
+const DISPLAY_OVERRIDES = {
+  openrouter_tokens: { group: "① 需求", title: "OpenRouter 全平台 Token 使用量", cadence: "日/周", access: "自动" },
+  openrouter_us_tokens: { group: "① 需求", title: "OpenRouter 美国模型 Token 使用量", cadence: "日/周", access: "自动" },
+  openrouter_cn_tokens: { group: "① 需求", title: "OpenRouter 中国模型 Token 使用量", cadence: "日/周", access: "自动" },
+  openrouter_share: { group: "① 需求", title: "OpenRouter 模型份额集中度", cadence: "日/周", access: "自动" },
+  llm_token_spend_index: { group: "① 需求", title: "使用量加权 LLM Token 支出指数", cadence: "日", access: "自动" },
+  frontier_premium: { group: "① 需求", title: "前沿闭源模型价格溢价", cadence: "日", access: "自动" },
+  free_token_share: { group: "① 需求", title: "免费 Token 占比", cadence: "日", access: "自动" },
+  ramp_enterprise_paid_ratio: { group: "① 需求", title: "Ramp：美国企业 AI 付费/采用率", cadence: "月", access: "本地CSV" },
+  ramp_ai_adoption: { group: "① 需求", title: "Ramp AI Index：企业 AI 采用率", cadence: "月", access: "本地CSV" },
+  ramp_sector_technology_media: { group: "① 需求", title: "Ramp：科技与媒体行业 AI 采用率", cadence: "月", access: "本地CSV" },
+  ramp_sector_finance_insurance: { group: "① 需求", title: "Ramp：金融保险行业 AI 采用率", cadence: "月", access: "本地CSV" },
+  ramp_model_openai: { group: "① 需求", title: "Ramp：OpenAI 企业支出份额", cadence: "月", access: "本地CSV" },
+  ramp_model_anthropic: { group: "① 需求", title: "Ramp：Anthropic 企业支出份额", cadence: "月", access: "本地CSV" },
+  ramp_model_google: { group: "① 需求", title: "Ramp：Google 企业支出份额", cadence: "月", access: "本地CSV" },
+  ramp_model_deepseek: { group: "① 需求", title: "Ramp：DeepSeek 企业支出份额", cadence: "月", access: "本地CSV" },
+  ramp_model_xai: { group: "① 需求", title: "Ramp：xAI 企业支出份额", cadence: "月", access: "本地CSV" },
+  openai_arr: { group: "② 现金流", title: "OpenAI ARR", cadence: "事件/月", access: "自动" },
+  anthropic_arr: { group: "② 现金流", title: "Anthropic ARR", cadence: "事件/月", access: "自动" },
+  token_arr_conversion: { group: "② 现金流", title: "Token 用量转 ARR 效率", cadence: "日/周", access: "自动" },
+  ai_wage_pool_coverage: { group: "② 现金流", title: "AI 收入覆盖潜在工资池比例", cadence: "月", access: "自动" },
+  msft_capex: { group: "③ CapEx", title: "Microsoft CapEx", cadence: "季", access: "自动" },
+  googl_capex: { group: "③ CapEx", title: "Alphabet CapEx", cadence: "季", access: "自动" },
+  amzn_capex: { group: "③ CapEx", title: "Amazon CapEx", cadence: "季", access: "自动" },
+  meta_capex: { group: "③ CapEx", title: "Meta CapEx", cadence: "季", access: "自动" },
+  orcl_capex: { group: "③ CapEx", title: "Oracle CapEx", cadence: "季", access: "自动" },
+  ig_credit_spread: { group: "④ 资金来源", title: "美国投资级信用债利差", cadence: "日", access: "自动" },
+  tech_finance_employment: { group: "⑤ 外部约束", title: "美国科技和金融就业人数", cadence: "月", access: "半自动" },
+  data_center_construction: { group: "③ CapEx", title: "美国数据中心年化建筑额", cadence: "月", access: "半自动" },
+  tech_job_postings: { group: "⑤ 外部约束", title: "美国软件开发招聘指数", cadence: "周", access: "自动" }
+};
+
 Page({
   data: {
     metric: null,
     points: [],
     updatedAt: cacheMeta.updatedAt,
     windowLabel: "近三个月趋势",
-    historyLabel: "待累积",
+    historyLabel: "待积累",
     rangeStart: "--",
     rangeEnd: "--"
   },
 
   onLoad(options) {
     const id = decodeURIComponent(options.id || "");
-    const metric = metrics.find((item) => item.id === id);
-    if (!metric) {
+    const rawMetric = metrics.find((item) => item.id === id);
+    if (!rawMetric) {
       wx.showToast({ title: "指标不存在", icon: "none" });
       return;
     }
 
+    const metric = { ...rawMetric, ...(DISPLAY_OVERRIDES[id] || {}) };
     const points = getWindowedHistory(metric, metricHistory[id] || []);
     wx.setNavigationBarTitle({ title: metric.title });
     this.setData({
@@ -70,7 +103,7 @@ function getWindowLabel(metric) {
 
 function getHistoryLabel(records) {
   const count = Array.isArray(records) ? records.length : 0;
-  if (count <= 0) return "待累积";
+  if (count <= 0) return "待积累";
   if (count === 1) return "1 个点";
   return `${count} 个点`;
 }
@@ -81,6 +114,7 @@ function isQuarterlyMetric(metric) {
     "googl_capex",
     "amzn_capex",
     "meta_capex",
+    "orcl_capex",
     "nvda_dc_revenue",
     "openai_arr",
     "anthropic_arr",
@@ -171,8 +205,7 @@ function drawMonthTicks(context, points, padding, drawableWidth, height) {
   ticks.forEach((tick) => {
     const ratio = points.length === 1 ? 1 : tick.index / (points.length - 1);
     const x = padding + drawableWidth * ratio;
-    const label = tick.label;
-    context.fillText(label, Math.min(x, 292), height - 3);
+    context.fillText(tick.label, Math.min(x, 292), height - 3);
   });
 }
 
