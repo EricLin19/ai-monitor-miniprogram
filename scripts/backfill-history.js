@@ -80,7 +80,7 @@ async function main() {
     console.warn(`Tech and finance employment proxy backfill failed: ${error.message}`);
   }
 
-  const next = { ...history, ...updates };
+  const next = { ...dropRampHistory(history), ...updates };
   Object.assign(next, buildDerivedHistory(next));
   writeHistory(historyPath, next);
 
@@ -212,7 +212,7 @@ function backfillRampAiIndex() {
     updates.ramp_ai_adoption = dedupeHistory(rampHeadline);
   }
 
-  for (const sector of topRampNames(sectorRows, "sector", 4)) {
+  for (const sector of allRampNames(sectorRows, "sector")) {
     const id = `ramp_sector_${slugifyRampName(sector)}`;
     const records = sectorRows
       .filter((row) => row.sector === sector)
@@ -221,7 +221,7 @@ function backfillRampAiIndex() {
     if (records.length) updates[id] = dedupeHistory(records);
   }
 
-  for (const company of topRampNames(modelRows, "model_company", 4)) {
+  for (const company of allRampNames(modelRows, "model_company")) {
     const id = `ramp_model_${slugifyRampName(company)}`;
     const records = modelRows
       .filter((row) => row.model_company === company)
@@ -233,20 +233,14 @@ function backfillRampAiIndex() {
   return updates;
 }
 
-function topRampNames(rows, nameField, limit) {
-  const latestDate = rows
-    .map((row) => row.date_month)
-    .filter(Boolean)
-    .sort()
-    .pop();
-  if (!latestDate) return [];
-  return rows
-    .filter((row) => row.date_month === latestDate)
-    .filter((row) => Number.isFinite(Number(row.adoption_rate_pct)))
-    .sort((a, b) => Number(b.adoption_rate_pct) - Number(a.adoption_rate_pct))
-    .slice(0, limit)
-    .map((row) => row[nameField])
-    .filter(Boolean);
+function allRampNames(rows, nameField) {
+  return [...new Set(rows.map((row) => row[nameField]).filter(Boolean))].sort();
+}
+
+function dropRampHistory(history) {
+  return Object.fromEntries(
+    Object.entries(history).filter(([id]) => !id.startsWith("ramp_"))
+  );
 }
 
 function slugifyRampName(name) {

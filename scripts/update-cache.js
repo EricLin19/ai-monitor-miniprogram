@@ -753,6 +753,7 @@ function updateHistory(history, metrics, updatedAt) {
   const date = updatedAt.slice(0, 10);
 
   for (const metric of metrics) {
+    if (metric.id && metric.id.startsWith("ramp_")) continue;
     if (isQuarterlyHistoryMetric(metric.id)) continue;
     const value = parseMetricNumber(metric.value);
     if (!Number.isFinite(value)) continue;

@@ -1,0 +1,43 @@
+<view class="page">
+  <view class="hero">
+    <view class="eyebrow">指标解释</view>
+    <view class="title">OpenRouter 与 Ramp 怎么一起看</view>
+    <view class="desc">一个是推理流量前哨，一个是企业付费确认。两者不矛盾，背离本身就是信号。</view>
+  </view>
+
+  <view class="summary">
+    <view class="summaryItem">
+      <view class="summaryLabel">OpenRouter</view>
+      <view class="summaryValue">流量领先指标</view>
+    </view>
+    <view class="summaryItem">
+      <view class="summaryLabel">Ramp</view>
+      <view class="summaryValue">付费确认指标</view>
+    </view>
+  </view>
+
+  <view wx:for="{{sections}}" wx:key="title" class="section">
+    <view class="sectionTitle">{{item.title}}</view>
+    <view class="body">{{item.body}}</view>
+  </view>
+
+  <view class="section">
+    <view class="sectionTitle">两套数据的口径差异</view>
+    <view wx:for="{{contrasts}}" wx:key="left" class="contrastRow">
+      <view class="contrastLeft">{{item.left}}</view>
+      <view class="contrastRight">{{item.right}}</view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="sectionTitle">我们的使用规则</view>
+    <view wx:for="{{playbook}}" wx:key="*this" class="rule">
+      <view class="dot"></view>
+      <view class="ruleText">{{item}}</view>
+    </view>
+  </view>
+
+  <view class="bottomNote">
+    一句话：OpenRouter 观察“谁在拿推理流量”，Ramp 观察“谁在拿企业预算”。前者领先，后者确认。
+  </view>
+</view>

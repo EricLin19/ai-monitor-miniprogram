@@ -96,6 +96,39 @@
   font-size: 23rpx;
 }
 
+.explainEntry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18rpx;
+  margin-top: 18rpx;
+  padding: 22rpx 24rpx;
+  background: #f8fbff;
+  border: 1rpx solid #cfe0ff;
+  border-radius: 16rpx;
+}
+
+.explainTitle {
+  color: #202326;
+  font-size: 28rpx;
+  font-weight: 850;
+}
+
+.explainText {
+  margin-top: 8rpx;
+  color: #66707b;
+  font-size: 24rpx;
+  line-height: 1.45;
+}
+
+.explainArrow {
+  flex: 0 0 auto;
+  color: #2563eb;
+  font-size: 48rpx;
+  font-weight: 500;
+  line-height: 1;
+}
+
 .debug {
   margin-top: 16rpx;
   padding: 18rpx 20rpx;

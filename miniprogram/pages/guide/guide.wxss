@@ -1,0 +1,142 @@
+.page {
+  min-height: 100vh;
+  padding: 28rpx;
+  background: #f6f7f8;
+}
+
+.hero,
+.summary,
+.section,
+.bottomNote {
+  background: #ffffff;
+  border: 1rpx solid #dfe4e8;
+  border-radius: 16rpx;
+}
+
+.hero {
+  padding: 30rpx;
+  box-shadow: 0 12rpx 36rpx rgba(27, 39, 51, 0.08);
+}
+
+.eyebrow {
+  color: #2563eb;
+  font-size: 24rpx;
+  font-weight: 850;
+}
+
+.title {
+  margin-top: 10rpx;
+  color: #202326;
+  font-size: 40rpx;
+  font-weight: 850;
+  line-height: 1.2;
+}
+
+.desc {
+  margin-top: 14rpx;
+  color: #66707b;
+  font-size: 26rpx;
+  line-height: 1.5;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rpx;
+  margin-top: 20rpx;
+  overflow: hidden;
+}
+
+.summaryItem {
+  padding: 24rpx;
+  background: #f8fbff;
+}
+
+.summaryLabel {
+  color: #66707b;
+  font-size: 23rpx;
+  font-weight: 800;
+}
+
+.summaryValue {
+  margin-top: 8rpx;
+  color: #202326;
+  font-size: 30rpx;
+  font-weight: 850;
+}
+
+.section {
+  margin-top: 20rpx;
+  padding: 26rpx;
+}
+
+.sectionTitle {
+  color: #202326;
+  font-size: 30rpx;
+  font-weight: 850;
+}
+
+.body {
+  margin-top: 14rpx;
+  color: #4d5965;
+  font-size: 26rpx;
+  line-height: 1.6;
+}
+
+.contrastRow {
+  display: flex;
+  gap: 18rpx;
+  padding: 20rpx 0;
+  border-top: 1rpx solid #edf1f4;
+}
+
+.contrastRow:first-of-type {
+  margin-top: 12rpx;
+}
+
+.contrastLeft {
+  flex: 0 0 180rpx;
+  color: #2563eb;
+  font-size: 25rpx;
+  font-weight: 850;
+}
+
+.contrastRight {
+  flex: 1;
+  color: #4d5965;
+  font-size: 25rpx;
+  line-height: 1.5;
+}
+
+.rule {
+  display: flex;
+  align-items: flex-start;
+  gap: 14rpx;
+  margin-top: 18rpx;
+}
+
+.dot {
+  width: 12rpx;
+  height: 12rpx;
+  margin-top: 14rpx;
+  border-radius: 999rpx;
+  background: #2563eb;
+}
+
+.ruleText {
+  flex: 1;
+  color: #4d5965;
+  font-size: 25rpx;
+  line-height: 1.55;
+}
+
+.bottomNote {
+  margin-top: 20rpx;
+  padding: 24rpx 26rpx;
+  color: #202326;
+  font-size: 26rpx;
+  font-weight: 800;
+  line-height: 1.5;
+  background: #fffaf0;
+  border-color: #f5d48a;
+}

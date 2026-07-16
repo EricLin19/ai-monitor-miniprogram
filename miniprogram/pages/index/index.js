@@ -181,6 +181,12 @@ Page({
 
   noop() {},
 
+  openGuide() {
+    wx.navigateTo({
+      url: "/pages/guide/guide"
+    });
+  },
+
   openDetail(event) {
     const id = event.currentTarget.dataset.id;
     if (!id) return;

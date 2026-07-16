@@ -20,6 +20,14 @@
     <text>数据模式：{{source}}</text>
   </view>
 
+  <view class="explainEntry" bindtap="openGuide">
+    <view>
+      <view class="explainTitle">如何理解 OpenRouter 和 Ramp？</view>
+      <view class="explainText">一个看开发者推理流量，一个看企业付费采用；两者背离本身就是重要信号。</view>
+    </view>
+    <view class="explainArrow">›</view>
+  </view>
+
   <view wx:if="{{errorMessage}}" class="debug">
     {{errorMessage}}
   </view>
