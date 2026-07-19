@@ -57,6 +57,12 @@ async function main() {
   }
 
   try {
+    Object.assign(updates, backfillChinaModelArrMilestones());
+  } catch (error) {
+    console.warn(`China model ARR history backfill failed: ${error.message}`);
+  }
+
+  try {
     Object.assign(updates, await backfillFredTechJobPostings());
   } catch (error) {
     console.warn(`FRED tech job postings history backfill failed: ${error.message}`);
@@ -316,6 +322,59 @@ async function backfillSacraArrMilestones() {
 
   const merged = { ...epochEntries, ...Object.fromEntries(entries) };
   return Object.fromEntries(Object.entries(merged).map(([id, records]) => [id, dedupeHistory(records)]));
+}
+
+function backfillChinaModelArrMilestones() {
+  return {
+    minimax_arr: dedupeHistory([
+      {
+        date: "2026-02-01",
+        value: 150_000_000,
+        label: "$150M",
+        unit: "annualized revenue",
+        source: "Sacra estimate"
+      },
+      {
+        date: "2026-05-01",
+        value: 300_000_000,
+        label: "$300M",
+        unit: "annualized revenue",
+        source: "Sacra estimate"
+      }
+    ]),
+    zhipu_arr: dedupeHistory([
+      {
+        date: "2026-03-31",
+        value: 236_000_000,
+        label: "RMB1.7B",
+        unit: "MaaS API ARR",
+        source: "company financial report coverage"
+      },
+      {
+        date: "2026-07-16",
+        value: 1_000_000_000,
+        label: "$1.0B",
+        unit: "reported ARR run-rate",
+        source: "media report"
+      }
+    ]),
+    kimi_arr: dedupeHistory([
+      {
+        date: "2026-03-01",
+        value: 100_000_000,
+        label: "$100M",
+        unit: "reported ARR",
+        source: "media report"
+      },
+      {
+        date: "2026-04-15",
+        value: 200_000_000,
+        label: "$200M",
+        unit: "reported ARR",
+        source: "media report"
+      }
+    ])
+  };
 }
 
 async function backfillEpochRevenueReports() {

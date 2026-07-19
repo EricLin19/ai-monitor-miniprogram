@@ -1,4 +1,4 @@
-const { fetchMetrics } = require("../../services/metrics");
+﻿const { fetchMetrics } = require("../../services/metrics");
 
 const MIN_HISTORY_POINTS = 10;
 const SERIES_COLORS = ["#2563eb", "#15803d", "#b7791f", "#b42318", "#7c3aed"];
@@ -21,8 +21,12 @@ const PRIORITY_METRIC_IDS = new Set([
   "openrouter_us_tokens",
   "openrouter_cn_tokens",
   "openrouter_share",
+  "arena_frontend_code",
   "openai_arr",
   "anthropic_arr",
+  "minimax_arr",
+  "zhipu_arr",
+  "kimi_arr",
   "msft_capex",
   "googl_capex",
   "amzn_capex",
@@ -38,8 +42,12 @@ const METRIC_ORDER = [
   "openrouter_us_tokens",
   "openrouter_cn_tokens",
   "openrouter_share",
+  "arena_frontend_code",
   "openai_arr",
   "anthropic_arr",
+  "minimax_arr",
+  "zhipu_arr",
+  "kimi_arr",
   "msft_capex",
   "googl_capex",
   "amzn_capex",
@@ -65,6 +73,7 @@ const METRIC_GROUP_KEYS = {
     "openrouter_us_tokens",
     "openrouter_cn_tokens",
     "openrouter_share",
+    "arena_frontend_code",
     "ramp_total",
     "ramp_by_sector",
     "ramp_by_model",
@@ -75,6 +84,9 @@ const METRIC_GROUP_KEYS = {
   cash: new Set([
     "openai_arr",
     "anthropic_arr",
+    "minimax_arr",
+    "zhipu_arr",
+    "kimi_arr",
     "token_arr_conversion",
     "ai_wage_pool_coverage"
   ]),
@@ -95,11 +107,15 @@ const DISPLAY_OVERRIDES = {
   openrouter_us_tokens: { group: "① 需求", title: "OpenRouter 美国模型 Token 使用量", cadence: "日/周", access: "自动" },
   openrouter_cn_tokens: { group: "① 需求", title: "OpenRouter 中国模型 Token 使用量", cadence: "日/周", access: "自动" },
   openrouter_share: { group: "① 需求", title: "OpenRouter 模型份额集中度", cadence: "日/周", access: "自动" },
+  arena_frontend_code: { group: "① 需求", title: "Frontend Code Arena 模型排名", cadence: "事件", access: "半自动" },
   llm_token_spend_index: { group: "① 需求", title: "使用量加权 LLM Token 支出指数", cadence: "日", access: "自动" },
   frontier_premium: { group: "① 需求", title: "前沿闭源模型价格溢价", cadence: "日", access: "自动" },
   free_token_share: { group: "① 需求", title: "免费 Token 占比", cadence: "日", access: "自动" },
   openai_arr: { group: "② 现金流", title: "OpenAI ARR", cadence: "事件/月", access: "自动" },
   anthropic_arr: { group: "② 现金流", title: "Anthropic ARR", cadence: "事件/月", access: "自动" },
+  minimax_arr: { group: "② 现金流", title: "MiniMax ARR", cadence: "事件/月", access: "半自动" },
+  zhipu_arr: { group: "② 现金流", title: "智谱 AI ARR", cadence: "事件/月", access: "半自动" },
+  kimi_arr: { group: "② 现金流", title: "Kimi / Moonshot ARR", cadence: "事件/月", access: "半自动" },
   token_arr_conversion: { group: "② 现金流", title: "Token 用量转 ARR 效率", cadence: "日/周", access: "自动" },
   ai_wage_pool_coverage: { group: "② 现金流", title: "AI 收入覆盖潜在工资池比例", cadence: "月", access: "自动" },
   msft_capex: { group: "③ CapEx", title: "Microsoft CapEx", cadence: "季", access: "自动" },
@@ -213,8 +229,8 @@ function decorateMetrics(metrics, history) {
         accessClass: getAccessClass(displayItem.access),
         canvasId: `chart_${item.id}`,
         chartPoints,
-        windowLabel: "全历史趋势",
-        historyLabel: getHistoryLabel(displayItem.series ? getLongestSeries(displayItem.series) : history[item.id] || [])
+        windowLabel: displayItem.rankings ? "当前榜单" : "全历史趋势",
+        historyLabel: displayItem.rankings ? `Top ${displayItem.rankings.length}` : getHistoryLabel(displayItem.series ? getLongestSeries(displayItem.series) : history[item.id] || [])
       };
     })
     .sort((a, b) => getMetricOrder(a.id) - getMetricOrder(b.id));
@@ -281,7 +297,6 @@ function buildRampCompositeMetrics(history) {
 
   return metrics;
 }
-
 function buildSeries(history, prefix, limit) {
   const byName = new Map();
   Object.keys(history)
@@ -324,8 +339,8 @@ function getMetricOrder(id) {
 
 function getAccessClass(access) {
   const value = String(access || "").toLowerCase();
-  if (value.includes("自动") || value.includes("csv")) return "auto";
-  if (value.includes("手动")) return "manual";
+  if (value.includes("鑷姩") || value.includes("csv")) return "auto";
+  if (value.includes("鎵嬪姩")) return "manual";
   return "semi";
 }
 
@@ -346,9 +361,12 @@ function getHistoryLabel(records) {
   if (count === 1) return "1 个点";
   return `${count} 个点`;
 }
-
 function drawSparkline(page, metric) {
   const context = wx.createCanvasContext(metric.canvasId, page);
+  if (metric.rankings && metric.rankings.length) {
+    drawRankingChart(context, metric.rankings);
+    return;
+  }
   const points = metric.series ? flattenSeries(metric.series) : metric.chartPoints;
   const width = 300;
   const height = 118;
@@ -386,6 +404,40 @@ function drawSparkline(page, metric) {
     drawLine(context, metric.chartPoints, min, max, leftPadding, topPadding, drawableWidth, drawableHeight, getTrendColor(metric.trend), 2, timeBounds);
   }
 
+  context.draw();
+}
+
+function drawRankingChart(context, rankings) {
+  const width = 300;
+  const height = 118;
+  const leftPadding = 76;
+  const rightPadding = 34;
+  const topPadding = 8;
+  const rowHeight = 10;
+  const rows = rankings.slice(0, 10);
+  const scores = rows.map((item) => Number(item.score));
+  const min = Math.min(...scores);
+  const max = Math.max(...scores);
+  const span = max - min || 1;
+
+  context.clearRect(0, 0, width, height);
+  context.setFontSize(8);
+  rows.forEach((item, index) => {
+    const y = topPadding + index * rowHeight;
+    const score = Number(item.score);
+    const barWidth = 42 + ((score - min) / span) * (width - leftPadding - rightPadding - 42);
+    const color = index === 0 ? "#f5c542" : index <= 3 ? "#2563eb" : "#7c8aa0";
+
+    context.setFillStyle("#66707b");
+    context.setTextAlign("left");
+    context.fillText(`${item.rank}. ${shortRankingName(item.name)}`, 2, y + 7);
+    context.setFillStyle(color);
+    context.fillRect(leftPadding, y, barWidth, 7);
+    context.setFillStyle("#4d5965");
+    context.setTextAlign("right");
+    context.fillText(String(item.score), width - 2, y + 7);
+  });
+  context.setTextAlign("left");
   context.draw();
 }
 
@@ -500,7 +552,7 @@ function latestSeriesSummary(series) {
 function seriesDateRange(series) {
   const points = getLongestSeries(series);
   if (!points.length) return "--";
-  return `${points[0].date} → ${points[points.length - 1].date}`;
+  return `${points[0].date} 鈫?${points[points.length - 1].date}`;
 }
 
 function getTrend(points) {
@@ -520,15 +572,15 @@ function getTrendColor(trend) {
 
 function humanizeRampName(slug) {
   const names = {
-    technology_media: "科技媒体",
-    technology_and_media: "科技媒体",
-    finance_insurance: "金融保险",
-    finance_and_insurance: "金融保险",
-    manufacturing: "制造业",
-    retail: "零售",
-    health_care: "医疗健康",
-    construction: "建筑",
-    accommodation_and_food_services: "住宿餐饮",
+    technology_media: "绉戞妧濯掍綋",
+    technology_and_media: "绉戞妧濯掍綋",
+    finance_insurance: "閲戣瀺淇濋櫓",
+    finance_and_insurance: "閲戣瀺淇濋櫓",
+    manufacturing: "鍒堕€犱笟",
+    retail: "闆跺敭",
+    health_care: "鍖荤枟鍋ュ悍",
+    construction: "寤虹瓚",
+    accommodation_and_food_services: "浣忓椁愰ギ",
     openai: "OpenAI",
     anthropic: "Anthropic",
     google: "Google",
@@ -539,7 +591,13 @@ function humanizeRampName(slug) {
 }
 
 function shortLabel(label) {
-  return String(label || "").length > 8 ? `${String(label).slice(0, 8)}…` : String(label || "");
+  const value = String(label || "");
+  return value.length > 8 ? `${value.slice(0, 8)}…` : value;
+}
+
+function shortRankingName(label) {
+  const value = String(label || "");
+  return value.length > 13 ? `${value.slice(0, 12)}…` : value;
 }
 
 function formatDateTick(date) {

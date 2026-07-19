@@ -31,29 +31,29 @@ const metrics = [
     "id": "openrouter_us_tokens",
     "group": "① 需求",
     "title": "真实调用：OpenRouter 美国模型日度 Token 使用量",
-    "value": "2.2",
+    "value": "2",
     "unit": "万亿/日",
-    "change": "2026-07-12 to 2026-07-18",
+    "change": "环比 -3% / 同比 823%",
     "trend": "flat",
     "access": "自动",
     "cadence": "日/周",
-    "source": "OpenRouter Datasets API",
+    "source": "OpenRouter Datasets API / 中金整理",
     "sourceUrl": "https://openrouter.ai/data",
-    "note": "按 OpenRouter 模型提供方归类估算美国模型日均 token 调用量。该口径只代表 OpenRouter，不等同全球总量。"
+    "note": "按 OpenRouter 模型提供方归类估算美国模型日均 token 调用量。它不是全球总量，但能观察真实调用需求的方向变化。"
   },
   {
     "id": "openrouter_cn_tokens",
     "group": "① 需求",
     "title": "真实调用：OpenRouter 中国模型日度 Token 使用量",
-    "value": "5.6",
+    "value": "4.8",
     "unit": "万亿/日",
-    "change": "2026-07-12 to 2026-07-18",
+    "change": "环比 30% / 同比 6946%",
     "trend": "up",
     "access": "自动",
     "cadence": "日/周",
-    "source": "OpenRouter Datasets API",
+    "source": "OpenRouter Datasets API / 中金整理",
     "sourceUrl": "https://openrouter.ai/data",
-    "note": "按 DeepSeek、Qwen、Kimi、MiniMax、智谱等模型归类估算中国模型日均 token 调用量。"
+    "note": "按 DeepSeek、Qwen、Kimi、MiniMax、智谱等模型归类估算中国模型日均 token 调用量，用来观察低成本模型扩散速度。"
   },
   {
     "id": "silicon_token_expenditure",
@@ -73,9 +73,9 @@ const metrics = [
     "id": "llm_token_spend_index",
     "group": "① 需求",
     "title": "使用成本：使用量加权 LLM token 支出指数",
-    "value": "$2.19",
+    "value": "$2.22",
     "unit": "$/1M weighted",
-    "change": "TTSI 99.7 / 28d 4.6%",
+    "change": "TTSI 101.2 / 28d 6.6%",
     "trend": "up",
     "access": "自动",
     "cadence": "日",
@@ -325,9 +325,9 @@ const metrics = [
     "id": "openrouter_tokens",
     "group": "? ??",
     "title": "?????OpenRouter ?? Token ??",
-    "value": "61.8T",
+    "value": "54.4T",
     "unit": "7d",
-    "change": "2026-07-12 to 2026-07-18",
+    "change": "2026-07-07 to 2026-07-13",
     "trend": "up",
     "access": "自动",
     "cadence": "周",
@@ -339,9 +339,9 @@ const metrics = [
     "id": "openrouter_share",
     "group": "? ??",
     "title": "?????OpenRouter ?????",
-    "value": "75%",
+    "value": "72%",
     "unit": "Top10",
-    "change": "Anthropic 11.8%",
+    "change": "Anthropic 12.9%",
     "trend": "flat",
     "access": "自动",
     "cadence": "周",
@@ -493,9 +493,9 @@ const metrics = [
     "id": "frontier_premium",
     "group": "? ??",
     "title": "前沿模型价格溢价",
-    "value": "11.4x",
+    "value": "11.1x",
     "unit": "frontier / open-weight",
-    "change": "frontier $5.60 / open-weight $0.53",
+    "change": "frontier $5.64 / open-weight $0.53",
     "trend": "up",
     "access": "自动",
     "cadence": "日",
@@ -507,9 +507,9 @@ const metrics = [
     "id": "free_token_share",
     "group": "? ??",
     "title": "免费 Token 占比",
-    "value": "27.3%",
+    "value": "29.6%",
     "unit": "free token share",
-    "change": "basket 42 models",
+    "change": "basket 41 models",
     "trend": "down",
     "access": "自动",
     "cadence": "日",
@@ -619,9 +619,9 @@ const metrics = [
     "id": "gpu_rental_price",
     "group": "? ????",
     "title": "GPU 租赁价格",
-    "value": "$1.92/h",
+    "value": "$2.01/h",
     "unit": "H100 p25",
-    "change": "H100 $1.92/h / H200 $3.82/h / B200 $7.13/h",
+    "change": "H100 $2.01/h / H200 $4.01/h / B200 $6.88/h",
     "trend": "flat",
     "access": "自动",
     "cadence": "日/周",
@@ -661,9 +661,9 @@ const metrics = [
     "id": "revenue_per_gpu",
     "group": "? ????",
     "title": "单位 GPU 每日收入",
-    "value": "$46.1/day",
+    "value": "$48.3/day",
     "unit": "H100 spot proxy",
-    "change": "median $54.4/day",
+    "change": "median $52.8/day",
     "trend": "flat",
     "access": "自动",
     "cadence": "月/季",
@@ -782,6 +782,164 @@ const metrics = [
     "source": "Ramp AI Index CSV",
     "sourceUrl": "https://ramp.com/data/ai-index",
     "note": "xAI share/adoption series from Ramp AI Index model-company CSV."
+  },
+  {
+    "id": "arena_frontend_code",
+    "group": "① 需求",
+    "title": "Frontend Code Arena 模型排名",
+    "value": "Kimi-K3 #1",
+    "unit": "1679 分",
+    "change": "Top20 快照",
+    "trend": "up",
+    "cadence": "事件",
+    "access": "半自动",
+    "source": "Arena AI Leaderboard / 用户截图",
+    "sourceUrl": "https://arena.ai/leaderboard/code/webdev",
+    "note": "Frontend Code Arena 当前榜单快照。Kimi-K3 在用户提供的榜单图中排名第一，说明国产模型在前端代码生成任务上出现强叙事突破。",
+    "rankings": [
+      {
+        "rank": 1,
+        "name": "Kimi-K3",
+        "score": 1679
+      },
+      {
+        "rank": 2,
+        "name": "Claude Fable 5",
+        "score": 1631
+      },
+      {
+        "rank": 3,
+        "name": "GPT-5.6 Sol (xHigh)",
+        "score": 1618
+      },
+      {
+        "rank": 4,
+        "name": "GLM-5.2 (Max)",
+        "score": 1587
+      },
+      {
+        "rank": 5,
+        "name": "Claude Opus 4.8 (Thinking)",
+        "score": 1562
+      },
+      {
+        "rank": 6,
+        "name": "Grok-4.5",
+        "score": 1558
+      },
+      {
+        "rank": 7,
+        "name": "Claude Opus 4.7 (Thinking)",
+        "score": 1558
+      },
+      {
+        "rank": 8,
+        "name": "Claude Opus 4.7",
+        "score": 1555
+      },
+      {
+        "rank": 9,
+        "name": "Claude Opus 4.6 (Thinking)",
+        "score": 1542
+      },
+      {
+        "rank": 10,
+        "name": "Claude Sonnet 5 (High)",
+        "score": 1542
+      },
+      {
+        "rank": 11,
+        "name": "Muse Spark 1.1",
+        "score": 1538
+      },
+      {
+        "rank": 12,
+        "name": "Claude Opus 4.6",
+        "score": 1536
+      },
+      {
+        "rank": 13,
+        "name": "Claude Opus 4.8",
+        "score": 1534
+      },
+      {
+        "rank": 14,
+        "name": "Seed-2.1 Pro",
+        "score": 1534
+      },
+      {
+        "rank": 15,
+        "name": "GLM-5.1",
+        "score": 1526
+      },
+      {
+        "rank": 16,
+        "name": "Claude Sonnet 4.6",
+        "score": 1522
+      },
+      {
+        "rank": 17,
+        "name": "Qwen-3.7 Max",
+        "score": 1516
+      },
+      {
+        "rank": 18,
+        "name": "Kimi-K2.6",
+        "score": 1515
+      },
+      {
+        "rank": 19,
+        "name": "GPT-5.5 (xHigh)",
+        "score": 1504
+      },
+      {
+        "rank": 20,
+        "name": "MiniMax-M3",
+        "score": 1493
+      }
+    ]
+  },
+  {
+    "id": "minimax_arr",
+    "group": "② 现金流",
+    "title": "MiniMax ARR",
+    "value": "$300M",
+    "unit": "annualized revenue",
+    "change": "2026-05 Sacra estimate",
+    "trend": "up",
+    "cadence": "事件/月",
+    "access": "半自动",
+    "source": "Sacra / IPO and media reports",
+    "sourceUrl": "https://sacra.com/c/minimax/",
+    "note": "MiniMax 商业化确认指标。第一版使用公开报道和 Sacra 年化收入估算，口径偏事件驱动，不等同于上市公司正式 ARR 披露。"
+  },
+  {
+    "id": "zhipu_arr",
+    "group": "② 现金流",
+    "title": "智谱 AI ARR",
+    "value": "$1.0B",
+    "unit": "reported ARR",
+    "change": "2026-07 media report",
+    "trend": "up",
+    "cadence": "事件/月",
+    "access": "半自动",
+    "source": "36Kr / Bloomberg-cited reports / 财报报道",
+    "sourceUrl": "https://eu.36kr.com/en/p/3898662052693894",
+    "note": "智谱商业化确认指标。3月财报披露 MaaS API 平台 ARR 约17亿元，7月媒体称 ARR run-rate 达10亿美元；后者为媒体报道口径，需继续跟踪公司确认。"
+  },
+  {
+    "id": "kimi_arr",
+    "group": "② 现金流",
+    "title": "Kimi / Moonshot ARR",
+    "value": "$200M",
+    "unit": "reported ARR",
+    "change": "2026-04 media report",
+    "trend": "up",
+    "cadence": "事件/月",
+    "access": "半自动",
+    "source": "Bloomberg-cited media reports",
+    "sourceUrl": "https://techjacksolutions.com/ai-brief/moonshot-ais-revenue-doubled-in-six-weeks-now-its-preparing/",
+    "note": "Kimi 商业化确认指标。Moonshot 未上市，当前主要依赖融资/媒体披露；适合做方向性跟踪，不适合当作精确财报数据。"
   }
 ];
 
