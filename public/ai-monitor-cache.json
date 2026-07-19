@@ -34,7 +34,7 @@
       "title": "真实调用：OpenRouter 美国模型日度 Token 使用量",
       "value": "2.2",
       "unit": "万亿/日",
-      "change": "2026-07-11 to 2026-07-17",
+      "change": "2026-07-12 to 2026-07-18",
       "trend": "flat",
       "access": "自动",
       "cadence": "日/周",
@@ -46,9 +46,9 @@
       "id": "openrouter_cn_tokens",
       "group": "① 需求",
       "title": "真实调用：OpenRouter 中国模型日度 Token 使用量",
-      "value": "5.5",
+      "value": "5.6",
       "unit": "万亿/日",
-      "change": "2026-07-11 to 2026-07-17",
+      "change": "2026-07-12 to 2026-07-18",
       "trend": "up",
       "access": "自动",
       "cadence": "日/周",
@@ -74,9 +74,9 @@
       "id": "llm_token_spend_index",
       "group": "① 需求",
       "title": "使用成本：使用量加权 LLM token 支出指数",
-      "value": "$2.18",
+      "value": "$2.19",
       "unit": "$/1M weighted",
-      "change": "TTSI 99 / 28d 3.2%",
+      "change": "TTSI 99.7 / 28d 4.6%",
       "trend": "up",
       "access": "自动",
       "cadence": "日",
@@ -326,9 +326,9 @@
       "id": "openrouter_tokens",
       "group": "? ??",
       "title": "?????OpenRouter ?? Token ??",
-      "value": "61.2T",
+      "value": "61.8T",
       "unit": "7d",
-      "change": "2026-07-11 to 2026-07-17",
+      "change": "2026-07-12 to 2026-07-18",
       "trend": "up",
       "access": "自动",
       "cadence": "周",
@@ -494,9 +494,9 @@
       "id": "frontier_premium",
       "group": "? ??",
       "title": "前沿模型价格溢价",
-      "value": "9.9x",
+      "value": "11.4x",
       "unit": "frontier / open-weight",
-      "change": "frontier $5.60 / open-weight $0.54",
+      "change": "frontier $5.60 / open-weight $0.53",
       "trend": "up",
       "access": "自动",
       "cadence": "日",
@@ -508,9 +508,9 @@
       "id": "free_token_share",
       "group": "? ??",
       "title": "免费 Token 占比",
-      "value": "25.8%",
+      "value": "27.3%",
       "unit": "free token share",
-      "change": "basket 43 models",
+      "change": "basket 42 models",
       "trend": "down",
       "access": "自动",
       "cadence": "日",
@@ -620,9 +620,9 @@
       "id": "gpu_rental_price",
       "group": "? ????",
       "title": "GPU 租赁价格",
-      "value": "$2.01/h",
+      "value": "$1.92/h",
       "unit": "H100 p25",
-      "change": "H100 $2.01/h / H200 $3.75/h / B200 $7.11/h",
+      "change": "H100 $1.92/h / H200 $3.82/h / B200 $7.13/h",
       "trend": "flat",
       "access": "自动",
       "cadence": "日/周",
@@ -662,9 +662,9 @@
       "id": "revenue_per_gpu",
       "group": "? ????",
       "title": "单位 GPU 每日收入",
-      "value": "$48.2/day",
+      "value": "$46.1/day",
       "unit": "H100 spot proxy",
-      "change": "median $52.8/day",
+      "change": "median $54.4/day",
       "trend": "flat",
       "access": "自动",
       "cadence": "月/季",
@@ -787,12 +787,6 @@
   ],
   "history": {
     "openrouter_tokens": [
-      {
-        "date": "2026-04-18",
-        "value": 20418904966991,
-        "label": "20.4T",
-        "unit": "7d"
-      },
       {
         "date": "2026-04-19",
         "value": 20469273117201,
@@ -1329,24 +1323,24 @@
       },
       {
         "date": "2026-07-17",
-        "value": 61200477483269,
+        "value": 61200553374838,
         "label": "61.2T",
         "unit": "7d"
       },
       {
         "date": "2026-07-18",
-        "value": 61200000000000,
-        "label": "61.2T",
+        "value": 61831161965510,
+        "label": "61.8T",
+        "unit": "7d"
+      },
+      {
+        "date": "2026-07-19",
+        "value": 61800000000000,
+        "label": "61.8T",
         "unit": "7d"
       }
     ],
     "openrouter_share": [
-      {
-        "date": "2026-04-18",
-        "value": 55.4,
-        "label": "55.4%",
-        "unit": "Top10"
-      },
       {
         "date": "2026-04-19",
         "value": 55.3,
@@ -1889,6 +1883,12 @@
       },
       {
         "date": "2026-07-18",
+        "value": 75.4,
+        "label": "75.4%",
+        "unit": "Top10"
+      },
+      {
+        "date": "2026-07-19",
         "value": 75,
         "label": "75%",
         "unit": "Top10"
@@ -1999,7 +1999,7 @@
         "source": "https://www.anthropic.com/news/series-h"
       },
       {
-        "date": "2026-07-18",
+        "date": "2026-07-19",
         "value": 47000000000,
         "label": "$47B",
         "unit": "annualized revenue"
@@ -2124,7 +2124,7 @@
         "source": "https://www.theinformation.com/articles/openai-tops-25-billion-annualized-revenue-anthropic-narrows-gap?rc=9mzoog"
       },
       {
-        "date": "2026-07-18",
+        "date": "2026-07-19",
         "value": 25000000000,
         "label": "$25B",
         "unit": "annualized revenue"
@@ -2336,6 +2336,12 @@
         "value": 2.01,
         "label": "$2.01/h",
         "unit": "H100 p25"
+      },
+      {
+        "date": "2026-07-19",
+        "value": 1.92,
+        "label": "$1.92/h",
+        "unit": "H100 p25"
       }
     ],
     "api_price_index": [
@@ -2389,6 +2395,12 @@
       },
       {
         "date": "2026-07-18",
+        "value": 7.24,
+        "label": "$7.24",
+        "unit": "$/1M blended"
+      },
+      {
+        "date": "2026-07-19",
         "value": 7.24,
         "label": "$7.24",
         "unit": "$/1M blended"
@@ -2447,6 +2459,12 @@
         "date": "2026-07-18",
         "value": 48.2,
         "label": "$48.2/day",
+        "unit": "H100 spot proxy"
+      },
+      {
+        "date": "2026-07-19",
+        "value": 46.1,
+        "label": "$46.1/day",
         "unit": "H100 spot proxy"
       }
     ],
@@ -2614,19 +2632,13 @@
         "unit": "ARR / exposed wage pool"
       },
       {
-        "date": "2026-07-18",
+        "date": "2026-07-19",
         "value": 5,
         "label": "5%",
         "unit": "ARR / exposed wage pool"
       }
     ],
     "token_arr_conversion": [
-      {
-        "date": "2026-04-18",
-        "value": 51799658.66936364,
-        "label": "$51.8M",
-        "unit": "ARR / annualized 1T OR tokens"
-      },
       {
         "date": "2026-04-19",
         "value": 51672196.7427116,
@@ -3163,24 +3175,24 @@
       },
       {
         "date": "2026-07-17",
-        "value": 22624257.874359086,
+        "value": 22624229.81921362,
         "label": "$22.6M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
         "date": "2026-07-18",
+        "value": 22393488.0180278,
+        "label": "$22.4M",
+        "unit": "ARR / annualized 1T OR tokens"
+      },
+      {
+        "date": "2026-07-19",
         "value": 26900000,
         "label": "$26.9M",
         "unit": "ARR / annualized 1T OR tokens"
       }
     ],
     "tech_job_postings": [
-      {
-        "date": "2026-04-10",
-        "value": 72.21,
-        "label": "72.21",
-        "unit": "Feb 2020=100"
-      },
       {
         "date": "2026-04-11",
         "value": 72.42,
@@ -3728,19 +3740,13 @@
         "unit": "Feb 2020=100"
       },
       {
-        "date": "2026-07-18",
+        "date": "2026-07-19",
         "value": 74.6,
         "label": "74.6",
         "unit": "Feb 2020=100"
       }
     ],
     "llm_token_spend_index": [
-      {
-        "date": "2026-04-10",
-        "value": 1.9852,
-        "label": "$1.99",
-        "unit": "$/1M weighted"
-      },
       {
         "date": "2026-04-11",
         "value": 2.0166,
@@ -4324,19 +4330,19 @@
         "unit": "$/1M weighted"
       },
       {
-        "date": "2026-07-18",
-        "value": 2.18,
-        "label": "$2.18",
+        "date": "2026-07-17",
+        "value": 2.1909,
+        "label": "$2.19",
+        "unit": "$/1M weighted"
+      },
+      {
+        "date": "2026-07-19",
+        "value": 2.19,
+        "label": "$2.19",
         "unit": "$/1M weighted"
       }
     ],
     "frontier_premium": [
-      {
-        "date": "2026-04-10",
-        "value": 4.66,
-        "label": "4.7x",
-        "unit": "frontier / open-weight"
-      },
       {
         "date": "2026-04-11",
         "value": 4.94,
@@ -4920,19 +4926,19 @@
         "unit": "frontier / open-weight"
       },
       {
-        "date": "2026-07-18",
-        "value": 9.9,
-        "label": "9.9x",
+        "date": "2026-07-17",
+        "value": 11.43,
+        "label": "11.4x",
+        "unit": "frontier / open-weight"
+      },
+      {
+        "date": "2026-07-19",
+        "value": 11.4,
+        "label": "11.4x",
         "unit": "frontier / open-weight"
       }
     ],
     "free_token_share": [
-      {
-        "date": "2026-04-10",
-        "value": 6.64,
-        "label": "6.6%",
-        "unit": "free token share"
-      },
       {
         "date": "2026-04-11",
         "value": 8.77,
@@ -5516,9 +5522,15 @@
         "unit": "free token share"
       },
       {
-        "date": "2026-07-18",
-        "value": 25.8,
-        "label": "25.8%",
+        "date": "2026-07-17",
+        "value": 27.32,
+        "label": "27.3%",
+        "unit": "free token share"
+      },
+      {
+        "date": "2026-07-19",
+        "value": 27.3,
+        "label": "27.3%",
         "unit": "free token share"
       }
     ],
@@ -5566,7 +5578,7 @@
         "unit": "CapEx / OCF"
       },
       {
-        "date": "2026-07-18",
+        "date": "2026-07-19",
         "value": 94,
         "label": "94%",
         "unit": "CapEx / OCF"
@@ -5602,6 +5614,12 @@
         "value": 60,
         "label": "60",
         "unit": "分"
+      },
+      {
+        "date": "2026-07-19",
+        "value": 60,
+        "label": "60",
+        "unit": "分"
       }
     ],
     "aa_cn_score": [
@@ -5634,15 +5652,15 @@
         "value": 51,
         "label": "51",
         "unit": "分"
+      },
+      {
+        "date": "2026-07-19",
+        "value": 51,
+        "label": "51",
+        "unit": "分"
       }
     ],
     "openrouter_us_tokens": [
-      {
-        "date": "2026-04-18",
-        "value": 1.093113177916,
-        "label": "1.1T",
-        "unit": "万亿/日"
-      },
       {
         "date": "2026-04-19",
         "value": 1.060980298837,
@@ -6179,24 +6197,24 @@
       },
       {
         "date": "2026-07-17",
-        "value": 2.451337068084,
+        "value": 2.45134455896,
         "label": "2.5T",
         "unit": "万亿/日"
       },
       {
         "date": "2026-07-18",
+        "value": 1.615450971971,
+        "label": "1.6T",
+        "unit": "万亿/日"
+      },
+      {
+        "date": "2026-07-19",
         "value": 2.2,
         "label": "2.2",
         "unit": "万亿/日"
       }
     ],
     "openrouter_cn_tokens": [
-      {
-        "date": "2026-04-18",
-        "value": 0.915100181278,
-        "label": "0.9T",
-        "unit": "万亿/日"
-      },
       {
         "date": "2026-04-19",
         "value": 0.925779921859,
@@ -6733,14 +6751,20 @@
       },
       {
         "date": "2026-07-17",
-        "value": 6.048001879499,
+        "value": 6.048064756236,
         "label": "6T",
         "unit": "万亿/日"
       },
       {
         "date": "2026-07-18",
-        "value": 5.5,
-        "label": "5.5",
+        "value": 5.26194144459,
+        "label": "5.3T",
+        "unit": "万亿/日"
+      },
+      {
+        "date": "2026-07-19",
+        "value": 5.6,
+        "label": "5.6",
         "unit": "万亿/日"
       }
     ],
@@ -6771,6 +6795,12 @@
       },
       {
         "date": "2026-07-18",
+        "value": 1.6,
+        "label": "$1.6",
+        "unit": "美元/百万 token"
+      },
+      {
+        "date": "2026-07-19",
         "value": 1.6,
         "label": "$1.6",
         "unit": "美元/百万 token"
@@ -6806,6 +6836,12 @@
         "value": 1.7,
         "label": "$1.7",
         "unit": "美元/用户/月"
+      },
+      {
+        "date": "2026-07-19",
+        "value": 1.7,
+        "label": "$1.7",
+        "unit": "美元/用户/月"
       }
     ],
     "anthropic_app_revenue": [
@@ -6835,6 +6871,12 @@
       },
       {
         "date": "2026-07-18",
+        "value": 2.8,
+        "label": "$2.8",
+        "unit": "美元/用户/月"
+      },
+      {
+        "date": "2026-07-19",
         "value": 2.8,
         "label": "$2.8",
         "unit": "美元/用户/月"
@@ -6870,6 +6912,12 @@
         "value": 101500000000,
         "label": "$101.5B",
         "unit": "十亿美元"
+      },
+      {
+        "date": "2026-07-19",
+        "value": 101500000000,
+        "label": "$101.5B",
+        "unit": "十亿美元"
       }
     ],
     "big5_bond_issuance": [
@@ -6899,6 +6947,12 @@
       },
       {
         "date": "2026-07-18",
+        "value": 25000000000,
+        "label": "$25B",
+        "unit": "十亿美元"
+      },
+      {
+        "date": "2026-07-19",
         "value": 25000000000,
         "label": "$25B",
         "unit": "十亿美元"
@@ -6934,15 +6988,15 @@
         "value": 86.4,
         "label": "86.4",
         "unit": "bp"
+      },
+      {
+        "date": "2026-07-19",
+        "value": 86.4,
+        "label": "86.4",
+        "unit": "bp"
       }
     ],
     "ig_credit_spread": [
-      {
-        "date": "2026-02-28",
-        "value": 0.86,
-        "label": "0.9ppt",
-        "unit": "US IG OAS"
-      },
       {
         "date": "2026-03-02",
         "value": 0.85,
@@ -7544,7 +7598,7 @@
         "unit": "US IG OAS"
       },
       {
-        "date": "2026-07-18",
+        "date": "2026-07-19",
         "value": 0.8,
         "label": "0.8ppt",
         "unit": "US IG OAS"
@@ -7580,6 +7634,12 @@
         "value": 3.75,
         "label": "3.75",
         "unit": "分"
+      },
+      {
+        "date": "2026-07-19",
+        "value": 3.75,
+        "label": "3.75",
+        "unit": "分"
       }
     ],
     "ai_risk_investment": [
@@ -7609,6 +7669,12 @@
       },
       {
         "date": "2026-07-18",
+        "value": 267200000000,
+        "label": "$267.2B",
+        "unit": "十亿美元"
+      },
+      {
+        "date": "2026-07-19",
         "value": 267200000000,
         "label": "$267.2B",
         "unit": "十亿美元"
@@ -7682,7 +7748,7 @@
         "unit": "万人"
       },
       {
-        "date": "2026-07-18",
+        "date": "2026-07-19",
         "value": 1524.8,
         "label": "1524.8",
         "unit": "万人"
@@ -7715,6 +7781,12 @@
       },
       {
         "date": "2026-07-18",
+        "value": 46,
+        "label": "46%",
+        "unit": "%"
+      },
+      {
+        "date": "2026-07-19",
         "value": 46,
         "label": "46%",
         "unit": "%"
@@ -7758,7 +7830,7 @@
         "unit": "annualized"
       },
       {
-        "date": "2026-07-18",
+        "date": "2026-07-19",
         "value": 59300000000,
         "label": "$59.3B",
         "unit": "十亿美元"
@@ -7808,7 +7880,7 @@
         "unit": "OCF-CapEx"
       },
       {
-        "date": "2026-07-18",
+        "date": "2026-07-19",
         "value": 9500000000,
         "label": "$9.5B",
         "unit": "十亿美元"
@@ -7864,7 +7936,7 @@
         "unit": "liabilities/equity"
       },
       {
-        "date": "2026-07-18",
+        "date": "2026-07-19",
         "value": 43,
         "label": "43%",
         "unit": "Big 5 负债权益比"
@@ -11465,6 +11537,6 @@
       }
     ]
   },
-  "updatedAt": "2026-07-18 00:08",
+  "updatedAt": "2026-07-19 00:09",
   "source": "github-actions-cache"
 }
