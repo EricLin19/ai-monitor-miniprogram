@@ -39,9 +39,9 @@ const CICC_CORE_META = {
 
 const EXTRA_METRIC_TEMPLATES = [
   { id: "arena_frontend_code", group: "① 需求", title: "Frontend Code Arena 模型排名", value: "Kimi-K3 #1", unit: "1679 分", change: "Top20 快照", trend: "up", cadence: "事件", access: "半自动", source: "Arena AI Leaderboard / 用户截图", sourceUrl: "https://arena.ai/leaderboard/code/webdev", note: "模型能力供给指标。Arena 页面当前被 Cloudflare 阻挡，第一版用用户提供的榜单截图做快照；后续若找到公开 JSON/API，再升级为自动抓取。", rankings: getArenaFrontendCodeRankings() },
-  { id: "minimax_arr", group: "② 现金流", title: "MiniMax ARR", value: "$300M", unit: "annualized revenue", change: "2026-05 Sacra estimate", trend: "up", cadence: "事件/月", access: "半自动", source: "Sacra / IPO and media reports", sourceUrl: "https://sacra.com/c/minimax/", note: "MiniMax 商业化确认指标。第一版使用公开报道和 Sacra 年化收入估算，口径偏事件驱动，不等同于上市公司正式 ARR 披露。" },
-  { id: "zhipu_arr", group: "② 现金流", title: "智谱 AI ARR", value: "$1.0B", unit: "reported ARR", change: "2026-07 media report", trend: "up", cadence: "事件/月", access: "半自动", source: "36Kr / Bloomberg-cited reports / 财报报道", sourceUrl: "https://eu.36kr.com/en/p/3898662052693894", note: "智谱商业化确认指标。3月财报披露 MaaS API 平台 ARR 约17亿元，7月媒体称 ARR run-rate 达10亿美元；后者为媒体报道口径，需继续跟踪公司确认。" },
-  { id: "kimi_arr", group: "② 现金流", title: "Kimi / Moonshot ARR", value: "$200M", unit: "reported ARR", change: "2026-04 media report", trend: "up", cadence: "事件/月", access: "半自动", source: "Bloomberg-cited media reports", sourceUrl: "https://techjacksolutions.com/ai-brief/moonshot-ais-revenue-doubled-in-six-weeks-now-its-preparing/", note: "Kimi 商业化确认指标。Moonshot 未上市，当前主要依赖融资/媒体披露；适合做方向性跟踪，不适合当作精确财报数据。" },
+  { id: "minimax_arr", group: "② 现金流", title: "MiniMax 收入 / ARR", value: "$300M", unit: "reported revenue / ARR", change: "2026-05 Sacra estimate", trend: "up", cadence: "事件/月", access: "半自动", source: "HKEX prospectus / MiniMax results / Sacra / media reports", sourceUrl: "https://sacra.com/c/minimax/", note: "MiniMax 商业化确认指标。历史段使用招股书和业绩公告的收入，最新段使用公开年化收入估算；每个点保留原始口径。" },
+  { id: "zhipu_arr", group: "② 现金流", title: "智谱 AI 收入 / ARR", value: "$1.0B", unit: "reported revenue / ARR", change: "2026-07 media report", trend: "up", cadence: "事件/月", access: "半自动", source: "HKEX prospectus coverage / 36Kr / Bloomberg-cited reports / 财报报道", sourceUrl: "https://eu.36kr.com/en/p/3898662052693894", note: "智谱商业化确认指标。历史段使用招股书/财报披露收入，2026 年开始接入 MaaS API ARR 和媒体 ARR run-rate；后者需继续跟踪公司确认。" },
+  { id: "kimi_arr", group: "② 现金流", title: "Kimi / Moonshot ARR", value: "$300M+", unit: "reported ARR", change: "2026-06 media report", trend: "up", cadence: "事件/月", access: "半自动", source: "Bloomberg-cited media reports", sourceUrl: "https://techjacksolutions.com/ai-brief/moonshot-ais-revenue-doubled-in-six-weeks-now-its-preparing/", note: "Kimi 商业化确认指标。Moonshot 未上市，当前主要依赖融资/媒体披露；公开数字较少，适合做方向性跟踪，不适合当作精确财报数据。" },
   { id: "orcl_capex", group: "③ CapEx", title: "Oracle CapEx", value: "待更新", unit: "季度", change: "SEC", trend: "flat", cadence: "季", access: "自动", source: "SEC Company Facts API", sourceUrl: "https://www.sec.gov/edgar/sec-api-documentation", note: "Oracle 资本开支，和 Microsoft、Alphabet、Amazon、Meta 一起观察云厂商 AI 基建投入强度。" },
   { id: "ramp_ai_adoption", group: "① 需求", title: "Ramp AI Index：企业 AI 采用率", value: "待更新", unit: "%", change: "Ramp CSV", trend: "flat", cadence: "月", access: "本地CSV", source: "Ramp AI Index CSV", sourceUrl: "https://ramp.com/data/ai-index", note: "Ramp 基于企业支出数据观察 AI 工具采用率，更接近企业预算化采购，而不是普通用户热度。" },
   { id: "ramp_sector_technology_media", group: "① 需求", title: "Ramp：科技与媒体行业 AI 采用率", value: "待更新", unit: "%", change: "Ramp CSV", trend: "flat", cadence: "月", access: "本地CSV", source: "Ramp AI Index CSV", sourceUrl: "https://ramp.com/data/ai-index", note: "科技与媒体行业通常是 AI 工具最先渗透的企业样本，用来观察早期采用者是否继续加速。" },
@@ -548,34 +548,37 @@ function getStaticChinaModelSignals() {
       rankings: getArenaFrontendCodeRankings()
     },
     minimax_arr: {
+      title: "MiniMax 收入 / ARR",
       value: "$300M",
-      unit: "annualized revenue",
+      unit: "reported revenue / ARR",
       change: "2026-05 Sacra estimate",
       trend: "up",
       access: "半自动",
-      source: "Sacra / IPO and media reports",
+      source: "HKEX prospectus / MiniMax results / Sacra / media reports",
       sourceUrl: "https://sacra.com/c/minimax/",
-      note: "MiniMax 商业化确认指标。第一版使用公开报道和 Sacra 年化收入估算，口径偏事件驱动，不等同于上市公司正式 ARR 披露。"
+      note: "MiniMax 商业化确认指标。历史段使用招股书和业绩公告的收入，最新段使用公开年化收入估算；每个点保留原始口径。"
     },
     zhipu_arr: {
+      title: "智谱 AI 收入 / ARR",
       value: "$1.0B",
-      unit: "reported ARR",
+      unit: "reported revenue / ARR",
       change: "2026-07 media report",
       trend: "up",
       access: "半自动",
-      source: "36Kr / Bloomberg-cited reports / 财报报道",
+      source: "HKEX prospectus coverage / 36Kr / Bloomberg-cited reports / 财报报道",
       sourceUrl: "https://eu.36kr.com/en/p/3898662052693894",
-      note: "智谱商业化确认指标。3月财报披露 MaaS API 平台 ARR 约17亿元，7月媒体称 ARR run-rate 达10亿美元；后者为媒体报道口径，需继续跟踪公司确认。"
+      note: "智谱商业化确认指标。历史段使用招股书/财报披露收入，2026 年开始接入 MaaS API ARR 和媒体 ARR run-rate；后者需继续跟踪公司确认。"
     },
     kimi_arr: {
-      value: "$200M",
+      title: "Kimi / Moonshot ARR",
+      value: "$300M+",
       unit: "reported ARR",
-      change: "2026-04 media report",
+      change: "2026-06 media report",
       trend: "up",
       access: "半自动",
       source: "Bloomberg-cited media reports",
       sourceUrl: "https://techjacksolutions.com/ai-brief/moonshot-ais-revenue-doubled-in-six-weeks-now-its-preparing/",
-      note: "Kimi 商业化确认指标。Moonshot 未上市，当前主要依赖融资/媒体披露；适合做方向性跟踪，不适合当作精确财报数据。"
+      note: "Kimi 商业化确认指标。Moonshot 未上市，当前主要依赖融资/媒体披露；公开数字较少，适合做方向性跟踪，不适合当作精确财报数据。"
     }
   };
 }

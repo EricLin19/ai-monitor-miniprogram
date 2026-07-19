@@ -325,14 +325,52 @@ async function backfillSacraArrMilestones() {
 }
 
 function backfillChinaModelArrMilestones() {
+  // Data rule: keep the longest public history we can verify. For listed peers,
+  // earlier points may be reported revenue while newer points are ARR/run-rate;
+  // labels and units preserve that distinction instead of forcing one false metric.
   return {
     minimax_arr: dedupeHistory([
+      {
+        date: "2022-12-31",
+        value: 0,
+        label: "$0",
+        unit: "reported annual revenue",
+        source: "HKEX prospectus"
+      },
+      {
+        date: "2023-12-31",
+        value: 3_460_000,
+        label: "$3.46M",
+        unit: "reported annual revenue",
+        source: "HKEX prospectus"
+      },
+      {
+        date: "2024-12-31",
+        value: 30_523_000,
+        label: "$30.52M",
+        unit: "reported annual revenue",
+        source: "HKEX prospectus"
+      },
+      {
+        date: "2025-09-30",
+        value: 53_437_000,
+        label: "$53.44M",
+        unit: "9M reported revenue",
+        source: "HKEX prospectus"
+      },
+      {
+        date: "2025-12-31",
+        value: 79_038_000,
+        label: "$79.04M",
+        unit: "reported annual revenue",
+        source: "MiniMax FY2025 results"
+      },
       {
         date: "2026-02-01",
         value: 150_000_000,
         label: "$150M",
         unit: "annualized revenue",
-        source: "Sacra estimate"
+        source: "company / media report"
       },
       {
         date: "2026-05-01",
@@ -343,6 +381,41 @@ function backfillChinaModelArrMilestones() {
       }
     ]),
     zhipu_arr: dedupeHistory([
+      {
+        date: "2022-12-31",
+        value: 8_100_000,
+        label: "RMB57.4M",
+        unit: "reported annual revenue",
+        source: "HKEX prospectus coverage"
+      },
+      {
+        date: "2023-12-31",
+        value: 17_500_000,
+        label: "RMB124.5M",
+        unit: "reported annual revenue",
+        source: "HKEX prospectus coverage"
+      },
+      {
+        date: "2024-12-31",
+        value: 44_600_000,
+        label: "RMB312.4M",
+        unit: "reported annual revenue",
+        source: "HKEX prospectus coverage"
+      },
+      {
+        date: "2025-06-30",
+        value: 27_300_000,
+        label: "RMB190.9M",
+        unit: "H1 reported revenue",
+        source: "HKEX prospectus / Caixin Global coverage"
+      },
+      {
+        date: "2025-12-31",
+        value: 104_800_000,
+        label: "RMB724.33M",
+        unit: "reported annual revenue",
+        source: "annual report coverage"
+      },
       {
         date: "2026-03-31",
         value: 236_000_000,
@@ -370,6 +443,13 @@ function backfillChinaModelArrMilestones() {
         date: "2026-04-15",
         value: 200_000_000,
         label: "$200M",
+        unit: "reported ARR",
+        source: "media report"
+      },
+      {
+        date: "2026-06-15",
+        value: 300_000_000,
+        label: "$300M+",
         unit: "reported ARR",
         source: "media report"
       }

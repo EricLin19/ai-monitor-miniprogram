@@ -1564,8 +1564,8 @@ const metricHistory = {
     },
     {
       "date": "2026-07-19",
-      "value": 2.01,
-      "label": "$2.01/h",
+      "value": 1.85,
+      "label": "$1.85/h",
       "unit": "H100 p25"
     }
   ],
@@ -1664,8 +1664,8 @@ const metricHistory = {
     },
     {
       "date": "2026-07-19",
-      "value": 48.3,
-      "label": "$48.3/day",
+      "value": 44.3,
+      "label": "$44.3/day",
       "unit": "H100 spot proxy"
     }
   ],
@@ -7105,11 +7105,46 @@ const metricHistory = {
   ],
   "minimax_arr": [
     {
+      "date": "2022-12-31",
+      "value": 0,
+      "label": "$0",
+      "unit": "reported annual revenue",
+      "source": "HKEX prospectus"
+    },
+    {
+      "date": "2023-12-31",
+      "value": 3460000,
+      "label": "$3.46M",
+      "unit": "reported annual revenue",
+      "source": "HKEX prospectus"
+    },
+    {
+      "date": "2024-12-31",
+      "value": 30523000,
+      "label": "$30.52M",
+      "unit": "reported annual revenue",
+      "source": "HKEX prospectus"
+    },
+    {
+      "date": "2025-09-30",
+      "value": 53437000,
+      "label": "$53.44M",
+      "unit": "9M reported revenue",
+      "source": "HKEX prospectus"
+    },
+    {
+      "date": "2025-12-31",
+      "value": 79038000,
+      "label": "$79.04M",
+      "unit": "reported annual revenue",
+      "source": "MiniMax FY2025 results"
+    },
+    {
       "date": "2026-02-01",
       "value": 150000000,
       "label": "$150M",
       "unit": "annualized revenue",
-      "source": "Sacra estimate"
+      "source": "company / media report"
     },
     {
       "date": "2026-05-01",
@@ -7120,6 +7155,41 @@ const metricHistory = {
     }
   ],
   "zhipu_arr": [
+    {
+      "date": "2022-12-31",
+      "value": 8100000,
+      "label": "RMB57.4M",
+      "unit": "reported annual revenue",
+      "source": "HKEX prospectus coverage"
+    },
+    {
+      "date": "2023-12-31",
+      "value": 17500000,
+      "label": "RMB124.5M",
+      "unit": "reported annual revenue",
+      "source": "HKEX prospectus coverage"
+    },
+    {
+      "date": "2024-12-31",
+      "value": 44600000,
+      "label": "RMB312.4M",
+      "unit": "reported annual revenue",
+      "source": "HKEX prospectus coverage"
+    },
+    {
+      "date": "2025-06-30",
+      "value": 27300000,
+      "label": "RMB190.9M",
+      "unit": "H1 reported revenue",
+      "source": "HKEX prospectus / Caixin Global coverage"
+    },
+    {
+      "date": "2025-12-31",
+      "value": 104800000,
+      "label": "RMB724.33M",
+      "unit": "reported annual revenue",
+      "source": "annual report coverage"
+    },
     {
       "date": "2026-03-31",
       "value": 236000000,
@@ -7147,6 +7217,13 @@ const metricHistory = {
       "date": "2026-04-15",
       "value": 200000000,
       "label": "$200M",
+      "unit": "reported ARR",
+      "source": "media report"
+    },
+    {
+      "date": "2026-06-15",
+      "value": 300000000,
+      "label": "$300M+",
       "unit": "reported ARR",
       "source": "media report"
     }
