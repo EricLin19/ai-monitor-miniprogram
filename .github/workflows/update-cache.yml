@@ -3,7 +3,8 @@ name: Update AI monitor cache
 on:
   workflow_dispatch:
   schedule:
-    - cron: "15 23 * * *"
+    # Runs every Monday at 08:15 Beijing time.
+    - cron: "15 0 * * 1"
 
 permissions:
   contents: write
