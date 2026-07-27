@@ -1,48 +1,6 @@
 const metricHistory = {
   "openrouter_tokens": [
     {
-      "date": "2026-04-20",
-      "value": 20646880052859,
-      "label": "20.6T",
-      "unit": "7d"
-    },
-    {
-      "date": "2026-04-21",
-      "value": 20865798838690,
-      "label": "20.9T",
-      "unit": "7d"
-    },
-    {
-      "date": "2026-04-22",
-      "value": 21082909177437,
-      "label": "21.1T",
-      "unit": "7d"
-    },
-    {
-      "date": "2026-04-23",
-      "value": 21314528429356,
-      "label": "21.3T",
-      "unit": "7d"
-    },
-    {
-      "date": "2026-04-24",
-      "value": 21374575649902,
-      "label": "21.4T",
-      "unit": "7d"
-    },
-    {
-      "date": "2026-04-25",
-      "value": 21627600617815,
-      "label": "21.6T",
-      "unit": "7d"
-    },
-    {
-      "date": "2026-04-26",
-      "value": 21883269650188,
-      "label": "21.9T",
-      "unit": "7d"
-    },
-    {
       "date": "2026-04-27",
       "value": 22153544183961,
       "label": "22.2T",
@@ -536,66 +494,66 @@ const metricHistory = {
     },
     {
       "date": "2026-07-18",
-      "value": 62011566391882,
+      "value": 62011566428509,
       "label": "62.0T",
       "unit": "7d"
     },
     {
       "date": "2026-07-19",
-      "value": 62234878934960,
-      "label": "62.2T",
+      "value": 62773944339618,
+      "label": "62.8T",
       "unit": "7d"
     },
     {
       "date": "2026-07-20",
-      "value": 62200000000000,
-      "label": "62.2T",
+      "value": 62268917416216,
+      "label": "62.3T",
+      "unit": "7d"
+    },
+    {
+      "date": "2026-07-21",
+      "value": 61328231062945,
+      "label": "61.3T",
+      "unit": "7d"
+    },
+    {
+      "date": "2026-07-22",
+      "value": 60860929194028,
+      "label": "60.9T",
+      "unit": "7d"
+    },
+    {
+      "date": "2026-07-23",
+      "value": 59993719461728,
+      "label": "60.0T",
+      "unit": "7d"
+    },
+    {
+      "date": "2026-07-24",
+      "value": 59033237727928,
+      "label": "59.0T",
+      "unit": "7d"
+    },
+    {
+      "date": "2026-07-25",
+      "value": 58287854392181,
+      "label": "58.3T",
+      "unit": "7d"
+    },
+    {
+      "date": "2026-07-26",
+      "value": 58041497415980,
+      "label": "58.0T",
+      "unit": "7d"
+    },
+    {
+      "date": "2026-07-27",
+      "value": 58000000000000,
+      "label": "58.0T",
       "unit": "7d"
     }
   ],
   "openrouter_share": [
-    {
-      "date": "2026-04-20",
-      "value": 54.8,
-      "label": "54.8%",
-      "unit": "Top10"
-    },
-    {
-      "date": "2026-04-21",
-      "value": 53.4,
-      "label": "53.4%",
-      "unit": "Top10"
-    },
-    {
-      "date": "2026-04-22",
-      "value": 52.2,
-      "label": "52.2%",
-      "unit": "Top10"
-    },
-    {
-      "date": "2026-04-23",
-      "value": 51.6,
-      "label": "51.6%",
-      "unit": "Top10"
-    },
-    {
-      "date": "2026-04-24",
-      "value": 52.2,
-      "label": "52.2%",
-      "unit": "Top10"
-    },
-    {
-      "date": "2026-04-25",
-      "value": 52.7,
-      "label": "52.7%",
-      "unit": "Top10"
-    },
-    {
-      "date": "2026-04-26",
-      "value": 53.3,
-      "label": "53.3%",
-      "unit": "Top10"
-    },
     {
       "date": "2026-04-27",
       "value": 54.2,
@@ -1102,8 +1060,50 @@ const metricHistory = {
     },
     {
       "date": "2026-07-20",
-      "value": 75,
-      "label": "75%",
+      "value": 74.9,
+      "label": "74.9%",
+      "unit": "Top10"
+    },
+    {
+      "date": "2026-07-21",
+      "value": 72.8,
+      "label": "72.8%",
+      "unit": "Top10"
+    },
+    {
+      "date": "2026-07-22",
+      "value": 70.3,
+      "label": "70.3%",
+      "unit": "Top10"
+    },
+    {
+      "date": "2026-07-23",
+      "value": 68.8,
+      "label": "68.8%",
+      "unit": "Top10"
+    },
+    {
+      "date": "2026-07-24",
+      "value": 68.4,
+      "label": "68.4%",
+      "unit": "Top10"
+    },
+    {
+      "date": "2026-07-25",
+      "value": 68.2,
+      "label": "68.2%",
+      "unit": "Top10"
+    },
+    {
+      "date": "2026-07-26",
+      "value": 67.9,
+      "label": "67.9%",
+      "unit": "Top10"
+    },
+    {
+      "date": "2026-07-27",
+      "value": 68,
+      "label": "68%",
       "unit": "Top10"
     }
   ],
@@ -1212,7 +1212,7 @@ const metricHistory = {
       "source": "https://www.anthropic.com/news/series-h"
     },
     {
-      "date": "2026-07-20",
+      "date": "2026-07-27",
       "value": 47000000000,
       "label": "$47B",
       "unit": "annualized revenue"
@@ -1337,7 +1337,7 @@ const metricHistory = {
       "source": "https://www.theinformation.com/articles/openai-tops-25-billion-annualized-revenue-anthropic-narrows-gap?rc=9mzoog"
     },
     {
-      "date": "2026-07-20",
+      "date": "2026-07-27",
       "value": 25000000000,
       "label": "$25B",
       "unit": "annualized revenue"
@@ -1383,12 +1383,6 @@ const metricHistory = {
   ],
   "googl_capex": [
     {
-      "date": "2024-12-31",
-      "value": 14276000000,
-      "label": "$14.3B",
-      "unit": "CY2024Q4"
-    },
-    {
       "date": "2025-03-31",
       "value": 17197000000,
       "label": "$17.2B",
@@ -1417,6 +1411,12 @@ const metricHistory = {
       "value": 35674000000,
       "label": "$35.7B",
       "unit": "CY2026Q1"
+    },
+    {
+      "date": "2026-06-30",
+      "value": 44924000000,
+      "label": "$44.9B",
+      "unit": "CY2026Q2"
     }
   ],
   "amzn_capex": [
@@ -1549,6 +1549,12 @@ const metricHistory = {
       "value": 2.01,
       "label": "$2.01/h",
       "unit": "H100 p25"
+    },
+    {
+      "date": "2026-07-27",
+      "value": 2.27,
+      "label": "$2.27/h",
+      "unit": "H100 p25"
     }
   ],
   "api_price_index": [
@@ -1602,6 +1608,12 @@ const metricHistory = {
     },
     {
       "date": "2026-07-20",
+      "value": 7.24,
+      "label": "$7.24",
+      "unit": "$/1M blended"
+    },
+    {
+      "date": "2026-07-27",
       "value": 7.24,
       "label": "$7.24",
       "unit": "$/1M blended"
@@ -1660,6 +1672,12 @@ const metricHistory = {
       "date": "2026-07-20",
       "value": 48.2,
       "label": "$48.2/day",
+      "unit": "H100 spot proxy"
+    },
+    {
+      "date": "2026-07-27",
+      "value": 54.5,
+      "label": "$54.5/day",
       "unit": "H100 spot proxy"
     }
   ],
@@ -1827,55 +1845,13 @@ const metricHistory = {
       "unit": "ARR / exposed wage pool"
     },
     {
-      "date": "2026-07-20",
+      "date": "2026-07-27",
       "value": 5,
       "label": "5%",
       "unit": "ARR / exposed wage pool"
     }
   ],
   "token_arr_conversion": [
-    {
-      "date": "2026-04-20",
-      "value": 51227706.31613408,
-      "label": "$51.2M",
-      "unit": "ARR / annualized 1T OR tokens"
-    },
-    {
-      "date": "2026-04-21",
-      "value": 50690237.92806353,
-      "label": "$50.7M",
-      "unit": "ARR / annualized 1T OR tokens"
-    },
-    {
-      "date": "2026-04-22",
-      "value": 50168233.368109055,
-      "label": "$50.2M",
-      "unit": "ARR / annualized 1T OR tokens"
-    },
-    {
-      "date": "2026-04-23",
-      "value": 49623068.65938319,
-      "label": "$49.6M",
-      "unit": "ARR / annualized 1T OR tokens"
-    },
-    {
-      "date": "2026-04-24",
-      "value": 49483663.442794815,
-      "label": "$49.5M",
-      "unit": "ARR / annualized 1T OR tokens"
-    },
-    {
-      "date": "2026-04-25",
-      "value": 48904745.671189696,
-      "label": "$48.9M",
-      "unit": "ARR / annualized 1T OR tokens"
-    },
-    {
-      "date": "2026-04-26",
-      "value": 48333376.34640082,
-      "label": "$48.3M",
-      "unit": "ARR / annualized 1T OR tokens"
-    },
     {
       "date": "2026-04-27",
       "value": 47743706.330207385,
@@ -2370,66 +2346,66 @@ const metricHistory = {
     },
     {
       "date": "2026-07-18",
-      "value": 22328340.74639092,
+      "value": 22328340.733202733,
       "label": "$22.3M",
       "unit": "ARR / annualized 1T OR tokens"
     },
     {
       "date": "2026-07-19",
-      "value": 22248221.709604494,
-      "label": "$22.2M",
+      "value": 22057167.176310822,
+      "label": "$22.1M",
       "unit": "ARR / annualized 1T OR tokens"
     },
     {
       "date": "2026-07-20",
+      "value": 22236060.013062064,
+      "label": "$22.2M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-07-21",
+      "value": 22577129.009220358,
+      "label": "$22.6M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-07-22",
+      "value": 22750480.52916107,
+      "label": "$22.8M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-07-23",
+      "value": 23079338.921446223,
+      "label": "$23.1M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-07-24",
+      "value": 23454844.048987977,
+      "label": "$23.5M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-07-25",
+      "value": 23754783.892013073,
+      "label": "$23.8M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-07-26",
+      "value": 23855611.00693057,
+      "label": "$23.9M",
+      "unit": "ARR / annualized 1T OR tokens"
+    },
+    {
+      "date": "2026-07-27",
       "value": 26900000,
       "label": "$26.9M",
       "unit": "ARR / annualized 1T OR tokens"
     }
   ],
   "tech_job_postings": [
-    {
-      "date": "2026-04-12",
-      "value": 72.64,
-      "label": "72.64",
-      "unit": "Feb 2020=100"
-    },
-    {
-      "date": "2026-04-13",
-      "value": 72.72,
-      "label": "72.72",
-      "unit": "Feb 2020=100"
-    },
-    {
-      "date": "2026-04-14",
-      "value": 72.84,
-      "label": "72.84",
-      "unit": "Feb 2020=100"
-    },
-    {
-      "date": "2026-04-15",
-      "value": 73.09,
-      "label": "73.09",
-      "unit": "Feb 2020=100"
-    },
-    {
-      "date": "2026-04-16",
-      "value": 73.21,
-      "label": "73.21",
-      "unit": "Feb 2020=100"
-    },
-    {
-      "date": "2026-04-17",
-      "value": 73.15,
-      "label": "73.15",
-      "unit": "Feb 2020=100"
-    },
-    {
-      "date": "2026-04-18",
-      "value": 73.19,
-      "label": "73.19",
-      "unit": "Feb 2020=100"
-    },
     {
       "date": "2026-04-19",
       "value": 73.22,
@@ -2468,8 +2444,8 @@ const metricHistory = {
     },
     {
       "date": "2026-04-25",
-      "value": 73.38,
-      "label": "73.38",
+      "value": 73.39,
+      "label": "73.39",
       "unit": "Feb 2020=100"
     },
     {
@@ -2546,8 +2522,8 @@ const metricHistory = {
     },
     {
       "date": "2026-05-08",
-      "value": 74.67,
-      "label": "74.67",
+      "value": 74.66,
+      "label": "74.66",
       "unit": "Feb 2020=100"
     },
     {
@@ -2558,8 +2534,8 @@ const metricHistory = {
     },
     {
       "date": "2026-05-10",
-      "value": 74.78,
-      "label": "74.78",
+      "value": 74.77,
+      "label": "74.77",
       "unit": "Feb 2020=100"
     },
     {
@@ -2594,8 +2570,8 @@ const metricHistory = {
     },
     {
       "date": "2026-05-16",
-      "value": 73.76,
-      "label": "73.76",
+      "value": 73.75,
+      "label": "73.75",
       "unit": "Feb 2020=100"
     },
     {
@@ -2636,8 +2612,8 @@ const metricHistory = {
     },
     {
       "date": "2026-05-23",
-      "value": 74.6,
-      "label": "74.6",
+      "value": 74.59,
+      "label": "74.59",
       "unit": "Feb 2020=100"
     },
     {
@@ -2654,8 +2630,8 @@ const metricHistory = {
     },
     {
       "date": "2026-05-26",
-      "value": 74.31,
-      "label": "74.31",
+      "value": 74.3,
+      "label": "74.3",
       "unit": "Feb 2020=100"
     },
     {
@@ -2678,8 +2654,8 @@ const metricHistory = {
     },
     {
       "date": "2026-05-30",
-      "value": 73.65,
-      "label": "73.65",
+      "value": 73.64,
+      "label": "73.64",
       "unit": "Feb 2020=100"
     },
     {
@@ -2816,8 +2792,8 @@ const metricHistory = {
     },
     {
       "date": "2026-06-22",
-      "value": 73.25,
-      "label": "73.25",
+      "value": 73.26,
+      "label": "73.26",
       "unit": "Feb 2020=100"
     },
     {
@@ -2846,8 +2822,8 @@ const metricHistory = {
     },
     {
       "date": "2026-06-27",
-      "value": 73.54,
-      "label": "73.54",
+      "value": 73.55,
+      "label": "73.55",
       "unit": "Feb 2020=100"
     },
     {
@@ -2864,20 +2840,20 @@ const metricHistory = {
     },
     {
       "date": "2026-06-30",
-      "value": 73.46,
-      "label": "73.46",
+      "value": 73.47,
+      "label": "73.47",
       "unit": "Feb 2020=100"
     },
     {
       "date": "2026-07-01",
-      "value": 73.49,
-      "label": "73.49",
+      "value": 73.5,
+      "label": "73.5",
       "unit": "Feb 2020=100"
     },
     {
       "date": "2026-07-02",
-      "value": 73.57,
-      "label": "73.57",
+      "value": 73.58,
+      "label": "73.58",
       "unit": "Feb 2020=100"
     },
     {
@@ -2900,8 +2876,8 @@ const metricHistory = {
     },
     {
       "date": "2026-07-06",
-      "value": 74.13,
-      "label": "74.13",
+      "value": 74.14,
+      "label": "74.14",
       "unit": "Feb 2020=100"
     },
     {
@@ -2924,60 +2900,60 @@ const metricHistory = {
     },
     {
       "date": "2026-07-10",
-      "value": 74.56,
-      "label": "74.56",
+      "value": 74.57,
+      "label": "74.57",
       "unit": "Feb 2020=100"
     },
     {
-      "date": "2026-07-20",
-      "value": 74.6,
-      "label": "74.6",
+      "date": "2026-07-11",
+      "value": 74.81,
+      "label": "74.81",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-07-12",
+      "value": 75,
+      "label": "75",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-07-13",
+      "value": 75.24,
+      "label": "75.24",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-07-14",
+      "value": 75.49,
+      "label": "75.49",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-07-15",
+      "value": 75.57,
+      "label": "75.57",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-07-16",
+      "value": 75.67,
+      "label": "75.67",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-07-17",
+      "value": 75.62,
+      "label": "75.62",
+      "unit": "Feb 2020=100"
+    },
+    {
+      "date": "2026-07-27",
+      "value": 75.6,
+      "label": "75.6",
       "unit": "Feb 2020=100"
     }
   ],
   "llm_token_spend_index": [
-    {
-      "date": "2026-04-12",
-      "value": 2.0487,
-      "label": "$2.05",
-      "unit": "$/1M weighted"
-    },
-    {
-      "date": "2026-04-13",
-      "value": 2.0914,
-      "label": "$2.09",
-      "unit": "$/1M weighted"
-    },
-    {
-      "date": "2026-04-14",
-      "value": 2.1173,
-      "label": "$2.12",
-      "unit": "$/1M weighted"
-    },
-    {
-      "date": "2026-04-15",
-      "value": 2.1443,
-      "label": "$2.14",
-      "unit": "$/1M weighted"
-    },
-    {
-      "date": "2026-04-16",
-      "value": 2.1729,
-      "label": "$2.17",
-      "unit": "$/1M weighted"
-    },
-    {
-      "date": "2026-04-17",
-      "value": 2.16,
-      "label": "$2.16",
-      "unit": "$/1M weighted"
-    },
-    {
-      "date": "2026-04-18",
-      "value": 2.1799,
-      "label": "$2.18",
-      "unit": "$/1M weighted"
-    },
     {
       "date": "2026-04-19",
       "value": 2.1987,
@@ -3525,55 +3501,55 @@ const metricHistory = {
       "unit": "$/1M weighted"
     },
     {
-      "date": "2026-07-20",
-      "value": 2.22,
+      "date": "2026-07-19",
+      "value": 2.2153,
       "label": "$2.22",
+      "unit": "$/1M weighted"
+    },
+    {
+      "date": "2026-07-20",
+      "value": 2.1918,
+      "label": "$2.19",
+      "unit": "$/1M weighted"
+    },
+    {
+      "date": "2026-07-21",
+      "value": 2.156,
+      "label": "$2.16",
+      "unit": "$/1M weighted"
+    },
+    {
+      "date": "2026-07-22",
+      "value": 2.0861,
+      "label": "$2.09",
+      "unit": "$/1M weighted"
+    },
+    {
+      "date": "2026-07-23",
+      "value": 1.9969,
+      "label": "$2.00",
+      "unit": "$/1M weighted"
+    },
+    {
+      "date": "2026-07-24",
+      "value": 1.8838,
+      "label": "$1.88",
+      "unit": "$/1M weighted"
+    },
+    {
+      "date": "2026-07-25",
+      "value": 1.7688,
+      "label": "$1.77",
+      "unit": "$/1M weighted"
+    },
+    {
+      "date": "2026-07-27",
+      "value": 1.77,
+      "label": "$1.77",
       "unit": "$/1M weighted"
     }
   ],
   "frontier_premium": [
-    {
-      "date": "2026-04-12",
-      "value": 5.05,
-      "label": "5.0x",
-      "unit": "frontier / open-weight"
-    },
-    {
-      "date": "2026-04-13",
-      "value": 4.81,
-      "label": "4.8x",
-      "unit": "frontier / open-weight"
-    },
-    {
-      "date": "2026-04-14",
-      "value": 5.18,
-      "label": "5.2x",
-      "unit": "frontier / open-weight"
-    },
-    {
-      "date": "2026-04-15",
-      "value": 4.96,
-      "label": "5.0x",
-      "unit": "frontier / open-weight"
-    },
-    {
-      "date": "2026-04-16",
-      "value": 4.88,
-      "label": "4.9x",
-      "unit": "frontier / open-weight"
-    },
-    {
-      "date": "2026-04-17",
-      "value": 3.61,
-      "label": "3.6x",
-      "unit": "frontier / open-weight"
-    },
-    {
-      "date": "2026-04-18",
-      "value": 5.36,
-      "label": "5.4x",
-      "unit": "frontier / open-weight"
-    },
     {
       "date": "2026-04-19",
       "value": 5.37,
@@ -4121,55 +4097,55 @@ const metricHistory = {
       "unit": "frontier / open-weight"
     },
     {
+      "date": "2026-07-19",
+      "value": 9.19,
+      "label": "9.2x",
+      "unit": "frontier / open-weight"
+    },
+    {
       "date": "2026-07-20",
-      "value": 11.1,
-      "label": "11.1x",
+      "value": 10.6,
+      "label": "10.6x",
+      "unit": "frontier / open-weight"
+    },
+    {
+      "date": "2026-07-21",
+      "value": 10.87,
+      "label": "10.9x",
+      "unit": "frontier / open-weight"
+    },
+    {
+      "date": "2026-07-22",
+      "value": 10.55,
+      "label": "10.6x",
+      "unit": "frontier / open-weight"
+    },
+    {
+      "date": "2026-07-23",
+      "value": 10.42,
+      "label": "10.4x",
+      "unit": "frontier / open-weight"
+    },
+    {
+      "date": "2026-07-24",
+      "value": 9.53,
+      "label": "9.5x",
+      "unit": "frontier / open-weight"
+    },
+    {
+      "date": "2026-07-25",
+      "value": 10.11,
+      "label": "10.1x",
+      "unit": "frontier / open-weight"
+    },
+    {
+      "date": "2026-07-27",
+      "value": 10.1,
+      "label": "10.1x",
       "unit": "frontier / open-weight"
     }
   ],
   "free_token_share": [
-    {
-      "date": "2026-04-12",
-      "value": 8.53,
-      "label": "8.5%",
-      "unit": "free token share"
-    },
-    {
-      "date": "2026-04-13",
-      "value": 7.17,
-      "label": "7.2%",
-      "unit": "free token share"
-    },
-    {
-      "date": "2026-04-14",
-      "value": 7.46,
-      "label": "7.5%",
-      "unit": "free token share"
-    },
-    {
-      "date": "2026-04-15",
-      "value": 5.63,
-      "label": "5.6%",
-      "unit": "free token share"
-    },
-    {
-      "date": "2026-04-16",
-      "value": 7.93,
-      "label": "7.9%",
-      "unit": "free token share"
-    },
-    {
-      "date": "2026-04-17",
-      "value": 12.950000000000001,
-      "label": "13.0%",
-      "unit": "free token share"
-    },
-    {
-      "date": "2026-04-18",
-      "value": 10.47,
-      "label": "10.5%",
-      "unit": "free token share"
-    },
     {
       "date": "2026-04-19",
       "value": 11.27,
@@ -4717,9 +4693,51 @@ const metricHistory = {
       "unit": "free token share"
     },
     {
+      "date": "2026-07-19",
+      "value": 30.91,
+      "label": "30.9%",
+      "unit": "free token share"
+    },
+    {
       "date": "2026-07-20",
-      "value": 29.6,
-      "label": "29.6%",
+      "value": 27.889999999999997,
+      "label": "27.9%",
+      "unit": "free token share"
+    },
+    {
+      "date": "2026-07-21",
+      "value": 5.67,
+      "label": "5.7%",
+      "unit": "free token share"
+    },
+    {
+      "date": "2026-07-22",
+      "value": 5.76,
+      "label": "5.8%",
+      "unit": "free token share"
+    },
+    {
+      "date": "2026-07-23",
+      "value": 7.03,
+      "label": "7.0%",
+      "unit": "free token share"
+    },
+    {
+      "date": "2026-07-24",
+      "value": 8.9,
+      "label": "8.9%",
+      "unit": "free token share"
+    },
+    {
+      "date": "2026-07-25",
+      "value": 10.66,
+      "label": "10.7%",
+      "unit": "free token share"
+    },
+    {
+      "date": "2026-07-27",
+      "value": 10.7,
+      "label": "10.7%",
       "unit": "free token share"
     }
   ],
@@ -4767,7 +4785,7 @@ const metricHistory = {
       "unit": "CapEx / OCF"
     },
     {
-      "date": "2026-07-20",
+      "date": "2026-07-27",
       "value": 94,
       "label": "94%",
       "unit": "CapEx / OCF"
@@ -4803,6 +4821,12 @@ const metricHistory = {
       "value": 60,
       "label": "60",
       "unit": "分"
+    },
+    {
+      "date": "2026-07-27",
+      "value": 60,
+      "label": "60",
+      "unit": "分"
     }
   ],
   "aa_cn_score": [
@@ -4835,51 +4859,15 @@ const metricHistory = {
       "value": 51,
       "label": "51",
       "unit": "分"
+    },
+    {
+      "date": "2026-07-27",
+      "value": 51,
+      "label": "51",
+      "unit": "分"
     }
   ],
   "openrouter_us_tokens": [
-    {
-      "date": "2026-04-20",
-      "value": 1.55622424127,
-      "label": "1.6T",
-      "unit": "万亿/日"
-    },
-    {
-      "date": "2026-04-21",
-      "value": 1.582713769316,
-      "label": "1.6T",
-      "unit": "万亿/日"
-    },
-    {
-      "date": "2026-04-22",
-      "value": 1.620824194507,
-      "label": "1.6T",
-      "unit": "万亿/日"
-    },
-    {
-      "date": "2026-04-23",
-      "value": 1.547061816062,
-      "label": "1.5T",
-      "unit": "万亿/日"
-    },
-    {
-      "date": "2026-04-24",
-      "value": 1.475667828089,
-      "label": "1.5T",
-      "unit": "万亿/日"
-    },
-    {
-      "date": "2026-04-25",
-      "value": 1.084531048757,
-      "label": "1.1T",
-      "unit": "万亿/日"
-    },
-    {
-      "date": "2026-04-26",
-      "value": 1.045615381289,
-      "label": "1T",
-      "unit": "万亿/日"
-    },
     {
       "date": "2026-04-27",
       "value": 1.450963586246,
@@ -5374,66 +5362,66 @@ const metricHistory = {
     },
     {
       "date": "2026-07-18",
-      "value": 1.64702426872,
+      "value": 1.647024269941,
       "label": "1.6T",
       "unit": "万亿/日"
     },
     {
       "date": "2026-07-19",
-      "value": 1.354975216286,
-      "label": "1.4T",
+      "value": 1.504438415853,
+      "label": "1.5T",
       "unit": "万亿/日"
     },
     {
       "date": "2026-07-20",
-      "value": 2.2,
-      "label": "2.2",
+      "value": 2.037324084635,
+      "label": "2T",
+      "unit": "万亿/日"
+    },
+    {
+      "date": "2026-07-21",
+      "value": 2.333445166595,
+      "label": "2.3T",
+      "unit": "万亿/日"
+    },
+    {
+      "date": "2026-07-22",
+      "value": 2.274606958747,
+      "label": "2.3T",
+      "unit": "万亿/日"
+    },
+    {
+      "date": "2026-07-23",
+      "value": 2.146572563656,
+      "label": "2.1T",
+      "unit": "万亿/日"
+    },
+    {
+      "date": "2026-07-24",
+      "value": 1.95687069011,
+      "label": "2T",
+      "unit": "万亿/日"
+    },
+    {
+      "date": "2026-07-25",
+      "value": 1.450191687272,
+      "label": "1.5T",
+      "unit": "万亿/日"
+    },
+    {
+      "date": "2026-07-26",
+      "value": 1.448230636479,
+      "label": "1.4T",
+      "unit": "万亿/日"
+    },
+    {
+      "date": "2026-07-27",
+      "value": 1.9,
+      "label": "1.9",
       "unit": "万亿/日"
     }
   ],
   "openrouter_cn_tokens": [
-    {
-      "date": "2026-04-20",
-      "value": 1.047263132654,
-      "label": "1T",
-      "unit": "万亿/日"
-    },
-    {
-      "date": "2026-04-21",
-      "value": 1.237975931429,
-      "label": "1.2T",
-      "unit": "万亿/日"
-    },
-    {
-      "date": "2026-04-22",
-      "value": 1.253531655493,
-      "label": "1.3T",
-      "unit": "万亿/日"
-    },
-    {
-      "date": "2026-04-23",
-      "value": 1.25828904131,
-      "label": "1.3T",
-      "unit": "万亿/日"
-    },
-    {
-      "date": "2026-04-24",
-      "value": 1.20405888449,
-      "label": "1.2T",
-      "unit": "万亿/日"
-    },
-    {
-      "date": "2026-04-25",
-      "value": 1.109073661828,
-      "label": "1.1T",
-      "unit": "万亿/日"
-    },
-    {
-      "date": "2026-04-26",
-      "value": 1.134869884471,
-      "label": "1.1T",
-      "unit": "万亿/日"
-    },
     {
       "date": "2026-04-27",
       "value": 1.353143059668,
@@ -5928,20 +5916,62 @@ const metricHistory = {
     },
     {
       "date": "2026-07-18",
-      "value": 5.377275231566,
+      "value": 5.37727525455,
       "label": "5.4T",
       "unit": "万亿/日"
     },
     {
       "date": "2026-07-19",
-      "value": 4.926315031093,
-      "label": "4.9T",
+      "value": 5.20847320827,
+      "label": "5.2T",
       "unit": "万亿/日"
     },
     {
       "date": "2026-07-20",
-      "value": 5.6,
-      "label": "5.6",
+      "value": 5.487484951367,
+      "label": "5.5T",
+      "unit": "万亿/日"
+    },
+    {
+      "date": "2026-07-21",
+      "value": 5.045819275392,
+      "label": "5T",
+      "unit": "万亿/日"
+    },
+    {
+      "date": "2026-07-22",
+      "value": 5.622046381697,
+      "label": "5.6T",
+      "unit": "万亿/日"
+    },
+    {
+      "date": "2026-07-23",
+      "value": 5.417007939119,
+      "label": "5.4T",
+      "unit": "万亿/日"
+    },
+    {
+      "date": "2026-07-24",
+      "value": 5.363966804254,
+      "label": "5.4T",
+      "unit": "万亿/日"
+    },
+    {
+      "date": "2026-07-25",
+      "value": 4.614798494825,
+      "label": "4.6T",
+      "unit": "万亿/日"
+    },
+    {
+      "date": "2026-07-26",
+      "value": 4.825321615636,
+      "label": "4.8T",
+      "unit": "万亿/日"
+    },
+    {
+      "date": "2026-07-27",
+      "value": 5.2,
+      "label": "5.2",
       "unit": "万亿/日"
     }
   ],
@@ -5972,6 +6002,12 @@ const metricHistory = {
     },
     {
       "date": "2026-07-20",
+      "value": 1.6,
+      "label": "$1.6",
+      "unit": "美元/百万 token"
+    },
+    {
+      "date": "2026-07-27",
       "value": 1.6,
       "label": "$1.6",
       "unit": "美元/百万 token"
@@ -6007,6 +6043,12 @@ const metricHistory = {
       "value": 1.7,
       "label": "$1.7",
       "unit": "美元/用户/月"
+    },
+    {
+      "date": "2026-07-27",
+      "value": 1.7,
+      "label": "$1.7",
+      "unit": "美元/用户/月"
     }
   ],
   "anthropic_app_revenue": [
@@ -6036,6 +6078,12 @@ const metricHistory = {
     },
     {
       "date": "2026-07-20",
+      "value": 2.8,
+      "label": "$2.8",
+      "unit": "美元/用户/月"
+    },
+    {
+      "date": "2026-07-27",
       "value": 2.8,
       "label": "$2.8",
       "unit": "美元/用户/月"
@@ -6071,6 +6119,12 @@ const metricHistory = {
       "value": 101500000000,
       "label": "$101.5B",
       "unit": "十亿美元"
+    },
+    {
+      "date": "2026-07-27",
+      "value": 101500000000,
+      "label": "$101.5B",
+      "unit": "十亿美元"
     }
   ],
   "big5_bond_issuance": [
@@ -6100,6 +6154,12 @@ const metricHistory = {
     },
     {
       "date": "2026-07-20",
+      "value": 25000000000,
+      "label": "$25B",
+      "unit": "十亿美元"
+    },
+    {
+      "date": "2026-07-27",
       "value": 25000000000,
       "label": "$25B",
       "unit": "十亿美元"
@@ -6135,39 +6195,15 @@ const metricHistory = {
       "value": 86.4,
       "label": "86.4",
       "unit": "bp"
+    },
+    {
+      "date": "2026-07-27",
+      "value": 86.4,
+      "label": "86.4",
+      "unit": "bp"
     }
   ],
   "ig_credit_spread": [
-    {
-      "date": "2026-03-02",
-      "value": 0.85,
-      "label": "0.9ppt",
-      "unit": "US IG OAS"
-    },
-    {
-      "date": "2026-03-03",
-      "value": 0.84,
-      "label": "0.8ppt",
-      "unit": "US IG OAS"
-    },
-    {
-      "date": "2026-03-04",
-      "value": 0.82,
-      "label": "0.8ppt",
-      "unit": "US IG OAS"
-    },
-    {
-      "date": "2026-03-05",
-      "value": 0.82,
-      "label": "0.8ppt",
-      "unit": "US IG OAS"
-    },
-    {
-      "date": "2026-03-06",
-      "value": 0.84,
-      "label": "0.8ppt",
-      "unit": "US IG OAS"
-    },
     {
       "date": "2026-03-09",
       "value": 0.85,
@@ -6739,7 +6775,37 @@ const metricHistory = {
       "unit": "US IG OAS"
     },
     {
+      "date": "2026-07-17",
+      "value": 0.79,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
       "date": "2026-07-20",
+      "value": 0.78,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-07-21",
+      "value": 0.78,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-07-22",
+      "value": 0.78,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-07-23",
+      "value": 0.79,
+      "label": "0.8ppt",
+      "unit": "US IG OAS"
+    },
+    {
+      "date": "2026-07-27",
       "value": 0.8,
       "label": "0.8ppt",
       "unit": "US IG OAS"
@@ -6775,6 +6841,12 @@ const metricHistory = {
       "value": 3.75,
       "label": "3.75",
       "unit": "分"
+    },
+    {
+      "date": "2026-07-27",
+      "value": 3.75,
+      "label": "3.75",
+      "unit": "分"
     }
   ],
   "ai_risk_investment": [
@@ -6804,6 +6876,12 @@ const metricHistory = {
     },
     {
       "date": "2026-07-20",
+      "value": 267200000000,
+      "label": "$267.2B",
+      "unit": "十亿美元"
+    },
+    {
+      "date": "2026-07-27",
       "value": 267200000000,
       "label": "$267.2B",
       "unit": "十亿美元"
@@ -6877,7 +6955,7 @@ const metricHistory = {
       "unit": "万人"
     },
     {
-      "date": "2026-07-20",
+      "date": "2026-07-27",
       "value": 1524.8,
       "label": "1524.8",
       "unit": "万人"
@@ -6910,6 +6988,12 @@ const metricHistory = {
     },
     {
       "date": "2026-07-20",
+      "value": 46,
+      "label": "46%",
+      "unit": "%"
+    },
+    {
+      "date": "2026-07-27",
       "value": 46,
       "label": "46%",
       "unit": "%"
@@ -6954,6 +7038,12 @@ const metricHistory = {
     },
     {
       "date": "2026-07-20",
+      "value": 59300000000,
+      "label": "$59.3B",
+      "unit": "十亿美元"
+    },
+    {
+      "date": "2026-07-27",
       "value": 59300000000,
       "label": "$59.3B",
       "unit": "十亿美元"
@@ -7003,19 +7093,13 @@ const metricHistory = {
       "unit": "OCF-CapEx"
     },
     {
-      "date": "2026-07-20",
+      "date": "2026-07-27",
       "value": 9500000000,
       "label": "$9.5B",
       "unit": "十亿美元"
     }
   ],
   "big5_debt_equity_ratio": [
-    {
-      "date": "2024-06-30",
-      "value": 44.37453109514562,
-      "label": "44.4%",
-      "unit": "liabilities/equity"
-    },
     {
       "date": "2024-09-30",
       "value": 42.75847301915236,
@@ -7059,7 +7143,7 @@ const metricHistory = {
       "unit": "liabilities/equity"
     },
     {
-      "date": "2026-07-20",
+      "date": "2026-07-27",
       "value": 43,
       "label": "43%",
       "unit": "Big 5 负债权益比"
