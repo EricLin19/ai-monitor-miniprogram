@@ -32,9 +32,9 @@
       "id": "openrouter_us_tokens",
       "group": "① 需求",
       "title": "真实调用：OpenRouter 美国模型日度 Token 使用量",
-      "value": "2.9",
+      "value": "3.5",
       "unit": "万亿/日",
-      "change": "2026-08-17 to 2026-08-23",
+      "change": "2026-08-24 to 2026-08-30",
       "trend": "flat",
       "access": "自动",
       "cadence": "日/周",
@@ -46,9 +46,9 @@
       "id": "openrouter_cn_tokens",
       "group": "① 需求",
       "title": "真实调用：OpenRouter 中国模型日度 Token 使用量",
-      "value": "6.8",
+      "value": "8.2",
       "unit": "万亿/日",
-      "change": "2026-08-17 to 2026-08-23",
+      "change": "2026-08-24 to 2026-08-30",
       "trend": "up",
       "access": "自动",
       "cadence": "日/周",
@@ -74,9 +74,9 @@
       "id": "llm_token_spend_index",
       "group": "① 需求",
       "title": "使用成本：使用量加权 LLM token 支出指数",
-      "value": "$1.60",
+      "value": "$1.35",
       "unit": "$/1M weighted",
-      "change": "TTSI 72.9 / 28d -9.5%",
+      "change": "TTSI 61.6 / 28d -8.2%",
       "trend": "down",
       "access": "自动",
       "cadence": "日",
@@ -326,9 +326,9 @@
       "id": "openrouter_tokens",
       "group": "? ??",
       "title": "?????OpenRouter ?? Token ??",
-      "value": "93.4T",
+      "value": "113.0T",
       "unit": "7d",
-      "change": "2026-08-17 to 2026-08-23",
+      "change": "2026-08-24 to 2026-08-30",
       "trend": "up",
       "access": "自动",
       "cadence": "周",
@@ -340,15 +340,15 @@
       "id": "openrouter_share",
       "group": "? ??",
       "title": "?????OpenRouter ?????",
-      "value": "72%",
+      "value": "69%",
       "unit": "Top10",
-      "change": "Anthropic 4.9%",
+      "change": "Anthropic 3.9%",
       "trend": "flat",
       "access": "自动",
       "cadence": "周",
       "source": "OpenRouter Rankings",
       "sourceUrl": "https://openrouter.ai/rankings",
-      "note": "Top10 模型集中度；第一模型：deepseek/deepseek-v4-flash-20260731。"
+      "note": "Top10 模型集中度；第一模型：stealth/ox-alpha。"
     },
     {
       "id": "aa_value",
@@ -494,10 +494,10 @@
       "id": "frontier_premium",
       "group": "? ??",
       "title": "前沿模型价格溢价",
-      "value": "4.4x",
+      "value": "2.8x",
       "unit": "frontier / open-weight",
-      "change": "frontier $3.49 / open-weight $0.76",
-      "trend": "flat",
+      "change": "frontier $2.72 / open-weight $0.73",
+      "trend": "down",
       "access": "自动",
       "cadence": "日",
       "source": "TrakToken Spend Index",
@@ -508,10 +508,10 @@
       "id": "free_token_share",
       "group": "? ??",
       "title": "免费 Token 占比",
-      "value": "8.9%",
+      "value": "17.3%",
       "unit": "free token share",
-      "change": "basket 40 models",
-      "trend": "up",
+      "change": "basket 35 models",
+      "trend": "down",
       "access": "自动",
       "cadence": "日",
       "source": "TrakToken Spend Index",
@@ -550,9 +550,9 @@
       "id": "tech_job_postings",
       "group": "? ????",
       "title": "???????????????",
-      "value": 74.4,
+      "value": 74.6,
       "unit": "Feb 2020=100",
-      "change": "招聘平稳 / 28d -1.7%",
+      "change": "招聘平稳 / 28d -1.2%",
       "trend": "flat",
       "access": "自动",
       "cadence": "日/周",
@@ -620,9 +620,9 @@
       "id": "gpu_rental_price",
       "group": "? ????",
       "title": "GPU 租赁价格",
-      "value": "$2.01/h",
+      "value": "$1.74/h",
       "unit": "H100 p25",
-      "change": "H100 $2.01/h / H200 $3.88/h / B200 $6.63/h",
+      "change": "H100 $1.74/h / H200 $3.98/h / B200 $6.00/h",
       "trend": "flat",
       "access": "自动",
       "cadence": "日/周",
@@ -634,9 +634,9 @@
       "id": "api_price_index",
       "group": "? ??",
       "title": "????????? API ????",
-      "value": "$4.53",
+      "value": "$5.35",
       "unit": "$/1M blended",
-      "change": "openai $4.50 / anthropic $11.4 / google $1.43 / deepseek $0.80",
+      "change": "openai $7.38 / anthropic $11.4 / google $1.84 / deepseek $0.80",
       "trend": "down",
       "access": "自动",
       "cadence": "日/周",
@@ -662,9 +662,9 @@
       "id": "revenue_per_gpu",
       "group": "? ????",
       "title": "单位 GPU 每日收入",
-      "value": "$48.1/day",
+      "value": "$41.7/day",
       "unit": "H100 spot proxy",
-      "change": "median $60.9/day",
+      "change": "median $74.4/day",
       "trend": "flat",
       "access": "自动",
       "cadence": "月/季",
@@ -945,48 +945,6 @@
   ],
   "history": {
     "openrouter_tokens": [
-      {
-        "date": "2026-05-25",
-        "value": 29104523715918,
-        "label": "29.1T",
-        "unit": "7d"
-      },
-      {
-        "date": "2026-05-26",
-        "value": 29841292324866,
-        "label": "29.8T",
-        "unit": "7d"
-      },
-      {
-        "date": "2026-05-27",
-        "value": 30117150710851,
-        "label": "30.1T",
-        "unit": "7d"
-      },
-      {
-        "date": "2026-05-28",
-        "value": 30699365559796,
-        "label": "30.7T",
-        "unit": "7d"
-      },
-      {
-        "date": "2026-05-29",
-        "value": 30842736332176,
-        "label": "30.8T",
-        "unit": "7d"
-      },
-      {
-        "date": "2026-05-30",
-        "value": 31330178572094,
-        "label": "31.3T",
-        "unit": "7d"
-      },
-      {
-        "date": "2026-05-31",
-        "value": 31807747787522,
-        "label": "31.8T",
-        "unit": "7d"
-      },
       {
         "date": "2026-06-01",
         "value": 32276973881402,
@@ -1475,72 +1433,72 @@
       },
       {
         "date": "2026-08-21",
-        "value": 84094411788993,
+        "value": 84094482062597,
         "label": "84.1T",
         "unit": "7d"
       },
       {
         "date": "2026-08-22",
-        "value": 88604906378541,
+        "value": 88605150072879,
         "label": "88.6T",
         "unit": "7d"
       },
       {
         "date": "2026-08-23",
-        "value": 93376541475594,
+        "value": 93377524278867,
         "label": "93.4T",
         "unit": "7d"
       },
       {
         "date": "2026-08-24",
-        "value": 93400000000000,
-        "label": "93.4T",
+        "value": 98419199710905,
+        "label": "98.4T",
+        "unit": "7d"
+      },
+      {
+        "date": "2026-08-25",
+        "value": 104489469706235,
+        "label": "104.5T",
+        "unit": "7d"
+      },
+      {
+        "date": "2026-08-26",
+        "value": 110806627447058,
+        "label": "110.8T",
+        "unit": "7d"
+      },
+      {
+        "date": "2026-08-27",
+        "value": 114474176066046,
+        "label": "114.5T",
+        "unit": "7d"
+      },
+      {
+        "date": "2026-08-28",
+        "value": 115702141659355,
+        "label": "115.7T",
+        "unit": "7d"
+      },
+      {
+        "date": "2026-08-29",
+        "value": 114830554347471,
+        "label": "114.8T",
+        "unit": "7d"
+      },
+      {
+        "date": "2026-08-30",
+        "value": 112996600301993,
+        "label": "113.0T",
+        "unit": "7d"
+      },
+      {
+        "date": "2026-08-31",
+        "value": 113000000000000,
+        "label": "113.0T",
         "unit": "7d"
       }
     ],
     "openrouter_share": [
-      {
-        "date": "2026-05-25",
-        "value": 63.3,
-        "label": "63.3%",
-        "unit": "Top10"
-      },
-      {
-        "date": "2026-05-26",
-        "value": 64,
-        "label": "64%",
-        "unit": "Top10"
-      },
-      {
-        "date": "2026-05-27",
-        "value": 64,
-        "label": "64%",
-        "unit": "Top10"
-      },
-      {
-        "date": "2026-05-28",
-        "value": 63.5,
-        "label": "63.5%",
-        "unit": "Top10"
-      },
-      {
-        "date": "2026-05-29",
-        "value": 62.4,
-        "label": "62.4%",
-        "unit": "Top10"
-      },
-      {
-        "date": "2026-05-30",
-        "value": 61.9,
-        "label": "61.9%",
-        "unit": "Top10"
-      },
-      {
-        "date": "2026-05-31",
-        "value": 61.9,
-        "label": "61.9%",
-        "unit": "Top10"
-      },
       {
         "date": "2026-06-01",
         "value": 61.2,
@@ -2047,8 +2005,50 @@
       },
       {
         "date": "2026-08-24",
-        "value": 72,
-        "label": "72%",
+        "value": 73.6,
+        "label": "73.6%",
+        "unit": "Top10"
+      },
+      {
+        "date": "2026-08-25",
+        "value": 75,
+        "label": "75%",
+        "unit": "Top10"
+      },
+      {
+        "date": "2026-08-26",
+        "value": 76.1,
+        "label": "76.1%",
+        "unit": "Top10"
+      },
+      {
+        "date": "2026-08-27",
+        "value": 75.3,
+        "label": "75.3%",
+        "unit": "Top10"
+      },
+      {
+        "date": "2026-08-28",
+        "value": 73.5,
+        "label": "73.5%",
+        "unit": "Top10"
+      },
+      {
+        "date": "2026-08-29",
+        "value": 71.2,
+        "label": "71.2%",
+        "unit": "Top10"
+      },
+      {
+        "date": "2026-08-30",
+        "value": 69,
+        "label": "69%",
+        "unit": "Top10"
+      },
+      {
+        "date": "2026-08-31",
+        "value": 69,
+        "label": "69%",
         "unit": "Top10"
       }
     ],
@@ -2165,7 +2165,7 @@
         "source": "https://www.bloomberg.com/news/articles/2026-08-17/anthropic-revenue-run-rate-surpasses-65-billion-ahead-of-ipo"
       },
       {
-        "date": "2026-08-24",
+        "date": "2026-08-31",
         "value": 65000000000,
         "label": "$65B",
         "unit": "annualized revenue"
@@ -2297,7 +2297,7 @@
         "source": "https://www.bloomberg.com/news/articles/2026-08-13/openai-s-revenue-run-rate-tops-40-billion-ahead-of-ipo"
       },
       {
-        "date": "2026-08-24",
+        "date": "2026-08-31",
         "value": 40000000000,
         "label": "$40B",
         "unit": "annualized revenue"
@@ -2539,6 +2539,12 @@
         "value": 2.01,
         "label": "$2.01/h",
         "unit": "H100 p25"
+      },
+      {
+        "date": "2026-08-31",
+        "value": 1.74,
+        "label": "$1.74/h",
+        "unit": "H100 p25"
       }
     ],
     "api_price_index": [
@@ -2625,6 +2631,12 @@
         "value": 4.53,
         "label": "$4.53",
         "unit": "$/1M blended"
+      },
+      {
+        "date": "2026-08-31",
+        "value": 5.35,
+        "label": "$5.35",
+        "unit": "$/1M blended"
       }
     ],
     "revenue_per_gpu": [
@@ -2710,6 +2722,12 @@
         "date": "2026-08-24",
         "value": 48.1,
         "label": "$48.1/day",
+        "unit": "H100 spot proxy"
+      },
+      {
+        "date": "2026-08-31",
+        "value": 41.7,
+        "label": "$41.7/day",
         "unit": "H100 spot proxy"
       }
     ],
@@ -2883,55 +2901,13 @@
         "unit": "ARR / exposed wage pool"
       },
       {
-        "date": "2026-08-24",
+        "date": "2026-08-31",
         "value": 5,
         "label": "5%",
         "unit": "ARR / exposed wage pool"
       }
     ],
     "token_arr_conversion": [
-      {
-        "date": "2026-05-25",
-        "value": 47573889.1359388,
-        "label": "$47.6M",
-        "unit": "ARR / annualized 1T OR tokens"
-      },
-      {
-        "date": "2026-05-26",
-        "value": 46399310.37643498,
-        "label": "$46.4M",
-        "unit": "ARR / annualized 1T OR tokens"
-      },
-      {
-        "date": "2026-05-27",
-        "value": 45974315.36299074,
-        "label": "$46.0M",
-        "unit": "ARR / annualized 1T OR tokens"
-      },
-      {
-        "date": "2026-05-28",
-        "value": 45102410.40383851,
-        "label": "$45.1M",
-        "unit": "ARR / annualized 1T OR tokens"
-      },
-      {
-        "date": "2026-05-29",
-        "value": 44892754.316708125,
-        "label": "$44.9M",
-        "unit": "ARR / annualized 1T OR tokens"
-      },
-      {
-        "date": "2026-05-30",
-        "value": 44194302.35385479,
-        "label": "$44.2M",
-        "unit": "ARR / annualized 1T OR tokens"
-      },
-      {
-        "date": "2026-05-31",
-        "value": 43530758.41347564,
-        "label": "$43.5M",
-        "unit": "ARR / annualized 1T OR tokens"
-      },
       {
         "date": "2026-06-01",
         "value": 42897930.571279496,
@@ -3420,24 +3396,66 @@
       },
       {
         "date": "2026-08-21",
-        "value": 24011473.84557916,
+        "value": 24011453.780376747,
         "label": "$24.0M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
         "date": "2026-08-22",
-        "value": 22789153.013763603,
+        "value": 22789090.335831754,
         "label": "$22.8M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
         "date": "2026-08-23",
-        "value": 21624604.39551126,
+        "value": 21624376.795431457,
         "label": "$21.6M",
         "unit": "ARR / annualized 1T OR tokens"
       },
       {
         "date": "2026-08-24",
+        "value": 20516634.713165987,
+        "label": "$20.5M",
+        "unit": "ARR / annualized 1T OR tokens"
+      },
+      {
+        "date": "2026-08-25",
+        "value": 19324729.802033626,
+        "label": "$19.3M",
+        "unit": "ARR / annualized 1T OR tokens"
+      },
+      {
+        "date": "2026-08-26",
+        "value": 18223014.41486911,
+        "label": "$18.2M",
+        "unit": "ARR / annualized 1T OR tokens"
+      },
+      {
+        "date": "2026-08-27",
+        "value": 17639181.504706983,
+        "label": "$17.6M",
+        "unit": "ARR / annualized 1T OR tokens"
+      },
+      {
+        "date": "2026-08-28",
+        "value": 17451974.01078104,
+        "label": "$17.5M",
+        "unit": "ARR / annualized 1T OR tokens"
+      },
+      {
+        "date": "2026-08-29",
+        "value": 17584438.05052693,
+        "label": "$17.6M",
+        "unit": "ARR / annualized 1T OR tokens"
+      },
+      {
+        "date": "2026-08-30",
+        "value": 17869836.471488554,
+        "label": "$17.9M",
+        "unit": "ARR / annualized 1T OR tokens"
+      },
+      {
+        "date": "2026-08-31",
         "value": 26900000,
         "label": "$26.9M",
         "unit": "ARR / annualized 1T OR tokens"
@@ -3445,51 +3463,9 @@
     ],
     "tech_job_postings": [
       {
-        "date": "2026-05-17",
-        "value": 73.77,
-        "label": "73.77",
-        "unit": "Feb 2020=100"
-      },
-      {
-        "date": "2026-05-18",
-        "value": 73.61,
-        "label": "73.61",
-        "unit": "Feb 2020=100"
-      },
-      {
-        "date": "2026-05-19",
-        "value": 73.88,
-        "label": "73.88",
-        "unit": "Feb 2020=100"
-      },
-      {
-        "date": "2026-05-20",
-        "value": 74.11,
-        "label": "74.11",
-        "unit": "Feb 2020=100"
-      },
-      {
-        "date": "2026-05-21",
-        "value": 74.24,
-        "label": "74.24",
-        "unit": "Feb 2020=100"
-      },
-      {
-        "date": "2026-05-22",
-        "value": 74.44,
-        "label": "74.44",
-        "unit": "Feb 2020=100"
-      },
-      {
-        "date": "2026-05-23",
-        "value": 74.59,
-        "label": "74.59",
-        "unit": "Feb 2020=100"
-      },
-      {
         "date": "2026-05-24",
-        "value": 74.72,
-        "label": "74.72",
+        "value": 74.71,
+        "label": "74.71",
         "unit": "Feb 2020=100"
       },
       {
@@ -3500,8 +3476,8 @@
       },
       {
         "date": "2026-05-26",
-        "value": 74.3,
-        "label": "74.3",
+        "value": 74.29,
+        "label": "74.29",
         "unit": "Feb 2020=100"
       },
       {
@@ -3548,14 +3524,14 @@
       },
       {
         "date": "2026-06-03",
-        "value": 73.49,
-        "label": "73.49",
+        "value": 73.48,
+        "label": "73.48",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-06-04",
-        "value": 73.48,
-        "label": "73.48",
+        "value": 73.47,
+        "label": "73.47",
         "unit": "Feb 2020=100"
       },
       {
@@ -3566,8 +3542,8 @@
       },
       {
         "date": "2026-06-06",
-        "value": 73.51,
-        "label": "73.51",
+        "value": 73.5,
+        "label": "73.5",
         "unit": "Feb 2020=100"
       },
       {
@@ -3584,14 +3560,14 @@
       },
       {
         "date": "2026-06-09",
-        "value": 73.4,
-        "label": "73.4",
+        "value": 73.39,
+        "label": "73.39",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-06-10",
-        "value": 73.21,
-        "label": "73.21",
+        "value": 73.2,
+        "label": "73.2",
         "unit": "Feb 2020=100"
       },
       {
@@ -3602,38 +3578,38 @@
       },
       {
         "date": "2026-06-12",
-        "value": 72.9,
-        "label": "72.9",
+        "value": 72.89,
+        "label": "72.89",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-06-13",
-        "value": 72.71,
-        "label": "72.71",
+        "value": 72.7,
+        "label": "72.7",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-06-14",
-        "value": 72.55,
-        "label": "72.55",
+        "value": 72.54,
+        "label": "72.54",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-06-15",
-        "value": 72.5,
-        "label": "72.5",
+        "value": 72.49,
+        "label": "72.49",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-06-16",
-        "value": 72.33,
-        "label": "72.33",
+        "value": 72.32,
+        "label": "72.32",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-06-17",
-        "value": 72.34,
-        "label": "72.34",
+        "value": 72.33,
+        "label": "72.33",
         "unit": "Feb 2020=100"
       },
       {
@@ -3644,74 +3620,74 @@
       },
       {
         "date": "2026-06-19",
-        "value": 72.69,
-        "label": "72.69",
+        "value": 72.68,
+        "label": "72.68",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-06-20",
-        "value": 72.88,
-        "label": "72.88",
+        "value": 72.87,
+        "label": "72.87",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-06-21",
-        "value": 73.11,
-        "label": "73.11",
+        "value": 73.1,
+        "label": "73.1",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-06-22",
-        "value": 73.25,
-        "label": "73.25",
+        "value": 73.24,
+        "label": "73.24",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-06-23",
-        "value": 73.48,
-        "label": "73.48",
+        "value": 73.47,
+        "label": "73.47",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-06-24",
-        "value": 73.58,
-        "label": "73.58",
+        "value": 73.57,
+        "label": "73.57",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-06-25",
-        "value": 73.62,
-        "label": "73.62",
+        "value": 73.61,
+        "label": "73.61",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-06-26",
-        "value": 73.53,
-        "label": "73.53",
-        "unit": "Feb 2020=100"
-      },
-      {
-        "date": "2026-06-27",
-        "value": 73.54,
-        "label": "73.54",
-        "unit": "Feb 2020=100"
-      },
-      {
-        "date": "2026-06-28",
         "value": 73.52,
         "label": "73.52",
         "unit": "Feb 2020=100"
       },
       {
+        "date": "2026-06-27",
+        "value": 73.53,
+        "label": "73.53",
+        "unit": "Feb 2020=100"
+      },
+      {
+        "date": "2026-06-28",
+        "value": 73.51,
+        "label": "73.51",
+        "unit": "Feb 2020=100"
+      },
+      {
         "date": "2026-06-29",
-        "value": 73.4,
-        "label": "73.4",
+        "value": 73.39,
+        "label": "73.39",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-06-30",
-        "value": 73.47,
-        "label": "73.47",
+        "value": 73.46,
+        "label": "73.46",
         "unit": "Feb 2020=100"
       },
       {
@@ -3722,26 +3698,26 @@
       },
       {
         "date": "2026-07-02",
-        "value": 73.58,
-        "label": "73.58",
+        "value": 73.57,
+        "label": "73.57",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-07-03",
-        "value": 73.81,
-        "label": "73.81",
+        "value": 73.8,
+        "label": "73.8",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-07-04",
-        "value": 73.88,
-        "label": "73.88",
+        "value": 73.87,
+        "label": "73.87",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-07-05",
-        "value": 74.01,
-        "label": "74.01",
+        "value": 74,
+        "label": "74",
         "unit": "Feb 2020=100"
       },
       {
@@ -3752,8 +3728,8 @@
       },
       {
         "date": "2026-07-07",
-        "value": 74.17,
-        "label": "74.17",
+        "value": 74.16,
+        "label": "74.16",
         "unit": "Feb 2020=100"
       },
       {
@@ -3764,20 +3740,20 @@
       },
       {
         "date": "2026-07-09",
-        "value": 74.49,
-        "label": "74.49",
+        "value": 74.48,
+        "label": "74.48",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-07-10",
-        "value": 74.56,
-        "label": "74.56",
+        "value": 74.55,
+        "label": "74.55",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-07-11",
-        "value": 74.81,
-        "label": "74.81",
+        "value": 74.8,
+        "label": "74.8",
         "unit": "Feb 2020=100"
       },
       {
@@ -3788,26 +3764,26 @@
       },
       {
         "date": "2026-07-13",
-        "value": 75.24,
-        "label": "75.24",
+        "value": 75.23,
+        "label": "75.23",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-07-14",
-        "value": 75.49,
-        "label": "75.49",
+        "value": 75.48,
+        "label": "75.48",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-07-15",
-        "value": 75.57,
-        "label": "75.57",
+        "value": 75.56,
+        "label": "75.56",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-07-16",
-        "value": 75.67,
-        "label": "75.67",
+        "value": 75.66,
+        "label": "75.66",
         "unit": "Feb 2020=100"
       },
       {
@@ -3818,26 +3794,26 @@
       },
       {
         "date": "2026-07-18",
-        "value": 75.52,
-        "label": "75.52",
+        "value": 75.51,
+        "label": "75.51",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-07-19",
-        "value": 75.43,
-        "label": "75.43",
-        "unit": "Feb 2020=100"
-      },
-      {
-        "date": "2026-07-20",
         "value": 75.42,
         "label": "75.42",
         "unit": "Feb 2020=100"
       },
       {
+        "date": "2026-07-20",
+        "value": 75.41,
+        "label": "75.41",
+        "unit": "Feb 2020=100"
+      },
+      {
         "date": "2026-07-21",
-        "value": 75.33,
-        "label": "75.33",
+        "value": 75.32,
+        "label": "75.32",
         "unit": "Feb 2020=100"
       },
       {
@@ -3848,8 +3824,8 @@
       },
       {
         "date": "2026-07-23",
-        "value": 75.38,
-        "label": "75.38",
+        "value": 75.37,
+        "label": "75.37",
         "unit": "Feb 2020=100"
       },
       {
@@ -3866,20 +3842,20 @@
       },
       {
         "date": "2026-07-26",
-        "value": 75.67,
-        "label": "75.67",
+        "value": 75.66,
+        "label": "75.66",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-07-27",
-        "value": 75.77,
-        "label": "75.77",
+        "value": 75.76,
+        "label": "75.76",
         "unit": "Feb 2020=100"
       },
       {
         "date": "2026-07-28",
-        "value": 75.92,
-        "label": "75.92",
+        "value": 75.91,
+        "label": "75.91",
         "unit": "Feb 2020=100"
       },
       {
@@ -3890,8 +3866,8 @@
       },
       {
         "date": "2026-07-30",
-        "value": 75.75,
-        "label": "75.75",
+        "value": 75.74,
+        "label": "75.74",
         "unit": "Feb 2020=100"
       },
       {
@@ -3908,8 +3884,8 @@
       },
       {
         "date": "2026-08-02",
-        "value": 74.88,
-        "label": "74.88",
+        "value": 74.87,
+        "label": "74.87",
         "unit": "Feb 2020=100"
       },
       {
@@ -3926,8 +3902,8 @@
       },
       {
         "date": "2026-08-05",
-        "value": 73.76,
-        "label": "73.76",
+        "value": 73.75,
+        "label": "73.75",
         "unit": "Feb 2020=100"
       },
       {
@@ -3956,8 +3932,8 @@
       },
       {
         "date": "2026-08-10",
-        "value": 73.85,
-        "label": "73.85",
+        "value": 73.84,
+        "label": "73.84",
         "unit": "Feb 2020=100"
       },
       {
@@ -3968,8 +3944,8 @@
       },
       {
         "date": "2026-08-12",
-        "value": 74.1,
-        "label": "74.1",
+        "value": 74.09,
+        "label": "74.09",
         "unit": "Feb 2020=100"
       },
       {
@@ -3985,55 +3961,55 @@
         "unit": "Feb 2020=100"
       },
       {
-        "date": "2026-08-24",
+        "date": "2026-08-15",
         "value": 74.4,
         "label": "74.4",
+        "unit": "Feb 2020=100"
+      },
+      {
+        "date": "2026-08-16",
+        "value": 74.45,
+        "label": "74.45",
+        "unit": "Feb 2020=100"
+      },
+      {
+        "date": "2026-08-17",
+        "value": 74.47,
+        "label": "74.47",
+        "unit": "Feb 2020=100"
+      },
+      {
+        "date": "2026-08-18",
+        "value": 74.54,
+        "label": "74.54",
+        "unit": "Feb 2020=100"
+      },
+      {
+        "date": "2026-08-19",
+        "value": 74.49,
+        "label": "74.49",
+        "unit": "Feb 2020=100"
+      },
+      {
+        "date": "2026-08-20",
+        "value": 74.49,
+        "label": "74.49",
+        "unit": "Feb 2020=100"
+      },
+      {
+        "date": "2026-08-21",
+        "value": 74.57,
+        "label": "74.57",
+        "unit": "Feb 2020=100"
+      },
+      {
+        "date": "2026-08-31",
+        "value": 74.6,
+        "label": "74.6",
         "unit": "Feb 2020=100"
       }
     ],
     "llm_token_spend_index": [
-      {
-        "date": "2026-05-17",
-        "value": 2.541,
-        "label": "$2.54",
-        "unit": "$/1M weighted"
-      },
-      {
-        "date": "2026-05-18",
-        "value": 2.4584,
-        "label": "$2.46",
-        "unit": "$/1M weighted"
-      },
-      {
-        "date": "2026-05-19",
-        "value": 2.3898,
-        "label": "$2.39",
-        "unit": "$/1M weighted"
-      },
-      {
-        "date": "2026-05-20",
-        "value": 2.3305,
-        "label": "$2.33",
-        "unit": "$/1M weighted"
-      },
-      {
-        "date": "2026-05-21",
-        "value": 2.3465,
-        "label": "$2.35",
-        "unit": "$/1M weighted"
-      },
-      {
-        "date": "2026-05-22",
-        "value": 2.3798,
-        "label": "$2.38",
-        "unit": "$/1M weighted"
-      },
-      {
-        "date": "2026-05-23",
-        "value": 2.4439,
-        "label": "$2.44",
-        "unit": "$/1M weighted"
-      },
       {
         "date": "2026-05-24",
         "value": 2.4557,
@@ -4581,55 +4557,55 @@
         "unit": "$/1M weighted"
       },
       {
+        "date": "2026-08-23",
+        "value": 1.5178,
+        "label": "$1.52",
+        "unit": "$/1M weighted"
+      },
+      {
         "date": "2026-08-24",
-        "value": 1.6,
-        "label": "$1.60",
+        "value": 1.5134,
+        "label": "$1.51",
+        "unit": "$/1M weighted"
+      },
+      {
+        "date": "2026-08-25",
+        "value": 1.5104,
+        "label": "$1.51",
+        "unit": "$/1M weighted"
+      },
+      {
+        "date": "2026-08-26",
+        "value": 1.4782,
+        "label": "$1.48",
+        "unit": "$/1M weighted"
+      },
+      {
+        "date": "2026-08-27",
+        "value": 1.4267,
+        "label": "$1.43",
+        "unit": "$/1M weighted"
+      },
+      {
+        "date": "2026-08-28",
+        "value": 1.3882,
+        "label": "$1.39",
+        "unit": "$/1M weighted"
+      },
+      {
+        "date": "2026-08-29",
+        "value": 1.3537,
+        "label": "$1.35",
+        "unit": "$/1M weighted"
+      },
+      {
+        "date": "2026-08-31",
+        "value": 1.35,
+        "label": "$1.35",
         "unit": "$/1M weighted"
       }
     ],
     "frontier_premium": [
-      {
-        "date": "2026-05-17",
-        "value": 7.2,
-        "label": "7.2x",
-        "unit": "frontier / open-weight"
-      },
-      {
-        "date": "2026-05-18",
-        "value": 6.98,
-        "label": "7.0x",
-        "unit": "frontier / open-weight"
-      },
-      {
-        "date": "2026-05-19",
-        "value": 7.07,
-        "label": "7.1x",
-        "unit": "frontier / open-weight"
-      },
-      {
-        "date": "2026-05-20",
-        "value": 7.16,
-        "label": "7.2x",
-        "unit": "frontier / open-weight"
-      },
-      {
-        "date": "2026-05-21",
-        "value": 8.11,
-        "label": "8.1x",
-        "unit": "frontier / open-weight"
-      },
-      {
-        "date": "2026-05-22",
-        "value": 8.28,
-        "label": "8.3x",
-        "unit": "frontier / open-weight"
-      },
-      {
-        "date": "2026-05-23",
-        "value": 7.05,
-        "label": "7.0x",
-        "unit": "frontier / open-weight"
-      },
       {
         "date": "2026-05-24",
         "value": 10.49,
@@ -5177,55 +5153,55 @@
         "unit": "frontier / open-weight"
       },
       {
+        "date": "2026-08-23",
+        "value": 4.56,
+        "label": "4.6x",
+        "unit": "frontier / open-weight"
+      },
+      {
         "date": "2026-08-24",
-        "value": 4.4,
-        "label": "4.4x",
+        "value": 4.26,
+        "label": "4.3x",
+        "unit": "frontier / open-weight"
+      },
+      {
+        "date": "2026-08-25",
+        "value": 3.53,
+        "label": "3.5x",
+        "unit": "frontier / open-weight"
+      },
+      {
+        "date": "2026-08-26",
+        "value": 3.55,
+        "label": "3.5x",
+        "unit": "frontier / open-weight"
+      },
+      {
+        "date": "2026-08-27",
+        "value": 3.81,
+        "label": "3.8x",
+        "unit": "frontier / open-weight"
+      },
+      {
+        "date": "2026-08-28",
+        "value": 3.36,
+        "label": "3.4x",
+        "unit": "frontier / open-weight"
+      },
+      {
+        "date": "2026-08-29",
+        "value": 2.8,
+        "label": "2.8x",
+        "unit": "frontier / open-weight"
+      },
+      {
+        "date": "2026-08-31",
+        "value": 2.8,
+        "label": "2.8x",
         "unit": "frontier / open-weight"
       }
     ],
     "free_token_share": [
-      {
-        "date": "2026-05-17",
-        "value": 10.489999999999998,
-        "label": "10.5%",
-        "unit": "free token share"
-      },
-      {
-        "date": "2026-05-18",
-        "value": 8.52,
-        "label": "8.5%",
-        "unit": "free token share"
-      },
-      {
-        "date": "2026-05-19",
-        "value": 8.04,
-        "label": "8.0%",
-        "unit": "free token share"
-      },
-      {
-        "date": "2026-05-20",
-        "value": 7.1,
-        "label": "7.1%",
-        "unit": "free token share"
-      },
-      {
-        "date": "2026-05-21",
-        "value": 7.7700000000000005,
-        "label": "7.8%",
-        "unit": "free token share"
-      },
-      {
-        "date": "2026-05-22",
-        "value": 7.199999999999999,
-        "label": "7.2%",
-        "unit": "free token share"
-      },
-      {
-        "date": "2026-05-23",
-        "value": 8.1,
-        "label": "8.1%",
-        "unit": "free token share"
-      },
       {
         "date": "2026-05-24",
         "value": 7.249999999999999,
@@ -5773,9 +5749,51 @@
         "unit": "free token share"
       },
       {
+        "date": "2026-08-23",
+        "value": 9.36,
+        "label": "9.4%",
+        "unit": "free token share"
+      },
+      {
         "date": "2026-08-24",
-        "value": 8.9,
-        "label": "8.9%",
+        "value": 8.37,
+        "label": "8.4%",
+        "unit": "free token share"
+      },
+      {
+        "date": "2026-08-25",
+        "value": 7.829999999999999,
+        "label": "7.8%",
+        "unit": "free token share"
+      },
+      {
+        "date": "2026-08-26",
+        "value": 7.829999999999999,
+        "label": "7.8%",
+        "unit": "free token share"
+      },
+      {
+        "date": "2026-08-27",
+        "value": 11.09,
+        "label": "11.1%",
+        "unit": "free token share"
+      },
+      {
+        "date": "2026-08-28",
+        "value": 12.809999999999999,
+        "label": "12.8%",
+        "unit": "free token share"
+      },
+      {
+        "date": "2026-08-29",
+        "value": 17.25,
+        "label": "17.3%",
+        "unit": "free token share"
+      },
+      {
+        "date": "2026-08-31",
+        "value": 17.3,
+        "label": "17.3%",
         "unit": "free token share"
       }
     ],
@@ -5829,7 +5847,7 @@
         "unit": "CapEx / OCF"
       },
       {
-        "date": "2026-08-24",
+        "date": "2026-08-31",
         "value": 94,
         "label": "94%",
         "unit": "CapEx / OCF"
@@ -5895,6 +5913,12 @@
         "value": 60,
         "label": "60",
         "unit": "分"
+      },
+      {
+        "date": "2026-08-31",
+        "value": 60,
+        "label": "60",
+        "unit": "分"
       }
     ],
     "aa_cn_score": [
@@ -5957,51 +5981,15 @@
         "value": 51,
         "label": "51",
         "unit": "分"
+      },
+      {
+        "date": "2026-08-31",
+        "value": 51,
+        "label": "51",
+        "unit": "分"
       }
     ],
     "openrouter_us_tokens": [
-      {
-        "date": "2026-05-25",
-        "value": 1.601074119536,
-        "label": "1.6T",
-        "unit": "万亿/日"
-      },
-      {
-        "date": "2026-05-26",
-        "value": 2.134756689046,
-        "label": "2.1T",
-        "unit": "万亿/日"
-      },
-      {
-        "date": "2026-05-27",
-        "value": 1.871581898104,
-        "label": "1.9T",
-        "unit": "万亿/日"
-      },
-      {
-        "date": "2026-05-28",
-        "value": 1.844225428598,
-        "label": "1.8T",
-        "unit": "万亿/日"
-      },
-      {
-        "date": "2026-05-29",
-        "value": 1.678988232315,
-        "label": "1.7T",
-        "unit": "万亿/日"
-      },
-      {
-        "date": "2026-05-30",
-        "value": 1.285067509241,
-        "label": "1.3T",
-        "unit": "万亿/日"
-      },
-      {
-        "date": "2026-05-31",
-        "value": 1.379829650213,
-        "label": "1.4T",
-        "unit": "万亿/日"
-      },
       {
         "date": "2026-06-01",
         "value": 1.687052822005,
@@ -6490,72 +6478,72 @@
       },
       {
         "date": "2026-08-21",
-        "value": 2.681718009016,
+        "value": 2.681730185865,
         "label": "2.7T",
         "unit": "万亿/日"
       },
       {
         "date": "2026-08-22",
-        "value": 1.981244004696,
+        "value": 1.981265193977,
         "label": "2T",
         "unit": "万亿/日"
       },
       {
         "date": "2026-08-23",
-        "value": 2.182753629288,
+        "value": 2.18276641629,
         "label": "2.2T",
         "unit": "万亿/日"
       },
       {
         "date": "2026-08-24",
-        "value": 2.9,
-        "label": "2.9",
+        "value": 3.040265148341,
+        "label": "3T",
+        "unit": "万亿/日"
+      },
+      {
+        "date": "2026-08-25",
+        "value": 3.722046537733,
+        "label": "3.7T",
+        "unit": "万亿/日"
+      },
+      {
+        "date": "2026-08-26",
+        "value": 3.924136920345,
+        "label": "3.9T",
+        "unit": "万亿/日"
+      },
+      {
+        "date": "2026-08-27",
+        "value": 4.11211349227,
+        "label": "4.1T",
+        "unit": "万亿/日"
+      },
+      {
+        "date": "2026-08-28",
+        "value": 3.920131368299,
+        "label": "3.9T",
+        "unit": "万亿/日"
+      },
+      {
+        "date": "2026-08-29",
+        "value": 2.714503558125,
+        "label": "2.7T",
+        "unit": "万亿/日"
+      },
+      {
+        "date": "2026-08-30",
+        "value": 2.962056250965,
+        "label": "3T",
+        "unit": "万亿/日"
+      },
+      {
+        "date": "2026-08-31",
+        "value": 3.5,
+        "label": "3.5",
         "unit": "万亿/日"
       }
     ],
     "openrouter_cn_tokens": [
-      {
-        "date": "2026-05-25",
-        "value": 1.818678795519,
-        "label": "1.8T",
-        "unit": "万亿/日"
-      },
-      {
-        "date": "2026-05-26",
-        "value": 1.969396241047,
-        "label": "2T",
-        "unit": "万亿/日"
-      },
-      {
-        "date": "2026-05-27",
-        "value": 1.983021244953,
-        "label": "2T",
-        "unit": "万亿/日"
-      },
-      {
-        "date": "2026-05-28",
-        "value": 2.26270064361,
-        "label": "2.3T",
-        "unit": "万亿/日"
-      },
-      {
-        "date": "2026-05-29",
-        "value": 2.119748102421,
-        "label": "2.1T",
-        "unit": "万亿/日"
-      },
-      {
-        "date": "2026-05-30",
-        "value": 1.974291897008,
-        "label": "2T",
-        "unit": "万亿/日"
-      },
-      {
-        "date": "2026-05-31",
-        "value": 2.060659532792,
-        "label": "2.1T",
-        "unit": "万亿/日"
-      },
       {
         "date": "2026-06-01",
         "value": 2.12850311815,
@@ -7044,26 +7032,68 @@
       },
       {
         "date": "2026-08-21",
-        "value": 7.173414119486,
+        "value": 7.173416680295,
         "label": "7.2T",
         "unit": "万亿/日"
       },
       {
         "date": "2026-08-22",
-        "value": 5.656017002269,
+        "value": 5.656043935859,
         "label": "5.7T",
         "unit": "万亿/日"
       },
       {
         "date": "2026-08-23",
-        "value": 5.859282210011,
+        "value": 5.859321434315,
         "label": "5.9T",
         "unit": "万亿/日"
       },
       {
         "date": "2026-08-24",
-        "value": 6.8,
-        "label": "6.8",
+        "value": 6.977344411045,
+        "label": "7T",
+        "unit": "万亿/日"
+      },
+      {
+        "date": "2026-08-25",
+        "value": 7.08267006048,
+        "label": "7.1T",
+        "unit": "万亿/日"
+      },
+      {
+        "date": "2026-08-26",
+        "value": 8.382464304622,
+        "label": "8.4T",
+        "unit": "万亿/日"
+      },
+      {
+        "date": "2026-08-27",
+        "value": 9.412647201864,
+        "label": "9.4T",
+        "unit": "万亿/日"
+      },
+      {
+        "date": "2026-08-28",
+        "value": 9.098777792723,
+        "label": "9.1T",
+        "unit": "万亿/日"
+      },
+      {
+        "date": "2026-08-29",
+        "value": 8.324987347906,
+        "label": "8.3T",
+        "unit": "万亿/日"
+      },
+      {
+        "date": "2026-08-30",
+        "value": 8.400573887772,
+        "label": "8.4T",
+        "unit": "万亿/日"
+      },
+      {
+        "date": "2026-08-31",
+        "value": 8.2,
+        "label": "8.2",
         "unit": "万亿/日"
       }
     ],
@@ -7124,6 +7154,12 @@
       },
       {
         "date": "2026-08-24",
+        "value": 1.6,
+        "label": "$1.6",
+        "unit": "美元/百万 token"
+      },
+      {
+        "date": "2026-08-31",
         "value": 1.6,
         "label": "$1.6",
         "unit": "美元/百万 token"
@@ -7189,6 +7225,12 @@
         "value": 1.7,
         "label": "$1.7",
         "unit": "美元/用户/月"
+      },
+      {
+        "date": "2026-08-31",
+        "value": 1.7,
+        "label": "$1.7",
+        "unit": "美元/用户/月"
       }
     ],
     "anthropic_app_revenue": [
@@ -7248,6 +7290,12 @@
       },
       {
         "date": "2026-08-24",
+        "value": 2.8,
+        "label": "$2.8",
+        "unit": "美元/用户/月"
+      },
+      {
+        "date": "2026-08-31",
         "value": 2.8,
         "label": "$2.8",
         "unit": "美元/用户/月"
@@ -7313,6 +7361,12 @@
         "value": 101500000000,
         "label": "$101.5B",
         "unit": "十亿美元"
+      },
+      {
+        "date": "2026-08-31",
+        "value": 101500000000,
+        "label": "$101.5B",
+        "unit": "十亿美元"
       }
     ],
     "big5_bond_issuance": [
@@ -7372,6 +7426,12 @@
       },
       {
         "date": "2026-08-24",
+        "value": 25000000000,
+        "label": "$25B",
+        "unit": "十亿美元"
+      },
+      {
+        "date": "2026-08-31",
         "value": 25000000000,
         "label": "$25B",
         "unit": "十亿美元"
@@ -7437,39 +7497,15 @@
         "value": 86.4,
         "label": "86.4",
         "unit": "bp"
+      },
+      {
+        "date": "2026-08-31",
+        "value": 86.4,
+        "label": "86.4",
+        "unit": "bp"
       }
     ],
     "ig_credit_spread": [
-      {
-        "date": "2026-04-06",
-        "value": 0.85,
-        "label": "0.9ppt",
-        "unit": "US IG OAS"
-      },
-      {
-        "date": "2026-04-07",
-        "value": 0.86,
-        "label": "0.9ppt",
-        "unit": "US IG OAS"
-      },
-      {
-        "date": "2026-04-08",
-        "value": 0.83,
-        "label": "0.8ppt",
-        "unit": "US IG OAS"
-      },
-      {
-        "date": "2026-04-09",
-        "value": 0.83,
-        "label": "0.8ppt",
-        "unit": "US IG OAS"
-      },
-      {
-        "date": "2026-04-10",
-        "value": 0.82,
-        "label": "0.8ppt",
-        "unit": "US IG OAS"
-      },
       {
         "date": "2026-04-13",
         "value": 0.82,
@@ -8041,7 +8077,37 @@
         "unit": "US IG OAS"
       },
       {
+        "date": "2026-08-21",
+        "value": 0.81,
+        "label": "0.8ppt",
+        "unit": "US IG OAS"
+      },
+      {
         "date": "2026-08-24",
+        "value": 0.81,
+        "label": "0.8ppt",
+        "unit": "US IG OAS"
+      },
+      {
+        "date": "2026-08-25",
+        "value": 0.81,
+        "label": "0.8ppt",
+        "unit": "US IG OAS"
+      },
+      {
+        "date": "2026-08-26",
+        "value": 0.8,
+        "label": "0.8ppt",
+        "unit": "US IG OAS"
+      },
+      {
+        "date": "2026-08-27",
+        "value": 0.79,
+        "label": "0.8ppt",
+        "unit": "US IG OAS"
+      },
+      {
+        "date": "2026-08-31",
         "value": 0.8,
         "label": "0.8ppt",
         "unit": "US IG OAS"
@@ -8107,6 +8173,12 @@
         "value": 3.75,
         "label": "3.75",
         "unit": "分"
+      },
+      {
+        "date": "2026-08-31",
+        "value": 3.75,
+        "label": "3.75",
+        "unit": "分"
       }
     ],
     "ai_risk_investment": [
@@ -8166,6 +8238,12 @@
       },
       {
         "date": "2026-08-24",
+        "value": 267200000000,
+        "label": "$267.2B",
+        "unit": "十亿美元"
+      },
+      {
+        "date": "2026-08-31",
         "value": 267200000000,
         "label": "$267.2B",
         "unit": "十亿美元"
@@ -8239,7 +8317,7 @@
         "unit": "万人"
       },
       {
-        "date": "2026-08-24",
+        "date": "2026-08-31",
         "value": 1524.8,
         "label": "1524.8",
         "unit": "万人"
@@ -8302,6 +8380,12 @@
       },
       {
         "date": "2026-08-24",
+        "value": 46,
+        "label": "46%",
+        "unit": "%"
+      },
+      {
+        "date": "2026-08-31",
         "value": 46,
         "label": "46%",
         "unit": "%"
@@ -8379,6 +8463,12 @@
         "value": 59300000000,
         "label": "$59.3B",
         "unit": "十亿美元"
+      },
+      {
+        "date": "2026-08-31",
+        "value": 59300000000,
+        "label": "$59.3B",
+        "unit": "十亿美元"
       }
     ],
     "hyperscaler_fcf": [
@@ -8431,7 +8521,7 @@
         "unit": "OCF-CapEx"
       },
       {
-        "date": "2026-08-24",
+        "date": "2026-08-31",
         "value": 9500000000,
         "label": "$9.5B",
         "unit": "十亿美元"
@@ -8487,7 +8577,7 @@
         "unit": "liabilities/equity"
       },
       {
-        "date": "2026-08-24",
+        "date": "2026-08-31",
         "value": 43,
         "label": "43%",
         "unit": "Big 5 负债权益比"
@@ -12213,6 +12303,6 @@
       }
     ]
   },
-  "updatedAt": "2026-08-24 01:55",
+  "updatedAt": "2026-08-31 05:26",
   "source": "github-actions-cache"
 }
